@@ -114,3 +114,5 @@ export default function BodySystemDetailPage() {
     </div>
   );
 }
+
+    

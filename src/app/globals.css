@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,25 +9,25 @@ body {
 
 @layer base {
   :root {
-    --background: 195 53% 94%;
-    --foreground: 197 25% 25%;
-    --card: 195 50% 98%;
+    --background: 195 53% 94%; /* Very light teal (#E8F5F9) */
+    --foreground: 197 25% 25%; /* Dark desaturated teal/blue */
+    --card: 195 50% 98%; /* Lighter than background */
     --card-foreground: 197 25% 25%;
     --popover: 195 50% 98%;
     --popover-foreground: 197 25% 25%;
-    --primary: 191 40% 61%;
-    --primary-foreground: 200 100% 10%;
-    --secondary: 195 45% 88%;
+    --primary: 191 40% 61%; /* Soft teal (#73B9C6) */
+    --primary-foreground: 200 100% 10%; /* Very dark blue for contrast */
+    --secondary: 195 45% 88%; /* Lighter teal */
     --secondary-foreground: 197 25% 25%;
     --muted: 195 40% 90%;
-    --muted-foreground: 197 20% 40%;
-    --accent: 197 22% 46%;
-    --accent-foreground: 0 0% 100%;
+    --muted-foreground: 197 20% 40%; /* Medium dark teal/blue */
+    --accent: 197 22% 46%; /* Muted blue (#5A828E) */
+    --accent-foreground: 0 0% 100%; /* White */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 195 30% 80%;
     --input: 195 30% 85%;
-    --ring: 191 40% 61%;
+    --ring: 191 40% 61%; /* Primary color for ring */
     --chart-1: 191 40% 61%;
     --chart-2: 197 30% 55%;
     --chart-3: 195 50% 70%;
@@ -34,47 +35,47 @@ body {
     --chart-5: 197 20% 65%;
     --radius: 0.5rem;
 
-    --sidebar-background: 195 45% 90%;
+    --sidebar-background: 195 45% 90%; /* Slightly different from main bg for sidebar */
     --sidebar-foreground: 197 25% 25%;
     --sidebar-primary: 191 40% 61%;
     --sidebar-primary-foreground: 200 100% 10%;
-    --sidebar-accent: 197 22% 50%;
+    --sidebar-accent: 197 22% 50%; /* Slightly lighter accent for sidebar */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 195 30% 75%;
     --sidebar-ring: 191 40% 61%;
   }
 
   .dark {
-    --background: 197 20% 10%;
-    --foreground: 195 25% 85%;
-    --card: 197 20% 15%;
+    --background: 197 20% 10%; /* Very dark blue/teal */
+    --foreground: 195 25% 85%; /* Light teal/gray */
+    --card: 197 20% 15%; /* Slightly lighter than dark background */
     --card-foreground: 195 25% 85%;
     --popover: 197 20% 15%;
     --popover-foreground: 195 25% 85%;
-    --primary: 191 40% 61%;
-    --primary-foreground: 200 100% 10%;
-    --secondary: 197 20% 25%;
+    --primary: 191 40% 61%; /* Soft teal - consistent branding */
+    --primary-foreground: 200 100% 10%; /* Consistent */
+    --secondary: 197 20% 25%; /* Darker muted teal/blue */
     --secondary-foreground: 195 25% 85%;
     --muted: 197 20% 20%;
-    --muted-foreground: 195 20% 60%;
-    --accent: 197 22% 50%;
-    --accent-foreground: 0 0% 100%;
+    --muted-foreground: 195 20% 60%; /* Medium light teal/gray */
+    --accent: 197 22% 50%; /* Lighter muted blue for dark mode */
+    --accent-foreground: 0 0% 100%; /* White */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 197 20% 30%;
     --input: 197 20% 25%;
-    --ring: 191 40% 55%;
+    --ring: 191 40% 55%; /* Slightly desaturated primary for dark ring */
     --chart-1: 191 40% 61%;
     --chart-2: 197 30% 55%;
     --chart-3: 195 50% 70%;
     --chart-4: 191 30% 75%;
     --chart-5: 197 20% 65%;
 
-    --sidebar-background: 197 20% 8%;
+    --sidebar-background: 197 20% 8%; /* Darker than main dark bg for sidebar */
     --sidebar-foreground: 195 25% 85%;
     --sidebar-primary: 191 40% 61%;
     --sidebar-primary-foreground: 200 100% 10%;
-    --sidebar-accent: 197 22% 40%;
+    --sidebar-accent: 197 22% 40%; /* Darker accent for sidebar in dark mode */
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 197 20% 25%;
     --sidebar-ring: 191 40% 55%;
@@ -99,34 +100,34 @@ body {
   @apply text-foreground font-headline mt-6 mb-3;
 }
 .prose p {
-  @apply mb-4;
-}
-.prose a {
-  @apply text-primary hover:text-accent;
-}
-.prose strong {
-  @apply text-foreground;
-}
-.prose blockquote {
-  @apply border-primary text-muted-foreground pl-4 italic;
-}
-.prose code {
-  @apply text-accent bg-muted rounded px-1 py-0.5 font-code;
-}
-.prose pre {
-  @apply bg-muted p-4 rounded-md overflow-x-auto;
-}
-.prose pre code {
-  @apply bg-transparent p-0 text-accent font-code;
+  @apply mb-4 leading-relaxed;
 }
 .prose ul, .prose ol {
-  @apply ml-6 mb-4;
+  @apply ml-6 mb-4 leading-relaxed;
 }
 .prose li {
   @apply mb-2;
 }
 .prose li > p {
   @apply mb-1;
+}
+.prose a {
+  @apply text-primary hover:text-accent;
+}
+.prose strong {
+  @apply text-foreground font-semibold;
+}
+.prose blockquote {
+  @apply border-primary text-muted-foreground pl-4 italic py-2;
+}
+.prose code {
+  @apply text-accent bg-muted rounded px-1 py-0.5 font-code text-sm;
+}
+.prose pre {
+  @apply bg-muted p-4 rounded-md overflow-x-auto text-sm;
+}
+.prose pre code {
+  @apply bg-transparent p-0 text-accent font-code;
 }
 
 
@@ -137,28 +138,10 @@ body {
   @apply text-foreground font-headline mt-6 mb-3;
 }
 .dark .prose p {
-  @apply mb-4;
-}
-.dark .prose a {
-  @apply text-primary hover:text-accent;
-}
-.dark .prose strong {
-  @apply text-foreground;
-}
-.dark .prose blockquote {
-  @apply border-primary text-muted-foreground pl-4 italic;
-}
-.dark .prose code {
-  @apply text-accent bg-muted rounded px-1 py-0.5 font-code;
-}
-.dark .prose pre {
-  @apply bg-muted p-4 rounded-md overflow-x-auto;
-}
-.dark .prose pre code {
-  @apply bg-transparent p-0 text-accent font-code;
+  @apply mb-4 leading-relaxed;
 }
 .dark .prose ul, .dark .prose ol {
-  @apply ml-6 mb-4;
+  @apply ml-6 mb-4 leading-relaxed;
 }
 .dark .prose li {
   @apply mb-2;
@@ -166,3 +149,23 @@ body {
 .dark .prose li > p {
   @apply mb-1;
 }
+.dark .prose a {
+  @apply text-primary hover:text-accent;
+}
+.dark .prose strong {
+  @apply text-foreground font-semibold;
+}
+.dark .prose blockquote {
+  @apply border-primary text-muted-foreground pl-4 italic py-2;
+}
+.dark .prose code {
+  @apply text-accent bg-muted rounded px-1 py-0.5 font-code text-sm;
+}
+.dark .prose pre {
+  @apply bg-muted p-4 rounded-md overflow-x-auto text-sm;
+}
+.dark .prose pre code {
+  @apply bg-transparent p-0 text-accent font-code;
+}
+
+    

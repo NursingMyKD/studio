@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function PolicyDetailPage() {
   const params = useParams();
@@ -88,7 +89,7 @@ export default function PolicyDetailPage() {
                 </div>
               )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <ReactMarkdown>{item.content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.content}</ReactMarkdown>
               </div>
             </CardContent>
           </>

@@ -13,6 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 export default function BodySystemDetailPage() {
   const params = useParams();
@@ -79,17 +80,17 @@ export default function BodySystemDetailPage() {
               {item.keywordsForImage && (
                 <div className="relative w-full h-60 md:h-80 mb-6 rounded-md overflow-hidden shadow-md">
                   <Image
-                    src={`https://placehold.co/800x300.png`} // Standardized placeholder size
+                    src={`https://placehold.co/800x300.png`}
                     alt={`${item.title} visual representation`}
                     fill
                     style={{ objectFit: 'cover' }}
                     data-ai-hint={item.keywordsForImage}
-                    priority // Consider priority for LCP
+                    priority
                   />
                 </div>
               )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <ReactMarkdown>{item.content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.content}</ReactMarkdown>
               </div>
             </CardContent>
           </>
@@ -108,7 +109,7 @@ export default function BodySystemDetailPage() {
           <span>You have accepted the legal disclaimer. The content is provided for educational purposes only.</span>
         </div>
       )}
-       <CardFooter className="mt-4"> {/* Added mt-4 for spacing */}
+       <CardFooter className="mt-4">
           <Button variant="outline" asChild>
             <Link href="/body-systems">Back to All Body Systems</Link>
           </Button>

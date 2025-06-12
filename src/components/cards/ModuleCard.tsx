@@ -1,3 +1,4 @@
+
 import type { ContentItem } from '@/types/content';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -18,9 +19,11 @@ export default function ModuleCard({ item, basePath }: ModuleCardProps) {
         <Image
           src={`https://placehold.co/400x200.png`}
           alt={item.title}
-          layout="fill"
-          objectFit="cover"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{ objectFit: 'cover' }}
           data-ai-hint={item.keywordsForImage || "medical education"}
+          priority={false} 
         />
       </div>
       <CardHeader>

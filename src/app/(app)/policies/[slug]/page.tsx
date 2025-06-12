@@ -1,9 +1,9 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { policies } from '@/lib/data';
-import type { ContentItem } from '@/types/content';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import LegalDisclaimerModal from '@/components/modals/LegalDisclaimerModal';
@@ -11,6 +11,7 @@ import { AlertTriangle, CheckCircle, FileText } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
 
 export default function PolicyDetailPage() {
   const params = useParams();
@@ -73,9 +74,7 @@ export default function PolicyDetailPage() {
             <Separator />
             <CardContent className="pt-6">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                {item.content.split('\\n').map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+                <ReactMarkdown>{item.content}</ReactMarkdown>
               </div>
             </CardContent>
           </>

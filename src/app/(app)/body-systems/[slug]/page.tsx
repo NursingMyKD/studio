@@ -1,9 +1,9 @@
+
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import { bodySystems } from '@/lib/data';
-import type { ContentItem } from '@/types/content';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import LegalDisclaimerModal from '@/components/modals/LegalDisclaimerModal';
@@ -11,6 +11,7 @@ import { AlertTriangle, CheckCircle, BookOpen } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
 
 export default function BodySystemDetailPage() {
   const params = useParams();
@@ -24,13 +25,11 @@ export default function BodySystemDetailPage() {
 
   useEffect(() => {
     setIsClient(true);
-    // Reset disclaimer state if item changes (though item is memoized by slug)
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);
 
   if (!isClient) {
-    // Render placeholder or null during SSR to avoid hydration mismatch for localStorage/stateful logic
     return <div className="h-96 animate-pulse bg-muted rounded-lg"></div>;
   }
 
@@ -75,10 +74,7 @@ export default function BodySystemDetailPage() {
             <Separator />
             <CardContent className="pt-6">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                {/* This assumes item.content is plain text. For Markdown, use a renderer */}
-                {item.content.split('\\n').map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+                <ReactMarkdown>{item.content}</ReactMarkdown>
               </div>
             </CardContent>
           </>

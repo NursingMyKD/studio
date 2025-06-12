@@ -26,11 +26,13 @@ export default function BodySystemDetailPage() {
 
   useEffect(() => {
     setIsClient(true);
+    // Reset state when slug changes to ensure disclaimer is shown for new content
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);
 
   if (!isClient) {
+    // Basic skeleton or loading state for server/initial render
     return <div className="h-96 animate-pulse bg-muted rounded-lg"></div>;
   }
 
@@ -77,12 +79,12 @@ export default function BodySystemDetailPage() {
               {item.keywordsForImage && (
                 <div className="relative w-full h-60 md:h-80 mb-6 rounded-md overflow-hidden shadow-md">
                   <Image
-                    src={`https://placehold.co/800x300.png`}
+                    src={`https://placehold.co/800x300.png`} // Standardized placeholder size
                     alt={`${item.title} visual representation`}
                     fill
                     style={{ objectFit: 'cover' }}
                     data-ai-hint={item.keywordsForImage}
-                    priority
+                    priority // Consider priority for LCP
                   />
                 </div>
               )}
@@ -106,7 +108,7 @@ export default function BodySystemDetailPage() {
           <span>You have accepted the legal disclaimer. The content is provided for educational purposes only.</span>
         </div>
       )}
-       <CardFooter className="mt-4">
+       <CardFooter className="mt-4"> {/* Added mt-4 for spacing */}
           <Button variant="outline" asChild>
             <Link href="/body-systems">Back to All Body Systems</Link>
           </Button>

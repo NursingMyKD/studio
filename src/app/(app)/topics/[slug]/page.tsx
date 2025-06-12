@@ -26,6 +26,7 @@ export default function TopicDetailPage() {
 
   useEffect(() => {
     setIsClient(true);
+    // Reset state when slug changes
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);

@@ -26,6 +26,7 @@ export default function PolicyDetailPage() {
 
   useEffect(() => {
     setIsClient(true);
+    // Reset state when slug changes
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);
@@ -114,5 +115,3 @@ export default function PolicyDetailPage() {
     </div>
   );
 }
-
-    

@@ -12,20 +12,28 @@ export const bodySystems: ContentItem[] = [
 ### Cardiac Physiology & Electrical Conduction
 
 The cardiac cycle involves **diastole** (ventricular filling) and **systole** (ventricular contraction). Electrical impulses originating from the **sinoatrial (SA) node** (pacemaker, 60-100 bpm) travel through the **atrioventricular (AV) node** (delay allows atrial contraction, 40-60 bpm intrinsic rate), Bundle of His, bundle branches, and Purkinje fibers (20-40 bpm intrinsic rate), coordinating contraction. An ECG records this activity:
-*   **P wave**: Atrial depolarization
-*   **QRS complex**: Ventricular depolarization
-*   **T wave**: Ventricular repolarization
+
+*   **P wave**: Represents atrial depolarization (contraction). Normally upright, rounded, and precedes each QRS complex. Duration: 0.06-0.12 seconds. Amplitude: <2.5 mm.
+*   **PR Interval**: Time from the beginning of the P wave to the beginning of the QRS complex. Represents time taken for impulse to travel from SA node through AV node to ventricles. Normal: 0.12-0.20 seconds.
+*   **QRS complex**: Represents ventricular depolarization (contraction). Comprises Q wave (first negative deflection), R wave (first positive deflection), S wave (first negative deflection after R wave). Normal duration: 0.06-0.10 seconds (up to 0.12s).
+    *   *Q wave*: Often small or absent. Pathological Q waves (deep and wide) can indicate previous myocardial infarction.
+    *   *R wave*: Represents majority of ventricular muscle depolarization.
+    *   *S wave*: Represents late ventricular depolarization.
+*   **ST Segment**: Represents early ventricular repolarization. Normally isoelectric (flat). Elevation or depression can indicate myocardial ischemia or injury.
+*   **T wave**: Represents ventricular repolarization (relaxation). Normally upright and rounded. Inversion or flattening can indicate ischemia, electrolyte imbalances.
+*   **QT Interval**: Represents total time for ventricular depolarization and repolarization. Varies with heart rate (corrected QT, QTc, is used). Normal QTc: <0.44 seconds (males), <0.46 seconds (females). Prolonged QT increases risk of Torsades de Pointes.
+*   **U wave**: Small wave sometimes seen after T wave; may indicate hypokalemia if prominent.
 
 ### Common ICU Arrhythmias
 
-| Arrhythmia                   | Key ECG Features                                     | Common Management Approaches                                      |
-|------------------------------|------------------------------------------------------|-------------------------------------------------------------------|
-| **Atrial Fibrillation (AFib)** | Irregular rhythm, absent P waves, fibrillatory waves | Rate control (beta-blockers, CCBs, Digoxin), rhythm control (Amiodarone, cardioversion), anticoagulation |
-| **Ventricular Tachycardia (VTach)** | Wide QRS (>0.12s), rapid rate (typically >100 bpm)   | ACLS protocol (pulse vs. pulseless), antiarrhythmics (Amiodarone, Lidocaine), synchronized cardioversion (if pulse), defibrillation (if pulseless) |
-| **Ventricular Fibrillation (VFib)** | Chaotic, unorganized electrical activity, no discernible waves | Immediate defibrillation, ACLS protocol (CPR, Epinephrine, Amiodarone) |
-| **Bradycardias (various)**   | Slow rate (<60 bpm), specific block patterns (e.g., AV blocks) | Atropine (if symptomatic), transcutaneous/transvenous pacing, Dopamine/Epinephrine infusion |
-| **Supraventricular Tachycardia (SVT)** | Narrow QRS (<0.12s), regular, rapid rate (often >150 bpm) | Vagal maneuvers, Adenosine, synchronized cardioversion (if unstable or refractory) |
-| **Asystole/PEA**             | Flatline / Organized rhythm without a pulse          | ACLS protocol (CPR, Epinephrine), identify and treat reversible causes (H's & T's) |
+| Arrhythmia                   | Key ECG Features                                                                    | Common Management Approaches                                      |
+|------------------------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| **Atrial Fibrillation (AFib)** | Irregularly irregular rhythm, absent P waves replaced by chaotic fibrillatory (f) waves, variable ventricular rate. QRS usually narrow. | Rate control (beta-blockers, CCBs, Digoxin), rhythm control (Amiodarone, cardioversion), anticoagulation |
+| **Ventricular Tachycardia (VTach)** | Wide QRS (>0.12s), rapid rate (typically 100-250 bpm), regular or slightly irregular rhythm. AV dissociation may be present. | ACLS protocol (pulse vs. pulseless), antiarrhythmics (Amiodarone, Lidocaine), synchronized cardioversion (if pulse), defibrillation (if pulseless) |
+| **Ventricular Fibrillation (VFib)** | Chaotic, unorganized electrical activity, no discernible P, QRS, or T waves. "Quivering" baseline. Fatal if not treated. | Immediate defibrillation, ACLS protocol (CPR, Epinephrine, Amiodarone) |
+| **Bradycardias (various)**   | Slow rate (<60 bpm). Includes Sinus Bradycardia (normal morphology, slow rate), AV Blocks (1st degree: prolonged PR; 2nd degree Mobitz I: progressive PR prolongation then dropped QRS; 2nd degree Mobitz II: intermittent non-conducted P waves without PR prolongation; 3rd degree: complete AV dissociation, P waves and QRS complexes independent). | Atropine (if symptomatic), transcutaneous/transvenous pacing, Dopamine/Epinephrine infusion |
+| **Supraventricular Tachycardia (SVT)** | Narrow QRS (<0.12s), regular, rapid rate (often 150-250 bpm). P waves often hidden in preceding T wave or QRS. | Vagal maneuvers, Adenosine, synchronized cardioversion (if unstable or refractory) |
+| **Asystole/PEA**             | Asystole: Flatline (no electrical activity). Pulseless Electrical Activity (PEA): Organized rhythm on monitor without a palpable pulse. | ACLS protocol (CPR, Epinephrine), identify and treat reversible causes (H's & T's) |
 
 ### Hemodynamic Monitoring
 
@@ -44,10 +52,10 @@ Crucial for assessing cardiovascular status and guiding therapy.
 | **Mixed Venous O2 Saturation (SvO2)** | 60-80%                         | Oxygen saturation of blood returning to the right heart. Reflects balance of O2 delivery and consumption. | PAC                      |
 | **Stroke Volume (SV)**                | 60-100 mL/beat                 | Volume of blood ejected by the ventricle with each heartbeat.              | PAC, Echocardiography    |
 
-**Arterial Line Troubleshooting**:
-*   **Damping**: Flattened waveform, underestimated SBP, overestimated DBP. Causes: air bubbles, clots, kinks, loose connections, low flush bag pressure.
-*   **Resonance/Whip**: Overestimated SBP, underestimated DBP, "ringing" waveform. Causes: stiff/long tubing, excessive stopcocks.
-*   **Zeroing and Leveling**: Ensure transducer is zeroed to atmosphere and leveled at the phlebostatic axis (4th ICS, mid-axillary line).
+**Arterial Line Troubleshooting (Waveform Issues)**:
+*   **Damping**: Waveform appears flattened, with a slurred upstroke, absent dicrotic notch, and underestimated Systolic Blood Pressure (SBP), overestimated Diastolic Blood Pressure (DBP). Caused by air bubbles, clots, kinks, loose connections, compliant tubing, or low flush bag pressure. Intervention: Check system, flush, remove air, ensure connections are tight, maintain flush pressure at 300 mmHg.
+*   **Resonance/Whip/Underdamping**: Waveform shows "ringing" or "overshoot," particularly in systole, leading to overestimated SBP and underestimated DBP. Caused by stiff/long tubing, excessive stopcocks, or catheter whip. Intervention: Use non-compliant, short tubing, minimize stopcocks, use a damping device if available.
+*   **Zeroing and Leveling**: Essential for accuracy. Zero transducer to atmospheric pressure. Level transducer at the phlebostatic axis (4th intercostal space, mid-axillary line, approximating right atrial level). Re-level with patient position changes.
 
 ### Common Vasoactive Medications
 
@@ -68,7 +76,7 @@ Nurses titrate these medications based on parameters like MAP, CI, urine output,
 *   **Shock States**: (Cardiogenic, Hypovolemic, Septic, Neurogenic, Anaphylactic) - critical hypoperfusion. Identify type, treat cause, support circulation with fluids and/or vasoactive medications.
 *   **ACLS Protocols**: Fundamental for cardiac arrest and periarrest states. Emphasizes early CPR, defibrillation, and targeted medication administration.`,
     categoryType: 'Body System',
-    keywordsForImage: 'human heart',
+    keywordsForImage: 'heart anatomy',
   },
   {
     id: 'respiratory',
@@ -104,7 +112,9 @@ A systematic approach is key:
 
 **Anion Gap (AG)**: Na - (Cl + HCO3). Normal: 8-12 mEq/L. Helps differentiate causes of metabolic acidosis (e.g., MUDPILES for high AG metabolic acidosis: Methanol, Uremia, DKA, Propylene glycol, Isoniazid/Iron, Lactic acidosis, Ethylene glycol, Salicylates).
 
-### Mechanical Ventilation
+### Mechanical Ventilation (Overview)
+
+See "Advanced Ventilator Management" topic for detailed waveform analysis. General principles include:
 
 #### Common Ventilator Modes
 
@@ -133,10 +143,10 @@ A systematic approach is key:
 
 **Lung Protective Strategies (especially for ARDS)**: Low VT (4-6 mL/kg IBW), Pplat <30 cmH2O, appropriate PEEP.
 
-**Monitoring**:
-*   **Auto-PEEP (Intrinsic PEEP)**: Air trapping. Assess with expiratory hold maneuver. Increased risk with high RR, short expiratory times, or obstructive lung disease.
-*   **Compliance**: VT / (Pplat - PEEP). Change in volume per unit change in pressure. Decreased compliance suggests stiffer lungs (e.g., ARDS, pneumonia, pulmonary edema).
-*   **Resistance**: (PIP - Pplat) / Flow. Reflects airway resistance (e.g., bronchospasm, secretions, kinked ETT).
+**Monitoring Concepts**:
+*   **Auto-PEEP (Intrinsic PEEP)**: Air trapping. Assessed with expiratory hold maneuver. Indicated on ventilator graphics by expiratory flow not returning to zero before the next breath starts.
+*   **Compliance**: VT / (Pplat - PEEP). Change in volume per unit change in pressure. Decreased compliance suggests stiffer lungs.
+*   **Resistance**: (PIP - Pplat) / Flow. Reflects airway resistance.
 
 ### Acute Respiratory Distress Syndrome (ARDS)
 
@@ -150,7 +160,7 @@ Acute, diffuse inflammatory lung injury leading to increased pulmonary vascular 
     *   Moderate: 100 mmHg < PaO2/FiO2 ≤ 200 mmHg
     *   Severe: PaO2/FiO2 ≤ 100 mmHg
 
-**ARDS Management**: Lung Protective Ventilation (LTVV: VT 4-6 mL/kg IBW, Pplat <30 cmH2O), appropriate PEEP, prone positioning (for moderate/severe ARDS), conservative fluid management, consider neuromuscular blocking agents (NMBAs) for severe ARDS or patient-ventilator dyssynchrony.
+**ARDS Management**: Lung Protective Ventilation, appropriate PEEP, prone positioning (for moderate/severe ARDS), conservative fluid management, consider neuromuscular blocking agents (NMBAs) for severe ARDS or patient-ventilator dyssynchrony.
 
 ### Ventilator-Associated Pneumonia (VAP) Prevention Bundle
 
@@ -168,7 +178,7 @@ Acute, diffuse inflammatory lung injury leading to increased pulmonary vascular 
 *   **Tracheostomy Care**: Surgical airway. Involves stoma cleaning, inner cannula changes/cleaning, cuff pressure monitoring (target 20-30 cmH2O to prevent tracheal damage and aspiration), suctioning.
 *   **Chest Tubes**: For pneumothorax, hemothorax, pleural effusion. Monitor drainage (amount, color, consistency), assess for air leaks (bubbling in water seal chamber), ensure suction set correctly if ordered, check for tidaling (fluctuations with respiration in water seal chamber).`,
     categoryType: 'Body System',
-    keywordsForImage: 'human lungs',
+    keywordsForImage: 'lungs anatomy',
   },
   {
     id: 'neurological',
@@ -188,7 +198,15 @@ Essential for managing patients with TBI, SAH, or other conditions causing cereb
 *   **Devices**: External Ventricular Drains (EVDs - gold standard, allows CSF drainage and ICP monitoring), intraparenchymal monitors (e.g., Codman, Camino).
 *   **Normal ICP**: 5-15 mmHg. Increased ICP is sustained pressure >20-22 mmHg.
 *   **Cerebral Perfusion Pressure (CPP)**: CPP = MAP - ICP. Target: 60-70 mmHg. (MAP = Mean Arterial Pressure).
-*   **ICP Waveforms**: P1 (percussion wave, arterial pulsation), P2 (tidal wave, reflects brain compliance - P2 rises above P1 with low compliance, "angry brain"), P3 (dicrotic wave, aortic valve closure). Lundberg A waves (plateau waves) indicate critically high ICP.
+*   **ICP Waveforms**:
+    *   **P1 (Percussion wave)**: Arterial pulsation transmitted from choroid plexus. Sharp peak, normally tallest.
+    *   **P2 (Tidal wave)**: Reflects intracranial compliance (brain's ability to accommodate volume changes). Rounded, normally shorter than P1. **If P2 is higher than P1, it indicates decreased compliance and is a sign of intracranial hypertension.**
+    *   **P3 (Dicrotic wave)**: Follows P2, relates to aortic valve closure. Smallest of the three.
+    *   **Normal Morphology**: P1 > P2 > P3.
+    *   **Pathological (Lundberg) Waves**:
+        *   **A waves (Plateau waves)**: Sustained elevations of ICP (50-100 mmHg) lasting 5-20 minutes. Indicate critically low compliance and impending herniation. Require urgent intervention.
+        *   **B waves**: Rhythmic oscillations (0.5-2 per minute) up to 50 mmHg. Less ominous but may precede A waves.
+        *   **C waves**: Smaller, more frequent oscillations, related to blood pressure variations. Clinical significance less clear.
 
 #### Interventions for Increased ICP (Tiered Approach)
 
@@ -260,7 +278,7 @@ Rapid assessment (e.g., FAST, NIHSS) is crucial.
 *   **Cranial Nerves**: Assess as appropriate based on patient's condition.
 *   **Sedation**: Balance ICP control with ability to perform neuro exams (e.g., "sedation holidays" using short-acting agents like Propofol or Dexmedetomidine). RASS/SAS scores.`,
     categoryType: 'Body System',
-    keywordsForImage: 'human brain',
+    keywordsForImage: 'brain anatomy',
   },
 ];
 
@@ -312,19 +330,36 @@ Predicting if a patient will increase their CO in response to a fluid bolus. Sta
 *   **Stroke Volume Variation (SVV)** / **Pulse Pressure Variation (PPV)**: Variation in SV/PP during mechanical ventilation. SVV/PPV >10-15% suggests fluid responsiveness. Requires controlled mechanical ventilation, regular rhythm, no spontaneous breathing.
 *   **Echocardiography**: Can assess LV filling, IVC diameter/collapsibility, and SV changes with maneuvers.
 
-### Arterial Line Management
+### Arterial Line Management & Waveform Analysis
 
 Provides continuous BP, MAP calculation, and access for ABGs.
 *   **Phlebostatic Axis**: 4th intercostal space (ICS), mid-axillary line (approximates RA level for accurate transducer placement).
-*   **Waveform Components**: Anacrotic limb (systolic upstroke), systolic peak, dicrotic notch (aortic valve closure), diastolic runoff.
-*   **Square Wave Test (Fast Flush Test)**: Assesses system dynamic response.
-    *   *Optimal*: 1-2 oscillations after flush, then returns to baseline.
-    *   *Overdamped*: <1.5 oscillations (blunted waveform); underestimates SBP, overestimates DBP. Causes: air bubbles, clots, kinks, compliant tubing.
-    *   *Underdamped*: >2 oscillations ("ringing" waveform); overestimates SBP, underestimates DBP. Causes: stiff tubing, long tubing, excessive stopcocks.
+*   **Arterial Waveform Components**:
+    *   **Anacrotic Limb (Systolic Upstroke)**: Rapid rise in pressure as LV ejects blood into aorta. Slope indicates contractility and SVR.
+    *   **Systolic Peak Pressure**: Highest point of waveform, represents peak systolic pressure.
+    *   **Dicrotic Notch**: Small notch on downstroke, signifies aortic valve closure and beginning of diastole. Should be clearly visible.
+    *   **Diastolic Runoff**: Gradual decline in pressure as blood flows to periphery during diastole.
+*   **Square Wave Test (Fast Flush Test)**: Assesses system dynamic response (accuracy of pressure transduction).
+    *   **Optimal Response**: After activating the fast flush, the waveform should show a sharp upstroke to the flush pressure, a clear plateau, and then a rapid drop. Following the drop, 1-2 oscillations (rings) should occur before the waveform returns to the patient's baseline pressure tracing. This indicates an accurately transmitting system.
+    *   **Overdamped Response**: Fewer than 1.5 oscillations (or a slurred, blunted return to baseline) after the flush. The waveform will underestimate systolic pressure and overestimate diastolic pressure. Dicrotic notch may be absent or slurred.
+        *   *Textual Description*: Imagine pulling a guitar string and it barely vibrates, returning to still very quickly and smoothly.
+        *   *Causes*: Air bubbles in tubing/transducer, loose connections, kinks, blood clots in catheter, compliant tubing, low flush bag pressure.
+    *   **Underdamped (Resonant) Response**: More than 2-3 oscillations ("ringing" or "whip") after the flush. The waveform will overestimate systolic pressure and underestimate diastolic pressure. Systolic peaks appear exaggerated or "spiked."
+        *   *Textual Description*: Imagine pulling a guitar string and it vibrates excessively and for too long before settling.
+        *   *Causes*: Stiff/long tubing, excessive stopcocks, catheter movement (whip), arteriosclerosis in patient, small catheter size.
+*   **Troubleshooting Waveform Issues**:
+    *   Always check patient first. Then, check connections from catheter to transducer to monitor.
+    *   Ensure flush bag pressure is 300 mmHg.
+    *   Zero and level transducer at phlebostatic axis with position changes.
+    *   Remove air bubbles. Ensure no kinks.
 
 ### Pulmonary Artery Catheter (PAC / Swan-Ganz)
 
-Provides comprehensive hemodynamic data including RA (CVP), RV, PA pressures (systolic, diastolic, mean), PAWP, CO (thermodilution), CI, SVR, PVR, and SvO2. Use has declined due to lack of proven mortality benefit in many conditions and potential complications, but still valuable in select complex patients (e.g., severe cardiogenic shock, RV failure, pulmonary HTN).
+Provides comprehensive hemodynamic data including RA (CVP), RV, PA pressures (systolic, diastolic, mean), PAWP, CO (thermodilution), CI, SVR, PVR, and SvO2. Waveforms from each chamber are distinct:
+*   **Right Atrial (RA) Waveform**: Low pressure, similar to CVP, with 'a', 'c', and 'v' waves.
+*   **Right Ventricular (RV) Waveform**: Pulsatile, sharp upstroke to RV systolic pressure, rapid downstroke to near zero RV end-diastolic pressure. Risk of VTach during insertion.
+*   **Pulmonary Artery (PA) Waveform**: Pulsatile, similar morphology to arterial line but lower pressures. Clear dicrotic notch indicates pulmonic valve closure.
+*   **Pulmonary Artery Wedge Pressure (PAWP)**: Non-pulsatile, damped waveform reflecting left atrial pressure when balloon is inflated. Over-wedging (persistent inflation or migration) can cause PA rupture.
 
 ### Shock States & Hemodynamic Profiles
 
@@ -347,7 +382,7 @@ Provides comprehensive hemodynamic data including RA (CVP), RV, PA pressures (sy
 *   **Inotropes**: For cardiogenic shock or low CO states with evidence of end-organ hypoperfusion.
 *   **Vasodilators**: To reduce afterload in conditions like hypertensive crisis or severe heart failure with high SVR, if BP allows.`,
     categoryType: 'Topic',
-    keywordsForImage: 'medical monitor',
+    keywordsForImage: 'hemodynamic monitor',
   },
   {
     id: 'critical-care-pharmacology',
@@ -426,7 +461,7 @@ Initiate broad-spectrum empiric therapy for suspected infections, then de-escala
 
 Understanding pharmacokinetics (absorption, distribution, metabolism, excretion - ADME) and pharmacodynamics (drug effects) is vital in the ICU due to altered physiology in critical illness (e.g., organ dysfunction, fluid shifts, protein binding changes). Dose adjustments are frequently necessary.`,
     categoryType: 'Topic',
-    keywordsForImage: 'medicine vials',
+    keywordsForImage: 'medication pills',
   },
   {
     id: 'ventilator-management',
@@ -464,16 +499,41 @@ Understanding pharmacokinetics (absorption, distribution, metabolism, excretion 
 | **APRV (Airway Pressure Release Ventilation)** | High continuous positive airway pressure (Phigh) held for a long duration (Thigh), with brief releases to a lower pressure (Plow) for a short duration (Tlow) to facilitate CO2 clearance. Essentially inverse ratio ventilation. | Used in severe ARDS for alveolar recruitment and oxygenation.                         |
 | **ASV (Adaptive Support Ventilation)**   | Adjusts settings (RR, VT, Pinsp) based on patient lung mechanics (Otis formula) and effort to achieve target minute ventilation with minimal WOB. | Highly automated, requires careful monitoring.                                        |
 
+### Ventilator Waveform Analysis (Scalars)
+
+Ventilator graphics (scalars) display pressure, flow, and volume over time. They are essential for assessing patient-ventilator interaction and lung mechanics.
+
+#### Pressure-Time Waveform
+*   **VCV**: Rises during inspiration to PIP, then drops to PEEP. Pplat visible during inspiratory pause.
+    *   *Shape*: If PIP is significantly higher than Pplat, indicates high airway resistance. If PIP and Pplat are both high and close together, indicates poor lung compliance.
+*   **PCV**: Rapid rise to set inspiratory pressure, maintained for Ti, then drops to PEEP.
+    *   *Shape*: Should be rectangular. If pressure droops during inspiration, patient effort is exceeding set pressure or flow.
+
+#### Flow-Time Waveform
+*   **VCV (Square Waveform Flow Pattern)**: Inspiratory flow is constant (rectangular shape), then drops to zero. Expiratory flow is passive, decelerating curve.
+*   **VCV (Descending Ramp Flow Pattern)**: Inspiratory flow starts high and decelerates. Expiratory flow is passive.
+*   **PCV**: Inspiratory flow is high initially, then decelerates as alveolar pressure equilibrates with set inspiratory pressure. Should ideally reach zero before inspiration ends (if Ti is adequate). Expiratory flow is passive.
+*   **Common Findings**:
+    *   **Flow Starvation (Air Hunger)**: In VCV or PCV, if the inspiratory flow waveform appears "scooped" or concave during inspiration, it suggests patient demand exceeds delivered flow. Increase flow rate (VCV), or increase pressure/shorten Ti (PCV if flow doesn't reach zero).
+    *   **Auto-PEEP (Air Trapping)**: Expiratory flow does not return to baseline (zero) before the next breath begins. Indicates incomplete exhalation.
+    *   **Bronchospasm/Increased Resistance**: Prolonged expiratory flow, reduced peak expiratory flow.
+    *   **Active Expiration**: Patient actively exhaling against ventilator, seen as an abrupt spike in expiratory flow.
+
+#### Volume-Time Waveform
+*   Smooth rise during inspiration to set VT (VCV) or delivered VT (PCV), then smooth fall during exhalation.
+*   **Common Findings**:
+    *   **Air Leak**: Expiratory portion of the volume curve does not return to baseline (zero), or measured exhaled VT is consistently less than inhaled VT. Indicates leak in circuit or around ETT cuff.
+
 ### Monitoring & Troubleshooting
 
 *   **Peak Inspiratory Pressure (PIP)**: Highest pressure during inspiration (dynamic pressure). Reflects airway resistance + elastic recoil.
 *   **Plateau Pressure (Pplat)**: Static pressure during an inspiratory pause (0.5-1 sec). Reflects alveolar pressure (keep <30 cmH2O).
 *   **Driving Pressure (ΔP)**: Pplat - Total PEEP. Associated with ARDS mortality; aim for <15 cmH2O.
-*   **Auto-PEEP (Intrinsic PEEP / Dynamic Hyperinflation)**: Air trapping. Measure with an expiratory hold maneuver. Caused by high RR, short expiratory time, or airway obstruction. Increases WOB, can cause hypotension.
+*   **Auto-PEEP (Intrinsic PEEP / Dynamic Hyperinflation)**: Air trapping. Measure with an expiratory hold maneuver and observe on flow-time waveform.
 *   **Patient-Ventilator Dyssynchrony**: Mismatch between patient effort and ventilator delivery.
-    *   *Flow Asynchrony*: Flow starvation (patient "pulling" for more flow) or excessive flow. Adjust flow rate/waveform or Ti.
-    *   *Trigger Asynchrony*: Missed triggers (patient effort not sensed), double triggering (two breaths for one effort), auto-triggering (ventilator triggers without patient effort). Adjust sensitivity.
-    *   *Cycle Asynchrony*: Premature cycling (inspiration ends too soon) or delayed cycling (inspiration too long). Adjust Ti, flow cycle-off percentage in PSV.
+    *   *Flow Asynchrony*: Flow starvation or excessive flow.
+    *   *Trigger Asynchrony*: Missed triggers, double triggering, auto-triggering.
+    *   *Cycle Asynchrony*: Premature cycling or delayed cycling.
     *   Management: Adjust settings, optimize sedation, consider mode change.
 
 #### Common Ventilator Alarms
@@ -493,25 +553,19 @@ Understanding pharmacokinetics (absorption, distribution, metabolism, excretion 
 *   **Low Tidal Volume Ventilation (LTVV)**: 4-6 mL/kg PBW.
 *   **Plateau Pressure <30 cmH2O**.
 *   **Appropriate PEEP**: Use PEEP/FiO2 tables (e.g., ARDSNet) or titrate to best compliance/oxygenation/driving pressure.
-*   **Permissive Hypercapnia**: Allow PaCO2 to rise (maintaining pH >7.20-7.25) to facilitate LTVV. Contraindicated in severe ICP elevation.
+*   **Permissive Hypercapnia**: Allow PaCO2 to rise (maintaining pH >7.20-7.25) to facilitate LTVV.
 *   **Prone Positioning**: For moderate to severe ARDS (PaO2/FiO2 <150 mmHg on PEEP ≥5, FiO2 ≥0.6), typically 12-16 hours/day.
-*   **Conservative Fluid Management**: "Keep them dry."
-*   Consider **Neuromuscular Blocking Agents (NMBAs)** for early severe ARDS (PaO2/FiO2 <120) or severe dyssynchrony (typically for <48 hours).
-*   **Recruitment Maneuvers**: Controversial, may be considered in some cases of refractory hypoxemia.
+*   **Conservative Fluid Management**.
+*   Consider **Neuromuscular Blocking Agents (NMBAs)** for early severe ARDS.
 
 ### Weaning and Liberation from Mechanical Ventilation
 
-*   **Daily Spontaneous Awakening Trials (SATs)**: "Sedation vacations" - stop or reduce sedation to assess neurological status and readiness for SBT.
-*   **Daily Spontaneous Breathing Trials (SBTs)**: Patient breathes with minimal support (e.g., PSV 5-7 cmH2O with PEEP 5 cmH2O, or CPAP 5 cmH2O) for 30-120 minutes.
-*   **Weaning Parameters (assess before SBT)**:
-    *   Rapid Shallow Breathing Index (RSBI = RR/VT in Liters): Target <105 breaths/min/L.
-    *   Negative Inspiratory Force (NIF/MIP): Target > -20 to -30 cmH2O.
-    *   Vital Capacity (VC): Target >10-15 mL/kg PBW.
-    *   Minute Ventilation (VE): <10-12 L/min.
-    *   PaO2/FiO2 >150-200 on PEEP ≤5-8 cmH2O and FiO2 ≤0.4-0.5.
-*   **Extubation Criteria**: Successful SBT, effective cough and airway clearance, patent airway (e.g., positive cuff leak test), adequate mentation (GCS >8, follows commands), stable hemodynamics, underlying cause of respiratory failure resolved or improving.`,
+*   **Daily Spontaneous Awakening Trials (SATs)**.
+*   **Daily Spontaneous Breathing Trials (SBTs)**.
+*   **Weaning Parameters**: RSBI <105, NIF > -20 to -30 cmH2O, VC >10-15 mL/kg PBW.
+*   **Extubation Criteria**: Successful SBT, effective cough, patent airway, adequate mentation, stable hemodynamics.`,
     categoryType: 'Topic',
-    keywordsForImage: 'ICU ventilator',
+    keywordsForImage: 'ICU ventilator screen',
   },
 ];
 
@@ -613,7 +667,7 @@ export const policies: ContentItem[] = [
 *   **Mobilization**: Early PT/OT/ST involvement.
 *   **Depression Screening**: Monitor and treat as needed.`,
     categoryType: 'Policy',
-    keywordsForImage: 'brain MRI',
+    keywordsForImage: 'brain CT scan',
   },
   {
     id: 'medication-administration',
@@ -675,7 +729,7 @@ Perform a thorough medication reconciliation (comparing patient's home meds with
 
 Report all medication errors and near misses promptly through the institution's confidential reporting system. This is crucial for a culture of safety, allowing for system-level analysis and improvements to prevent future events. Reporting should be non-punitive. Root Cause Analysis (RCA) should be conducted for significant medication events.`,
     categoryType: 'Policy',
-    keywordsForImage: 'medication prep',
+    keywordsForImage: 'medication safety',
   },
   {
     id: 'central-line-care',
@@ -749,11 +803,11 @@ Consistent, meticulous care is essential to prevent CLABSI.
 *   Monitor adherence to CLABSI prevention bundles through audits and provide feedback to staff.
 *   Investigate all CLABSIs thoroughly using a root cause analysis approach to identify contributing factors and implement corrective actions for system improvement.`,
     categoryType: 'Policy',
-    keywordsForImage: 'CVC care',
+    keywordsForImage: 'central line CVC',
   },
 ];
 
 export const getAllContentItems = (): ContentItem[] => {
   return [...bodySystems, ...topics, ...policies];
 };
-
+    

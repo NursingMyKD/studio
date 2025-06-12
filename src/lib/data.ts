@@ -68,7 +68,7 @@ Nurses titrate these medications based on parameters like MAP, CI, urine output,
 *   **Shock States**: (Cardiogenic, Hypovolemic, Septic, Neurogenic, Anaphylactic) - critical hypoperfusion. Identify type, treat cause, support circulation with fluids and/or vasoactive medications.
 *   **ACLS Protocols**: Fundamental for cardiac arrest and periarrest states. Emphasizes early CPR, defibrillation, and targeted medication administration.`,
     categoryType: 'Body System',
-    keywordsForImage: 'heart anatomy',
+    keywordsForImage: 'human heart',
   },
   {
     id: 'respiratory',
@@ -168,7 +168,7 @@ Acute, diffuse inflammatory lung injury leading to increased pulmonary vascular 
 *   **Tracheostomy Care**: Surgical airway. Involves stoma cleaning, inner cannula changes/cleaning, cuff pressure monitoring (target 20-30 cmH2O to prevent tracheal damage and aspiration), suctioning.
 *   **Chest Tubes**: For pneumothorax, hemothorax, pleural effusion. Monitor drainage (amount, color, consistency), assess for air leaks (bubbling in water seal chamber), ensure suction set correctly if ordered, check for tidaling (fluctuations with respiration in water seal chamber).`,
     categoryType: 'Body System',
-    keywordsForImage: 'lungs anatomy',
+    keywordsForImage: 'human lungs',
   },
   {
     id: 'neurological',
@@ -260,7 +260,7 @@ Rapid assessment (e.g., FAST, NIHSS) is crucial.
 *   **Cranial Nerves**: Assess as appropriate based on patient's condition.
 *   **Sedation**: Balance ICP control with ability to perform neuro exams (e.g., "sedation holidays" using short-acting agents like Propofol or Dexmedetomidine). RASS/SAS scores.`,
     categoryType: 'Body System',
-    keywordsForImage: 'brain anatomy',
+    keywordsForImage: 'human brain',
   },
 ];
 
@@ -347,7 +347,7 @@ Provides comprehensive hemodynamic data including RA (CVP), RV, PA pressures (sy
 *   **Inotropes**: For cardiogenic shock or low CO states with evidence of end-organ hypoperfusion.
 *   **Vasodilators**: To reduce afterload in conditions like hypertensive crisis or severe heart failure with high SVR, if BP allows.`,
     categoryType: 'Topic',
-    keywordsForImage: 'hemodynamic chart',
+    keywordsForImage: 'medical monitor',
   },
   {
     id: 'critical-care-pharmacology',
@@ -426,7 +426,7 @@ Initiate broad-spectrum empiric therapy for suspected infections, then de-escala
 
 Understanding pharmacokinetics (absorption, distribution, metabolism, excretion - ADME) and pharmacodynamics (drug effects) is vital in the ICU due to altered physiology in critical illness (e.g., organ dysfunction, fluid shifts, protein binding changes). Dose adjustments are frequently necessary.`,
     categoryType: 'Topic',
-    keywordsForImage: 'drug vials',
+    keywordsForImage: 'medicine vials',
   },
   {
     id: 'ventilator-management',
@@ -511,7 +511,7 @@ Understanding pharmacokinetics (absorption, distribution, metabolism, excretion 
     *   PaO2/FiO2 >150-200 on PEEP ≤5-8 cmH2O and FiO2 ≤0.4-0.5.
 *   **Extubation Criteria**: Successful SBT, effective cough and airway clearance, patent airway (e.g., positive cuff leak test), adequate mentation (GCS >8, follows commands), stable hemodynamics, underlying cause of respiratory failure resolved or improving.`,
     categoryType: 'Topic',
-    keywordsForImage: 'hospital ventilator',
+    keywordsForImage: 'ICU ventilator',
   },
 ];
 
@@ -613,7 +613,7 @@ export const policies: ContentItem[] = [
 *   **Mobilization**: Early PT/OT/ST involvement.
 *   **Depression Screening**: Monitor and treat as needed.`,
     categoryType: 'Policy',
-    keywordsForImage: 'stroke brain',
+    keywordsForImage: 'brain MRI',
   },
   {
     id: 'medication-administration',
@@ -675,7 +675,7 @@ Perform a thorough medication reconciliation (comparing patient's home meds with
 
 Report all medication errors and near misses promptly through the institution's confidential reporting system. This is crucial for a culture of safety, allowing for system-level analysis and improvements to prevent future events. Reporting should be non-punitive. Root Cause Analysis (RCA) should be conducted for significant medication events.`,
     categoryType: 'Policy',
-    keywordsForImage: 'nurse medication',
+    keywordsForImage: 'medication prep',
   },
   {
     id: 'central-line-care',
@@ -749,10 +749,11 @@ Consistent, meticulous care is essential to prevent CLABSI.
 *   Monitor adherence to CLABSI prevention bundles through audits and provide feedback to staff.
 *   Investigate all CLABSIs thoroughly using a root cause analysis approach to identify contributing factors and implement corrective actions for system improvement.`,
     categoryType: 'Policy',
-    keywordsForImage: 'central line',
+    keywordsForImage: 'CVC care',
   },
 ];
 
 export const getAllContentItems = (): ContentItem[] => {
   return [...bodySystems, ...topics, ...policies];
 };
+

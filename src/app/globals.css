@@ -96,7 +96,10 @@ body {
   @apply text-foreground;
 }
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-  @apply text-foreground font-headline;
+  @apply text-foreground font-headline mt-6 mb-3;
+}
+.prose p {
+  @apply mb-4;
 }
 .prose a {
   @apply text-primary hover:text-accent;
@@ -105,17 +108,36 @@ body {
   @apply text-foreground;
 }
 .prose blockquote {
-  @apply border-primary text-muted-foreground;
+  @apply border-primary text-muted-foreground pl-4 italic;
 }
 .prose code {
-  @apply text-accent bg-muted rounded px-1 py-0.5;
+  @apply text-accent bg-muted rounded px-1 py-0.5 font-code;
 }
+.prose pre {
+  @apply bg-muted p-4 rounded-md overflow-x-auto;
+}
+.prose pre code {
+  @apply bg-transparent p-0 text-accent font-code;
+}
+.prose ul, .prose ol {
+  @apply ml-6 mb-4;
+}
+.prose li {
+  @apply mb-2;
+}
+.prose li > p {
+  @apply mb-1;
+}
+
 
 .dark .prose {
   @apply text-foreground;
 }
 .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4, .dark .prose h5, .dark .prose h6 {
-  @apply text-foreground font-headline;
+  @apply text-foreground font-headline mt-6 mb-3;
+}
+.dark .prose p {
+  @apply mb-4;
 }
 .dark .prose a {
   @apply text-primary hover:text-accent;
@@ -124,8 +146,23 @@ body {
   @apply text-foreground;
 }
 .dark .prose blockquote {
-  @apply border-primary text-muted-foreground;
+  @apply border-primary text-muted-foreground pl-4 italic;
 }
 .dark .prose code {
-  @apply text-accent bg-muted rounded px-1 py-0.5;
+  @apply text-accent bg-muted rounded px-1 py-0.5 font-code;
+}
+.dark .prose pre {
+  @apply bg-muted p-4 rounded-md overflow-x-auto;
+}
+.dark .prose pre code {
+  @apply bg-transparent p-0 text-accent font-code;
+}
+.dark .prose ul, .dark .prose ol {
+  @apply ml-6 mb-4;
+}
+.dark .prose li {
+  @apply mb-2;
+}
+.dark .prose li > p {
+  @apply mb-1;
 }

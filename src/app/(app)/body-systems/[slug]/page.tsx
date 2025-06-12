@@ -3,6 +3,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
+import Image from 'next/image';
 import { bodySystems } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
@@ -73,6 +74,18 @@ export default function BodySystemDetailPage() {
           <>
             <Separator />
             <CardContent className="pt-6">
+              {item.keywordsForImage && (
+                <div className="relative w-full h-60 md:h-80 mb-6 rounded-md overflow-hidden shadow-md">
+                  <Image
+                    src={`https://placehold.co/800x300.png`}
+                    alt={`${item.title} visual representation`}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    data-ai-hint={item.keywordsForImage}
+                    priority
+                  />
+                </div>
+              )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <ReactMarkdown>{item.content}</ReactMarkdown>
               </div>

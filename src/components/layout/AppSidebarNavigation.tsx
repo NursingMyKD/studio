@@ -1,3 +1,4 @@
+
 // src/components/layout/AppSidebarNavigation.tsx
 "use client";
 import Link from 'next/link';
@@ -20,7 +21,7 @@ export default function AppSidebarNavigation() {
     <SidebarMenu>
       {navItems.map((item) => (
         <SidebarMenuItem key={item.href}>
-          <Link href={item.href} passHref legacyBehavior>
+          <Link href={item.href}>
             <SidebarMenuButton
               className={cn(
                 (pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))) 
@@ -39,3 +40,4 @@ export default function AppSidebarNavigation() {
     </SidebarMenu>
   );
 }
+

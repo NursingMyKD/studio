@@ -55,10 +55,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <AppSidebarNavigation />
             </SidebarContent>
             <SidebarFooter className="p-4 border-t">
-               <Button variant="ghost" className="w-full justify-start">
-                  <UserCircle className="mr-2 h-5 w-5" />
-                  Profile
-               </Button>
+              <Link href="/profile" passHref legacyBehavior>
+                <Button variant="ghost" className="w-full justify-start">
+                    <UserCircle className="mr-2 h-5 w-5" />
+                    Profile
+                </Button>
+              </Link>
             </SidebarFooter>
           </Sidebar>
         ) : (

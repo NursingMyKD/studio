@@ -2,7 +2,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, HeartPulse, BookOpenText, ShieldCheck, LayoutDashboard } from 'lucide-react';
+import { Home, HeartPulse, BookOpenText, ShieldCheck, LayoutDashboard, UserCircle as UserProfileIcon } from 'lucide-react';
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
 
@@ -12,6 +12,8 @@ const navItems = [
   { href: '/topics', label: 'Critical Topics', icon: BookOpenText },
   { href: '/protocols-and-guidelines', label: 'Protocols & Guidelines', icon: ShieldCheck },
 ];
+
+// Profile item is handled in SidebarFooter, so no need to add it here for main navigation.
 
 export default function AppSidebarNavigation() {
   const pathname = usePathname();
@@ -39,4 +41,3 @@ export default function AppSidebarNavigation() {
     </SidebarMenu>
   );
 }
-

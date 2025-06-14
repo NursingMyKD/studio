@@ -6,13 +6,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight } from 'lucide-react';
+import React from 'react'; // Import React for React.memo
 
 interface ModuleCardProps {
   item: ContentItem;
   basePath: string;
 }
 
-export default function ModuleCard({ item, basePath }: ModuleCardProps) {
+function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
       <div className="relative h-48 w-full">
@@ -48,3 +49,6 @@ export default function ModuleCard({ item, basePath }: ModuleCardProps) {
     </Card>
   );
 }
+
+const ModuleCard = React.memo(ModuleCardComponent);
+export default ModuleCard;

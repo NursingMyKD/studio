@@ -40,17 +40,19 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     setIsClient(true);
   }, []);
 
-  useEffect(() => {
-    if (!initialLoading && !authLoading && !user && isClient) {
-      // Allow access to login/signup even if trying to access an (app) route initially
-      if (pathname !== '/login' && pathname !== '/signup') {
-        router.push('/login');
-      }
-    }
-  }, [user, initialLoading, authLoading, router, isClient, pathname]);
+  // useEffect(() => {
+  //   // Temporarily commented out for easier previewing without full auth setup.
+  //   // Re-enable for production or when auth is fully functional and required.
+  //   if (!initialLoading && !authLoading && !user && isClient) {
+  //     // Allow access to login/signup even if trying to access an (app) route initially
+  //     if (pathname !== '/login' && pathname !== '/signup') {
+  //       router.push('/login');
+  //     }
+  //   }
+  // }, [user, initialLoading, authLoading, router, isClient, pathname]);
   
-  if (initialLoading || authLoading) {
-    // Full page skeleton or simplified layout while auth is loading
+  // If initial auth state is still loading, show a more comprehensive skeleton.
+  if (initialLoading && !isClient) { // Only show full skeleton on server/initial client load
     return (
          <div className="flex min-h-screen">
             <AppSidebarSkeleton />
@@ -71,12 +73,26 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!user && isClient) {
-    // This should ideally be caught by the useEffect redirect, 
-    // but as a fallback, prevent rendering children if no user.
-    // Or, you can return null and let the redirect in useEffect handle it.
-    // Returning a loading state or null can prevent flicker.
-    return null; 
+  // Development/Preview: If initial auth check is done and still no user, 
+  // but we want to allow previewing, render the layout.
+  // The actual content of `children` might still depend on `user` being present.
+  // The `authLoading` check handles cases where login/signup process is active.
+  if (isClient && authLoading) {
+     return ( // Simplified loading for active auth operations once client has mounted
+         <div className="flex min-h-screen">
+            <AppSidebarSkeleton />
+            <SidebarInset>
+                 <header className="sticky top-0 z-10 flex h-16 items-center justify-end border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
+                    {/* Intentionally no trigger skeleton here during active auth load, as sidebar might be shown */}
+                </header>
+                <main className="flex-1 p-4 md:p-6 lg:p-8">
+                    <div className="flex justify-center items-center h-64">
+                        <p>Loading user session...</p>
+                    </div>
+                </main>
+            </SidebarInset>
+        </div>
+    );
   }
 
 
@@ -137,7 +153,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             }
           </header>
           <main className="flex-1 p-4 md:p-6 lg:p-8">
-            {user ? children : null /* Render children only if user is authenticated */}
+            {/* In a bypassed auth scenario for preview, children will always render. 
+                Individual pages should handle `user` being null if they need user data. */}
+            {children}
           </main>
         </SidebarInset>
       </div>

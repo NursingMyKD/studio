@@ -13,16 +13,15 @@ export const bodySystems: ContentItem[] = [
 
 The cardiac cycle involves **diastole** (ventricular filling) and **systole** (ventricular contraction). Electrical impulses originating from the **sinoatrial (SA) node** (pacemaker, 60-100 bpm) travel through the **atrioventricular (AV) node** (delay allows atrial contraction, 40-60 bpm intrinsic rate), Bundle of His, bundle branches, and Purkinje fibers (20-40 bpm intrinsic rate), coordinating contraction. An ECG records this activity:
 
-*   **P wave**: Represents atrial depolarization (contraction). Normally upright, rounded, and precedes each QRS complex. Duration: 0.06-0.12 seconds. Amplitude: <2.5 mm.
-*   **PR Interval**: Time from the beginning of the P wave to the beginning of the QRS complex. Represents time taken for impulse to travel from SA node through AV node to ventricles. Normal: 0.12-0.20 seconds.
-*   **QRS complex**: Represents ventricular depolarization (contraction). Comprises Q wave (first negative deflection), R wave (first positive deflection), S wave (first negative deflection after R wave). Normal duration: 0.06-0.10 seconds (up to 0.12s).
-    *   *Q wave*: Often small or absent. Pathological Q waves (deep and wide) can indicate previous myocardial infarction.
-    *   *R wave*: Represents majority of ventricular muscle depolarization.
-    *   *S wave*: Represents late ventricular depolarization.
-*   **ST Segment**: Represents early ventricular repolarization. Normally isoelectric (flat). Elevation or depression can indicate myocardial ischemia or injury.
-*   **T wave**: Represents ventricular repolarization (relaxation). Normally upright and rounded. Inversion or flattening can indicate ischemia, electrolyte imbalances.
-*   **QT Interval**: Represents total time for ventricular depolarization and repolarization. Varies with heart rate (corrected QT, QTc, is used). Normal QTc: <0.44 seconds (males), <0.46 seconds (females). Prolonged QT increases risk of Torsades de Pointes.
-*   **U wave**: Small wave sometimes seen after T wave; may indicate hypokalemia if prominent.
+| Wave/Interval    | Description                                                                 | Normal Duration/Characteristics                                       |
+|------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| **P wave**       | Atrial depolarization (contraction)                                         | Upright, rounded, precedes QRS. Duration: 0.06-0.12s. Amplitude: <2.5mm |
+| **PR Interval**  | Time for impulse from SA node through AV node to ventricles                 | 0.12-0.20 seconds                                                     |
+| **QRS complex**  | Ventricular depolarization (contraction)                                    | Q (1st neg), R (1st pos), S (1st neg after R). Duration: 0.06-0.10(0.12)s |
+| **ST Segment**   | Early ventricular repolarization                                            | Normally isoelectric. Elevation/depression indicates ischemia/injury. |
+| **T wave**       | Ventricular repolarization (relaxation)                                     | Normally upright, rounded. Inversion/flattening indicates issues.     |
+| **QT Interval**  | Total time for ventricular depolarization & repolarization (varies with HR) | QTc: <0.44s (males), <0.46s (females). Prolonged = arrhythmia risk.   |
+| **U wave**       | Small wave sometimes after T wave                                           | Prominent may indicate hypokalemia.                                   |
 
 ### Common ICU Arrhythmias
 
@@ -43,7 +42,7 @@ Crucial for assessing cardiovascular status and guiding therapy.
 |---------------------------------------|--------------------------------|------------------------------------------------------------------------------|--------------------------|
 | **Mean Arterial Pressure (MAP)**      | 70-105 mmHg                    | Average pressure driving tissue perfusion throughout cardiac cycle. Target >65 mmHg in shock. | Arterial Line, NIBP    |
 | **Central Venous Pressure (CVP)**     | 2-8 mmHg                       | Reflects RV preload and right atrial pressure. Interpretation requires clinical context. | Central Venous Catheter (CVC) |
-| **Pulmonary Artery Pressure (PAP)**   | Systolic: 15-30 mmHg <br> Diastolic: 8-15 mmHg <br> Mean: 10-20 mmHg | Pressures within the pulmonary artery. Elevated in pulmonary hypertension.   | Pulmonary Artery Catheter (PAC) |
+| **Pulmonary Artery Pressure (PAP)**   | Sys: 15-30 mmHg <br> Dia: 8-15 mmHg <br> Mean: 10-20 mmHg | Pressures within the pulmonary artery. Elevated in pulmonary hypertension.   | Pulmonary Artery Catheter (PAC) |
 | **Pulmonary Artery Wedge Pressure (PAWP/PCWP)** | 6-12 mmHg                      | Indirectly measures left atrial pressure, reflecting LV preload.         | PAC                      |
 | **Cardiac Output (CO)**               | 4-8 L/min                      | Volume of blood pumped by the heart per minute (CO = HR x SV).               | PAC, other CO monitors   |
 | **Cardiac Index (CI)**                | 2.5-4 L/min/m²                 | CO adjusted for Body Surface Area (BSA). More accurate patient comparison.   | Calculated (via PAC, etc.)|
@@ -279,6 +278,570 @@ Rapid assessment (e.g., FAST, NIHSS) is crucial.
 *   **Sedation**: Balance ICP control with ability to perform neuro exams (e.g., "sedation holidays" using short-acting agents like Propofol or Dexmedetomidine). RASS/SAS scores.`,
     categoryType: 'Body System',
     keywordsForImage: 'brain anatomy',
+  },
+  {
+    id: 'renal',
+    slug: 'renal',
+    title: 'Renal System',
+    summary: 'Overview of renal physiology, acute kidney injury (AKI) management, continuous renal replacement therapy (CRRT), and electrolyte imbalances in the ICU.',
+    content: `The renal system, consisting of kidneys, ureters, bladder, and urethra, is crucial for filtering waste products from blood, regulating fluid and electrolyte balance, maintaining acid-base homeostasis, and producing hormones.
+
+### Basic Renal Physiology
+*   **Nephron**: Functional unit of the kidney. Comprises glomerulus (filtration) and tubules (reabsorption/secretion).
+*   **Glomerular Filtration Rate (GFR)**: Volume of fluid filtered from glomerular capillaries into Bowman's capsule per unit time. Normal GFR approx. 90-120 mL/min/1.73m².
+*   **Key Functions**:
+    *   Waste excretion (urea, creatinine, metabolic byproducts).
+    *   Fluid balance regulation (via ADH, aldosterone).
+    *   Electrolyte balance (Na⁺, K⁺, Ca²⁺, PO₄³⁻, Mg²⁺).
+    *   Acid-base balance (HCO₃⁻ reabsorption/generation, H⁺ secretion).
+    *   Blood pressure regulation (renin-angiotensin-aldosterone system - RAAS).
+    *   Erythropoietin production (stimulates RBC production).
+    *   Vitamin D activation.
+
+### Acute Kidney Injury (AKI) in ICU
+AKI is a common and serious complication in critically ill patients, characterized by a rapid decline in kidney function.
+**Diagnostic Criteria (e.g., KDIGO)**:
+*   Increase in serum creatinine by ≥0.3 mg/dL within 48 hours, OR
+*   Increase in serum creatinine to ≥1.5 times baseline within 7 days, OR
+*   Urine volume <0.5 mL/kg/hr for ≥6 hours.
+
+**Types of AKI**:
+| Type        | Description & Common Causes                                                                                                       | Examples in ICU                                                                                 |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **Prerenal**  | Decreased renal perfusion. Kidneys are structurally normal initially.                                                               | Hypovolemia (hemorrhage, dehydration, sepsis-induced vasodilation), decreased cardiac output (cardiogenic shock, HF), severe vasodilation (sepsis), renal artery stenosis, hepatorenal syndrome. |
+| **Intrinsic (Intrarenal)** | Direct damage to kidney structures (glomeruli, tubules, interstitium, vessels).                                      | Acute Tubular Necrosis (ATN) from ischemia (prolonged prerenal state, shock) or nephrotoxins (contrast dye, aminoglycosides, vancomycin, NSAIDs, myoglobinuria from rhabdomyolysis), glomerulonephritis, interstitial nephritis (drugs), vasculitis. |
+| **Postrenal** | Obstruction of urine flow from kidneys.                                                                                           | Prostatic hypertrophy (BPH), kidney stones, tumors compressing ureters, blocked Foley catheter, neurogenic bladder. |
+
+**Management of AKI**:
+*   **Identify and Treat Underlying Cause**: Crucial for reversing AKI.
+*   **Optimize Hemodynamics**: Ensure adequate renal perfusion (MAP target often >65 mmHg, but individualized). Fluid resuscitation for prerenal causes, judicious use of vasopressors if needed.
+*   **Fluid Management**: Careful assessment of fluid status. Avoid fluid overload, which worsens outcomes. Diuretics (e.g., furosemide) may be used if fluid overloaded and kidneys are responsive, but do not improve GFR or prevent AKI progression.
+*   **Avoid Nephrotoxins**: Discontinue or dose-adjust nephrotoxic medications.
+*   **Electrolyte & Acid-Base Monitoring**: Correct hyperkalemia, metabolic acidosis, hyperphosphatemia.
+*   **Nutritional Support**: Provide adequate nutrition, may require protein restriction in non-dialyzed AKI, but often higher protein needs in CRRT.
+*   **Renal Replacement Therapy (RRT)**: Indications include severe fluid overload refractory to diuretics, severe hyperkalemia, severe metabolic acidosis, uremic symptoms (encephalopathy, pericarditis), certain drug overdoses.
+
+### Continuous Renal Replacement Therapy (CRRT)
+Commonly used in hemodynamically unstable ICU patients requiring RRT. Slower, continuous solute and fluid removal compared to intermittent hemodialysis (IHD).
+**Modalities**:
+*   **SCUF (Slow Continuous Ultrafiltration)**: Primarily fluid removal.
+*   **CVVH (Continuous Veno-Venous Hemofiltration)**: Solute removal via convection (solvent drag). Requires replacement fluid.
+*   **CVVHD (Continuous Veno-Venous Hemodialysis)**: Solute removal via diffusion (concentration gradient). Uses dialysate.
+*   **CVVHDF (Continuous Veno-Venous Hemodiafiltration)**: Combines convection and diffusion. Uses both replacement fluid and dialysate.
+
+**Key Nursing Considerations for CRRT**:
+*   Monitor hemodynamic stability, fluid balance (hourly I&Os critical), electrolytes, acid-base status.
+*   Anticoagulation (e.g., heparin, citrate) to prevent filter clotting. Monitor for bleeding, HIT (if heparin), citrate toxicity (hypocalcemia if citrate not properly managed).
+*   Maintain circuit patency. Troubleshoot alarms (pressure alarms, air detector, etc.).
+*   Prevent infection (vascular access care).
+*   Temperature regulation (fluid can be cool).
+*   Medication dosing adjustments (many drugs are cleared by CRRT).
+
+### Common Electrolyte Imbalances in ICU Renal Patients
+
+| Electrolyte | Imbalance       | Causes in Renal Patients                                 | Signs/Symptoms & ECG Changes                               | Management                                                              |
+|-------------|-----------------|----------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------|
+| **Potassium (K⁺)** | **Hyperkalemia** | Decreased excretion (AKI/CKD), acidosis, cell lysis, K⁺-sparing drugs | Weakness, paralysis, arrhythmias. ECG: Peaked T waves, wide QRS, prolonged PR, sine wave, asystole. | IV Calcium (stabilize membrane), Insulin/Glucose, Sodium Bicarbonate, Beta-agonists (shift K⁺ intracellularly), Kayexalate, Diuretics (if UOP), RRT. |
+|             | **Hypokalemia**  | Diuretics, GI losses, RRT, refeeding syndrome            | Weakness, ileus, arrhythmias. ECG: Flat/inverted T waves, U waves, ST depression, prolonged QT. | Oral/IV K⁺ replacement (slow IV infusion, monitor site).          |
+| **Sodium (Na⁺)**   | **Hyponatremia** | Fluid overload (dilutional), SIADH, adrenal insufficiency | Confusion, seizures, coma (esp. if acute).                 | Fluid restriction, loop diuretics, hypertonic saline (if severe/symptomatic, slow correction). |
+|             | **Hypernatremia**| Dehydration, diabetes insipidus, excessive saline admin  | Thirst, AMS, seizures, muscle weakness.                    | Free water replacement (PO/IV D5W), treat underlying cause.             |
+| **Calcium (Ca²⁺)** | **Hypocalcemia** | CKD (↓Vit D activation, ↑PO₄), citrate (CRRT), pancreatitis | Tetany, Chvostek's/Trousseau's, seizures, prolonged QT.    | IV Calcium gluconate/chloride.                                          |
+|             | **Hypercalcemia**| Malignancy, hyperparathyroidism, immobilization          | AMS, weakness, N/V, constipation, short QT, bradycardia.   | Hydration, loop diuretics, bisphosphonates, calcitonin, RRT.            |
+| **Phosphate (PO₄³⁻)** | **Hyperphosphatemia** | Decreased excretion (AKI/CKD), cell lysis              | Often asymptomatic, Ca-PO₄ precipitation, hypocalcemia.    | Phosphate binders (with meals), dietary restriction, RRT.                 |
+|             | **Hypophosphatemia**| Refeeding syndrome, DKA, antacids, CRRT, malnutrition    | Weakness, respiratory failure, AMS, rhabdomyolysis.      | Oral/IV phosphate replacement.                                          |
+| **Magnesium (Mg²⁺)**| **Hypomagnesemia**| Diuretics, GI losses, alcoholism, certain drugs        | Weakness, tetany, seizures, arrhythmias (Torsades).     | IV/Oral Magnesium sulfate.                                              |
+|             | **Hypermagnesemia**| Renal failure, excessive intake (antacids)             | Weakness, ↓reflexes, respiratory depression, bradycardia, hypotension. | IV Calcium (antagonizes), fluids, diuretics, RRT.                     |
+
+Regular monitoring and prompt correction of fluid and electrolyte imbalances are critical components of ICU care for patients with renal dysfunction.`,
+    categoryType: 'Body System',
+    keywordsForImage: 'kidney anatomy',
+  },
+  {
+    id: 'endocrine',
+    slug: 'endocrine',
+    title: 'Endocrine System',
+    summary: 'Covers endocrine emergencies like DKA, HHS, thyroid storm, adrenal crisis, and management of glycemic control in critically ill patients.',
+    content: `The endocrine system comprises glands that produce and secrete hormones, chemical messengers that regulate various bodily functions including metabolism, growth, stress response, and fluid/electrolyte balance. In the ICU, acute derangements of this system can be life-threatening.
+
+### Glycemic Control in Critical Illness
+Stress hyperglycemia is common in ICU patients due to increased counter-regulatory hormones (cortisol, glucagon, catecholamines) and insulin resistance.
+*   **Target Glucose Range**: For most critically ill patients, target blood glucose is typically 140-180 mg/dL (7.8-10.0 mmol/L). More stringent targets (e.g., 110-140 mg/dL) may be considered in select patients if achievable without significant hypoglycemia.
+*   **Insulin Therapy**: Continuous IV insulin infusion is often required for precise glycemic control. Use standardized protocols.
+*   **Monitoring**: Frequent blood glucose monitoring (e.g., hourly for insulin drips, q4-6h for stable patients on SQ insulin).
+*   **Hypoglycemia Management**: Treat promptly (e.g., IV Dextrose 50%). Identify and address cause.
+
+### Diabetic Ketoacidosis (DKA)
+Life-threatening complication of diabetes (more common in Type 1 DM) characterized by hyperglycemia, ketosis, and metabolic acidosis.
+*   **Pathophysiology**: Insulin deficiency leads to increased glucose production, decreased glucose utilization (hyperglycemia), and increased lipolysis (ketone body formation -> acidosis).
+*   **Diagnostic Criteria**:
+    *   Blood glucose >250 mg/dL
+    *   Arterial pH <7.3 and/or HCO3 <18 mEq/L
+    *   Presence of ketones in blood (beta-hydroxybutyrate) or urine.
+*   **Management Pillars**:
+    1.  **Fluid Resuscitation**: Initial 1-2L isotonic saline (0.9% NaCl) rapidly, then adjust based on hydration status. Correct fluid deficit over 24-48h.
+    2.  **Insulin Therapy**: Regular insulin IV infusion (e.g., 0.1 units/kg/hr or fixed low dose). **Do NOT start insulin until K⁺ >3.3 mEq/L.**
+    3.  **Potassium Replacement**: DKA causes total body K⁺ depletion despite potentially normal/high serum K⁺ initially. Add K⁺ to IV fluids once UOP established and K⁺ ≤5.0-5.2 mEq/L.
+    4.  **Bicarbonate**: Rarely indicated. Consider if pH <6.9 despite other measures.
+    5.  **Identify and Treat Precipitating Cause**: Infection, non-compliance, new-onset DM, MI.
+*   **Monitoring**: Hourly glucose, q2-4h electrolytes (esp. K⁺, HCO₃⁻, Anion Gap), anion gap closure (AG = Na - (Cl + HCO3)). Transition to SQ insulin when AG closed, patient eating, and acidosis resolved.
+
+### Hyperosmolar Hyperglycemic State (HHS)
+Life-threatening complication (more common in Type 2 DM) characterized by severe hyperglycemia, hyperosmolality, and profound dehydration, typically without significant ketosis/acidosis.
+*   **Diagnostic Criteria**:
+    *   Blood glucose >600 mg/dL
+    *   Effective serum osmolality >320 mOsm/kg (Calculated: 2*Na + Glucose/18)
+    *   Arterial pH >7.3, HCO3 >18 mEq/L (minimal or no ketosis)
+*   **Management**: Similar to DKA but often with greater fluid deficits and more gradual correction.
+    1.  **Aggressive Fluid Resuscitation**: Often larger volumes needed than DKA. Start with 0.9% NaCl, may switch to 0.45% NaCl if corrected Na⁺ is high/normal.
+    2.  **Insulin Therapy**: IV insulin infusion (similar to DKA, may require lower doses initially).
+    3.  **Electrolyte Replacement**: Especially K⁺.
+    4.  **Identify and Treat Precipitating Cause**.
+*   **Monitoring**: Glucose, electrolytes, serum osmolality, neurological status (risk of cerebral edema with rapid correction).
+
+### Thyroid Storm (Thyrotoxic Crisis)
+Life-threatening exacerbation of hyperthyroidism.
+*   **Clinical Features**: Fever, tachycardia (often out of proportion to fever), atrial fibrillation, CHF, agitation, delirium, coma, N/V/D, jaundice.
+*   **Management**:
+    1.  **Beta-blockers**: (e.g., Propranolol) for sympathetic symptom control (HR, tremors).
+    2.  **Antithyroid Drugs**: Propylthiouracil (PTU - also blocks peripheral T4 to T3 conversion) or Methimazole (MMI).
+    3.  **Iodine Solution**: (e.g., SSKI, Lugol's solution) **AFTER** antithyroid drug administration (to prevent incorporation into new hormone).
+    4.  **Glucocorticoids**: (e.g., Hydrocortisone, Dexamethasone) to reduce T4 to T3 conversion and treat potential relative adrenal insufficiency.
+    5.  **Supportive Care**: Cooling measures, fluids, treat arrhythmias/CHF.
+    6.  Identify and treat precipitating event (infection, surgery, trauma).
+
+### Myxedema Coma
+Life-threatening expression of severe hypothyroidism.
+*   **Clinical Features**: Hypothermia, bradycardia, hypotension, hypoventilation, altered mental status (lethargy, coma), hyponatremia, hypoglycemia.
+*   **Management**:
+    1.  **IV Thyroid Hormone Replacement**: Levothyroxine (T4) IV. Liothyronine (T3) IV may be considered.
+    2.  **Glucocorticoids**: (e.g., IV Hydrocortisone) until coexisting adrenal insufficiency is ruled out.
+    3.  **Supportive Care**: Mechanical ventilation if needed, passive rewarming, IV fluids (cautious, risk of hyponatremia), vasopressors for hypotension, correct hypoglycemia.
+
+### Adrenal Crisis (Acute Adrenal Insufficiency)
+Life-threatening condition due to insufficient cortisol (and often aldosterone).
+*   **Causes**: Stress in patients with known adrenal insufficiency, abrupt withdrawal of chronic steroids, bilateral adrenal hemorrhage/infarction.
+*   **Clinical Features**: Hypotension refractory to fluids/vasopressors, shock, weakness, fatigue, N/V, abdominal pain, fever, AMS, hyponatremia, hyperkalemia, hypoglycemia.
+*   **Management**:
+    1.  **IV Glucocorticoids**: Hydrocortisone 100 mg IV bolus, then 50-100 mg IV q6-8h or continuous infusion. Dexamethasone if diagnosis uncertain (doesn't interfere with cortisol assay).
+    2.  **Aggressive IV Fluid Resuscitation**: (e.g., 0.9% NaCl with dextrose).
+    3.  **Correct Electrolyte Abnormalities**.
+    4.  **Vasopressors**: If needed after fluids/steroids.
+    5.  Identify and treat precipitating cause.
+
+### Syndrome of Inappropriate Antidiuretic Hormone (SIADH)
+Excess ADH secretion leading to impaired water excretion and dilutional hyponatremia.
+*   **Causes**: CNS disorders, malignancies, pulmonary diseases, drugs.
+*   **Clinical Features**: Hyponatremia, low serum osmolality, inappropriately concentrated urine (high urine osmolality, high urine Na⁺), euvolemia or mild hypervolemia.
+*   **Management**:
+    1.  **Treat Underlying Cause**.
+    2.  **Fluid Restriction**: Primary treatment.
+    3.  **Salt Tablets / Loop Diuretics**: If symptomatic or severe.
+    4.  **Vasopressin Receptor Antagonists (Vaptans)**: (e.g., Tolvaptan) for resistant cases.
+    5.  **Hypertonic Saline (3% NaCl)**: For severe symptomatic hyponatremia (e.g., seizures). Correct Na⁺ slowly to avoid osmotic demyelination syndrome.
+
+### Diabetes Insipidus (DI)
+Deficiency of ADH (Central DI) or renal resistance to ADH (Nephrogenic DI) leading to excretion of large volumes of dilute urine.
+*   **Clinical Features**: Polyuria (>3L/day), polydipsia, hypernatremia, high serum osmolality, dilute urine (low urine osmolality, low urine specific gravity).
+*   **Management**:
+    1.  **Fluid Replacement**: Match urine output (PO or IV hypotonic fluids like D5W or 0.45% NaCl).
+    2.  **Desmopressin (DDAVP)**: For Central DI (synthetic ADH).
+    3.  **Thiazide Diuretics / NSAIDs**: For Nephrogenic DI (paradoxical effect to reduce urine volume).
+    4.  **Treat Underlying Cause**.`,
+    categoryType: 'Body System',
+    keywordsForImage: 'endocrine glands',
+  },
+  {
+    id: 'gastrointestinal',
+    slug: 'gastrointestinal',
+    title: 'Gastrointestinal System',
+    summary: 'Management of GI bleeding, pancreatitis, liver failure, bowel obstruction, and nutritional support in critically ill patients.',
+    content: `The gastrointestinal (GI) system is responsible for digestion, absorption of nutrients, and elimination of waste. Critical illness can significantly impact GI function.
+
+### Upper GI Bleeding (UGIB)
+Bleeding proximal to the ligament of Treitz.
+*   **Causes**: Peptic ulcer disease (PUD), esophageal varices (liver disease), Mallory-Weiss tears, gastritis, esophagitis, tumors.
+*   **Presentation**: Hematemesis (bright red or coffee-ground), melena (black, tarry stools). Signs of hypovolemia/shock if severe.
+*   **Management**:
+    1.  **ABCs & Resuscitation**: IV access (2 large-bore PIVs), O2, fluid resuscitation (crystalloids, blood products if needed - target Hgb >7-8 g/dL).
+    2.  **Proton Pump Inhibitors (PPIs)**: IV bolus then infusion (e.g., Pantoprazole, Esomeprazole) for non-variceal UGIB.
+    3.  **Octreotide**: For suspected variceal bleeding (reduces splanchnic blood flow).
+    4.  **Antibiotics**: For variceal bleeding (e.g., Ceftriaxone) to prevent SBP.
+    5.  **Endoscopy (EGD)**: Diagnostic and therapeutic (e.g., clipping, cautery, banding). Urgent EGD for active bleeding/hemodynamic instability.
+    6.  **Transjugular Intrahepatic Portosystemic Shunt (TIPS)**: For refractory variceal bleeding.
+    7.  Correct coagulopathy.
+
+### Lower GI Bleeding (LGIB)
+Bleeding distal to the ligament of Treitz.
+*   **Causes**: Diverticulosis (most common), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, neoplasms.
+*   **Presentation**: Hematochezia (bright red blood per rectum), maroon stools. Melena possible with slow right-sided colonic bleed.
+*   **Management**:
+    1.  **ABCs & Resuscitation**: Similar to UGIB.
+    2.  **Localization**: Often more challenging. Colonoscopy is primary diagnostic/therapeutic tool. Tagged RBC scan or CTA may help localize active bleeding if colonoscopy is non-diagnostic or bleeding is massive.
+    3.  **Endoscopic Therapy**: Clipping, cautery, epinephrine injection.
+    4.  **Angiography with Embolization or Surgery**: For refractory bleeding.
+
+### Acute Pancreatitis
+Inflammation of the pancreas, ranging from mild to severe necrotizing pancreatitis.
+*   **Causes**: Gallstones, alcohol (most common). Others: hypertriglyceridemia, drugs, trauma, post-ERCP.
+*   **Presentation**: Severe epigastric pain radiating to back, N/V, fever, tachycardia. Cullen's sign (periumbilical ecchymosis), Grey Turner's sign (flank ecchymosis) in severe cases.
+*   **Diagnosis**: Requires 2 of 3: 1) Characteristic abdominal pain, 2) Amylase and/or Lipase >3x ULN, 3) Characteristic findings on imaging (CT/MRI/US).
+*   **Severity Assessment**: Ranson's criteria, APACHE II, BISAP score, CT Severity Index.
+*   **Management**:
+    1.  **Fluid Resuscitation**: Aggressive IV fluids early (e.g., Lactated Ringer's) is crucial, especially in first 24-48h. Monitor response.
+    2.  **Pain Control**: IV opioids.
+    3.  **Nutritional Support**:
+        *   Mild: NPO initially, advance diet as tolerated when pain improves and N/V resolves.
+        *   Severe: Enteral nutrition (nasojejunal tube preferred over TPN if gut is functional) if NPO >5-7 days anticipated.
+    4.  **Electrolyte Monitoring/Correction**: Esp. calcium (hypocalcemia common).
+    5.  **Identify and Treat Cause**: E.g., ERCP for biliary pancreatitis.
+    6.  **Monitor for Complications**: Necrosis, pseudocyst, abscess, systemic complications (ARDS, AKI, shock). Antibiotics only if infected necrosis suspected/confirmed (not prophylactic).
+
+### Acute Liver Failure (ALF)
+Rapid deterioration of liver function (coagulopathy INR ≥1.5, encephalopathy) in a patient without pre-existing cirrhosis, with illness duration <26 weeks.
+*   **Causes**: Acetaminophen overdose (most common in US/UK), viral hepatitis (A, B, E), drug-induced liver injury (DILI), autoimmune hepatitis, Wilson's disease, ischemic hepatopathy, HELLP syndrome.
+*   **Management**:
+    1.  **Identify and Treat Cause**: E.g., N-acetylcysteine (NAC) for acetaminophen toxicity (regardless of time since ingestion if ALF suspected).
+    2.  **Supportive Care in ICU**: Manage coagulopathy (FFP, Vitamin K - often ineffective), hypoglycemia, encephalopathy (Lactulose, Rifaximin), cerebral edema (ICP monitoring, mannitol), AKI (may need RRT).
+    3.  **Infection Prophylaxis/Treatment**.
+    4.  **Referral to Transplant Center**: Liver transplantation is definitive treatment for many. King's College Criteria or MELD score help assess prognosis/need for transplant.
+
+### Bowel Obstruction
+*   **Small Bowel Obstruction (SBO)**: Causes: Adhesions (most common), hernias, tumors. Presentation: Colicky abdominal pain, N/V (bilious/feculent), distension, obstipation.
+*   **Large Bowel Obstruction (LBO)**: Causes: Tumors (most common), volvulus, diverticular stricture. Presentation: Gradual onset pain, distension, constipation/obstipation.
+*   **Management**:
+    1.  **NPO, IV Fluids, Electrolyte Correction**.
+    2.  **Nasogastric (NG) Decompression**: For SBO, may be therapeutic.
+    3.  **Pain Control**.
+    4.  **Surgical Consultation**: For complete obstruction, signs of ischemia/strangulation (fever, tachycardia, leukocytosis, peritoneal signs), or failure of conservative management.
+
+### ICU Nutritional Support
+*   **Goal**: Provide adequate calories and protein to prevent malnutrition, support healing, and maintain organ function.
+*   **Assessment**: Identify patients at nutritional risk.
+*   **Enteral Nutrition (EN)**: Preferred route if gut is functional ("if the gut works, use it").
+    *   Start early (within 24-48h of admission).
+    *   Formulas: Standard, high-protein, fiber-containing, disease-specific (e.g., renal, diabetic).
+    *   Gastric vs. Post-pyloric feeding.
+    *   Monitor for tolerance (residuals, distension, diarrhea), aspiration risk (HOB elevation).
+*   **Parenteral Nutrition (PN/TPN)**: Used when EN is contraindicated or insufficient.
+    *   Administered via central line.
+    *   Risks: CLABSI, hyperglycemia, electrolyte imbalances, liver dysfunction (cholestasis), refeeding syndrome.
+    *   Monitor labs closely (glucose, LFTs, triglycerides, electrolytes).
+
+### Refeeding Syndrome
+Metabolic derangements occurring when nutrition is reintroduced after a period of starvation.
+*   **Pathophysiology**: Insulin release -> intracellular shift of phosphate, potassium, magnesium.
+*   **Key Feature**: Hypophosphatemia. Also hypokalemia, hypomagnesemia, thiamine deficiency, fluid overload.
+*   **Risks**: Cardiac arrhythmias, respiratory failure, seizures, death.
+*   **Prevention/Management**: Identify high-risk patients. Start nutrition slowly (e.g., 25-50% of goal initially). Aggressively monitor and replete electrolytes (especially phosphate, potassium, magnesium) *before* and during refeeding. Administer thiamine.`,
+    categoryType: 'Body System',
+    keywordsForImage: 'digestive system',
+  },
+  {
+    id: 'hematologic',
+    slug: 'hematologic',
+    title: 'Hematologic System',
+    summary: 'Focus on common hematologic issues in the ICU, including anemia, thrombocytopenia, coagulopathies, DIC, and transfusion reactions.',
+    content: `The hematologic system involves blood and blood-forming organs. Critically ill patients often develop hematologic derangements due to their underlying illness, treatments, or complications.
+
+### Anemia in the ICU
+Common in ICU patients due to blood loss (overt or occult), frequent phlebotomy, inflammation (anemia of chronic disease/inflammation), nutritional deficiencies, hemolysis, or bone marrow suppression.
+*   **Transfusion Thresholds**: Generally restrictive. Transfuse RBCs if Hgb <7 g/dL in stable patients. Higher thresholds (Hgb <8-9 g/dL) may be considered in symptomatic anemia, active bleeding, acute coronary syndrome, or septic shock with poor perfusion.
+*   **Minimize Phlebotomy**: Use small volume tubes, batch lab draws.
+*   **Iron, B12, Folate**: Assess and replete if deficient.
+
+### Thrombocytopenia in the ICU
+Platelet count <150,000/μL. Common and multifactorial.
+*   **Causes**:
+    *   Sepsis (most common ICU cause - due to consumption, bone marrow suppression).
+    *   Medications (e.g., heparin - HIT, antibiotics, H2 blockers, diuretics).
+    *   Dilutional (massive transfusion).
+    *   Immune Thrombocytopenic Purpura (ITP).
+    *   Thrombotic Thrombocytopenic Purpura (TTP) / Hemolytic Uremic Syndrome (HUS).
+    *   Disseminated Intravascular Coagulation (DIC).
+    *   Liver disease (splenic sequestration, ↓thrombopoietin).
+    *   Bone marrow disorders.
+*   **Management**:
+    *   **Treat Underlying Cause**.
+    *   **Platelet Transfusion**: Generally for active bleeding or if count <10,000-20,000/μL (higher if invasive procedure planned or high bleeding risk). Not indicated for HIT or TTP unless life-threatening bleed.
+    *   **Investigate for HIT**: If patient on heparin and platelet count drops >50% or new thrombosis occurs (typically 5-14 days after heparin start). Confirm with HIT antibody testing (e.g., ELISA for PF4/heparin Ab) and serotonin release assay (SRA). If HIT suspected, stop all heparin products and start alternative anticoagulant (e.g., Argatroban, Bivalirudin).
+
+### Coagulopathies
+Disorders of blood clotting.
+*   **Common Tests**:
+    *   **Prothrombin Time (PT) / International Normalized Ratio (INR)**: Measures extrinsic and common pathways (Factors VII, X, V, II, fibrinogen). Prolonged in liver disease, Vitamin K deficiency, warfarin use.
+    *   **Activated Partial Thromboplastin Time (aPTT)**: Measures intrinsic and common pathways (Factors XII, XI, IX, VIII, X, V, II, fibrinogen). Prolonged in heparin use, hemophilia, DIC.
+    *   **Fibrinogen**: Assess fibrinogen levels.
+    *   **Thromboelastography (TEG) / Rotational Thromboelastometry (ROTEM)**: Viscoelastic tests providing a global assessment of clot formation, strength, and lysis. Useful for guiding goal-directed transfusion in trauma/major bleeding.
+*   **Management**:
+    *   **Fresh Frozen Plasma (FFP)**: For correction of multiple factor deficiencies (e.g., liver disease, warfarin reversal with active bleeding, DIC). INR target <1.5-1.7.
+    *   **Cryoprecipitate**: Rich in fibrinogen, Factor VIII, Factor XIII, von Willebrand factor. Used for hypofibrinogenemia, uremic bleeding.
+    *   **Prothrombin Complex Concentrates (PCCs)**: Contain Vitamin K-dependent factors (II, VII, IX, X). Rapid warfarin reversal.
+    *   **Vitamin K**: For warfarin reversal (slower onset) or Vitamin K deficiency.
+    *   **Specific Factor Concentrates**: For hemophilia (Factor VIII or IX).
+    *   **Desmopressin (DDAVP)**: For uremic platelet dysfunction or mild von Willebrand disease.
+
+### Disseminated Intravascular Coagulation (DIC)
+Systemic activation of coagulation leading to widespread microvascular thrombosis and subsequent consumption of clotting factors and platelets, resulting in bleeding. Always secondary to an underlying disorder.
+*   **Causes**: Sepsis (most common), trauma, malignancy, obstetric complications, severe burns, pancreatitis.
+*   **Clinical Features**: Bleeding (oozing from sites, petechiae, purpura, major hemorrhage) AND/OR thrombosis (organ dysfunction, DVT/PE).
+*   **Lab Findings**: Thrombocytopenia, prolonged PT/INR, prolonged aPTT, low fibrinogen, elevated D-dimer/FDPs, schistocytes on peripheral smear.
+*   **Management**:
+    1.  **Treat Underlying Cause**: CRITICAL.
+    2.  **Supportive Care**:
+        *   **If Bleeding Dominant**: Transfuse platelets (target >20-50k), FFP (target INR <1.5-1.7), cryoprecipitate (target fibrinogen >100-150 mg/dL).
+        *   **If Thrombosis Dominant (and no major bleeding)**: Anticoagulation (e.g., heparin) may be considered cautiously, but controversial.
+    *   Avoid unnecessary invasive procedures.
+
+### Transfusion Reactions
+
+| Reaction Type             | Onset/Symptoms                                                                                    | Pathophysiology                                     | Management                                                                                                |
+|---------------------------|---------------------------------------------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| **Acute Hemolytic**       | Immediate (or within 24h). Fever, chills, hypotension, tachycardia, flank pain, hemoglobinuria (red urine), DIC. | ABO incompatibility -> intravascular hemolysis.       | **STOP transfusion immediately!** Maintain IV access with NS. Notify provider/blood bank. Supportive care (BP, UOP), check for DIC. Send blood/urine samples. |
+| **Febrile Non-Hemolytic (FNHTR)** | Within 1-2 hours. Fever (≥1°C rise), chills, rigors, headache. Common.                             | Cytokines from donor WBCs, or recipient Ab to donor WBCs. | **STOP transfusion.** Rule out hemolytic reaction. Antipyretics. May restart slowly if mild & no other signs. Leukoreduced products for future. |
+| **Allergic (Mild/Urticarial)** | Within minutes to hours. Urticaria (hives), pruritus, flushing.                                  | Recipient Ab to donor plasma proteins.                | **STOP transfusion.** Antihistamines (e.g., diphenhydramine). May restart slowly if symptoms resolve.       |
+| **Anaphylactic (Severe Allergic)** | Immediate (seconds to minutes). Hypotension, bronchospasm, angioedema, urticaria, shock. Rare, life-threatening. | IgA deficiency with anti-IgA antibodies (common cause). | **STOP transfusion immediately!** Epinephrine, antihistamines, steroids, airway/BP support. Washed RBCs/platelets for future. |
+| **Transfusion-Associated Circulatory Overload (TACO)** | Within 6 hours. Dyspnea, orthopnea, cough, tachycardia, hypertension, pulmonary edema (rales, JVD). | Fluid overload, especially in susceptible patients (HF, renal failure). | **STOP or slow transfusion.** Diuretics, O2, supportive care. Sit patient upright. Prevent with slower infusion rates. |
+| **Transfusion-Related Acute Lung Injury (TRALI)** | Within 6 hours. Acute dyspnea, hypoxemia, bilateral pulmonary infiltrates (non-cardiogenic pulmonary edema), fever, hypotension. | Donor antibodies reacting with recipient leukocytes -> pulmonary capillary damage. | **STOP transfusion immediately!** Supportive care (O2, mechanical ventilation if needed). Notify blood bank (donor deferral). |
+| **Bacterial Contamination (Septic Reaction)** | Rapid onset (minutes to hours). High fever, chills, rigors, hypotension, shock, N/V/D.              | Bacterial contamination of blood product (esp. platelets). | **STOP transfusion immediately!** Blood cultures (patient & product). Broad-spectrum IV antibiotics. Supportive care for sepsis. |
+| **Delayed Hemolytic**     | Days to weeks post-transfusion. Mild jaundice, falling Hgb, unexplained fever.                     | Alloantibodies (often Kidd, Duffy, Kell) from prior sensitization -> extravascular hemolysis. | Usually mild, supportive care. Notify blood bank for antibody identification for future transfusions.      |
+
+**Transfusion Administration Procedure**:
+*   Verify order, patient consent.
+*   Two RN check at bedside: Patient ID (2 identifiers), blood product type, unit number, ABO/Rh compatibility, expiration date.
+*   Use appropriate filter tubing. Start infusion slowly (e.g., 2 mL/min or 120 mL/hr for first 15 mins).
+*   Stay with patient for first 15 mins, monitor vital signs frequently (pre, 15 min, post, and prn).
+*   Complete transfusion within 4 hours from removal from blood bank.`,
+    categoryType: 'Body System',
+    keywordsForImage: 'blood cells',
+  },
+  {
+    id: 'immune',
+    slug: 'immune',
+    title: 'Immune System & Sepsis',
+    summary: 'Overview of the immune response, sepsis pathophysiology, recognition (SIRS, qSOFA, SOFA), and management bundles in critical care.',
+    content: `The immune system defends the body against pathogens and abnormal cells. It involves innate (non-specific, rapid) and adaptive (specific, memory) responses. In critical illness, dysregulation of the immune system, particularly in sepsis, is a major concern.
+
+### Sepsis and Septic Shock
+Sepsis is a life-threatening organ dysfunction caused by a dysregulated host response to infection. Septic shock is a subset of sepsis with circulatory, cellular, and metabolic abnormalities profound enough to substantially increase mortality.
+
+**Definitions (Sepsis-3 Criteria)**:
+*   **Sepsis**: Suspected or documented infection AND an acute increase of ≥2 SOFA points (Sequential Organ Failure Assessment score) - a proxy for organ dysfunction.
+*   **Septic Shock**: Sepsis AND vasopressor therapy needed to elevate MAP ≥65 mmHg AND lactate >2 mmol/L (18 mg/dL) despite adequate fluid resuscitation.
+
+**Screening Tools**:
+*   **qSOFA (quick SOFA)**: For use outside ICU. Identifies patients with suspected infection who are likely to have poor outcomes. ≥2 of:
+    *   Respiratory rate ≥22/min
+    *   Altered mentation (GCS <15)
+    *   Systolic blood pressure ≤100 mmHg
+*   **SIRS (Systemic Inflammatory Response Syndrome)**: Older criteria, less specific for sepsis but still used by some. ≥2 of:
+    *   Temperature >38°C or <36°C
+    *   Heart rate >90 bpm
+    *   Respiratory rate >20/min or PaCO2 <32 mmHg
+    *   WBC >12,000/mm³, <4,000/mm³, or >10% bands
+
+### Pathophysiology of Sepsis
+1.  **Infection**: Pathogen invasion triggers immune response.
+2.  **Inflammatory Cascade**: Release of pro-inflammatory cytokines (TNF-α, IL-1, IL-6) and anti-inflammatory mediators.
+3.  **Endothelial Dysfunction**: Increased vascular permeability, vasodilation, microthrombi formation.
+4.  **Organ Dysfunction**: Hypoperfusion, cellular hypoxia, mitochondrial dysfunction lead to organ failure (lungs - ARDS, kidneys - AKI, heart - myocardial depression, brain - encephalopathy, liver - dysfunction, coagulation - DIC).
+5.  **Immune Dysregulation**: Can lead to immunosuppression in later stages, increasing risk of secondary infections.
+
+### Surviving Sepsis Campaign Bundles (Summarized - Refer to latest guidelines)
+
+#### Hour-1 Bundle (Elements to be *initiated* within 1 hour of sepsis recognition):
+1.  **Measure Lactate Level**: Remeasure if initial lactate is elevated (>2 mmol/L).
+2.  **Obtain Blood Cultures BEFORE Administering Antibiotics**: (If it doesn't cause significant delay in antibiotic admin).
+3.  **Administer Broad-Spectrum Antibiotics**: Within 1 hour. Tailor based on suspected source, local resistance patterns, patient factors.
+4.  **Begin Rapid Administration of 30 mL/kg Crystalloid for Hypotension or Lactate ≥4 mmol/L**: Complete within 3 hours. Reassess fluid responsiveness.
+5.  **Apply Vasopressors if Hypotensive During or After Fluid Resuscitation to Maintain MAP ≥65 mmHg**: Norepinephrine is first-line.
+
+#### Ongoing Management
+*   **Source Control**: Identify and treat/remove source of infection (e.g., drain abscess, remove infected line, debride tissue).
+*   **Fluid Therapy**: Guided by dynamic measures of fluid responsiveness (e.g., PLR, SVV/PPV, Echo). Avoid fluid overload.
+*   **Vasopressors**: Norepinephrine first-line. Add Vasopressin or Epinephrine if MAP goals not met with Norepinephrine alone. Consider Angiotensin II for refractory shock.
+*   **Inotropes**: Consider Dobutamine if ongoing hypoperfusion despite adequate fluid and vasopressors, or evidence of myocardial dysfunction.
+*   **Corticosteroids**: Consider IV hydrocortisone (e.g., 200 mg/day) for adult patients with septic shock and ongoing hemodynamic instability despite adequate fluid and vasopressor therapy (controversial, guidelines vary).
+*   **Ventilation for ARDS**: Low tidal volume ventilation.
+*   **Glucose Control**: Target 140-180 mg/dL.
+*   **Renal Replacement Therapy**: If AKI with indications.
+*   **DVT Prophylaxis**: Pharmacologic (LMWH/UFH unless contraindicated) and/or mechanical.
+*   **Stress Ulcer Prophylaxis**: PPIs or H2 blockers for patients with risk factors.
+*   **Nutrition**: Early enteral nutrition if tolerated.
+
+### Anaphylaxis
+Severe, life-threatening systemic hypersensitivity reaction.
+*   **Triggers**: Foods, medications (esp. antibiotics, NSAIDs), insect stings, latex.
+*   **Clinical Features**: Rapid onset. Skin (urticaria, angioedema, flushing), Respiratory (dyspnea, wheeze, stridor, hypoxemia), Cardiovascular (hypotension, tachycardia, shock), GI (N/V/D, abdominal pain).
+*   **Management**:
+    1.  **Epinephrine IM**: First-line and most critical treatment. 0.3-0.5 mg (1:1000) IM anterolateral thigh. Repeat q5-15 min prn.
+    2.  **Airway Management**: Supplemental O2. Prepare for intubation if angioedema/respiratory distress.
+    3.  **Circulatory Support**: IV fluids for hypotension. IV Epinephrine infusion for refractory hypotension/shock.
+    4.  **Adjunctive Therapies**:
+        *   Antihistamines: H1 blockers (Diphenhydramine IV/IM), H2 blockers (Ranitidine/Famotidine IV).
+        *   Corticosteroids: (e.g., Methylprednisolone IV) to prevent prolonged/biphasic reaction (onset 4-6h).
+        *   Bronchodilators: (e.g., Albuterol nebulized) for bronchospasm.
+    5.  **Observation**: At least 4-8 hours (longer for severe reactions or biphasic risk).
+    6.  **Discharge**: Prescribe epinephrine auto-injector, educate on use and avoidance of triggers, refer to allergist.
+
+### Neutropenic Fever
+Fever (single oral temp ≥38.3°C or ≥38.0°C sustained for ≥1h) in a patient with neutropenia (Absolute Neutrophil Count (ANC) <500/mm³ or <1000/mm³ and predicted to fall <500/mm³). A medical emergency.
+*   **Management**:
+    1.  **Prompt Empiric Broad-Spectrum Antibiotics**: Within 1 hour of presentation. Cover Pseudomonas (e.g., Cefepime, Piperacillin-Tazobactam, Meropenem). Add Vancomycin if suspected catheter infection, skin/soft tissue infection, pneumonia, or hemodynamic instability.
+    2.  **Blood Cultures & Other Cultures**: Before antibiotics if no significant delay.
+    3.  **Risk Stratification**: (e.g., MASCC score) to determine inpatient vs. outpatient management (ICU if unstable).
+    4.  **Supportive Care**.
+    5.  **Granulocyte Colony-Stimulating Factors (G-CSF)**: May be considered in high-risk patients.`,
+    categoryType: 'Body System',
+    keywordsForImage: 'immune cells antibody',
+  },
+  {
+    id: 'musculoskeletal',
+    slug: 'musculoskeletal',
+    title: 'Musculoskeletal System',
+    summary: 'Focuses on rhabdomyolysis, compartment syndrome, and mobility/VTE prophylaxis in critically ill patients.',
+    content: `While not always the primary focus in ICU, musculoskeletal issues can significantly impact patient outcomes, morbidity, and length of stay.
+
+### Rhabdomyolysis
+Syndrome characterized by skeletal muscle injury and release of intracellular contents (myoglobin, creatine kinase (CK), potassium, phosphate) into circulation.
+*   **Causes**:
+    *   Trauma/Crush Injury
+    *   Prolonged Immobilization / Coma
+    *   Extreme Exertion (e.g., status epilepticus, hyperthermia)
+    *   Drugs/Toxins (statins, colchicine, alcohol, cocaine, certain infections)
+    *   Ischemia (compartment syndrome, arterial occlusion)
+    *   Electrolyte abnormalities (hypokalemia, hypophosphatemia)
+*   **Clinical Features**: Muscle pain, weakness, dark (tea-colored) urine (myoglobinuria). May be asymptomatic initially.
+*   **Diagnosis**: Markedly elevated CK (typically >5x ULN, often >5,000-10,000 IU/L). Myoglobinuria. Hyperkalemia, hyperphosphatemia, hypocalcemia (early, then hypercalcemia later).
+*   **Complications**:
+    *   **Acute Kidney Injury (AKI)**: Myoglobin is nephrotoxic. Most serious complication.
+    *   Electrolyte disturbances leading to arrhythmias.
+    *   Compartment syndrome.
+    *   DIC.
+*   **Management**:
+    1.  **Aggressive IV Fluid Resuscitation**: Early and high-volume (e.g., 0.9% NaCl or LR) to maintain high urine output (target >100-200 mL/hr or 1-3 mL/kg/hr) and flush myoglobin.
+    2.  **Urinary Alkalinization (Controversial)**: Sodium bicarbonate infusion to raise urine pH >6.5 (may reduce myoglobin precipitation in tubules). Limited evidence, potential risks (hypocalcemia, fluid overload).
+    3.  **Mannitol (Controversial)**: Osmotic diuretic.
+    4.  **Monitor and Correct Electrolytes**: Especially K⁺, Ca²⁺, PO₄³⁻.
+    5.  **Treat Underlying Cause**.
+    6.  **Renal Replacement Therapy**: For severe AKI, refractory hyperkalemia, or severe fluid overload.
+
+### Compartment Syndrome
+Increased pressure within a closed fascial compartment, leading to impaired tissue perfusion and potential muscle/nerve damage. A surgical emergency.
+*   **Causes**: Trauma (fractures, crush injuries), burns, reperfusion injury after ischemia, constrictive casts/dressings, rhabdomyolysis with significant swelling. Most common in lower leg and forearm.
+*   **Pathophysiology**: Swelling/bleeding within compartment -> ↑pressure -> venous outflow obstruction -> ↑capillary hydrostatic pressure -> further fluid extravasation -> arterial inflow compromise -> ischemia -> necrosis.
+*   **Clinical Features (6 P's - often late findings, high index of suspicion needed)**:
+    *   **Pain**: Out of proportion to injury, especially with passive stretch of muscles in the compartment. Earliest and most reliable sign.
+    *   **Paresthesia**: Numbness, tingling (nerve compression).
+    *   **Pallor**: Late sign.
+    *   **Pulselessness**: Very late and ominous sign.
+    *   **Paralysis**: Late sign.
+    *   **Poikilothermia (Coolness)**: Late sign.
+    *   Affected compartment feels tense and swollen ("rock hard").
+*   **Diagnosis**: Primarily clinical. Compartment pressure measurement can confirm (needle manometry). Normal compartment pressure 0-10 mmHg. Pressure >30 mmHg, or delta pressure (Diastolic BP - Compartment Pressure) <20-30 mmHg, suggests compartment syndrome.
+*   **Management**:
+    1.  **Immediate Fasciotomy**: Surgical decompression of the compartment. Time is critical to save limb and function.
+    2.  **Remove Constricting Dressings/Casts**.
+    3.  **Elevate Limb to Heart Level** (not above, to avoid compromising arterial inflow).
+    4.  **Analgesia**.
+    5.  Supportive care (fluids, O2).
+
+### ICU-Acquired Weakness (ICUAW)
+Generalized weakness developing after onset of critical illness, without other identifiable cause. Includes Critical Illness Polyneuropathy (CIP) and Critical Illness Myopathy (CIM).
+*   **Risk Factors**: Sepsis, multi-organ failure, prolonged mechanical ventilation, immobility, corticosteroids, NMBAs.
+*   **Clinical Features**: Diffuse, symmetric limb weakness (proximal > distal), difficulty weaning from ventilator, muscle atrophy.
+*   **Prevention/Management**:
+    *   **Early Mobilization and Physical Therapy**: Most important intervention.
+    *   Optimize glycemic control.
+    *   Minimize sedation.
+    *   Judicious use of corticosteroids and NMBAs.
+    *   Nutritional support.
+
+### Pressure Injuries (Pressure Ulcers)
+Localized damage to skin and underlying tissue, usually over a bony prominence, as a result of pressure or pressure in combination with shear and/or friction.
+*   **Risk Factors**: Immobility, malnutrition, decreased perfusion, moisture, sensory impairment, medical devices.
+*   **Prevention (Key Nursing Role)**:
+    *   **Risk Assessment**: (e.g., Braden Scale) on admission and regularly.
+    *   **Repositioning**: Turn/reposition q2h (or per individualized plan). Use pressure-relieving surfaces/mattresses.
+    *   **Skin Care**: Keep skin clean and dry. Use moisturizers. Avoid massaging bony prominences.
+    *   **Nutrition**: Optimize nutritional status.
+    *   **Device-Related Pressure Injury Prevention**: Pad under medical devices (ET tubes, O2 masks, NG tubes, SCDs), ensure proper fit, reposition devices regularly.
+    *   **Heel Protection**: Elevate heels off bed ("float heels").
+
+### Venous Thromboembolism (VTE) Prophylaxis
+Critically ill patients are at high risk for DVT and PE due to immobility, inflammation, and hypercoagulability.
+*   **Pharmacologic Prophylaxis**: Unfractionated Heparin (UFH) SubQ or Low Molecular Weight Heparin (LMWH, e.g., Enoxaparin) SubQ, unless contraindicated (e.g., active bleeding, severe thrombocytopenia). Dose adjust for renal impairment.
+*   **Mechanical Prophylaxis**: Intermittent Pneumatic Compression (IPC) devices or graduated compression stockings, especially if pharmacologic prophylaxis is contraindicated or in addition to it for very high-risk patients.
+*   **Early Mobilization**.`,
+    categoryType: 'Body System',
+    keywordsForImage: 'human skeleton muscle',
+  },
+  {
+    id: 'integumentary',
+    slug: 'integumentary',
+    title: 'Integumentary System',
+    summary: 'Management of skin integrity, pressure injuries, burns, and common dermatological conditions in the ICU.',
+    content: `The integumentary system (skin, hair, nails, glands) is the body's largest organ, providing protection, temperature regulation, sensation, and synthesis of Vitamin D. In the ICU, skin integrity is frequently compromised.
+
+### Pressure Injury (Pressure Ulcer) Prevention and Management
+A major focus in ICU nursing care.
+*   **Staging of Pressure Injuries**:
+    *   **Stage 1**: Non-blanchable erythema of intact skin.
+    *   **Stage 2**: Partial-thickness skin loss with exposed dermis (e.g., abrasion, blister, shallow crater).
+    *   **Stage 3**: Full-thickness skin loss. Adipose (fat) is visible. Slough/eschar may be present. Undermining/tunneling may occur.
+    *   **Stage 4**: Full-thickness skin and tissue loss with exposed fascia, muscle, tendon, ligament, cartilage, or bone. Slough/eschar, undermining/tunneling common.
+    *   **Unstageable**: Obscured full-thickness skin and tissue loss (depth cannot be determined due to slough/eschar covering wound bed).
+    *   **Deep Tissue Pressure Injury (DTPI)**: Persistent non-blanchable deep red, maroon, or purple discoloration of intact or non-intact skin, or blood-filled blister.
+
+*   **Prevention Strategies (Recap from Musculoskeletal, as it's a shared concern)**:
+    *   Comprehensive skin assessment on admission and daily (or more frequently if high risk).
+    *   Use a validated risk assessment tool (e.g., Braden Scale).
+    *   Regular repositioning schedule (e.g., q2h, individualized). Use lifting devices.
+    *   Support surfaces: Specialized mattresses/overlays that redistribute pressure.
+    *   Keep skin clean and dry. Manage incontinence promptly. Use pH-balanced cleansers. Apply moisturizers to prevent dryness.
+    *   Optimize nutrition and hydration.
+    *   Minimize friction and shear (e.g., HOB ≤30° unless contraindicated, use draw sheets).
+    *   Protect bony prominences (padding, heel elevation).
+    *   Prevent medical device-related pressure injuries (assess skin under devices, pad, secure properly).
+
+*   **Management of Existing Pressure Injuries**:
+    *   **Wound Assessment**: Location, stage, size (length, width, depth), wound bed characteristics (granulation, slough, eschar), exudate (amount, type, odor), periwound skin condition, pain.
+    *   **Cleansing**: Use normal saline or non-cytotoxic wound cleanser.
+    *   **Debridement**: Removal of non-viable tissue (slough, eschar) by surgical, enzymatic, autolytic, or mechanical means (as appropriate for wound and patient).
+    *   **Dressings**: Select based on wound characteristics (e.g., moisture balance, depth, presence of infection, periwound skin). Examples: hydrocolloids, foams, alginates, hydrogels, silver-impregnated dressings.
+    *   **Manage Infection**: Monitor for signs of local or systemic infection. Obtain cultures if indicated. Topical or systemic antibiotics as ordered.
+    *   **Nutritional Support**: Adequate protein, calories, vitamins (C, A), minerals (zinc) are crucial for healing.
+    *   **Pain Management**.
+    *   Consult Wound Care Specialist.
+
+### Burn Management in ICU (Overview)
+Major burns require specialized ICU care.
+*   **Assessment**:
+    *   **Type of Burn**: Thermal, chemical, electrical, radiation.
+    *   **Total Body Surface Area (TBSA)**: Rule of Nines (adults), Lund-Browder chart (more accurate, esp. peds).
+    *   **Depth of Burn**: Superficial (1st degree), Partial-thickness (2nd degree - superficial or deep), Full-thickness (3rd degree), Deeper (4th degree - involves muscle/bone).
+    *   **Inhalation Injury Assessment**: Suspect if facial burns, singed nasal hairs, soot in sputum, hoarseness, history of burn in enclosed space. May require bronchoscopy.
+*   **Initial Management (ABCDEs)**:
+    *   **Airway**: Secure airway early if inhalation injury or extensive facial/neck burns (risk of edema).
+    *   **Breathing**: Supplemental O2. Monitor for respiratory distress, CO poisoning (carboxyhemoglobin levels).
+    *   **Circulation**: Aggressive fluid resuscitation using Parkland formula (4 mL LR x kg body weight x %TBSA burned = total fluid in first 24h; give 1/2 in first 8h post-burn, 1/2 in next 16h). Titrate to urine output (target 0.5-1 mL/kg/hr for adults, or 30-50 mL/hr; higher for electrical burns with rhabdo).
+    *   **Disability**: Neurological assessment.
+    *   **Exposure/Environment**: Remove clothing/jewelry, keep patient warm (risk of hypothermia).
+*   **Wound Care**: Cleansing, debridement, topical antimicrobials (e.g., silver sulfadiazine, mafenide acetate, bacitracin), dressings.
+*   **Pain Management**: IV opioids.
+*   **Nutritional Support**: Hypermetabolic state requires high caloric and protein intake. Early EN.
+*   **Infection Control**: Strict asepsis. Monitor for burn wound infection, sepsis.
+*   **Complications**: Hypovolemic shock, ARDS, AKI, rhabdomyolysis (esp. electrical), compartment syndrome (circumferential burns - may need escharotomy/fasciotomy), contractures.
+
+### Common ICU Dermatological Conditions
+*   **Incontinence-Associated Dermatitis (IAD)**: Inflammation/irritation from exposure to urine/stool. Prevention: Gentle cleansing, moisture barrier creams/ointments, timely changes of incontinence products.
+*   **Intertriginous Dermatitis (Intertrigo)**: Inflammation of skin folds due to moisture, friction. Keep areas clean and dry. Antifungal/antibacterial powders or creams if infected.
+*   **Drug Rashes**: Morbilliform eruptions, urticaria, Stevens-Johnson Syndrome (SJS) / Toxic Epidermal Necrolysis (TEN) - severe, life-threatening mucocutaneous reactions (often to antibiotics, anticonvulsants). Requires immediate drug cessation, supportive care, often burn unit/dermatology consult for SJS/TEN.
+*   **Fungal Infections**: Candidiasis common in moist areas, immunocompromised patients. Topical or systemic antifungals.
+*   **Herpes Zoster (Shingles)**: Reactivation of varicella-zoster virus. Painful vesicular eruption in dermatomal distribution. Antivirals, pain control.
+
+Meticulous skin assessment, preventive care, and prompt management of skin issues are vital to reduce complications, improve patient comfort, and support overall recovery in the critically ill.`,
+    categoryType: 'Body System',
+    keywordsForImage: 'skin layers anatomy',
   },
 ];
 

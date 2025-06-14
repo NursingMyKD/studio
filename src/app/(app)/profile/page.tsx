@@ -6,6 +6,12 @@ import { Separator } from "@/components/ui/separator";
 import { User, Edit3, LogOut } from "lucide-react";
 
 export default function ProfilePage() {
+  // This role is currently static based on the CardDescription.
+  // In a real application, this would come from user data.
+  // You can change this value to "Staff Nurse" or "Assistant Nurse Manager"
+  // to see the conditional UI for "Role Specifics" in action.
+  const userRole = "ICU Registered Nurse"; 
+
   return (
     <div className="space-y-8">
       <header className="space-y-2">
@@ -24,7 +30,7 @@ export default function ProfilePage() {
             </AvatarFallback>
           </Avatar>
           <CardTitle className="font-headline text-2xl">Jane Doe</CardTitle>
-          <CardDescription>ICU Registered Nurse</CardDescription>
+          <CardDescription>{userRole}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="space-y-2">
@@ -59,6 +65,56 @@ export default function ProfilePage() {
               <p className="font-medium">Notifications:</p>
               <p className="text-muted-foreground">Enabled for new content</p>
             </div>
+          </div>
+          <Separator />
+          <div className="space-y-2">
+            <h3 className="text-lg font-semibold font-headline">Certifications</h3>
+            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+              <li>CCRN (Critical Care Registered Nurse)</li>
+              <li>TNCC (Trauma Nursing Core Course)</li>
+              <li>ACLS Provider</li>
+              <li>PALS Provider</li>
+              <li>Basic Life Support (BLS)</li>
+            </ul>
+          </div>
+          <Separator />
+          <div className="space-y-2">
+            <h3 className="text-lg font-semibold font-headline">Competencies</h3>
+            <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+              <li>Continuous Renal Replacement Therapy (CRRT)</li>
+              <li>Extracorporeal Membrane Oxygenation (ECMO) - Initiation & Management</li>
+              <li>Impella Device Management</li>
+              <li>Advanced Hemodynamic Monitoring (e.g., PA Catheter, Arterial Line)</li>
+              <li>Ventilator Management - Advanced Modes</li>
+              <li>Intra-Aortic Balloon Pump (IABP) Management</li>
+            </ul>
+          </div>
+          <Separator />
+          <div className="space-y-2">
+            <h3 className="text-lg font-semibold font-headline">Role Specifics</h3>
+            {(userRole === "Staff Nurse" || userRole === "ICU Registered Nurse") && (
+              <div>
+                <p className="font-medium">Manager:</p>
+                <p className="text-muted-foreground">Dr. Emily Carter (Unit Manager - Placeholder)</p>
+              </div>
+            )}
+            {userRole === "Assistant Nurse Manager" && (
+              <div>
+                <p className="font-medium">Direct Reports:</p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <li>Nurse Alice Smith (RN, ICU)</li>
+                  <li>Nurse Bob Johnson (RN, ICU)</li>
+                  <li>Technician Carol White (CCT, ICU)</li>
+                </ul>
+              </div>
+            )}
+            {/* Fallback for other roles or if no specific condition is met */}
+            {userRole !== "Staff Nurse" && userRole !== "ICU Registered Nurse" && userRole !== "Assistant Nurse Manager" && (
+               <div>
+                <p className="font-medium">Role Description:</p>
+                <p className="text-muted-foreground">Details specific to the role of {userRole}.</p>
+              </div>
+            )}
           </div>
           <Separator />
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

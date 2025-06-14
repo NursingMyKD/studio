@@ -1,5 +1,4 @@
 
-// src/components/layout/AppSidebarNavigation.tsx
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,7 +10,7 @@ const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/body-systems', label: 'Body Systems', icon: HeartPulse },
   { href: '/topics', label: 'Critical Topics', icon: BookOpenText },
-  { href: '/policies', label: 'Unit Policies', icon: ShieldCheck },
+  { href: '/protocols-and-guidelines', label: 'Protocols & Guidelines', icon: ShieldCheck },
 ];
 
 export default function AppSidebarNavigation() {

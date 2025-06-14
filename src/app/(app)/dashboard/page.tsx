@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -7,7 +8,7 @@ export default function DashboardPage() {
   const quickLinks = [
     { title: "Body Systems", href: "/body-systems", icon: HeartPulse, description: "Explore educational content by physiological systems." , dataAiHint: "anatomy chart"},
     { title: "Critical Topics", href: "/topics", icon: BookOpenText, description: "Dive into key ICU subjects like hemodynamics." , dataAiHint: "medical textbook"},
-    { title: "Unit Policies", href: "/policies", icon: ShieldCheck, description: "Access important unit-specific protocols and guidelines." , dataAiHint: "hospital policy"},
+    { title: "Protocols and Guidelines", href: "/protocols-and-guidelines", icon: ShieldCheck, description: "Access important unit-specific protocols and guidelines." , dataAiHint: "hospital policy"},
   ];
 
   return (
@@ -15,7 +16,7 @@ export default function DashboardPage() {
       <header className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight font-headline">Welcome to ICU Edu Hub</h1>
         <p className="text-muted-foreground">
-          Your central resource for critical care education and unit-specific policies.
+          Your central resource for critical care education and unit-specific protocols.
         </p>
       </header>
 
@@ -61,3 +62,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

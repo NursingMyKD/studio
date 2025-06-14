@@ -1321,6 +1321,442 @@ Process of discontinuing mechanical ventilation and removing the artificial airw
     categoryType: 'Topic',
     keywordsForImage: 'ICU ventilator screen patient',
   },
+  {
+    id: 'electrolyte-imbalances',
+    slug: 'electrolyte-imbalances',
+    title: 'Electrolyte Imbalances in the ICU',
+    summary: 'Recognition and management of common and critical electrolyte disturbances like hyperkalemia, hyponatremia, and hypomagnesemia in the ICU setting.',
+    categoryType: 'Topic',
+    keywordsForImage: 'electrolyte panel ICU',
+    content: `## General Overview
+Electrolytes are minerals in the body that have an electric charge. They are essential for many bodily functions, including nerve and muscle function, hydration, blood pH, and blood pressure. In critically ill patients, electrolyte imbalances are common due to underlying disease states, organ dysfunction (especially renal), medications, and therapeutic interventions (e.g., IV fluids, diuretics, RRT). Prompt recognition and management are crucial to prevent severe complications.
+
+## In-Depth ICU Considerations
+
+This section will focus on the most frequently encountered and clinically significant electrolyte imbalances in the ICU: Potassium, Sodium, Calcium, Magnesium, and Phosphate.
+
+### Potassium (K⁺)
+Normal Range: 3.5 - 5.0 mEq/L. Critical for neuromuscular function, cardiac excitability, and cellular metabolism.
+
+#### Hyperkalemia (Serum K⁺ >5.0-5.5 mEq/L)
+*   **Causes**:
+    *   **Decreased Excretion**: Acute Kidney Injury (AKI), Chronic Kidney Disease (CKD), adrenal insufficiency (Addison's disease, hypoaldosteronism), K⁺-sparing diuretics (spironolactone, amiloride), ACE inhibitors, ARBs, NSAIDs.
+    *   **Increased Intake**: Excessive K⁺ administration (IV or PO), salt substitutes.
+    *   **Shift from Intracellular to Extracellular Space**: Acidosis (metabolic or respiratory), tissue breakdown (rhabdomyolysis, tumor lysis syndrome, burns, crush injuries, hemolysis), insulin deficiency (DKA), beta-blocker overdose, digoxin toxicity, succinylcholine.
+    *   **Pseudohyperkalemia**: Hemolysis during blood draw, thrombocytosis, leukocytosis.
+*   **Clinical Manifestations**:
+    *   **Muscular**: Weakness (can progress to flaccid paralysis), paresthesias, fatigue.
+    *   **Cardiac (Most Serious)**: Arrhythmias, palpitations.
+        *   **ECG Changes (Progressive)**:
+            1.  **Peaked T waves** (earliest sign, often tall and narrow).
+            2.  Prolonged PR interval.
+            3.  Loss of P waves.
+            4.  Widening of QRS complex (can merge with T wave to form sine wave pattern).
+            5.  Ventricular fibrillation (VFib), asystole.
+    *   **GI**: Nausea, vomiting, diarrhea, abdominal cramping.
+*   **Management (Urgency based on K⁺ level and ECG changes)**:
+    1.  **Stabilize Cardiac Membrane (if ECG changes or K⁺ >6.5-7.0 mEq/L)**:
+        *   **Calcium Gluconate 10%**: 10-20 mL IV over 2-5 minutes (onset <5 min, duration 30-60 min). **Does NOT lower serum K⁺**, but antagonizes cardiac effects. Calcium Chloride can be used (contains 3x more elemental Ca²⁺ per gram, preferred in cardiac arrest, but more irritating to veins).
+    2.  **Shift K⁺ Intracellularly (Temporary Measures)**:
+        *   **Insulin (Regular) + Glucose**: 10 units IV Regular Insulin with 25-50g Dextrose (e.g., D50W) IV over 15-30 min (onset 15-30 min, duration 4-6h). Monitor glucose.
+        *   **Beta-2 Agonists**: Albuterol 10-20 mg nebulized over 10 min (onset 30 min, duration 2-4h). Use with caution in cardiac patients (tachycardia).
+        *   **Sodium Bicarbonate**: 1 amp (50 mEq) IV over 5 min if severe metabolic acidosis (pH <7.1-7.2) coexists (onset 30-60 min, duration variable). Controversial, less effective if no acidosis.
+    3.  **Remove K⁺ from Body (Definitive Measures)**:
+        *   **Loop Diuretics**: Furosemide 20-80 mg IV (if renal function preserved).
+        *   **Cation-Exchange Resins**: Sodium Polystyrene Sulfonate (Kayexalate) PO or PR (onset hours to days, risk of colonic necrosis, esp. with sorbitol). Patiromer or Sodium Zirconium Cyclosilicate (newer, more selective, better tolerated).
+        *   **Hemodialysis/CRRT**: Most effective and rapid method, especially in AKI/CKD or severe/refractory hyperkalemia.
+    4.  Discontinue exogenous K⁺ sources. Identify and treat underlying cause.
+
+#### Hypokalemia (Serum K⁺ <3.5 mEq/L)
+*   **Causes**:
+    *   **Decreased Intake**: Malnutrition, NPO status.
+    *   **Increased Loss**:
+        *   **GI Losses**: Diarrhea (most common GI cause), vomiting, NG suction, laxative abuse, fistulas.
+        *   **Renal Losses**: Diuretics (loop and thiazide), hyperaldosteronism, Cushing's syndrome, renal tubular acidosis (RTA), hypomagnesemia (impairs K⁺ reabsorption).
+        *   **Skin Losses**: Profuse sweating (rarely significant alone).
+    *   **Shift from Extracellular to Intracellular Space**: Alkalosis (metabolic or respiratory), insulin administration, beta-2 agonist use, refeeding syndrome, hypothermic diuresis, treatment of pernicious anemia.
+*   **Clinical Manifestations**:
+    *   **Muscular**: Weakness, fatigue, muscle cramps, myalgias, rhabdomyolysis (severe).
+    *   **Cardiac**: Arrhythmias (PVCs, VT, VFib), palpitations, potentiation of digoxin toxicity.
+        *   **ECG Changes**: Flattened or inverted T waves, prominent U waves, ST segment depression, prolonged QT/QU interval.
+    *   **GI**: Ileus, constipation, N/V.
+    *   **Renal**: Polyuria, polydipsia (nephrogenic DI).
+    *   **Metabolic**: Glucose intolerance.
+*   **Management**:
+    1.  **Oral K⁺ Replacement**: Preferred if mild-moderate and gut is functional (e.g., Potassium Chloride tablets/liquid).
+    2.  **IV K⁺ Replacement**: For severe hypokalemia (K⁺ <2.5 mEq/L), symptomatic patients, or NPO.
+        *   **Peripheral IV**: Max concentration typically 10-20 mEq/100 mL, max rate 10 mEq/hr (to avoid pain, phlebitis, and arrhythmias).
+        *   **Central Line**: Max concentration up to 40 mEq/100 mL, max rate 20 mEq/hr (requires cardiac monitoring). Higher rates only in emergent situations (e.g., K⁺ <2.0 with arrhythmias).
+        *   **Never IV Push Potassium.**
+    3.  **Correct Hypomagnesemia**: Magnesium is a cofactor for Na⁺/K⁺-ATPase. K⁺ repletion is often ineffective if hypomagnesemia is not corrected concurrently.
+    4.  Monitor serum K⁺ levels frequently during repletion. Identify and treat underlying cause.
+
+### Sodium (Na⁺)
+Normal Range: 135 - 145 mEq/L. Major extracellular cation, crucial for fluid balance, nerve impulse transmission, and muscle function. Disorders reflect water imbalance more than sodium imbalance.
+
+#### Hyponatremia (Serum Na⁺ <135 mEq/L)
+Classified by volume status (hypovolemic, euvolemic, hypervolemic).
+*   **Causes**:
+    *   **Hypovolemic**: Renal losses (diuretics, adrenal insufficiency, salt-wasting nephropathy), Extra-renal losses (GI - V/D, NG suction; skin - burns, excessive sweating) with hypotonic fluid replacement.
+    *   **Euvolemic**: SIADH (most common euvolemic cause), psychogenic polydipsia, hypothyroidism, glucocorticoid deficiency, beer potomania, endurance exercise.
+    *   **Hypervolemic**: Heart failure, cirrhosis, nephrotic syndrome, AKI/CKD (impaired water excretion).
+    *   **Pseudohyponatremia**: Severe hyperlipidemia or hyperproteinemia (older lab methods). Hyperglycemia (osmotic shift of water into ECF, Na⁺ decreases ~1.6-2.4 mEq/L for every 100 mg/dL glucose increase above 100 mg/dL - "corrected sodium").
+*   **Clinical Manifestations (depend on severity and acuity)**:
+    *   **Mild (Na⁺ 130-134)**: Often asymptomatic.
+    *   **Moderate (Na⁺ 120-129)**: Nausea, malaise, headache, lethargy, confusion.
+    *   **Severe (Na⁺ <120 or rapid fall)**: Vomiting, seizures, coma, respiratory arrest, brainstem herniation (due to cerebral edema).
+*   **Management (based on severity, symptoms, acuity, and volume status)**:
+    1.  **Acute Symptomatic Hyponatremia (e.g., seizures, coma)**: Medical emergency.
+        *   Administer **Hypertonic Saline (3% NaCl)** IV bolus (e.g., 100-150 mL over 10-20 min, may repeat) to rapidly increase serum Na⁺ by a few mEq/L to alleviate severe symptoms.
+        *   Goal of correction: Raise serum Na⁺ by max 8-10 mEq/L in first 24h, and max 18 mEq/L in 48h to prevent **Osmotic Demyelination Syndrome (ODS)** / Central Pontine Myelinolysis (CPM).
+    2.  **Chronic or Mild/Moderate Asymptomatic Hyponatremia**: Slower correction.
+        *   **Hypovolemic**: Isotonic saline (0.9% NaCl) to restore volume.
+        *   **Euvolemic (SIADH)**: Fluid restriction (e.g., 800-1000 mL/day), oral salt tablets, loop diuretics (with salt tabs), vasopressin receptor antagonists (vaptans - e.g., Tolvaptan PO, Conivaptan IV).
+        *   **Hypervolemic**: Fluid and sodium restriction, diuretics, treat underlying cause (HF, cirrhosis, nephrosis).
+    3.  Treat underlying cause. Monitor serum Na⁺, osmolality, urine Na⁺/osmolality, volume status closely.
+
+#### Hypernatremia (Serum Na⁺ >145 mEq/L)
+Indicates a free water deficit.
+*   **Causes**:
+    *   **Decreased Water Intake**: Impaired thirst (elderly, altered mental status), inability to access water (intubated/sedated patients).
+    *   **Increased Water Loss**:
+        *   **Renal Losses**: Diabetes Insipidus (DI - central or nephrogenic), osmotic diuresis (hyperglycemia, mannitol, high protein tube feeds).
+        *   **Extra-renal Losses**: GI (diarrhea, vomiting), Skin (fever, burns, excessive sweating, open wounds), Respiratory (hyperventilation).
+    *   **Excessive Sodium Intake/Retention**: Hypertonic saline administration, sodium bicarbonate infusion, hyperaldosteronism, Cushing's syndrome.
+*   **Clinical Manifestations**:
+    *   Thirst (if thirst mechanism intact), dry mucous membranes, decreased skin turgor.
+    *   Neurological (due to brain cell shrinkage): Lethargy, weakness, irritability, confusion, twitching, seizures, coma.
+*   **Management**:
+    1.  **Replace Free Water Deficit**: Orally if possible, or IV with hypotonic fluids (D5W, 0.45% NaCl, 0.2% NaCl).
+        *   Calculate free water deficit: e.g., Water Deficit (L) = (Current Na⁺/140 - 1) x Total Body Water (TBW). (TBW ≈ 0.6 x body weight in kg for men, 0.5 for women; adjust for elderly/obese).
+        *   Correct slowly: Aim to lower serum Na⁺ by max 8-10 mEq/L per 24h to prevent cerebral edema.
+    2.  **Treat Underlying Cause**:
+        *   Central DI: Desmopressin (DDAVP).
+        *   Nephrogenic DI: Thiazide diuretics, amiloride, salt restriction.
+    3.  Discontinue/reduce sources of Na⁺ gain. Monitor serum Na⁺, osmolality, urine output closely.
+
+### Calcium (Ca²⁺)
+Normal Total Calcium: 8.5 - 10.5 mg/dL. Normal Ionized Calcium (iCa): 4.5 - 5.6 mg/dL (1.12-1.32 mmol/L) - **physiologically active form.**
+Total calcium levels are affected by albumin (low albumin = low total Ca²⁺, but iCa may be normal). Corrected Total Ca = Measured Total Ca + [0.8 x (4.0 - Measured Albumin)].
+Focus on ionized calcium in ICU.
+
+#### Hypocalcemia (iCa <4.5 mg/dL or <1.12 mmol/L)
+*   **Causes**: Hypoparathyroidism (post-surgical, autoimmune), Vitamin D deficiency, CKD (impaired Vit D activation, hyperphosphatemia), pancreatitis, hypomagnesemia (impairs PTH secretion/action), massive blood transfusions (citrate chelates calcium), rhabdomyolysis (calcium deposition), sepsis, certain drugs (loop diuretics, bisphosphonates, cinacalcet, foscarnet, phenytoin).
+*   **Clinical Manifestations**:
+    *   **Neuromuscular Excitability**: Paresthesias (perioral, fingers, toes), muscle cramps, tetany (Chvostek's sign - facial twitch; Trousseau's sign - carpal spasm with BP cuff), laryngospasm, bronchospasm, seizures.
+    *   **Cardiovascular**: Hypotension, myocardial dysfunction, prolonged QT interval (risk of Torsades de Pointes).
+*   **Management**:
+    1.  **Symptomatic/Severe Hypocalcemia**: IV Calcium Gluconate 1-2g over 10-20 min, followed by continuous infusion if needed. Calcium Chloride (more elemental Ca²⁺, more irritating) can be used. Requires cardiac monitoring.
+    2.  **Asymptomatic/Mild Hypocalcemia**: Oral calcium supplements (e.g., calcium carbonate, calcium citrate) + Vitamin D if deficient.
+    3.  Correct hypomagnesemia. Monitor iCa, total Ca, albumin, Mg, PO4.
+
+#### Hypercalcemia (iCa >5.6 mg/dL or >1.32 mmol/L)
+*   **Causes**: Primary hyperparathyroidism (most common outpatient), Malignancy (bone mets, PTHrP production - most common inpatient/ICU), granulomatous diseases (sarcoidosis, TB - increased Vit D activation), immobilization, Vitamin D toxicity, thiazide diuretics, milk-alkali syndrome, adrenal insufficiency.
+*   **Clinical Manifestations ("Stones, bones, groans, psychiatric overtones")**:
+    *   **Renal**: Nephrolithiasis, polyuria/polydipsia (nephrogenic DI), AKI.
+    *   **Skeletal**: Bone pain, fractures.
+    *   **GI**: Nausea, vomiting, constipation, abdominal pain, pancreatitis.
+    *   **Neurological**: Weakness, fatigue, confusion, lethargy, depression, coma.
+    *   **Cardiovascular**: Hypertension, bradycardia, short QT interval, arrhythmias.
+*   **Management (depends on severity and symptoms)**:
+    1.  **Hydration**: Aggressive IV isotonic saline (0.9% NaCl) to promote calciuresis (e.g., 200-300 mL/hr, monitor for fluid overload).
+    2.  **Loop Diuretics (e.g., Furosemide)**: **After volume repletion**, to enhance calcium excretion. Avoid thiazides.
+    3.  **Bisphosphonates (e.g., Pamidronate, Zoledronic Acid)**: Inhibit osteoclast activity. Onset 2-4 days. For malignancy-associated hypercalcemia.
+    4.  **Calcitonin**: Rapid onset (hours), short duration. Inhibits bone resorption, increases renal excretion. Tachyphylaxis occurs.
+    5.  **Glucocorticoids**: For hypercalcemia due to granulomatous diseases, Vitamin D toxicity, or hematologic malignancies (lymphoma, myeloma).
+    6.  **Dialysis**: For severe, life-threatening hypercalcemia or if renal failure.
+    7.  Treat underlying cause.
+
+### Magnesium (Mg²⁺)
+Normal Range: 1.7 - 2.2 mg/dL. Essential for enzyme function, neuromuscular transmission, cardiac excitability, PTH secretion.
+
+#### Hypomagnesemia (Serum Mg²⁺ <1.7 mg/dL)
+*   **Causes**: Decreased intake (malnutrition, alcoholism, PN without adequate Mg), GI losses (diarrhea, NG suction, fistulas, malabsorption), Renal losses (diuretics - loop/thiazide, aminoglycosides, amphotericin B, cisplatin, cyclosporine, proton pump inhibitors - PPIs), DKA, refeeding syndrome, hungry bone syndrome, acute pancreatitis.
+*   **Clinical Manifestations**:
+    *   **Neuromuscular**: Weakness, tremors, tetany, Chvostek's/Trousseau's signs, seizures, hyperreflexia.
+    *   **Cardiovascular**: Arrhythmias (PVCs, VT, **Torsades de Pointes**, AFib), prolonged QT/PR intervals, ST depression.
+    *   **Associated Electrolyte Abnormalities**: Hypokalemia (due to renal K⁺ wasting), Hypocalcemia (due to impaired PTH release/action).
+*   **Management**:
+    1.  **Symptomatic/Severe (<1 mg/dL or arrhythmias)**: IV Magnesium Sulfate. E.g., 1-2g over 15-60 min for non-emergent; 1-2g over 5-15 min for Torsades (if pulse present) or severe symptoms. Follow with infusion if ongoing losses.
+    2.  **Asymptomatic/Mild**: Oral magnesium (e.g., magnesium oxide - often causes diarrhea).
+    3.  Monitor Mg levels, DTRs, renal function. Correct other electrolyte abnormalities.
+
+#### Hypermagnesemia (Serum Mg²⁺ >2.2 mg/dL)
+*   **Causes**: Renal failure (most common), excessive intake (Mg-containing antacids/laxatives, iatrogenic overdose - e.g., treatment of preeclampsia/eclampsia or asthma), tumor lysis syndrome, rhabdomyolysis.
+*   **Clinical Manifestations (dose-dependent)**:
+    *   **Mild (>2.5-4 mg/dL)**: N/V, flushing, headache.
+    *   **Moderate (4-7 mg/dL)**: Drowsiness, lethargy, hyporeflexia/areflexia, weakness, hypotension, bradycardia, ECG changes (prolonged PR/QT, wide QRS).
+    *   **Severe (>7-10 mg/dL)**: Respiratory depression, apnea, complete heart block, cardiac arrest.
+*   **Management**:
+    1.  Discontinue exogenous magnesium sources.
+    2.  **IV Calcium Gluconate**: 1-2g IV to antagonize neuromuscular and cardiac effects (if symptomatic or severe).
+    3.  Enhance elimination: IV fluids + loop diuretics (if normal renal function).
+    4.  **Hemodialysis**: For severe hypermagnesemia or renal failure.
+
+### Phosphate (PO₄³⁻)
+Normal Range: 2.5 - 4.5 mg/dL. Crucial for ATP production, bone metabolism, cell membrane function, oxygen transport (2,3-DPG).
+
+#### Hypophosphatemia (Serum PO₄³⁻ <2.5 mg/dL)
+*   **Causes**: Decreased intake (malnutrition, alcoholism), Decreased absorption (antacids containing aluminum/magnesium, Vit D deficiency), Increased excretion (hyperparathyroidism, Fanconi syndrome, osmotic diuresis, diuretics), Intracellular shift (Refeeding syndrome - most common ICU cause, respiratory alkalosis, DKA treatment, hungry bone syndrome).
+*   **Clinical Manifestations (usually when <1-1.5 mg/dL)**:
+    *   **Muscular**: Weakness (can lead to respiratory failure from diaphragmatic weakness), myalgia, rhabdomyolysis.
+    *   **Neurological**: Paresthesias, confusion, seizures, coma.
+    *   **Cardiac**: Impaired contractility, heart failure, arrhythmias.
+    *   **Hematologic**: Hemolytic anemia, platelet dysfunction, impaired WBC function.
+    *   **Skeletal**: Bone pain, osteomalacia (chronic).
+*   **Management**:
+    1.  **Severe/Symptomatic (<1-1.5 mg/dL)**: IV phosphate replacement (e.g., Sodium Phosphate or Potassium Phosphate). **Administer slowly** (e.g., 0.08-0.16 mmol/kg over 4-6h, up to 0.24 mmol/kg in severe cases) to avoid hypocalcemia and metastatic calcification. Monitor serum phosphate, calcium, potassium, renal function.
+    2.  **Mild/Moderate Asymptomatic**: Oral phosphate supplements (e.g., K-Phos Neutral, Neutra-Phos). Often causes diarrhea.
+    3.  Treat underlying cause (e.g., manage refeeding syndrome carefully).
+
+#### Hyperphosphatemia (Serum PO₄³⁻ >4.5 mg/dL)
+*   **Causes**: Decreased excretion (AKI/CKD - most common cause), Increased intake (phosphate-containing laxatives/enemas, excessive IV/PO supplementation), Shift from intracellular to extracellular (Tumor lysis syndrome, rhabdomyolysis, DKA, metabolic acidosis), Vitamin D toxicity, hypoparathyroidism.
+*   **Clinical Manifestations**: Often asymptomatic. Symptoms usually related to secondary hypocalcemia (tetany, paresthesias, seizures). Chronic: metastatic calcification (vascular, soft tissue - leading to pruritus, organ damage), renal osteodystrophy.
+*   **Management**:
+    1.  Treat underlying cause.
+    2.  Dietary phosphate restriction.
+    3.  **Phosphate Binders (with meals)**: Calcium-based (calcium carbonate, calcium acetate), Non-calcium based (sevelamer, lanthanum carbonate).
+    4.  Enhance excretion: IV saline hydration + loop diuretics (if renal function permits).
+    5.  **Hemodialysis**: For severe hyperphosphatemia or renal failure.`,
+    categoryType: 'Topic',
+    keywordsForImage: 'electrolyte panel ICU',
+  },
+  {
+    id: 'acid-base-balance-abg-interpretation',
+    slug: 'acid-base-balance-abg-interpretation',
+    title: 'Acid-Base Balance and ABG Interpretation',
+    summary: 'Comprehensive guide to interpreting arterial blood gases (ABGs) and managing complex acid-base disorders encountered in critically ill patients.',
+    categoryType: 'Topic',
+    keywordsForImage: 'ABG analysis chart',
+    content: `## General Overview
+Acid-base balance refers to the physiological mechanisms that maintain the hydrogen ion (H⁺) concentration, and thus the pH, of body fluids within a narrow, optimal range. This balance is crucial for normal cellular function, enzyme activity, and overall homeostasis. Arterial Blood Gas (ABG) analysis is a vital diagnostic tool in critical care, providing key information about a patient's oxygenation status, ventilatory function, and acid-base equilibrium.
+
+## In-Depth ICU Considerations
+
+### Key Components of an ABG
+*   **pH**: Reflects the net H⁺ concentration. Normal: 7.35-7.45.
+    *   <7.35: Acidemia (excess H⁺)
+    *   >7.45: Alkalemia (deficit of H⁺)
+*   **PaCO2 (Partial Pressure of Carbon Dioxide)**: Respiratory component. Normal: 35-45 mmHg.
+    *   CO2 acts as an acid (CO2 + H2O ↔ H2CO3 ↔ H⁺ + HCO3⁻).
+    *   >45 mmHg: Respiratory acidosis (hypoventilation, CO2 retention).
+    *   <35 mmHg: Respiratory alkalosis (hyperventilation, CO2 washout).
+*   **HCO3⁻ (Bicarbonate)**: Metabolic component. Normal: 22-26 mEq/L.
+    *   HCO3⁻ acts as a base.
+    *   <22 mEq/L: Metabolic acidosis (bicarbonate loss or acid gain).
+    *   >26 mEq/L: Metabolic alkalosis (bicarbonate gain or acid loss).
+*   **PaO2 (Partial Pressure of Oxygen)**: Oxygenation status. Normal: 80-100 mmHg (on room air).
+*   **SaO2 (Oxygen Saturation)**: Percentage of hemoglobin saturated with oxygen. Normal: 95-100%.
+*   **Base Excess (BE) / Base Deficit (BD)**: Indicates overall metabolic status. Normal: -2 to +2 mEq/L.
+    *   Negative BE (Base Deficit): Suggests metabolic acidosis.
+    *   Positive BE: Suggests metabolic alkalosis.
+
+### Systematic Approach to ABG Interpretation
+1.  **Assess pH**: Is it acidemia (<7.35), alkalemia (>7.45), or normal (7.35-7.45)?
+2.  **Identify the Primary Disturbance**:
+    *   Look at PaCO2: If pH is low and PaCO2 is high (>45), primary disorder is **Respiratory Acidosis**. If pH is high and PaCO2 is low (<35), primary disorder is **Respiratory Alkalosis**.
+    *   Look at HCO3⁻: If pH is low and HCO3⁻ is low (<22), primary disorder is **Metabolic Acidosis**. If pH is high and HCO3⁻ is high (>26), primary disorder is **Metabolic Alkalosis**.
+    *   If both PaCO2 and HCO3⁻ are abnormal and consistent with the pH change, it indicates a mixed disorder or a primary disorder with compensation. Determine which change (PaCO2 or HCO3⁻) is more aligned with the degree of pH change to identify the primary disorder.
+3.  **Determine if Compensation is Present**: The body attempts to normalize pH by altering the component not primarily affected.
+    *   **Respiratory Compensation for Metabolic Disorders**: Lungs compensate by altering ventilation.
+        *   Metabolic Acidosis: Lungs hyperventilate to blow off CO2 (↓PaCO2). Expected PaCO2 = (1.5 x HCO3⁻) + 8 (±2) (Winter's Formula).
+        *   Metabolic Alkalosis: Lungs hypoventilate to retain CO2 (↑PaCO2). Expected PaCO2 = 0.7 x (Actual HCO3⁻ - 24) + 40 (±2), or PaCO2 rises 0.6-0.7 mmHg for every 1 mEq/L rise in HCO3⁻.
+    *   **Metabolic (Renal) Compensation for Respiratory Disorders**: Kidneys compensate by altering HCO3⁻ reabsorption/excretion. This is slower (hours to days).
+        *   **Acute Respiratory Acidosis**: For every 10 mmHg ↑ in PaCO2, HCO3⁻ ↑ by 1 mEq/L.
+        *   **Chronic Respiratory Acidosis**: For every 10 mmHg ↑ in PaCO2, HCO3⁻ ↑ by 3-4 mEq/L.
+        *   **Acute Respiratory Alkalosis**: For every 10 mmHg ↓ in PaCO2, HCO3⁻ ↓ by 2 mEq/L.
+        *   **Chronic Respiratory Alkalosis**: For every 10 mmHg ↓ in PaCO2, HCO3⁻ ↓ by 4-5 mEq/L.
+    *   **Fully Compensated**: pH is within normal range (7.35-7.45), but PaCO2 and HCO3⁻ are abnormal.
+    *   **Partially Compensated**: pH is still abnormal, but the compensatory system is moving in the correct direction.
+    *   **Uncompensated**: pH is abnormal, and the compensatory system has not yet responded.
+4.  **Assess Oxygenation**: Look at PaO2 and SaO2. Calculate PaO2/FiO2 ratio (P/F ratio) if on supplemental O2 (Normal >400; <300 indicates hypoxemia, <200 ARDS).
+5.  **Calculate Anion Gap (if Metabolic Acidosis is present)**:
+    *   Anion Gap (AG) = Na⁺ - (Cl⁻ + HCO3⁻). Normal: 8-12 mEq/L.
+    *   Helps differentiate causes of metabolic acidosis.
+    *   **High Anion Gap Metabolic Acidosis (HAGMA)**: Due to accumulation of unmeasured anions.
+        *   Mnemonic: **MUDPILES**
+            *   **M**ethanol
+            *   **U**remia (CKD)
+            *   **D**iabetic Ketoacidosis (DKA)
+            *   **P**ropylene Glycol (solvent in some IV meds like lorazepam), Paraldehyde
+            *   **I**ron, Isoniazid, Inborn errors of metabolism
+            *   **L**actic Acidosis (most common cause in ICU)
+            *   **E**thylene Glycol
+            *   **S**alicylates
+    *   **Normal Anion Gap Metabolic Acidosis (NAGMA) / Hyperchloremic Metabolic Acidosis**: Due to loss of HCO3⁻ or gain of Cl⁻.
+        *   Mnemonic: **HARDUPS** or **USED CARP**
+            *   **H**yperalimentation (TPN with high chloride content)
+            *   **A**cetazolamide, Addison's disease
+            *   **R**enal Tubular Acidosis (RTA)
+            *   **D**iarrhea (most common cause of NAGMA)
+            *   **U**reteroenteric fistula/diversion
+            *   **P**ancreatic fistula/drainage
+            *   **S**aline administration (large volumes of 0.9% NaCl)
+
+### Specific Acid-Base Disorders
+
+#### Respiratory Acidosis (pH ↓, PaCO2 ↑)
+*   **Cause**: Alveolar hypoventilation -> CO2 retention.
+*   **Common ICU Etiologies**: CNS depression (opioids, sedatives, head injury), neuromuscular disorders (Guillain-Barré, myasthenia gravis, ICUAW, NMBAs), airway obstruction (COPD/asthma exacerbation, foreign body), restrictive lung disease, severe pneumonia/ARDS (if inadequate VE), chest wall trauma/deformity, ventilator malfunction or inappropriate settings.
+*   **Compensation**: Kidneys retain HCO3⁻ (takes hours to days).
+*   **Management**: Improve alveolar ventilation (treat underlying cause, reverse sedatives, bronchodilators, mechanical ventilation if severe, adjust ventilator settings to ↑VE).
+
+#### Respiratory Alkalosis (pH ↑, PaCO2 ↓)
+*   **Cause**: Alveolar hyperventilation -> CO2 washout.
+*   **Common ICU Etiologies**: Hypoxia (stimulates respiratory drive), anxiety, pain, fever, sepsis, CNS injury (stroke, tumor), salicylate toxicity (early), pulmonary embolism, CHF, liver failure, pregnancy, mechanical hyperventilation (ventilator settings too high).
+*   **Compensation**: Kidneys excrete HCO3⁻ (takes hours to days).
+*   **Management**: Treat underlying cause. If iatrogenic (ventilator), reduce VE. Rebreathing CO2 (paper bag) for psychogenic hyperventilation (rarely used in ICU). Sedation/anxiolytics if appropriate.
+
+#### Metabolic Acidosis (pH ↓, HCO3⁻ ↓)
+*   **Cause**: Increased acid production, loss of HCO3⁻, or decreased renal acid excretion.
+*   **Common ICU Etiologies**:
+    *   **HAGMA**: Lactic acidosis (sepsis, shock, hypoxia, ischemia), DKA, AKI/CKD (uremia), toxic ingestions (methanol, ethylene glycol, salicylates).
+    *   **NAGMA**: Diarrhea, RTA, excessive NS infusion, pancreatic/biliary fistula, ureteral diversions.
+*   **Compensation**: Lungs hyperventilate to ↓PaCO2 (Kussmaul respirations).
+*   **Management**: Treat underlying cause. IV fluids. Bicarbonate therapy is controversial (consider if pH <7.1-7.15 with severe hemodynamic instability, but risks include fluid/Na⁺ overload, ↓ionized Ca²⁺, paradoxical intracellular acidosis, overshoot alkalosis). Renal replacement therapy if severe AKI/CKD.
+
+#### Metabolic Alkalosis (pH ↑, HCO3⁻ ↑)
+*   **Cause**: Loss of H⁺ or gain of HCO3⁻.
+*   **Common ICU Etiologies**:
+    *   **Chloride-Responsive (Urine Cl⁻ <20 mEq/L)**: Vomiting/NG suction (loss of HCl), diuretic therapy (loop/thiazide - volume and Cl⁻ depletion), post-hypercapnic state (after rapid correction of chronic respiratory acidosis).
+    *   **Chloride-Resistant (Urine Cl⁻ >20 mEq/L)**: Hyperaldosteronism, Cushing's syndrome, severe K⁺ depletion, excessive alkali administration (bicarbonate, citrate in blood transfusions, antacids).
+*   **Compensation**: Lungs hypoventilate to ↑PaCO2 (limited by hypoxic drive).
+*   **Management**: Treat underlying cause.
+    *   Chloride-Responsive: Administer isotonic saline (0.9% NaCl) and KCl to correct volume and Cl⁻/K⁺ deficits. Discontinue offending agents (e.g., diuretics). Acetazolamide (carbonic anhydrase inhibitor, promotes HCO3⁻ excretion) may be used if volume overloaded. HCl infusion (rarely, via central line for severe cases).
+    *   Chloride-Resistant: Treat underlying endocrine disorder. Correct severe hypokalemia.
+
+### Mixed Acid-Base Disorders
+Common in critically ill patients. More than one primary disorder is present simultaneously.
+*   Example: Sepsis patient with lactic acidosis (Metabolic Acidosis) and concurrent respiratory failure requiring intubation with inadequate ventilation (Respiratory Acidosis).
+*   Interpretation requires careful assessment of pH, PaCO2, HCO3⁻, AG, and clinical context. The expected compensatory response for one disorder may be blunted or exaggerated by another coexisting primary disorder.
+
+### Advanced Concepts
+*   **Stewart Approach / Physicochemical Approach**: Considers strong ions (Strong Ion Difference - SID), weak acids (Atot), and PCO2 as independent determinants of pH. More complex but can explain some "unexplained" metabolic acidoses.
+*   **Delta-Delta Gap (ΔAG/ΔHCO3⁻)**: (Calculated AG - Normal AG) / (Normal HCO3⁻ - Measured HCO3⁻). Ratio ~1-2 suggests pure HAGMA. <1 suggests coexisting NAGMA. >2 suggests coexisting metabolic alkalosis.
+*   **Urine Anion Gap (UAG)**: UAG = (Urine Na⁺ + Urine K⁺) - Urine Cl⁻. Helps differentiate causes of NAGMA (e.g., positive UAG suggests renal cause like RTA; negative UAG suggests GI HCO3⁻ loss like diarrhea).
+
+Monitoring serial ABGs and correlating with clinical status and other lab data is essential for managing acid-base disturbances in the ICU.`,
+    categoryType: 'Topic',
+    keywordsForImage: 'ABG analysis chart',
+  },
+  {
+    id: 'nutrition-critical-care',
+    slug: 'nutrition-critical-care',
+    title: 'Nutrition in Critical Care',
+    summary: 'Principles of enteral and parenteral nutrition, assessing nutritional risk, managing refeeding syndrome, and metabolic support for ICU patients.',
+    categoryType: 'Topic',
+    keywordsForImage: 'nutrition support ICU',
+    content: `## General Overview
+Nutritional support is a cornerstone of managing critically ill patients. Critical illness induces a hypermetabolic and catabolic state, leading to rapid loss of lean body mass, impaired immune function, weakened respiratory muscles, and delayed wound healing if nutritional needs are not met. The primary goals of nutritional support in the ICU are to preserve lean body mass, support organ function, modulate the stress response, prevent oxidative cellular injury, and improve overall outcomes.
+
+## In-Depth ICU Considerations
+
+### Metabolic Response to Critical Illness
+*   **Hypermetabolism**: Increased resting energy expenditure (REE) due to stress hormones (catecholamines, cortisol, glucagon), cytokines, and fever.
+*   **Catabolism**: Accelerated breakdown of protein (especially skeletal muscle) and fat to provide substrates for gluconeogenesis, acute phase protein synthesis, and energy. Leads to negative nitrogen balance.
+*   **Insulin Resistance**: Common, leading to stress-induced hyperglycemia.
+*   **Altered Nutrient Utilization**: Changes in carbohydrate, lipid, and protein metabolism.
+
+### Nutritional Assessment in the ICU
+Traditional markers (albumin, prealbumin) are often unreliable in critical illness as they are negative acute phase reactants and affected by fluid status/inflammation.
+*   **Risk Screening Tools**:
+    *   **NRS-2002 (Nutritional Risk Screening 2002)**: Considers nutritional status and disease severity.
+    *   **NUTRIC Score (Nutrition Risk in Critically Ill)**: ICU-specific, incorporates APACHE II, SOFA, age, comorbidities, days from hospital to ICU admission, IL-6 levels (if available). Score ≥5 indicates high nutritional risk.
+*   **Clinical Assessment**: History of recent intake, weight loss, physical exam for signs of malnutrition (muscle wasting, edema, skin changes).
+*   **Indirect Calorimetry**: "Gold standard" for measuring REE, but not widely available or practical for all patients. Can help guide calorie targets if available.
+*   **Predictive Equations**: Harris-Benedict, Mifflin-St Jeor, Penn State equations are used to estimate energy needs if indirect calorimetry is unavailable. Often less accurate in ICU. Simple weight-based targets (e.g., 25-30 kcal/kg/day) are commonly used.
+
+### Timing and Route of Nutritional Support
+
+#### Enteral Nutrition (EN) - "If the gut works, use it."
+EN is the preferred route for nutritional support in critically ill patients with a functional GI tract.
+*   **Benefits over Parenteral Nutrition (PN)**:
+    *   Maintains gut mucosal integrity and barrier function (prevents bacterial translocation).
+    *   Supports gut-associated lymphoid tissue (GALT) and immune function.
+    *   Lower risk of infectious complications (e.g., CLABSI).
+    *   More physiologic.
+    *   Less costly.
+*   **Timing**:
+    *   **Early EN**: Initiate within 24-48 hours of ICU admission in patients who are unable to maintain volitional oral intake and are hemodynamically stable.
+    *   Delay EN in patients with severe hemodynamic instability (e.g., escalating vasopressor requirements, uncontrolled shock) until resuscitation and stabilization are achieved.
+*   **Access**:
+    *   **Nasogastric (NG) tube**: Most common for short-term EN.
+    *   **Nasoduodenal (ND) / Nasojejunal (NJ) tubes (post-pyloric)**: Used if high risk of aspiration, gastroparesis, or intolerance to gastric feeding. Placement often requires endoscopic or fluoroscopic guidance.
+    *   **Gastrostomy (PEG) / Jejunostomy (PEJ) tubes**: For long-term EN (>4-6 weeks).
+*   **Formula Selection**:
+    *   **Standard Polymeric Formulas**: 1-1.5 kcal/mL, contain intact proteins, carbohydrates, fats. Suitable for most patients.
+    *   **High-Protein Formulas**: For patients with increased protein needs (e.g., burns, trauma, sepsis).
+    *   **Fiber-Containing Formulas**: May help with diarrhea or constipation in some patients. Avoid in patients at high risk for bowel ischemia.
+    *   **Concentrated Formulas (1.5-2.0 kcal/mL)**: For fluid-restricted patients.
+    *   **Disease-Specific Formulas** (e.g., renal, diabetic, pulmonary, immune-modulating): Use is controversial and generally recommended only in specific patient populations based on current evidence and guidelines.
+*   **Initiation and Advancement**:
+    *   Start at a low rate (e.g., 10-20 mL/hr).
+    *   Advance by 10-20 mL/hr every 4-8 hours as tolerated, towards goal rate (usually within 24-48h).
+    *   Goal: Provide ≥80% of estimated energy and protein needs within 48-72 hours.
+*   **Monitoring for Tolerance & Complications**:
+    *   **Gastric Residual Volumes (GRVs)**: Routine monitoring is controversial. High GRVs alone (e.g., >250-500 mL) without other signs of intolerance should not solely prompt cessation of EN. Consider trends, patient symptoms. If GRV >500mL, hold EN, reassess.
+    *   **Signs of Intolerance**: Nausea, vomiting, abdominal distension, pain, diarrhea, constipation.
+    *   **Aspiration**: Elevate Head of Bed (HOB) 30-45°. Consider prokinetics (e.g., metoclopramide, erythromycin) for gastroparesis. Consider post-pyloric feeding.
+    *   **Diarrhea**: Rule out C. difficile. Consider changing formula (e.g., to fiber-containing or peptide-based), use of antidiarrheals if infectious cause ruled out.
+    *   **Constipation**: Ensure adequate hydration, consider fiber, laxatives/stool softeners.
+    *   **Metabolic Complications**: Hyperglycemia (monitor glucose, insulin if needed), electrolyte imbalances (monitor and replete K, PO4, Mg).
+
+#### Parenteral Nutrition (PN / TPN)
+IV administration of nutrients. Used when EN is contraindicated or insufficient to meet needs.
+*   **Indications**:
+    *   Prolonged inability to use GI tract (e.g., severe ileus, bowel obstruction, high-output fistula, severe pancreatitis with intolerance to EN, short bowel syndrome).
+    *   EN not meeting >60% of needs after 7-10 days.
+    *   Severe malnutrition when EN is not feasible.
+*   **Timing**:
+    *   If patient is well-nourished on admission, delay PN for 7 days if EN not feasible.
+    *   If patient is malnourished or at high nutritional risk, initiate PN earlier if EN is not feasible or tolerated within a few days.
+*   **Access**: Requires central venous access (PPN - peripheral parenteral nutrition - is short-term, low osmolarity/concentration only, rarely sufficient for ICU).
+*   **Components**: Dextrose (carbohydrate), amino acids (protein), intravenous fat emulsion (IVFE/lipids), electrolytes, vitamins, trace elements. Formulated by pharmacy.
+*   **Complications**:
+    *   **Catheter-Related Bloodstream Infection (CLABSI)**: Strict aseptic technique for CVC care.
+    *   **Hyperglycemia**: Common. Monitor glucose frequently, use insulin infusion as needed.
+    *   **Hypoglycemia**: If PN abruptly stopped. Taper PN rate, or provide IV dextrose.
+    *   **Electrolyte Imbalances**: Monitor and adjust PN formulation.
+    *   **Parenteral Nutrition-Associated Liver Disease (PNALD)**: Cholestasis, steatosis, fibrosis. More common with long-term PN.
+    *   **Hypertriglyceridemia**: Monitor triglycerides. Hold/reduce lipids if severe.
+    *   **Refeeding Syndrome**: See below.
+    *   **Fluid Overload**.
+*   **Monitoring**: Daily labs (glucose, electrolytes, LFTs, triglycerides - especially initially), fluid balance, infection signs.
+
+### Protein and Energy Requirements
+*   **Energy**: Typically 25-30 kcal/kg actual body weight/day. Adjust based on clinical condition, nutritional status, and indirect calorimetry if available. Avoid overfeeding (can lead to hyperglycemia, hypercapnia, hepatic steatosis).
+*   **Protein**: Needs are increased in critical illness. Typically 1.2-2.0 g/kg actual body weight/day. Higher in burns, trauma, some catabolic states.
+*   **Hypocaloric, High-Protein Feeding**: In some obese patients (BMI >30), providing ~60-70% of estimated energy needs but high protein (e.g., 2-2.5 g/kg Ideal Body Weight) may be beneficial.
+
+### Refeeding Syndrome
+A potentially fatal condition caused by rapid fluid and electrolyte shifts (especially phosphate, potassium, magnesium) that occur when nutrition (enteral or parenteral) is reintroduced after a period of significant starvation or malnutrition. Thiamine deficiency is also a key component.
+*   **Pathophysiology**: Reintroduction of carbohydrates -> insulin secretion -> stimulates cellular uptake of glucose, phosphate, potassium, magnesium, and water. Thiamine is consumed as a cofactor in carbohydrate metabolism.
+*   **High-Risk Patients**: History of significant weight loss, prolonged NPO/starvation (>7-10 days), chronic alcoholism, anorexia nervosa, malabsorptive syndromes, morbid obesity with massive weight loss, baseline low K/PO4/Mg.
+*   **Clinical Manifestations (can affect multiple organ systems)**:
+    *   **Hypophosphatemia (Hallmark)**: Weakness (respiratory muscle failure), cardiac dysfunction, rhabdomyolysis, AMS, seizures.
+    *   **Hypokalemia**: Arrhythmias, weakness.
+    *   **Hypomagnesemia**: Arrhythmias (Torsades), tetany, seizures.
+    *   **Thiamine Deficiency (Wernicke's Encephalopathy)**: Confusion, ataxia, ophthalmoplegia.
+    *   **Fluid Overload / Cardiac Failure**: Due to sodium and water retention.
+*   **Prevention and Management**:
+    1.  **Identify High-Risk Patients**.
+    2.  **Correct Electrolyte Abnormalities (K, PO4, Mg) BEFORE starting nutrition.**
+    3.  **Administer Thiamine**: (e.g., 100-300mg IV/IM daily for 3-5 days, or more) **BEFORE** starting carbohydrates or glucose-containing fluids.
+    4.  **Start Nutrition Slowly ("Start Low, Go Slow")**: Initiate at a low caloric level (e.g., 10-15 kcal/kg/day or 25-50% of goal for high-risk patients). Advance gradually over several days.
+    5.  **Monitor Electrolytes Closely**: Check K, PO4, Mg at least daily (or more frequently) during the first week of refeeding and replete aggressively.
+    6.  Monitor fluid balance, vital signs, cardiac and respiratory status.
+
+### Adjunctive Therapies & Specific Nutrients
+*   **Immune-Modulating Formulas** (e.g., supplemented with arginine, glutamine, omega-3 fatty acids, antioxidants): Role is controversial. Some guidelines recommend for specific populations (e.g., major surgery, trauma, burns) but not routinely for all septic patients.
+*   **Glutamine**: May be beneficial in burn and trauma patients, but routine supplementation in general ICU patients is not consistently supported.
+*   **Omega-3 Fatty Acids**: May have anti-inflammatory effects. Some evidence for use in ARDS.
+*   **Antioxidants (e.g., Selenium, Vitamin C, Vitamin E, Zinc)**: May be considered, role still under investigation.
+*   **Probiotics**: Role in preventing VAP or C. difficile in ICU is not yet established.
+
+Transitioning from EN/PN to oral diet should occur as soon as the patient is clinically stable, alert, and able to swallow safely (pass dysphagia screen).`,
+    categoryType: 'Topic',
+    keywordsForImage: 'nutrition support ICU',
+  },
 ];
 
 export const policies: ContentItem[] = [
@@ -1691,10 +2127,398 @@ Consistent, meticulous care and handling of the CVC post-insertion are crucial t
     categoryType: 'Policy',
     keywordsForImage: 'central line CVC care',
   },
+  {
+    id: 'massive-transfusion-protocol',
+    slug: 'massive-transfusion-protocol',
+    title: 'Massive Transfusion Protocol (MTP)',
+    summary: 'Guidelines for activating and managing massive transfusion in patients with severe hemorrhage, including blood product ratios and monitoring.',
+    categoryType: 'Policy',
+    keywordsForImage: 'blood transfusion emergency',
+    content: `## General Overview: Purpose of Policy
+This policy outlines the standardized procedure for the activation and management of Massive Transfusion Protocol (MTP) in adult patients experiencing, or at high risk for, severe, life-threatening hemorrhage. The goal of MTP is to rapidly provide balanced resuscitation with blood products (Red Blood Cells, Plasma, Platelets) to correct coagulopathy, restore tissue perfusion, and improve survival in massively bleeding patients.
+
+## In-Depth Protocol Details & Procedures
+
+### I. Definition of Massive Transfusion
+Massive transfusion is commonly defined as:
+*   Replacement of >1 blood volume in 24 hours (approximately 10 units of Packed Red Blood Cells - PRBCs - in a 70kg adult).
+*   Transfusion of >4 units of PRBCs within 1 hour when ongoing bleeding is anticipated.
+*   Replacement of 50% of total blood volume within 3 hours.
+*   Specific clinical triggers (see below) may also activate the MTP.
+
+### II. MTP Activation Criteria
+MTP should be activated by a designated attending physician (e.g., Trauma Surgeon, Emergency Physician, Anesthesiologist, Intensivist) based on clinical judgment and/or predefined criteria. Consider MTP activation for patients with:
+1.  **Physiological Triggers**:
+    *   SBP <90 mmHg and HR >120 bpm despite initial fluid resuscitation (e.g., 1-2L crystalloid).
+    *   Persistent hemodynamic instability.
+    *   Evidence of poor end-organ perfusion (e.g., altered mental status, oliguria, mottled skin).
+    *   Base Deficit > -6 mEq/L or Lactate >4 mmol/L in the setting of hemorrhage.
+2.  **Anatomical Triggers (Trauma)**:
+    *   Penetrating torso, neck, or proximal extremity trauma with hemodynamic instability.
+    *   Multiple long bone fractures with hemodynamic instability.
+    *   Unstable pelvic fracture.
+    *   Significant active bleeding from any site.
+3.  **Laboratory Triggers (if rapidly available and patient is actively bleeding)**:
+    *   Severe coagulopathy (e.g., INR >1.8, PTT >60s) in a bleeding patient.
+    *   Severe acidosis (pH <7.2) with active bleeding.
+4.  **Scoring Systems (if used by institution)**:
+    *   Assessment of Blood Consumption (ABC) Score ≥2.
+    *   Trauma Associated Severe Hemorrhage (TASH) Score.
+    *   Emergency Transfusion Score (ETS).
+5.  **Clinical Gestalt**: Experienced clinician's judgment that massive transfusion is imminent or ongoing.
+
+**Notification**: Once MTP is activated, the provider must **clearly announce "MTP ACTIVATION"** and notify:
+*   Blood Bank/Transfusion Service STAT.
+*   Operating Room (if applicable).
+*   ICU (if patient is there or anticipated destination).
+*   Designated MTP runner/team.
+
+### III. Blood Product Resuscitation Strategy
+The MTP aims for a balanced resuscitation approach, often targeting a ratio of:
+*   **1:1:1 (PRBCs : FFP : Platelets)**
+    *   This means for every 1 unit of PRBCs, approximately 1 unit of FFP and 1 apheresis unit of platelets (or equivalent 5-6 whole blood-derived platelets) should be administered.
+*   **MTP "Packs"**: Blood bank will typically issue blood products in predefined "packs" or coolers containing these ratios to facilitate rapid administration.
+    *   Example MTP Pack: 6 units PRBCs, 6 units FFP, 1 apheresis unit Platelets.
+*   **Early Use of Plasma and Platelets**: Do not wait for severe coagulopathy or thrombocytopenia to develop. Administer FFP and platelets empirically along with PRBCs from the outset of MTP.
+*   **Type O Blood**:
+    *   **Type O Rh-negative PRBCs**: Use for females of childbearing potential or if Rh status unknown in emergent situations.
+    *   **Type O Rh-positive PRBCs**: May be used for males or females beyond childbearing potential if O-negative is scarce.
+    *   Switch to type-specific blood as soon as feasible after crossmatch.
+*   **Plasma**: Type AB plasma is universal donor plasma and can be used if ABO type unknown or type-specific is unavailable. Thaw FFP in advance if MTP anticipated or use thawed plasma (if available per institutional policy).
+*   **Cryoprecipitate**: Consider administering cryoprecipitate (1-2 pools, typically 10 units) if fibrinogen level is <100-150 mg/dL or if viscoelastic testing (TEG/ROTEM) indicates fibrinogen deficiency. May be included in later MTP packs or ordered separately.
+*   **Tranexamic Acid (TXA)**:
+    *   For trauma patients with, or at risk of, significant hemorrhage: Administer 1 gram IV over 10 minutes **within 3 hours of injury**, followed by 1 gram IV infusion over 8 hours.
+    *   Consider for other causes of massive hemorrhage (e.g., PPH, some surgical bleeding) per specific guidelines. **Do NOT administer if >3 hours from injury in trauma (potential harm).**
+
+### IV. Monitoring and Laboratory Goals During MTP
+Continuous clinical assessment and frequent laboratory monitoring are crucial.
+*   **Hemodynamics**: Continuous BP, HR, SpO2. Target SBP >90 mmHg or MAP >65 mmHg (may be lower targets in "permissive hypotension" for uncontrolled hemorrhage pre-operatively).
+*   **Temperature**: Prevent and treat hypothermia (target >35°C or 95°F). Use fluid warmers, forced air warmers, warm blankets. Hypothermia worsens coagulopathy.
+*   **Acid-Base Status**: Serial ABGs. Correct severe acidosis (pH <7.1-7.2 may impair coagulation).
+*   **Coagulation Parameters (q30-60min or after each MTP pack)**:
+    *   PT/INR: Target <1.5-1.8
+    *   aPTT: Target <1.5 x control
+    *   Fibrinogen: Target >150-200 mg/dL
+    *   Platelet Count: Target >50,000/μL (consider >100,000/μL for CNS trauma or severe bleeding).
+    *   Viscoelastic Testing (TEG/ROTEM) if available: Provides real-time global assessment of coagulation and can guide component therapy more precisely (e.g., specific need for fibrinogen, platelets, or factor replacement).
+*   **Ionized Calcium (iCa)**: Citrate in transfused blood products chelates calcium, leading to hypocalcemia. Monitor iCa frequently and replete with IV calcium chloride or calcium gluconate to maintain normal levels (e.g., iCa >1.1 mmol/L). Hypocalcemia impairs myocardial contractility and coagulation.
+*   **Potassium (K⁺)**: Stored PRBCs leak potassium. Risk of hyperkalemia, especially with rapid transfusion rates and renal impairment. Monitor closely.
+*   **Hemoglobin/Hematocrit**: Target Hgb typically 7-9 g/dL.
+
+### V. Adjunctive Measures
+*   **Identify and Control Bleeding Source**: Definitive surgical or interventional radiological control of hemorrhage is paramount. MTP is a bridge to definitive hemostasis.
+*   **Damage Control Resuscitation (DCR)**: Encompasses MTP, permissive hypotension (until bleeding controlled), prevention/treatment of hypothermia and acidosis, and damage control surgery (abbreviated initial surgery to control hemorrhage/contamination, followed by resuscitation in ICU and planned re-operation).
+*   **Fluid Warmers**: All blood products and IV fluids should be warmed to prevent hypothermia.
+*   **Rapid Infusion Devices**: May be necessary to deliver products quickly.
+*   **Minimize Crystalloid Use**: Excessive crystalloid administration can lead to dilutional coagulopathy, acidosis, and edema. Focus on blood product resuscitation.
+
+### VI. MTP Deactivation
+The activating physician should clearly announce **"MTP DEACTIVATION"** to all relevant teams (especially Blood Bank) when:
+*   Hemorrhage is controlled.
+*   Patient is hemodynamically stabilizing.
+*   Coagulation parameters are improving/normalizing.
+*   Blood Bank will stop automatic issuance of MTP packs but will continue to provide products as ordered.
+
+### VII. Complications of Massive Transfusion
+*   Transfusion Reactions (hemolytic, febrile, allergic, TRALI, TACO - see Hematologic System).
+*   Coagulopathy (dilutional or consumptive).
+*   Hypothermia.
+*   Acid-Base disturbances (metabolic acidosis from hypoperfusion, metabolic alkalosis from citrate metabolism).
+*   Electrolyte abnormalities (hyperkalemia, hypocalcemia, hypomagnesemia).
+*   Volume overload (TACO).
+*   Acute Respiratory Distress Syndrome (ARDS).
+*   Infection (rare).
+*   Alloimmunization.
+
+### VIII. Documentation
+Thorough documentation is essential:
+*   Time of MTP activation and deactivation.
+*   Clinical indication for MTP.
+*   All blood products administered (type, unit number, volume, start/end times).
+*   All medications administered (e.g., TXA, calcium).
+*   Vital signs, laboratory results, and patient response.
+*   Any complications or adverse events.
+
+### IX. Team Communication & Roles
+Clear, closed-loop communication between all team members (physicians, nurses, blood bank staff, runners, OR/ICU staff) is critical for successful MTP. Pre-defined roles and responsibilities can improve efficiency. Regular MTP drills and debriefings are recommended.`,
+    categoryType: 'Policy',
+    keywordsForImage: 'blood transfusion emergency',
+  },
+  {
+    id: 'ventilator-weaning-protocol',
+    slug: 'ventilator-weaning-protocol',
+    title: 'Ventilator Weaning/Liberation Protocol',
+    summary: 'Standardized approach for assessing readiness for weaning, conducting spontaneous breathing trials (SBTs), and extubation criteria in ICU patients.',
+    categoryType: 'Policy',
+    keywordsForImage: 'ventilator weaning patient',
+    content: `## General Overview: Purpose of Policy
+This policy outlines a standardized, evidence-based protocol for the assessment of readiness for weaning, conduct of Spontaneous Breathing Trials (SBTs), and criteria for liberation from mechanical ventilation (extubation) for adult patients in the Intensive Care Unit (ICU). The goals are to minimize the duration of mechanical ventilation, reduce ventilator-associated complications (e.g., VAP, ICUAW), improve patient comfort, and facilitate timely liberation while ensuring patient safety.
+
+## In-Depth Protocol Details & Procedures
+
+### I. Daily Screening for Weaning Readiness
+All mechanically ventilated patients should be screened daily by the RN and/or RT, in collaboration with the physician, for readiness to begin the weaning process.
+**Criteria for Daily Screening (All must be met to proceed to SBT assessment):**
+1.  **Resolution or significant improvement of the underlying cause of respiratory failure.**
+2.  **Adequate Oxygenation**:
+    *   PaO2/FiO2 ratio >150-200 mmHg (or SpO2 ≥90-92%)
+    *   FiO2 ≤0.4-0.5
+    *   PEEP ≤5-8 cm H2O
+3.  **Hemodynamic Stability**:
+    *   Heart Rate <140 bpm (and stable).
+    *   Systolic Blood Pressure 90-160 mmHg (and stable).
+    *   No or minimal vasopressor support (e.g., Norepinephrine ≤0.1 mcg/kg/min or equivalent, specific thresholds may vary by institution).
+    *   No evidence of active myocardial ischemia.
+4.  **Afebrile**: Temperature ≤38.0-38.5°C.
+5.  **No Active Sedation or Minimal Sedation**: Patient is arousable (e.g., RASS 0 to -2). Ideally, daily Spontaneous Awakening Trial (SAT) has been performed and patient remains comfortable/cooperative off heavy sedation.
+6.  **Adequate Hematocrit/Hemoglobin**: Hgb ≥7-8 g/dL (or patient-specific target).
+7.  **Acceptable Metabolic Status**: No significant uncorrected metabolic acidosis or alkalosis that would impair respiratory drive or muscle function.
+8.  **No planned major surgical procedures or interventions in the next 24 hours that would require ongoing mechanical ventilation.**
+
+### II. Spontaneous Awakening Trial (SAT) / Sedation Interruption
+*   Perform daily SATs in eligible patients by holding or significantly reducing continuous sedative infusions.
+*   **Safety Screen for SAT**:
+    *   No active seizures.
+    *   No active alcohol withdrawal.
+    *   No active agitation (e.g., RASS >+1).
+    *   No NMBAs.
+    *   No evidence of active myocardial ischemia or significantly increased ICP.
+*   **SAT Failure Criteria (Stop SAT and restart sedation at ~50% of prior dose, titrate as needed)**:
+    *   Sustained anxiety, agitation, or pain (e.g., RASS ≥+2 or >2 point increase in pain score).
+    *   Respiratory rate >35/min for >5 minutes.
+    *   SpO2 <88-90% for >5 minutes.
+    *   Acute cardiac arrhythmia.
+    *   Signs of hemodynamic instability (e.g., SBP <80 or >180 mmHg, HR <50 or >140 bpm).
+    *   Signs of respiratory distress (accessory muscle use, paradoxical breathing, diaphoresis).
+*   If SAT is successful (patient remains comfortable and stable off sedation), proceed to SBT assessment.
+
+### III. Spontaneous Breathing Trial (SBT)
+If daily screening criteria and SAT (if applicable) are met, the patient should undergo an SBT to assess their ability to breathe spontaneously with minimal or no ventilator support.
+**SBT Methods (choose one, duration typically 30-120 minutes):**
+1.  **Low-Level Pressure Support (PSV)**: PS of 5-7 cm H2O with PEEP of 0-5 cm H2O.
+2.  **CPAP**: CPAP of 0-5 cm H2O.
+3.  **T-piece (or Tracheostomy Collar for tracheostomized patients)**: Patient breathes humidified oxygen via T-piece circuit connected to ETT/trach. FiO2 typically similar to pre-SBT setting or slightly higher.
+**During SBT, monitor the patient closely for signs of intolerance.**
+
+**SBT Failure Criteria (Stop SBT and return patient to pre-SBT ventilator settings):**
+*   **Respiratory Distress/Increased Work of Breathing**:
+    *   Respiratory Rate (RR) >35 breaths/min for >5 minutes (or >20% increase from baseline).
+    *   Use of accessory muscles, paradoxical abdominal breathing, intercostal retractions.
+    *   Diaphoresis.
+*   **Inadequate Gas Exchange**:
+    *   SpO2 <90% for >5 minutes (or PaO2 <55-60 mmHg on ABG if obtained).
+    *   PaCO2 increase >10 mmHg from baseline or pH <7.30-7.32 (if ABG obtained).
+    *   Change in ETCO2 if continuously monitored.
+*   **Hemodynamic Instability**:
+    *   Heart Rate (HR) >140 bpm or sustained increase/decrease >20% from baseline.
+    *   Systolic Blood Pressure (SBP) >180 mmHg or <90 mmHg.
+    *   Development of new cardiac arrhythmias (e.g., AFib with RVR, frequent PVCs, VT).
+*   **Altered Mental Status/Patient Distress**:
+    *   Agitation, anxiety, combativeness.
+    *   Somnolence, obtundation (not attributable to ongoing sedation).
+    *   Patient complains of severe dyspnea or fatigue.
+
+**Successful SBT**: Patient tolerates the SBT for the predetermined duration (30-120 minutes) without developing any failure criteria.
+
+### IV. Assessment for Extubation (If SBT is Successful)
+If the SBT is successful, assess the patient for readiness for extubation.
+**Key Extubation Criteria**:
+1.  **Successful SBT completion.**
+2.  **Adequate Mental Status**: Patient is alert, cooperative, able to follow commands (e.g., RASS 0 to -1). Able to protect airway.
+3.  **Effective Cough and Ability to Clear Secretions**:
+    *   Assess cough strength (subjectively or Peak Cough Flow >60 L/min).
+    *   Assess quantity and consistency of secretions. Minimal, thin secretions are ideal. Patient should be able to manage secretions without frequent suctioning.
+4.  **Patent Upper Airway**:
+    *   **Cuff Leak Test (CLT)**: Perform if concern for laryngeal edema (e.g., prolonged intubation >48-72h, traumatic intubation, history of stridor, burns, anaphylaxis).
+        *   Procedure: Fully deflate ETT cuff. Occlude ETT lumen. Assess for audible air leak around the ETT during mechanical breaths (VC mode) or spontaneous breaths.
+        *   Interpretation: Presence of a leak suggests minimal laryngeal edema and lower risk of post-extubation stridor. Absence of a leak (or very small leak volume, e.g., <110-130 mL or <10-20% of delivered VT) is concerning for edema. Consider prophylactic systemic steroids (e.g., methylprednisolone 24h prior to planned extubation) if CLT is negative or patient is high risk.
+5.  **No other factors contraindicating extubation** (e.g., impending surgery, unstable condition requiring ongoing airway control).
+
+### V. Extubation Procedure
+*   Explain procedure to patient.
+*   Gather necessary equipment: Suction (oral and ETT), oxygen delivery device (e.g., nasal cannula, face mask, NIV interface if planned), manual resuscitation bag with mask, equipment for potential re-intubation (laryngoscope, ETTs, etc.).
+*   Elevate HOB to semi-Fowler's or high-Fowler's position.
+*   Thoroughly suction oropharynx and ETT.
+*   Pre-oxygenate with 100% FiO2 for a few minutes if tolerated.
+*   Fully deflate ETT cuff.
+*   Instruct patient to take a deep breath or cough as the tube is removed.
+*   Smoothly withdraw ETT at peak inspiration or during cough.
+*   Apply oxygen immediately post-extubation.
+*   Encourage patient to cough and deep breathe.
+*   Assess for stridor, respiratory distress, voice quality, SpO2, RR, HR, BP.
+
+### VI. Post-Extubation Management
+*   **Close Monitoring**: Vital signs, SpO2, work of breathing, mental status, ability to clear secretions, especially in the first 1-2 hours and then regularly.
+*   **Oxygen Therapy**: Titrate to maintain SpO2 target. High-flow nasal cannula (HFNC) may be beneficial in select patients at high risk of re-intubation.
+*   **Pulmonary Hygiene**: Encourage coughing, deep breathing, incentive spirometry. Chest physiotherapy if indicated.
+*   **Non-Invasive Ventilation (NIV)**:
+    *   Consider prophylactic NIV immediately post-extubation for patients at high risk of post-extubation respiratory failure (e.g., hypercapnic respiratory failure like COPD, CHF, obesity hypoventilation, some neuromuscular disease).
+    *   NIV for established post-extubation respiratory failure is less effective and may delay re-intubation; use cautiously.
+*   **Stridor Management**: If mild stridor, humidified oxygen, nebulized racemic epinephrine. If severe or unresponsive, prepare for re-intubation. IV steroids may be considered.
+*   **Assess Swallowing**: Perform dysphagia screen before initiating oral intake if not already done.
+
+### VII. Re-intubation
+If patient develops significant respiratory distress, hypoxemia, hypercapnia, or inability to protect airway post-extubation, re-intubation should be performed promptly by skilled personnel. Delaying necessary re-intubation can worsen outcomes.
+
+### VIII. Protocol Failure and Reassessment
+*   If a patient fails an SBT or is not extubated, return to a stable, non-fatiguing mode of ventilation for at least 24 hours (or until underlying issues resolve).
+*   Re-evaluate daily for weaning readiness. Identify and address factors contributing to weaning failure (e.g., fluid overload, bronchospasm, electrolyte imbalance, ICUAW, delirium, cardiac dysfunction, excessive secretions, psychological factors).
+
+### IX. Documentation
+Thoroughly document all aspects of the weaning process:
+*   Daily screening for weaning readiness.
+*   SAT process and outcome.
+*   SBT method, duration, patient tolerance, reason for failure if applicable.
+*   Objective weaning parameters (RSBI, NIF, VC if measured).
+*   Cuff leak test results (if performed).
+*   Extubation procedure, patient response.
+*   Post-extubation monitoring and interventions.`,
+    categoryType: 'Policy',
+    keywordsForImage: 'ventilator weaning patient',
+  },
+  {
+    id: 'padis-guidelines',
+    slug: 'padis-guidelines',
+    title: 'Pain, Agitation, Delirium, Immobility, and Sleep Disruption (PADIS) Guidelines',
+    summary: 'Key recommendations for managing PADIS in adult ICU patients, including assessment tools and non-pharmacologic/pharmacologic interventions.',
+    categoryType: 'Policy',
+    keywordsForImage: 'ICU patient care comfort',
+    content: `## General Overview: Purpose of Policy
+This policy outlines an integrated, evidence-based approach to the assessment, prevention, and management of Pain, Agitation, Delirium, Immobility, and Sleep Disruption (collectively known as PADIS) in adult patients in the Intensive Care Unit (ICU). Effective management of PADIS is associated with improved patient outcomes, including reduced duration of mechanical ventilation, shorter ICU and hospital length of stay, decreased mortality, and better long-term cognitive function. This policy promotes a patient-centered, interprofessional approach.
+
+## In-Depth Policy Details & Procedures
+
+### I. Pain Assessment and Management ("Analgesia First")
+Pain is a common and distressing experience for ICU patients. Untreated pain contributes to agitation, delirium, sleep disruption, and physiological stress.
+**A. Assessment**:
+1.  **Frequency**: Routinely assess pain in all ICU patients (e.g., at least every 4 hours and PRN, with vital signs, after painful procedures, with changes in condition).
+2.  **Tools**:
+    *   **Self-Report (Gold Standard)**: If patient is able to communicate, use a validated scale like the Numeric Rating Scale (NRS 0-10), Visual Analog Scale (VAS), or Faces Pain Scale-Revised (FPS-R).
+    *   **Behavioral Pain Scales (for non-verbal/unable to self-report patients)**:
+        *   **Behavioral Pain Scale (BPS)**: Scores facial expression, upper limb movements, compliance with ventilation (for intubated patients) or vocalization (for non-intubated). Score 3-12.
+        *   **Critical-Care Pain Observation Tool (CPOT)**: Scores facial expression, body movements, muscle tension, compliance with ventilator (intubated) or vocalization (non-intubated). Score 0-8.
+    *   **Physiological Indicators (Adjunctive, Not Diagnostic Alone)**: Changes in HR, BP, RR, diaphoresis. These are non-specific and should be interpreted cautiously in conjunction with behavioral indicators or patient report.
+3.  **Documentation**: Document pain scores, interventions, and reassessment of effectiveness.
+
+**B. Management**:
+1.  **Non-Pharmacologic Interventions (First-line or Adjunctive)**:
+    *   Proper positioning, splinting.
+    *   Application of cold/heat (as appropriate).
+    *   Massage, relaxation techniques (e.g., guided imagery, music therapy).
+    *   Environmental modifications (reduce noise, comfortable temperature).
+    *   Reassurance and emotional support.
+2.  **Pharmacologic Interventions (Multimodal Analgesia)**:
+    *   **Opioids (IV)**: First-line for moderate to severe nociceptive pain (e.g., Fentanyl, Hydromorphone, Morphine). Titrate to effect using smallest effective dose.
+        *   Consider patient factors (renal/hepatic function, hemodynamic stability, prior opioid exposure).
+        *   Fentanyl: Rapid onset, short duration (bolus), good for hemodynamically unstable patients.
+        *   Hydromorphone: Potent, intermediate duration.
+        *   Morphine: Longer duration, histamine release (can cause hypotension), active metabolites accumulate in renal failure.
+    *   **Non-Opioid Analgesics (Opioid-Sparing)**:
+        *   **Acetaminophen (IV/PO/PR)**: For mild-moderate pain, antipyretic.
+        *   **NSAIDs (e.g., Ketorolac IV/IM, Ibuprofen IV/PO)**: For mild-moderate pain, anti-inflammatory. Use cautiously (risk of GI bleed, AKI, platelet dysfunction). Limit duration.
+        *   **Neuropathic Pain Agents**: Gabapentin, Pregabalin, Ketamine (low-dose infusion), Lidocaine infusion. Consider for neuropathic pain or as adjuncts.
+    *   **Analgesia-First Sedation**: Ensure adequate pain control *before* initiating or escalating sedatives for agitation.
+    *   **Regional Analgesia**: Epidural analgesia, peripheral nerve blocks for specific types of pain (e.g., post-operative, rib fractures).
+
+### II. Agitation and Sedation Management
+Goal: Maintain a calm, comfortable, and cooperative patient (light sedation, e.g., RASS 0 to -2) whenever possible. Avoid deep/prolonged sedation.
+**A. Assessment**:
+1.  **Frequency**: Routinely assess agitation/sedation levels (e.g., q2-4h and PRN).
+2.  **Tools**:
+    *   **Richmond Agitation-Sedation Scale (RASS)**: Score +4 (Combative) to -5 (Unarousable). Target RASS is often 0 to -2.
+    *   **Sedation-Agitation Scale (SAS)**: Score 1 (Unarousable) to 7 (Dangerous Agitation).
+3.  **Identify and Treat Reversible Causes of Agitation**: Pain, delirium, hypoxia, hypercapnia, hypoglycemia, electrolyte imbalance, drug/alcohol withdrawal, ventilator dyssynchrony, fear, anxiety, unmet needs (thirst, full bladder, uncomfortable position).
+
+**B. Management**:
+1.  **Non-Pharmacologic Interventions**: Address reversible causes, optimize environment (reduce stimuli, day/night cycle), reorientation, family presence, music, relaxation.
+2.  **Pharmacologic Interventions (Analgesia-First Approach)**:
+    *   **Ensure adequate analgesia is provided first.**
+    *   **Sedative Choice (Non-Benzodiazepines Preferred over Benzodiazepines for routine sedation)**:
+        *   **Propofol (IV infusion)**: Rapid onset, short half-life, easy titration. Good for deep sedation if needed or for neurological conditions requiring ICP control. Risks: hypotension, bradycardia, PRIS.
+        *   **Dexmedetomidine (IV infusion)**: Provides light to moderate sedation where patient remains rousable ("cooperative sedation"). Minimal respiratory depression. Analgesia-sparing. May reduce delirium. Risks: bradycardia, hypotension (can have initial transient hypertension with loading dose).
+        *   **Benzodiazepines (e.g., Midazolam, Lorazepam IV)**: Associated with increased risk of delirium and prolonged ventilation. Reserve for specific indications like alcohol/benzodiazepine withdrawal, active seizures, or if other agents are contraindicated/ineffective, or for deep sedation for NMBAs. Use intermittent boluses or lowest effective infusion rate for shortest possible duration.
+        *   **Ketamine (IV infusion, low dose)**: May be used as an adjunct for sedation and analgesia, especially in opioid-tolerant patients or those with bronchospasm.
+3.  **Daily Sedation Interruption / Spontaneous Awakening Trials (SATs)**:
+    *   Hold or significantly reduce sedative infusions daily in eligible patients to assess neurological status, facilitate weaning, and reduce drug accumulation.
+    *   Monitor for SAT failure criteria (agitation, pain, respiratory distress, hemodynamic instability). Restart sedation at ~50% of prior dose if SAT fails.
+4.  **Targeted Sedation**: Titrate sedatives to achieve the lightest possible level of sedation consistent with patient safety and comfort, using a validated scale (e.g., RASS 0 to -2).
+
+### III. Delirium Assessment, Prevention, and Management
+Delirium is an acute brain dysfunction characterized by inattention, disorganized thinking, and altered level of consciousness. It is common in ICU and associated with poor outcomes.
+**A. Assessment**:
+1.  **Frequency**: Routinely assess for delirium in all ICU patients (e.g., q8-12h or per shift) once RASS is >-4 (i.e., not deeply sedated/comatose).
+2.  **Tools**:
+    *   **Confusion Assessment Method for the ICU (CAM-ICU)**.
+    *   **Intensive Care Delirium Screening Checklist (ICDSC)**.
+3.  **Identify Delirium Subtypes**: Hyperactive, Hypoactive (most common, often missed), Mixed.
+4.  **Identify and Address Modifiable Risk Factors**:
+    *   **Pre-existing**: Advanced age, dementia, baseline cognitive impairment, hypertension, prior stroke, alcohol abuse.
+    *   **ICU-related**: Sepsis, hypoxia, metabolic disturbances, electrolyte imbalance, dehydration, immobility, restraints, sensory deprivation/overload, sleep disruption, medications (benzodiazepines, opioids, anticholinergics).
+
+**B. Prevention (Multicomponent, Non-Pharmacologic Interventions - "ABCDEF Bundle")**:
+*   **A**wakening (SATs) and **B**reathing (SBTs) Coordination.
+*   **C**hoice of Analgesia and Sedation (avoid benzodiazepines if possible).
+*   **D**elirium Monitoring and Management.
+*   **E**arly Mobility and Exercise.
+*   **F**amily Engagement and Empowerment.
+*   Other strategies: Frequent reorientation, cognitive stimulation, optimizing sleep (see below), providing hearing aids/glasses, minimizing noise/light at night.
+
+**C. Management**:
+1.  **Non-Pharmacologic Interventions (Primary Approach)**: Focus on prevention strategies listed above. Treat underlying medical conditions contributing to delirium.
+2.  **Pharmacologic Interventions (Limited Role, Symptom Control)**:
+    *   **Antipsychotics (e.g., Haloperidol, Quetiapine, Olanzapine, Risperidone)**: Not recommended for routine prevention or treatment of delirium. May be considered for short-term use to manage distressing symptoms (e.g., severe agitation, hallucinations, delusions causing harm to self/others) at the lowest effective dose for the shortest duration, if non-pharmacologic measures fail. Monitor for side effects (QTc prolongation, EPS).
+    *   **Dexmedetomidine**: May be considered for agitated delirium if sedation is also required, potentially reducing duration of delirium compared to benzodiazepines.
+    *   **Avoid Benzodiazepines**: May worsen or prolong delirium.
+
+### IV. Immobility Prevention and Early Mobilization
+Prolonged immobility contributes to ICUAW, VTE, pressure injuries, delirium, prolonged ventilation.
+**A. Assessment**:
+1.  Assess patient's functional status and readiness for mobilization daily.
+2.  Identify contraindications to mobilization (e.g., unstable spine/fractures, severe hemodynamic instability, active myocardial ischemia, uncontrolled ↑ICP, unsecured airway).
+
+**B. Interventions**:
+1.  **Minimize Sedation**: To facilitate active participation.
+2.  **Early and Progressive Mobilization Protocol**:
+    *   Initiate as soon as patient is physiologically stable (often within 24-72h of ICU admission).
+    *   Multidisciplinary approach (RN, PT, OT, RT, MD).
+    *   Progression: Passive range of motion (PROM) -> Active-assisted ROM (AAROM) -> Active ROM (AROM) -> Dangling legs at bedside -> Sitting in chair -> Standing -> Ambulation.
+    *   Use of specialized equipment (e.g., cycle ergometers, slings, lifts) may be beneficial.
+3.  **Reduce Physical Restraints**: Use only when essential for patient safety and least restrictive method. Remove as soon as possible.
+
+### V. Sleep Disruption Prevention and Management
+Sleep disruption is nearly universal in ICU and contributes to delirium, immune dysfunction, and poor recovery.
+**A. Assessment**:
+1.  Subjective assessment if patient can report (e.g., Richards-Campbell Sleep Questionnaire - RCSQ).
+2.  Objective measures (polysomnography) are not practical for routine use. Observe sleep-wake patterns.
+
+**B. Prevention and Management (Non-Pharmacologic Focus)**:
+1.  **Optimize Environment**:
+    *   Reduce noise levels at night (e.g., dim alarms, quiet conversations, earplugs for patient).
+    *   Cluster care activities to allow for uninterrupted sleep periods (at least 2-4 hours).
+    *   Control light (dim lights at night, natural light during day if possible).
+    *   Maintain comfortable room temperature.
+2.  **Promote Circadian Rhythm**: Maintain day-night routines, encourage daytime activity/mobilization.
+3.  **Manage Pain and Discomfort**: Ensure adequate analgesia.
+4.  **Review Medications**: Minimize use of sleep-disrupting medications (e.g., steroids, diuretics, stimulants) especially at night.
+5.  **Pharmacologic Interventions (Use Cautiously, Short-Term if Needed)**:
+    *   **Melatonin or Ramelteon (melatonin receptor agonist)**: May be considered.
+    *   **Non-Benzodiazepine Hypnotics (e.g., Zolpidem, Zaleplon)**: Use with caution, short-term, potential for delirium/side effects in elderly/critically ill.
+    *   **Trazodone**: Low dose may be used for sedative effects.
+    *   **Avoid Benzodiazepines and Diphenhydramine** for sleep due to risk of delirium.
+    *   Dexmedetomidine (if used for sedation) may promote more natural sleep architecture compared to other sedatives.
+
+### VI. Documentation and Interprofessional Collaboration
+*   Document all PADIS assessments, interventions, and patient responses.
+*   Utilize interprofessional team rounds (MD, RN, PharmD, RT, PT/OT, Dietitian) to discuss and coordinate PADIS management strategies daily.
+*   Regularly evaluate the effectiveness of PADIS protocols and make improvements as needed.`,
+    categoryType: 'Policy',
+    keywordsForImage: 'ICU patient care comfort',
+  }
 ];
 
 export const getAllContentItems = (): ContentItem[] => {
   return [...bodySystems, ...topics, ...policies];
 };
     
+
 

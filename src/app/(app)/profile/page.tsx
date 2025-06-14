@@ -8,7 +8,7 @@ import { User, Edit3, LogOut } from "lucide-react";
 export default function ProfilePage() {
   // This role is currently static based on the CardDescription.
   // In a real application, this would come from user data.
-  // You can change this value to "Staff Nurse" or "Assistant Nurse Manager"
+  // You can change this value to "Staff Nurse", "Assistant Nurse Manager", "Manager", or "Director"
   // to see the conditional UI for "Role Specifics" in action.
   const userRole = "ICU Registered Nurse"; 
 
@@ -108,8 +108,32 @@ export default function ProfilePage() {
                 </ul>
               </div>
             )}
+            {userRole === "Manager" && (
+              <div>
+                <p className="font-medium">Direct Reports:</p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <li>ANM David Green (Days)</li>
+                  <li>ANM Maria Rodriguez (Nights)</li>
+                  <li>Charge Nurse Sam Taylor (Relief)</li>
+                </ul>
+              </div>
+            )}
+            {userRole === "Director" && (
+              <div>
+                <p className="font-medium">Direct Reports:</p>
+                <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <li>Manager Jane Doe (ICU A)</li>
+                  <li>Manager Robert Paulson (ICU B)</li>
+                  <li>Unit Educator Chris Lee</li>
+                </ul>
+              </div>
+            )}
             {/* Fallback for other roles or if no specific condition is met */}
-            {userRole !== "Staff Nurse" && userRole !== "ICU Registered Nurse" && userRole !== "Assistant Nurse Manager" && (
+            {userRole !== "Staff Nurse" &&
+             userRole !== "ICU Registered Nurse" &&
+             userRole !== "Assistant Nurse Manager" &&
+             userRole !== "Manager" &&
+             userRole !== "Director" && (
                <div>
                 <p className="font-medium">Role Description:</p>
                 <p className="text-muted-foreground">Details specific to the role of {userRole}.</p>

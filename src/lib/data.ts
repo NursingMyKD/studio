@@ -11,33 +11,29 @@ const splitContent = (markdown: string): { generalOverview: string; inDepthConsi
   const inDepthStartIndex = markdown.indexOf(inDepthMarker);
 
   if (inDepthStartIndex !== -1) {
-    const generalOverviewEndIndex = markdown.substring(0, inDepthStartIndex).indexOf(generalOverviewMarker);
-    if (generalOverviewEndIndex !== -1) {
-      generalOverview = markdown.substring(generalOverviewEndIndex, inDepthStartIndex).trim();
+    const generalOverviewStartIndexInRelevantText = markdown.substring(0, inDepthStartIndex).indexOf(generalOverviewMarker);
+    if (generalOverviewStartIndexInRelevantText !== -1) {
+      generalOverview = markdown.substring(generalOverviewStartIndexInRelevantText, inDepthStartIndex).trim();
     } else {
-      // If no "## General Overview" marker but "## In-Depth" exists, assume content before in-depth is overview
       generalOverview = markdown.substring(0, inDepthStartIndex).trim();
     }
     inDepthConsiderations = markdown.substring(inDepthStartIndex).trim();
   } else {
-    // If no "## In-Depth" marker, assume all content is general overview
     const generalOverviewStartIndex = markdown.indexOf(generalOverviewMarker);
     if (generalOverviewStartIndex !== -1) {
         generalOverview = markdown.substring(generalOverviewStartIndex).trim();
     } else {
-        generalOverview = markdown.trim(); // Fallback if no markers at all
+        generalOverview = markdown.trim();
     }
   }
   
-  // Remove the "## General Overview" heading from the start of generalOverview string if present
-  if (generalOverview.startsWith(generalOverviewMarker)) {
-      generalOverview = generalOverview.substring(generalOverviewMarker.length).trimStart();
-      // Add it back if it wasn't just the marker itself
-      if (generalOverview.length > 0) {
-          generalOverview = `${generalOverviewMarker}\n\n${generalOverview}`;
-      } else {
-         generalOverview = ""; // case where content was ONLY "## General Overview"
-      }
+  if (generalOverview.length > 0 && !generalOverview.startsWith(generalOverviewMarker)) {
+      generalOverview = `${generalOverviewMarker}\n\n${generalOverview}`;
+  }
+
+
+  if (inDepthConsiderations.length > 0 && !inDepthConsiderations.startsWith(inDepthMarker)) {
+    inDepthConsiderations = `${inDepthMarker}\n\n${inDepthConsiderations}`;
   }
 
 
@@ -52,7 +48,11 @@ const originalBodySystemsContent: Array<Omit<ContentItem, 'generalOverview' | 'i
     summary: 'In-depth review of the cardiovascular system, common ICU conditions, and nursing interventions, including advanced monitoring and pharmacology.',
     content: `## General Overview
 
-The cardiovascular system, composed of the heart, blood vessels, and blood, is responsible for transporting oxygen, nutrients, hormones, and cellular waste products throughout the body. Its efficient functioning is critical for maintaining tissue perfusion and cellular homeostasis, especially in critically ill patients.
+The cardiovascular system, also known as the circulatory system, is a vital organ system responsible for the transport of essential substances throughout the body. It is composed of three main components: the heart, an intricate network of blood vessels (arteries, veins, and capillaries), and blood. The heart, a powerful muscular pump, propels blood through these vessels, delivering oxygen, nutrients, hormones, and immune cells to all tissues and organs. Simultaneously, it facilitates the removal of metabolic waste products, such as carbon dioxide and urea, ensuring they are transported to excretory organs. The efficiency of this system is paramount for cellular respiration, energy production, and overall physiological balance.
+
+Arteries are thick-walled vessels that carry oxygenated blood away from the heart under high pressure (with the exception of the pulmonary artery, which carries deoxygenated blood to the lungs). Veins, on the other hand, are thinner-walled vessels that return deoxygenated blood to the heart (except for the pulmonary veins, which carry oxygenated blood from the lungs). Capillaries form a vast network of microscopic vessels connecting arteries and veins; their thin walls are crucial for the exchange of gases, nutrients, and waste products between the blood and the body's tissues. Blood itself is a complex fluid tissue, containing erythrocytes (red blood cells) for oxygen transport via hemoglobin, leukocytes (white blood cells) for immune defense against pathogens, thrombocytes (platelets) essential for hemostasis and blood clotting, and plasma—the liquid matrix carrying various proteins, electrolytes, hormones, and clotting factors.
+
+Maintaining cardiovascular homeostasis, which includes adequate blood pressure, cardiac output (the volume of blood pumped by the heart per minute), and sufficient tissue perfusion, is absolutely critical for survival and organ function. In the Intensive Care Unit (ICU), a significant number of patients suffer from conditions that directly or indirectly compromise cardiovascular function. These conditions can range from acute myocardial infarctions (heart attacks), severe heart failure, various forms of shock (cardiogenic, septic, hypovolemic), and life-threatening arrhythmias. Therefore, a comprehensive and profound understanding of cardiovascular physiology, pathophysiology, advanced hemodynamic monitoring techniques, and relevant pharmacology is paramount for critical care nurses to effectively assess, manage, and support these high-acuity patients. Therapeutic interventions in the ICU often involve a complex interplay of fluid management, administration of vasoactive medications to support blood pressure, antiarrhythmic drugs, and mechanical circulatory support when necessary.
 
 ## In-Depth ICU Considerations
 
@@ -140,7 +140,11 @@ The electrocardiogram (ECG/EKG) records this electrical activity.
     summary: 'Comprehensive guide to respiratory care, including advanced ventilation, ARDS management, and airway adjuncts.',
     content: `## General Overview
 
-The respiratory system is responsible for gas exchange, supplying the body with oxygen and removing carbon dioxide. It includes the upper airways (nose, pharynx, larynx) and lower airways (trachea, bronchi, bronchioles), terminating in the alveoli where gas exchange with the pulmonary capillaries occurs.
+The respiratory system is fundamental to life, primarily responsible for the intricate process of gas exchange: supplying vital oxygen (O2) to the body's tissues and efficiently removing carbon dioxide (CO2), a primary metabolic waste product. This system is structurally divided into the upper airways (nasal cavity, pharynx, larynx), which warm, filter, and humidify incoming air, and the lower airways (trachea, bronchi, bronchioles), which serve as conduits for air to reach the alveoli. The alveoli are millions of tiny, thin-walled air sacs within the lungs; it is here, across the delicate alveolar-capillary membrane, that the crucial exchange of oxygen from inhaled air into the blood and carbon dioxide from the blood into exhaled air occurs. This exchange is driven by differences in partial pressures of these gases.
+
+The mechanics of breathing, or ventilation, involve the coordinated action of the diaphragm (a large, dome-shaped muscle at the base of the chest) and the intercostal muscles (located between the ribs). Contraction of these muscles expands the thoracic cavity, decreasing intrapulmonary pressure and causing air to flow into the lungs (inhalation). Relaxation allows the chest to recoil, increasing intrapulmonary pressure and forcing air out (exhalation). Effective oxygenation of the blood and removal of CO2 depend on several factors: adequate ventilation (airflow), sufficient perfusion (blood flow) of the pulmonary capillaries surrounding the alveoli, and unimpeded diffusion of gases across the alveolar-capillary membrane. The respiratory system also plays a significant role in maintaining the body's acid-base balance by regulating the concentration of CO2 in the blood, which in turn influences pH levels.
+
+In the Intensive Care Unit (ICU), respiratory compromise is a frequent and often critical issue, posing significant challenges to patient management. A multitude of conditions such as pneumonia (infection of the lungs), Acute Respiratory Distress Syndrome (ARDS - a severe form of lung injury), exacerbations of chronic obstructive pulmonary disease (COPD), pulmonary embolism (blockage of pulmonary arteries), and thoracic trauma can severely impair gas exchange, significantly increase the work of breathing, and ultimately lead to respiratory failure. Critical care nurses must therefore be highly adept at performing comprehensive respiratory assessments, accurately interpreting diagnostic data (such as arterial blood gases (ABGs) and chest imaging), proficiently managing artificial airways (like endotracheal tubes and tracheostomies), and understanding the complex principles of mechanical ventilation and various oxygen delivery therapies.
 
 ## In-Depth ICU Considerations
 
@@ -234,7 +238,11 @@ Diffuse inflammatory lung injury leading to hypoxemia and stiff lungs.
     summary: 'Focus on advanced neurological assessments, ICP/CPP management, stroke, TBI, and seizure care in the ICU.',
     content: `## General Overview
 
-The neurological system, comprising the brain, spinal cord, and peripheral nerves, is the body's command center. It controls thought, movement, sensation, and vital autonomic functions. Neurological dysfunction in the ICU can be primary (e.g., stroke, TBI) or secondary to other critical illnesses (e.g., sepsis-associated encephalopathy).
+The neurological system serves as the body's intricate command and control center, orchestrating a vast array of functions including thoughts, emotions, learning, memory, voluntary and involuntary movements, sensations, and the regulation of essential autonomic processes like breathing, heart rate, and digestion. It is broadly divided into two main parts: the Central Nervous System (CNS) and the Peripheral Nervous System (PNS). The CNS, comprising the brain and spinal cord, acts as the primary processing and integration hub. The brain, a highly complex organ, is responsible for higher cognitive functions (such as reasoning, problem-solving, and language), processing sensory information from the environment, initiating and coordinating movement, and maintaining overall bodily homeostasis. The spinal cord, a long bundle of nerve tissue extending from the brain, serves as the main conduit for transmitting nerve signals between the brain and the rest of the body, and also controls reflexes.
+
+The Peripheral Nervous System (PNS) includes all the nerves that branch out from the CNS to connect it to limbs, organs, and other body parts. The PNS is further subdivided into the somatic nervous system, which controls voluntary muscle movements and relays sensory information, and the autonomic nervous system (ANS). The ANS unconsciously regulates vital visceral functions such as heart rate, blood pressure, digestion, respiratory rate, and glandular secretions. The ANS itself has two main branches: the sympathetic nervous system (often associated with the "fight or flight" response) and the parasympathetic nervous system (associated with "rest and digest" functions).
+
+In the Intensive Care Unit (ICU), neurological dysfunction is a common and serious concern. It can be the primary reason for admission, as seen in patients with acute ischemic or hemorrhagic stroke, traumatic brain injury (TBI), status epilepticus (prolonged seizures), meningitis, or encephalitis. Alternatively, neurological complications can arise secondary to other critical illnesses, such as sepsis-associated encephalopathy, hypoxic-ischemic brain injury following cardiac arrest, or metabolic encephalopathies due to organ failure (e.g., hepatic or uremic encephalopathy). Continuous and astute neurological assessment, including vigilant monitoring of level of consciousness (using tools like the Glasgow Coma Scale), pupillary responses, motor function, cranial nerve integrity, and, when indicated, intracranial pressure (ICP), is crucial for the early detection of deterioration and for guiding timely interventions. The primary goals in managing critically ill neurological patients often revolve around protecting the brain from secondary injury, optimizing cerebral perfusion and oxygenation, and managing seizures or increased intracranial pressure.
 
 ## In-Depth ICU Considerations
 
@@ -303,7 +311,11 @@ ICP reflects pressure within the skull. Normal ICP: 5-15 mmHg. Sustained ICP >20
     summary: 'Overview of renal physiology, acute kidney injury (AKI) management, continuous renal replacement therapy (CRRT), and electrolyte imbalances in the ICU.',
     content: `## General Overview
 
-The renal system, consisting of the kidneys, ureters, bladder, and urethra, plays a vital role in maintaining homeostasis. Its primary functions include filtering waste products from the blood, regulating fluid volume and electrolyte balance, controlling acid-base balance, and producing hormones involved in blood pressure regulation (renin) and red blood cell production (erythropoietin).
+The renal system, often referred to as the urinary system, is a critical regulatory and excretory system in the body. It is primarily composed of two kidneys, two ureters, the bladder, and the urethra. The kidneys are the main organs of this system, acting as highly sophisticated and efficient filters that process approximately 180 liters of blood daily. Their fundamental and most well-known role is to maintain homeostasis by filtering metabolic waste products—such as urea (from protein metabolism), creatinine (from muscle metabolism), and uric acid (from nucleic acid metabolism)—from the blood and excreting them from the body in the form of urine. This filtration process is vital for preventing the accumulation of toxic substances.
+
+Beyond simple waste excretion, the renal system meticulously regulates several critical aspects of the body's internal environment. This includes maintaining fluid volume by adjusting water reabsorption, controlling electrolyte concentrations (including sodium, potassium, calcium, phosphate, and magnesium) through selective reabsorption or secretion processes in the nephron tubules, and ensuring acid-base balance (pH) by reabsorbing bicarbonate and secreting hydrogen ions. Furthermore, the kidneys have vital endocrine functions: they produce renin, an enzyme crucial for blood pressure regulation via the renin-angiotensin-aldosterone system (RAAS); erythropoietin, a hormone that stimulates red blood cell production in the bone marrow, thus preventing anemia; and they are responsible for converting inactive Vitamin D into its active form (calcitriol), which is essential for calcium absorption from the gut and overall bone health. The nephron is the microscopic functional unit of the kidney, with each kidney containing about a million nephrons, where the complex processes of glomerular filtration, tubular reabsorption, and tubular secretion occur. Glomerular Filtration Rate (GFR), a measure of how much blood passes through the glomeruli each minute, is a key indicator of overall kidney function.
+
+In the Intensive Care Unit (ICU) setting, acute kidney injury (AKI)—a rapid decline in kidney function—is a common and serious complication that significantly impacts patient morbidity and mortality. AKI can result from various causes prevalent in critical illness, such as sepsis, shock, major surgery, nephrotoxic medications, or direct kidney trauma. A thorough understanding of renal physiology, the pathophysiology of AKI, and principles of fluid and electrolyte balance is essential for critical care nurses. This knowledge enables them to implement appropriate management strategies, including precise fluid and electrolyte management, careful avoidance or dose adjustment of nephrotoxic agents, and adeptly supporting patients undergoing renal replacement therapies like continuous renal replacement therapy (CRRT) or intermittent hemodialysis.
 
 ## In-Depth ICU Considerations
 
@@ -370,7 +382,11 @@ Preferred RRT modality for hemodynamically unstable ICU patients.
     summary: 'Covers endocrine emergencies like DKA, HHS, thyroid storm, adrenal crisis, and management of glycemic control in critically ill patients.',
     content: `## General Overview
 
-The endocrine system consists of glands that produce and secrete hormones, which are chemical messengers regulating a wide array of bodily functions. These include metabolism, growth and development, stress response, sexual function, sleep, and mood. In critical care, acute disturbances of this system, such as diabetic emergencies or thyroid/adrenal crises, can be life-threatening.
+The endocrine system is a complex network of glands and organs that produce and secrete hormones. These hormones are chemical messengers that travel through the bloodstream to target cells and organs located throughout the body, regulating a vast array of critical physiological processes. Unlike the nervous system, which provides rapid, short-term electrical control, the endocrine system typically governs slower, more sustained regulatory activities necessary for long-term homeostasis and development. Key functions managed by this intricate system include metabolism (controlling how the body utilizes and stores energy from food), growth and development from infancy to adulthood, tissue function and repair, the body's response to stress (both physical and psychological), fluid and electrolyte balance, sexual function and reproduction, sleep-wake cycles, and mood regulation.
+
+Major endocrine glands include the pituitary gland (often called the "master gland" due to its role in controlling other endocrine glands), the thyroid gland (regulating metabolism), parathyroid glands (controlling calcium levels), adrenal glands (producing stress hormones like cortisol and adrenaline, as well as aldosterone for salt/water balance), and the pancreas (which has both endocrine functions, such as secreting insulin and glucagon to regulate blood glucose levels, and exocrine functions related to digestion). The gonads (ovaries in females and testes in males) are also key endocrine glands, producing sex hormones. These glands synthesize and release specific hormones in response to various internal and external stimuli. Hormone secretion is often meticulously regulated by intricate feedback loops, primarily negative feedback, which help maintain stable internal conditions (homeostasis). For instance, when blood glucose rises after a meal, the pancreas releases insulin, which promotes glucose uptake by cells, thereby lowering blood glucose; this drop in glucose then signals the pancreas to reduce insulin secretion.
+
+In critical care settings, patients may experience acute and severe dysregulation of the endocrine system. This can occur due to their underlying critical illness (e.g., sepsis-induced adrenal insufficiency), trauma, major surgery, or as a side effect of medications (e.g., steroid-induced hyperglycemia). Endocrine emergencies such as Diabetic Ketoacidosis (DKA), Hyperosmolar Hyperglycemic State (HHS), thyroid storm (severe hyperthyroidism), myxedema coma (severe hypothyroidism), and adrenal crisis (acute adrenal insufficiency) are life-threatening conditions that require prompt recognition and highly specific, often complex, management protocols. Furthermore, maintaining appropriate glycemic control is a significant aspect of ICU care for almost all patients, as stress-induced hyperglycemia is a common phenomenon and has been associated with adverse outcomes, including increased infection risk and mortality. Critical care nurses must be knowledgeable about these conditions, their presentations, and their management.
 
 ## In-Depth ICU Considerations
 
@@ -480,7 +496,11 @@ Deficiency of ADH action, either due to decreased ADH secretion (Central DI) or 
     summary: 'Management of GI bleeding, pancreatitis, liver failure, bowel obstruction, and nutritional support in critically ill patients.',
     content: `## General Overview
 
-The gastrointestinal (GI) system is responsible for the digestion of food, absorption of nutrients, and elimination of waste products. It extends from the mouth to the anus and includes organs like the esophagus, stomach, small intestine, large intestine, liver, gallbladder, and pancreas. In the ICU, GI dysfunction is common and can range from stress ulceration and ileus to life-threatening conditions like GI bleeding, pancreatitis, or liver failure.
+The gastrointestinal (GI) system, also commonly referred to as the digestive system, is a long, complex, and continuous tube that extends from the mouth (oral cavity) to the anus. Its primary and overarching functions are the mechanical and chemical digestion of food into smaller, absorbable molecules, the subsequent absorption of these vital nutrients (such as carbohydrates, proteins, fats, vitamins, and minerals) and water into the bloodstream and lymphatic system, and ultimately, the elimination of indigestible waste products (feces) from the body. This multifaceted system includes several major organs arranged sequentially: the esophagus (a muscular tube connecting the pharynx to the stomach), the stomach (a J-shaped organ responsible for initial protein digestion and food storage), the small intestine (a long, coiled tube divided into three parts: the duodenum, jejunum, and ileum, where most digestion and nutrient absorption occurs), and the large intestine (comprising the cecum, colon, rectum, and anal canal, primarily responsible for water absorption and formation of feces). Accessory organs such as the liver (which produces bile essential for fat digestion and performs numerous metabolic functions), the gallbladder (which stores and concentrates bile), and the pancreas (which secretes digestive enzymes and bicarbonate into the small intestine, as well as hormones like insulin and glucagon) also play crucial, indispensable roles by producing and secreting enzymes, bile, hormones, and other substances necessary for efficient digestion and nutrient metabolism.
+
+The GI tract possesses a remarkable and highly specialized mucosal barrier. This barrier not only facilitates the complex processes of digestion and absorption but also serves a critical protective function, defending the body from harmful pathogens (bacteria, viruses, parasites), toxins, and antigens present within the gut lumen. This barrier integrity, along with the gut-associated lymphoid tissue (GALT)—a significant component of the body's immune system located along the GI tract—is vital for maintaining immune homeostasis and preventing systemic infections.
+
+In the Intensive Care Unit (ICU), patients are frequently susceptible to various forms of GI dysfunction due to the severity of their illness, underlying conditions, medications, or the stress response to critical illness itself. This dysfunction can manifest in numerous ways, including impaired motility (e.g., ileus, which is a lack of intestinal movement; or gastroparesis, which is delayed stomach emptying), stress-related mucosal injury leading to potentially life-threatening GI bleeding, malabsorption of nutrients, or more severe and acute conditions such as acute pancreatitis (inflammation of the pancreas), acute liver failure, bowel obstruction, or intestinal ischemia (insufficient blood flow to the intestines). Nutritional support, often administered via enteral routes (feeding directly into the GI tract), is a cornerstone of ICU care for most patients, and a functional GI tract is highly preferred for this purpose as it helps maintain gut integrity and function. Critical care nurses play a significant and multifaceted role in assessing GI function, managing a wide array of GI-related complications, administering specialized nutritional therapies, and monitoring for adverse effects.
 
 ## In-Depth ICU Considerations
 
@@ -607,7 +627,11 @@ Metabolic derangements that occur when nutrition is reintroduced after a period 
     summary: 'Focus on common hematologic issues in the ICU, including anemia, thrombocytopenia, coagulopathies, DIC, and transfusion reactions.',
     content: `## General Overview
 
-The hematologic system comprises blood, blood cells (red blood cells, white blood cells, platelets), blood proteins (e.g., clotting factors, albumin), and the organs responsible for their production and regulation (bone marrow, spleen, lymph nodes, liver). In critically ill patients, derangements of this system are common and can significantly impact oxygen delivery, hemostasis, and immune function.
+The hematologic system is integral to overall body function, encompassing the blood itself, its various cellular components, and the organs and tissues responsible for its production (hematopoiesis) and regulation. Blood is a highly specialized connective tissue that circulates throughout the body, performing numerous vital functions. It is primarily composed of red blood cells (erythrocytes), which contain hemoglobin responsible for oxygen transport from the lungs to tissues and carbon dioxide transport back to the lungs; white blood cells (leukocytes), which are diverse cells crucial for immune defense against pathogens and foreign substances; and platelets (thrombocytes), which are small cell fragments essential for hemostasis (the process of blood clotting to stop bleeding). These cellular components are suspended in plasma, a complex fluid matrix primarily made of water, but also containing electrolytes, a wide array of proteins (such as albumin for osmotic balance, globulins for immune function and transport, and critical clotting factors like fibrinogen), hormones, nutrients (glucose, amino acids, lipids), and waste products.
+
+Key organs and tissues are involved in the hematologic system. The bone marrow, found within the cavities of larger bones, is the primary site of hematopoiesis, where all blood cells originate from hematopoietic stem cells. The spleen plays a significant role in filtering blood, removing old or damaged red blood cells, recycling iron, and storing platelets and white blood cells; it also has important immune functions. Lymph nodes, part of the lymphatic and immune systems, filter lymph fluid and house lymphocytes. The liver is crucial for synthesizing many essential plasma proteins, including most clotting factors and albumin, and it also plays a role in clearing waste products and metabolizing substances related to blood cell breakdown.
+
+In critically ill patients, derangements of the hematologic system are frequently encountered and can be life-threatening, significantly complicating their clinical course. These hematologic abnormalities may include anemia (a deficiency in red blood cells or hemoglobin, leading to impaired oxygen delivery to tissues), thrombocytopenia (a low platelet count, increasing the risk of bleeding), various coagulopathies (disorders of the clotting cascade that can lead to either excessive bleeding or inappropriate thrombosis), or thrombotic disorders (conditions predisposing to clot formation). Severe conditions like Disseminated Intravascular Coagulation (DIC) represent a catastrophic dysregulation of the entire hemostasis system, characterized by widespread clotting and subsequent bleeding due to consumption of clotting factors and platelets. Nurses in the ICU are pivotal in closely monitoring hematologic parameters (e.g., complete blood count, coagulation profiles), administering blood products safely and appropriately, managing anticoagulation therapy, and diligently recognizing early signs of bleeding or thrombosis to facilitate timely intervention.
 
 ## In-Depth ICU Considerations
 
@@ -726,7 +750,13 @@ A complex, life-threatening syndrome characterized by systemic activation of coa
     summary: 'Overview of the immune response, sepsis pathophysiology, recognition (SIRS, qSOFA, SOFA), and management bundles in critical care.',
     content: `## General Overview
 
-The immune system is a complex network of cells, tissues, and organs that work together to defend the body against pathogens (like bacteria, viruses, fungi, parasites) and abnormal cells (like cancer). It involves innate (non-specific, rapid first-line defense) and adaptive (specific, memory-based, slower to develop) responses. In critical illness, particularly sepsis, dysregulation of the immune system plays a central role in pathogenesis and outcomes.
+The immune system is an extraordinarily complex and sophisticated defense network that protects the body against a vast array of pathogens, including bacteria, viruses, fungi, and parasites, as well as abnormal or cancerous cells. It functions as a highly coordinated biological surveillance system, constantly distinguishing self from non-self (foreign invaders or altered self-cells). The immune system comprises a diverse collection of specialized cells (such as various types of lymphocytes like B cells and T cells, macrophages, neutrophils, dendritic cells, and natural killer cells), primary and secondary lymphoid tissues and organs (like bone marrow, thymus, lymph nodes, spleen, tonsils, and gut-associated lymphoid tissue), and a plethora of soluble molecules (including antibodies, cytokines, chemokines, and complement proteins).
+
+The immune response is broadly categorized into two interconnected and cooperative branches:
+1.  **Innate (or Non-specific) Immunity**: This is the body's first and immediate line of defense, providing a rapid, pre-existing, and non-specific response to common features of pathogens or cellular damage. It includes physical barriers (such as intact skin and mucous membranes), chemical barriers (like stomach acid, lysozyme in tears, and antimicrobial peptides), and cellular components. Key cellular players in innate immunity include phagocytes (macrophages and neutrophils) that engulf and destroy pathogens, natural killer (NK) cells that target virally infected or cancerous cells, and mast cells that release inflammatory mediators. The complement system, a cascade of plasma proteins, also plays a crucial role by directly lysing pathogens, opsonizing them for phagocytosis, and promoting inflammation. The inflammatory response, characterized by redness, heat, swelling, and pain, is a hallmark feature of innate immunity, designed to recruit immune cells and molecules to the site of infection or injury.
+2.  **Adaptive (Acquired or Specific) Immunity**: This system provides a highly specific and targeted response that develops over a longer period (days to weeks) after initial exposure to a particular pathogen or antigen (a molecule recognized by the immune system). The adaptive immune response is characterized by its remarkable specificity for individual antigens and by immunological memory, which allows for a faster, stronger, and more effective response upon subsequent encounters with the same pathogen. Key players in adaptive immunity are lymphocytes: T lymphocytes (T cells), which mature in the thymus and include helper T cells (CD4+) that coordinate immune responses and cytotoxic T cells (CD8+) that directly kill infected or cancerous cells; and B lymphocytes (B cells), which mature in the bone marrow and, upon activation, differentiate into plasma cells that produce and secrete antibodies (immunoglobulins). Antibodies are proteins that specifically bind to antigens, neutralizing them or marking them for destruction.
+
+In critical illness, the immune system is often profoundly affected, leading to a state of dysregulation. Sepsis, defined as a life-threatening organ dysfunction caused by a dysregulated host response to infection, vividly exemplifies this. In sepsis, an initial, often overwhelming, hyperinflammatory state (sometimes referred to as a "cytokine storm") can lead to widespread endothelial damage, microcirculatory failure, and multiple organ dysfunction. Paradoxically, this can be followed or accompanied by a period of profound immunosuppression or "immunoparalysis," characterized by impaired function of both innate and adaptive immune cells. This immunosuppressive phase increases the patient's susceptibility to secondary or opportunistic infections and contributes to poor outcomes. Understanding these complex immune dynamics and the interplay between pro-inflammatory and anti-inflammatory responses is vital for effectively managing critically ill patients and developing targeted immunomodulatory therapies.
 
 ## In-Depth ICU Considerations
 
@@ -831,7 +861,11 @@ Defined as a single oral temperature ≥38.3°C (101°F) or a temperature ≥38.
     summary: 'Focuses on rhabdomyolysis, compartment syndrome, and mobility/VTE prophylaxis in critically ill patients.',
     content: `## General Overview
 
-The musculoskeletal system, comprising bones, joints, muscles, tendons, and ligaments, provides structural support, facilitates movement, protects internal organs, and stores minerals. While often not the primary reason for ICU admission, musculoskeletal issues can be significant complications of critical illness or trauma, impacting recovery, mobility, and quality of life.
+The musculoskeletal system provides the essential structural framework, support, stability, and means of movement for the human body. It is a complex and integrated system comprising bones, which form the rigid skeleton providing shape and leverage; joints (articulations), where bones connect and allow for varying degrees of movement; skeletal muscles, which are under voluntary control and generate force to produce movement by contracting and pulling on bones; tendons, which are tough, fibrous cords that connect muscles to bones, transmitting the force of muscle contraction; and ligaments, which are strong, fibrous bands that connect bones to other bones, stabilizing joints and limiting excessive movement. Cartilage, a resilient connective tissue, covers the ends of bones at joints, reducing friction and absorbing shock.
+
+Beyond its primary roles in locomotion and structural integrity, the musculoskeletal system performs other vital functions. It serves to protect delicate internal organs; for instance, the rib cage shields the heart and lungs, and the skull encases and protects the brain. Bones also act as a major reservoir for essential minerals, particularly calcium and phosphorus, releasing them into the bloodstream as needed to maintain physiological balance. Furthermore, the red bone marrow, housed within certain bones, is the primary site of blood cell production (hematopoiesis), including red blood cells, white blood cells, and platelets. Skeletal muscles are also metabolically active, playing a crucial role in glucose uptake and utilization (thus influencing blood sugar levels), and in generating body heat through processes like shivering. While skeletal muscle is under voluntary control, other muscle types include smooth muscle (found in the walls of internal organs and blood vessels, operating involuntarily) and cardiac muscle (the specialized muscle of the heart, also involuntary).
+
+While primary musculoskeletal disorders are not always the direct cause for admission to the Intensive Care Unit (ICU)—except in cases of severe trauma (e.g., multiple fractures, crush injuries), major orthopedic surgery, or acute systemic conditions like severe rhabdomyolysis—the musculoskeletal system is profoundly affected by critical illness and its management. Prolonged immobility, a common consequence of critical illness and sedation, can lead to significant musculoskeletal complications. These include ICU-acquired weakness (ICUAW), a debilitating condition encompassing both muscle weakness (myopathy) and nerve dysfunction (neuropathy), rapid muscle atrophy (loss of muscle mass), joint contractures (stiffness and limited range of motion), an increased risk of pressure injuries (bedsores), and a higher likelihood of developing venous thromboembolism (VTE), such as deep vein thrombosis (DVT) and pulmonary embolism (PE). Specific conditions like rhabdomyolysis (rapid breakdown of muscle tissue) and compartment syndrome (increased pressure within a muscle compartment compromising circulation) are also critical musculoskeletal issues managed in the ICU. Therefore, early mobilization, physical and occupational therapy, and diligent preventative care are crucial components of comprehensive ICU management to mitigate these adverse effects and improve long-term functional outcomes for patients.
 
 ## In-Depth ICU Considerations
 
@@ -949,7 +983,11 @@ Critically ill patients are at very high risk for Deep Vein Thrombosis (DVT) and
     summary: 'Management of skin integrity, pressure injuries, burns, and common dermatological conditions in the ICU.',
     content: `## General Overview
 
-The integumentary system, consisting of the skin, hair, nails, and associated glands (sweat, sebaceous), is the body's largest organ. It serves as a primary protective barrier against environmental insults, pathogens, and dehydration. It also plays crucial roles in temperature regulation, sensation, vitamin D synthesis, and excretion of certain wastes. In critically ill patients, skin integrity is frequently compromised due to immobility, poor perfusion, malnutrition, edema, and medical devices, leading to increased risk of pressure injuries, infections, and delayed healing.
+The integumentary system is the body's largest and most externally visible organ system. It is primarily composed of the skin, which forms a continuous protective covering, along with its various appendages. These appendages include hair (found over most of the body surface), nails (on the fingers and toes), and several types of glands, such as sweat glands (eccrine and apocrine, involved in thermoregulation and excretion) and sebaceous glands (which produce sebum, an oily substance that lubricates the skin and hair). The skin itself is a complex, multi-layered structure consisting of the outermost epidermis (a stratified squamous epithelium that provides the primary barrier), the underlying dermis (a dense connective tissue layer containing blood vessels, nerves, hair follicles, and glands), and the deeper subcutaneous tissue or hypodermis (composed mainly of adipose tissue and loose connective tissue, providing insulation, cushioning, and energy storage).
+
+This extensive system serves a multitude of critical and diverse functions essential for survival and interaction with the environment. Its foremost role is protection: the skin acts as a formidable physical barrier against mechanical injury (abrasions, impacts), invasion by pathogens (such as bacteria, viruses, and fungi), damage from harmful ultraviolet (UV) radiation from the sun, and excessive water loss (dehydration). The skin also plays a vital role in thermoregulation, helping to maintain core body temperature by controlling heat loss through mechanisms like sweating (evaporative cooling) and the vasodilation (widening) or vasoconstriction (narrowing) of cutaneous blood vessels. It is a major sensory organ, equipped with a vast network of diverse sensory receptors that detect stimuli such as touch, pressure, vibration, pain, and temperature, allowing us to perceive and interact with our environment. Furthermore, the skin is involved in important metabolic functions, such as the synthesis of Vitamin D (cholecalciferol) when exposed to UVB radiation from sunlight; Vitamin D is crucial for calcium absorption and bone health. The skin also participates in the excretion of certain waste products like urea, salts, and water through sweat, albeit to a lesser extent than the kidneys.
+
+In the Intensive Care Unit (ICU), the integrity of the integumentary system is often under significant threat and can be easily compromised. Critically ill patients are particularly vulnerable due to a confluence of factors commonly present in this setting. These include prolonged immobility (leading to sustained pressure on bony prominences), impaired tissue perfusion (due to shock states or vasoactive medications), malnutrition or inadequate nutritional support, edema (swelling), the presence and use of various medical devices (such as endotracheal tubes, catheters, monitoring lines, and external fixation devices), altered sensory perception (due to sedation or underlying neurological conditions), and incontinence. These factors dramatically increase the risk of developing pressure injuries (formerly known as pressure ulcers or bedsores), skin tears, device-related injuries, secondary skin infections, and delayed wound healing. Such complications can significantly contribute to increased patient morbidity, prolonged hospital and ICU length of stay, increased healthcare costs, and substantial patient discomfort and pain. Therefore, vigilant skin assessment, proactive preventative care, and appropriate management of any skin breakdown are essential and integral components of comprehensive ICU nursing care.
 
 ## In-Depth ICU Considerations
 
@@ -1038,7 +1076,7 @@ Major burns are complex traumatic injuries requiring specialized ICU care in a b
 *   **Skin Tears**: Traumatic wounds caused by shear, friction, and/or blunt force resulting in separation of skin layers. Common in elderly or those with fragile skin. Gentle handling, proper wound care, protective dressings.`,
     categoryType: 'Body System',
     keywordsForImage: 'skin layers anatomy dermatology',
-  },
+  }
 ];
 
 const originalTopicsContent: Array<Omit<ContentItem, 'generalOverview' | 'inDepthConsiderations'> & { content: string }> = [
@@ -1049,1519 +1087,506 @@ const originalTopicsContent: Array<Omit<ContentItem, 'generalOverview' | 'inDept
     summary: 'Deep dive into hemodynamic principles, monitoring techniques, interpretation, and therapeutic interventions in critical care.',
     content: `## General Overview
 
-Hemodynamics is the study of the physical principles governing blood flow within the circulatory system. In critical care, a thorough understanding of hemodynamics is essential for assessing cardiovascular function, diagnosing shock states, guiding therapeutic interventions (like fluid administration and vasoactive drug use), and optimizing tissue perfusion and oxygen delivery to vital organs.
+Hemodynamics refers to the study of blood flow and the physical principles governing the circulation of blood within the cardiovascular system. It encompasses the forces that drive blood through the body's intricate network of arteries, veins, and capillaries, as well as the factors that oppose this flow. Understanding hemodynamics is absolutely fundamental in critical care because it provides insights into the adequacy of tissue perfusion—the delivery of oxygen and nutrients to cells—which is essential for organ function and survival. Key parameters used to describe and assess hemodynamics include blood pressure (arterial, venous, and pulmonary), cardiac output (the volume of blood pumped by the heart per minute), vascular resistance (the opposition to blood flow), and measures of cardiac preload (ventricular filling) and afterload (resistance the heart pumps against).
+
+In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic instability due to a variety of critical illnesses such as sepsis, shock (of various etiologies including cardiogenic, hypovolemic, distributive, or obstructive), heart failure, major trauma, or post-operative complications. Effective management of these patients relies heavily on the ability to accurately monitor, interpret, and manipulate hemodynamic variables. This involves not only non-invasive monitoring like blood pressure cuffs and clinical assessment but often necessitates invasive techniques such as arterial lines for continuous blood pressure measurement, central venous catheters for assessing central venous pressure (an indicator of right ventricular preload), and, in some cases, pulmonary artery catheters (PACs) for more comprehensive assessment of cardiac output, pulmonary pressures, and mixed venous oxygen saturation. The goal of hemodynamic management in the ICU is typically to optimize oxygen delivery to tissues, maintain adequate organ perfusion, and support cardiovascular function until the underlying condition can be resolved. This often involves a combination of fluid resuscitation, vasoactive medications (vasopressors to increase blood pressure, vasodilators to decrease resistance, and inotropes to improve cardiac contractility), and mechanical circulatory support if needed.
 
 ## In-Depth ICU Considerations
 
-### Key Hemodynamic Parameters & Their Determinants
+### Key Hemodynamic Parameters and Their Significance
 
-| Parameter                             | Formula / Normal Value                      | Description                                                                 | Key Determinants / Clinical Significance                                                                                                                            |
-|---------------------------------------|---------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Heart Rate (HR)**                   | Normal: 60-100 beats/min                    | Number of cardiac contractions per minute.                                  | Influenced by autonomic nervous system, medications, metabolic state. Tachycardia can ↓ diastolic filling time. Bradycardia can ↓ CO if SV doesn't compensate.          |
-| **Stroke Volume (SV)**                | Normal: 60-100 mL/beat                      | Volume of blood ejected by the ventricle with each heartbeat.               | Determined by **Preload, Afterload, and Contractility**.                                                                                                                |
-| **Cardiac Output (CO)**               | CO = HR x SV; Normal: 4-8 L/min             | Volume of blood pumped by the heart per minute.                             | Key indicator of overall cardiac function and blood delivery to tissues.                                                                                              |
-| **Cardiac Index (CI)**                | CI = CO / BSA; Normal: 2.5-4 L/min/m²       | CO adjusted for body surface area (BSA). Standardizes CO across different patient sizes. | More accurate for comparing cardiac function between individuals. CI <2.2 L/min/m² often indicates cardiogenic shock or severe hypoperfusion.                               |
-| **Mean Arterial Pressure (MAP)**      | MAP ≈ (SBP + 2*DBP)/3 or [(SBP-DBP)/3] + DBP; Normal: 70-105 mmHg  | Average arterial pressure during a cardiac cycle; represents organ perfusion pressure. | Target >65 mmHg in most shock states. MAP is determined by CO and SVR (MAP ≈ CO x SVR).                                                                               |
-| **Central Venous Pressure (CVP)**     | Normal: 2-8 mmHg                            | Pressure in the right atrium/vena cava; approximates RV end-diastolic pressure (RV preload). | Static measure; poor predictor of fluid responsiveness alone. Trends and context are important. Influenced by intravascular volume, venous tone, intrathoracic pressure, RV compliance/function. |
-| **Pulmonary Artery Pressure (PAP)**   | Systolic (PASP): 15-30 mmHg, Diastolic (PADP): 8-15 mmHg, Mean (MPAP): 10-20 mmHg | Pressures within the pulmonary artery.                                        | PASP reflects RV systolic function & PVR. PADP often approximates PAWP and LA pressure (LV preload) in absence of lung disease/mitral stenosis. ↑ in pulmonary HTN, LV failure, PE. |
-| **Pulmonary Artery Wedge Pressure (PAWP/PCWP)** | Normal: 6-12 mmHg                         | Pressure measured by occluding a small pulmonary artery branch; indirectly reflects left atrial pressure and LV end-diastolic pressure (LV preload). | Requires PAC. Interpreted cautiously (Zone 3 lung conditions needed for accuracy). ↑ in LV failure, mitral stenosis/regurgitation, hypervolemia. ↓ in hypovolemia.          |
-| **Systemic Vascular Resistance (SVR)**| SVR = [(MAP - CVP) / CO] x 80; Normal: 800-1200 dynes·s/cm⁻⁵ | Resistance the left ventricle must overcome to eject blood (LV afterload).    | ↑ in hypovolemic/cardiogenic shock, vasoconstrictor use. ↓ in distributive shock (sepsis, anaphylaxis), vasodilator use.                                           |
-| **Pulmonary Vascular Resistance (PVR)**| PVR = [(MPAP - PAWP) / CO] x 80; Normal: <250 dynes·s/cm⁻⁵ | Resistance the right ventricle must overcome to eject blood into pulmonary circulation (RV afterload). | ↑ in pulmonary HTN, hypoxia, acidosis, ARDS, PE.                                                                                                                      |
-| **Mixed Venous Oxygen Saturation (SvO2)** | Normal: 60-80% (PAC sample)                 | Oxygen saturation of blood returning to the right heart from systemic circulation; reflects global balance between oxygen delivery (DO2) and oxygen consumption (VO2). | ↓ indicates ↑O2 extraction due to ↓DO2 (anemia, hypoxia, ↓CO) or ↑VO2 (fever, shivering, pain). ↑ may indicate ↓VO2 (sepsis maldistribution, cyanide) or ↑DO2.        |
-| **Central Venous Oxygen Saturation (ScvO2)** | Normal: >70% (CVC sample from SVC)          | Oxygen saturation from CVC in superior vena cava; surrogate for SvO2.         | Often used in early goal-directed therapy for sepsis. Values typically 2-5% higher than SvO2.                                                                         |
+| Parameter                        | Normal Range/Value                | Description                                                                                                  | Clinical Significance in ICU                                                                                                                                |
+|----------------------------------|-----------------------------------|--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Heart Rate (HR)**              | 60-100 bpm                        | Number of heartbeats per minute.                                                                             | Tachycardia can decrease filling time, increase myocardial O2 demand. Bradycardia can decrease CO.                                                              |
+| **Blood Pressure (BP)**          | Systolic <120, Diastolic <80 mmHg | Force exerted by blood against vessel walls.                                                                 | Hypertension or hypotension indicates various underlying issues. MAP is key for perfusion.                                                                      |
+| **Mean Arterial Pressure (MAP)** | 70-105 mmHg                       | Average arterial pressure during a single cardiac cycle. MAP = (SBP + 2*DBP)/3.                              | Crucial for organ perfusion. Target MAP >65 mmHg often used in shock states.                                                                                |
+| **Cardiac Output (CO)**          | 4-8 L/min                         | Volume of blood pumped by the heart per minute. CO = HR x Stroke Volume (SV).                                | Low CO indicates inadequate blood flow to meet tissue demands (e.g., shock, HF). High CO can be seen in early sepsis or hyperdynamic states.                  |
+| **Cardiac Index (CI)**           | 2.5-4.0 L/min/m²                  | CO adjusted for Body Surface Area (BSA). More precise measure of cardiac pump function relative to body size. | Similar significance to CO but normalized for patient size.                                                                                                   |
+| **Stroke Volume (SV)**           | 60-100 mL/beat                    | Volume of blood ejected by the left ventricle with each heartbeat. SV = EDV - ESV.                             | Affected by preload, afterload, and contractility. Low SV contributes to low CO.                                                                              |
+| **Stroke Volume Index (SVI)**    | 33-47 mL/beat/m²                  | SV adjusted for BSA.                                                                                         | Similar significance to SV but normalized.                                                                                                                  |
+| **Systemic Vascular Resistance (SVR)** | 800-1200 dynes·s/cm⁻⁵             | Resistance the left ventricle must overcome to eject blood into the systemic circulation (LV afterload).     | High SVR (vasoconstriction) increases workload on the heart (e.g., cardiogenic shock, hypovolemia). Low SVR (vasodilation) seen in distributive shock (e.g., sepsis). |
+| **Systemic Vascular Resistance Index (SVRI)** | 1970-2390 dynes·s/cm⁻⁵/m²     | SVR adjusted for BSA.                                                                                        | Similar significance to SVR but normalized.                                                                                                                  |
+| **Central Venous Pressure (CVP)**| 2-8 mmHg                          | Pressure in the vena cava near the right atrium. Reflects right atrial pressure and approximates RV preload. | High CVP can indicate fluid overload, RV failure, or increased intrathoracic pressure. Low CVP suggests hypovolemia. **Static measure, interpret with caution.** |
+| **Pulmonary Artery Pressure (PAP)** | Systolic: 15-30 mmHg, Diastolic: 8-15 mmHg, Mean: 10-20 mmHg | Pressure within the pulmonary artery.                                                                      | Elevated in pulmonary hypertension, LV failure, PE, ARDS.                                                                                                     |
+| **Pulmonary Artery Wedge Pressure (PAWP/PCWP)** | 6-12 mmHg                         | Pressure measured by inflating a balloon in a pulmonary artery branch, reflecting left atrial pressure (LV preload). | Elevated in LV failure, mitral stenosis/regurgitation, fluid overload. Low in hypovolemia. Requires PAC.                                                      |
+| **Pulmonary Vascular Resistance (PVR)** | <250 dynes·s/cm⁻⁵ (or <3 Wood units) | Resistance the right ventricle must overcome to eject blood into the pulmonary circulation (RV afterload).   | Elevated in pulmonary hypertension, PE, hypoxia, ARDS.                                                                                                      |
+| **Mixed Venous Oxygen Saturation (SvO2)** | 60-80%                            | Percentage of O2 bound to hemoglobin in blood returning to the right side of the heart (pulmonary artery).  | Reflects overall tissue oxygen extraction. Low SvO2 (<60%) suggests increased O2 extraction due to inadequate O2 delivery or increased O2 consumption. High SvO2 (>80%) can indicate decreased O2 extraction (e.g., sepsis, shunting, cyanide poisoning) or very high O2 delivery. Requires PAC. |
+| **Central Venous Oxygen Saturation (ScvO2)** | >70% (target in early sepsis)     | O2 saturation of blood in superior vena cava. Surrogate for SvO2. Measured via CVC.                        | Similar interpretation to SvO2 but generally slightly higher. Used to guide resuscitation in early septic shock.                                           |
 
-#### Determinants of Stroke Volume (SV)
-*   **Preload**: Ventricular end-diastolic volume (EDV) or stretch on myocardial fibers just before contraction.
-    *   *Frank-Starling Law*: Increased preload (to an optimal point) leads to increased force of contraction and thus increased SV. Beyond this point, overstretching can decrease SV (descending limb, rare in normal hearts but relevant in severe HF).
-    *   *Factors increasing preload*: Fluid administration, venoconstriction, bradycardia (longer filling time).
-    *   *Factors decreasing preload*: Hypovolemia (hemorrhage, dehydration), venodilation (e.g., nitrates, sepsis), diuretics, tachycardia (shorter filling time), positive pressure ventilation (↑intrathoracic pressure can ↓venous return).
-*   **Afterload**: Resistance or load against which the ventricle must contract to eject blood.
-    *   *For LV*: SVR, aortic impedance, blood viscosity, arterial stiffness.
-    *   *For RV*: PVR, pulmonary artery impedance.
-    *   *Factors increasing LV afterload*: Hypertension, aortic stenosis, vasopressors (e.g., Phenylephrine).
-    *   *Factors decreasing LV afterload*: Vasodilators (e.g., Nitroglycerin, Nitroprusside), sepsis (distributive shock), ACE inhibitors.
-*   **Contractility (Inotropy)**: Intrinsic strength and velocity of myocardial contraction, independent of preload and afterload.
-    *   *Assessment*: Difficult to measure directly; inferred from CI, SV, ejection fraction (via Echo), dP/dt (rate of pressure rise in LV).
-    *   *Factors increasing contractility (Positive Inotropes)*: Sympathetic stimulation (catecholamines like Epinephrine, Norepinephrine, Dopamine), Dobutamine, Milrinone, Digoxin, Calcium.
-    *   *Factors decreasing contractility (Negative Inotropes)*: Beta-blockers, calcium channel blockers, acidosis, hypoxia, myocardial ischemia/infarction, sepsis (myocardial depression), anesthetic agents.
+### Principles of Preload, Afterload, and Contractility
+*   **Preload**: The degree of ventricular stretch or muscle fiber length at the end of diastole (end-diastolic volume - EDV). Determined by venous return.
+    *   Frank-Starling Law: Increased preload (up to a point) leads to increased stroke volume.
+    *   Assessment: CVP (right heart), PAWP (left heart) - static measures. Dynamic measures (SVV, PPV, passive leg raise response) are better predictors of fluid responsiveness.
+*   **Afterload**: The resistance the ventricle must overcome to eject blood during systole.
+    *   Systemic Vascular Resistance (SVR) for the left ventricle.
+    *   Pulmonary Vascular Resistance (PVR) for the right ventricle.
+    *   Increased afterload decreases stroke volume (if contractility constant).
+*   **Contractility (Inotropy)**: The intrinsic ability of the cardiac muscle to shorten and develop force, independent of preload and afterload.
+    *   Difficult to measure directly. Inferred from SV, CO, ejection fraction, and response to inotropic drugs.
+    *   Increased contractility increases stroke volume.
 
-### Fluid Responsiveness Assessment
-Predicting whether a patient's CO/SV will increase significantly (typically >10-15%) in response to a fluid bolus. Static measures (CVP, PAWP) are poor predictors. Dynamic measures are preferred:
-*   **Passive Leg Raise (PLR)**: Patient moved from semi-recumbent to supine with legs raised to 45°. Creates a transient increase in venous return (autotransfusion of ~150-300mL). Positive if CO/SV (measured continuously) increases by 10-15%. Requires no arrhythmias, no spontaneous breathing for some CO monitors. Reversible.
-*   **Stroke Volume Variation (SVV) / Pulse Pressure Variation (PPV)**: Beat-to-beat variation in SV or pulse pressure during positive pressure mechanical ventilation. SVV/PPV >10-15% suggests fluid responsiveness.
-    *   *Requirements*: Controlled mechanical ventilation (no spontaneous breaths), regular sinus rhythm, tidal volume ≥8 mL/kg PBW, absence of right heart failure or severe intra-abdominal hypertension.
-*   **Respiratory Variation in IVC Diameter**: Echocardiographic assessment of inferior vena cava diameter changes with respiration. Greater collapsibility (>50% in spontaneous breathing, >12-18% distensibility in mechanical ventilation) suggests fluid responsiveness.
-*   **End-Expiratory Occlusion Test (EEOT)**: Brief (15-30s) occlusion of ventilator circuit at end-expiration. Prevents cyclic decrease in venous return caused by PPV. An increase in CO/pulse pressure by >5% suggests fluid responsiveness.
-*   **Mini-Fluid Challenge**: Small fluid bolus (e.g., 100-250 mL crystalloid over 5-10 min) with assessment of CO/SV response.
+### Fluid Responsiveness
+Predicting whether a patient will increase their stroke volume (and thus cardiac output) in response to a fluid bolus. Critical for guiding fluid therapy and avoiding fluid overload.
+*   **Static Measures (Poor Predictors)**: CVP, PAWP.
+*   **Dynamic Measures (Better Predictors in mechanically ventilated patients with no arrhythmias)**:
+    *   **Stroke Volume Variation (SVV)**: Variation in SV during the respiratory cycle. SVV >10-15% suggests fluid responsiveness. Requires arterial line and specific monitor.
+    *   **Pulse Pressure Variation (PPV)**: Variation in pulse pressure during the respiratory cycle. PPV >10-15% suggests fluid responsiveness. Requires arterial line.
+    *   **Passive Leg Raise (PLR)**: Transiently increases venous return (autotransfusion of ~300mL). A significant increase (e.g., >10-15%) in SV or CO after PLR suggests fluid responsiveness. Can be used in spontaneously breathing patients and those with arrhythmias. Requires continuous CO/SV monitoring.
+    *   **End-Expiratory Occlusion Test (EEOT)**: Brief (15-sec) ventilator hold at end-expiration. Increase in CO/SV by >5% suggests fluid responsiveness.
+    *   **Fluid Challenge**: Small bolus (e.g., 250-500mL crystalloid over 5-10 min) with assessment of SV/CO response.
 
-### Arterial Line Management & Waveform Analysis
-Provides continuous BP monitoring, MAP calculation, and easy access for ABGs/labs.
-*   **Site Selection**: Radial (most common), femoral, brachial, axillary, dorsalis pedis.
-*   **Transducer Setup**:
-    *   **Leveling**: Transducer at phlebostatic axis (4th intercostal space, mid-axillary line - approximates right atrial level). Re-level with significant patient position changes.
-    *   **Zeroing**: Expose transducer to atmospheric pressure and zero monitor. Perform at start of monitoring, with position changes, or if values suspect.
-    *   **Pressurized Flush System**: Maintain continuous flush (e.g., 3 mL/hr heparinized or non-heparinized saline) at 300 mmHg to ensure patency and accurate waveform.
-*   **Arterial Waveform Components & Interpretation**:
-    *   **Anacrotic Limb (Systolic Upstroke)**: Rapid rise in pressure as LV ejects blood. Slope reflects contractility and SVR. Steep = good contractility, low SVR. Slurred = poor contractility, high SVR.
-    *   **Systolic Peak Pressure (SPP)**: Highest point, represents peak systolic pressure.
-    *   **Dicrotic Notch**: Small notch on downstroke; signifies aortic valve closure and beginning of diastole. Should be clearly visible for accurate system.
-    *   **Diastolic Runoff**: Gradual decline in pressure as blood flows to periphery during diastole. Rate of decline reflects SVR. Rapid runoff = low SVR. Slow runoff = high SVR.
-    *   **Pulse Pressure (PP)**: SBP - DBP. Proportional to SV if arterial compliance is constant.
-*   **Square Wave Test (Dynamic Response Test / Fast Flush Test)**: Assesses system's ability to accurately reproduce physiological pressures. Activate fast flush device for 1-2 seconds.
-    *   **Optimal Response**: Sharp upstroke to flush pressure, clear plateau, rapid drop below baseline creating 1-2 distinct oscillations (rings) before returning to patient's baseline pressure tracing within 0.12 seconds. Indicates an accurately transmitting system.
-    *   **Overdamped Response**: Fewer than 1.5 oscillations, or a slurred, blunted return to baseline after flush. Waveform will underestimate SBP and overestimate DBP. Dicrotic notch may be absent or slurred.
-        *   *Causes*: Air bubbles in tubing/transducer, loose connections, kinks, blood clots in catheter, compliant tubing, low flush bag pressure, very soft tissues.
-        *   *Intervention*: Check system for and remove air/clots/kinks. Tighten connections. Ensure flush pressure is 300 mmHg. Use stiff, non-compliant tubing.
-    *   **Underdamped (Resonant) Response**: More than 2-3 sharp oscillations ("ringing" or "whip") after flush. Waveform will overestimate SBP and underestimate DBP. Systolic peaks appear exaggerated or "spiked."
-        *   *Causes*: Stiff/long tubing, excessive stopcocks, catheter movement ("catheter whip"), arteriosclerosis in patient, small catheter size, hypertension, tachycardia.
-        *   *Intervention*: Remove excess stopcocks/tubing. Use a damping device or add a male-to-male connector to reduce resonance. Ensure catheter is secure.
+### Types of Shock and Their Hemodynamic Profiles
 
-### Pulmonary Artery Catheter (PAC / Swan-Ganz Catheter)
-Provides comprehensive hemodynamic data: RA (CVP), RV, PA pressures (systolic, diastolic, mean), PAWP, CO (thermodilution or continuous), CI, SVR, PVR, and SvO2. Use has declined but still valuable in select complex patients (e.g., severe cardiogenic shock, RV failure, pulmonary HTN, post-cardiac surgery).
-*   **Waveform Progression during Insertion**:
-    *   **Right Atrium (RA)**: Low pressure (2-8 mmHg), similar to CVP, with 'a' (atrial contraction), 'c' (tricuspid valve closure), and 'v' (atrial filling) waves.
-    *   **Right Ventricle (RV)**: Pulsatile, sharp upstroke to RV systolic pressure (15-30 mmHg), rapid downstroke to near zero RV end-diastolic pressure (0-8 mmHg). **Risk of ventricular arrhythmias (VTach, PVCs) during passage through RV.**
-    *   **Pulmonary Artery (PA)**: Pulsatile waveform similar to arterial line but lower pressures (PASP 15-30, PADP 8-15 mmHg). Clear dicrotic notch indicates pulmonic valve closure.
-    *   **Pulmonary Artery Wedge Pressure (PAWP)**: Non-pulsatile, damped waveform (6-12 mmHg) reflecting mean left atrial pressure when balloon (at catheter tip) is inflated, occluding a small PA branch. Balloon should be inflated slowly with minimal air (max 1.5 mL) only for brief periods to obtain reading. Over-wedging (persistent inflation, migration into smaller vessel, or >1.5mL air) can cause PA rupture (rare but fatal).
+| Shock Type       | Preload (CVP/PAWP) | Afterload (SVR) | Contractility | Cardiac Output (CO) | Key Interventions                                                                                                  |
+|------------------|--------------------|-----------------|---------------|---------------------|--------------------------------------------------------------------------------------------------------------------|
+| **Hypovolemic**  | ↓↓↓                | ↑↑              | Normal/↑ (comp) | ↓↓↓                 | Volume resuscitation (crystalloids, blood products), control source of loss.                                         |
+| **Cardiogenic**  | ↑↑                 | ↑↑              | ↓↓↓           | ↓↓↓                 | Inotropes (Dobutamine), vasopressors if hypotensive (Norepinephrine), reduce afterload (vasodilators cautiously), mechanical support (IABP, Impella, ECMO), treat cause (e.g., MI). |
+| **Distributive** (e.g., Septic, Anaphylactic, Neurogenic) | ↓ or Normal        | ↓↓↓             | Normal/↑/↓ (septic cardiomyopathy) | Variable (↑ early sepsis, then ↓) | Septic: Fluids, vasopressors (Norepinephrine), antibiotics, source control. Anaphylactic: Epinephrine, fluids, antihistamines, steroids. Neurogenic: Fluids, vasopressors (often with alpha-agonist activity like Phenylephrine or Norepinephrine), Atropine for bradycardia. |
+| **Obstructive**  | ↑↑ (RV preload often very high) | ↑               | Normal (initially) | ↓↓↓                 | Relieve obstruction: PE (thrombolysis/embolectomy), Tamponade (pericardiocentesis), Tension Pneumothorax (needle decompression/chest tube). |
 
-### Shock States & Hemodynamic Profiles (Typical Findings)
+### Vasoactive Medications in ICU
+(Brief overview - see Pharmacology section for details)
+*   **Vasopressors (Increase BP by vasoconstriction)**:
+    *   **Norepinephrine (Levophed)**: α1 > β1 agonist. First-line for septic shock.
+    *   **Epinephrine**: Potent α and β agonist. Used in anaphylaxis, cardiac arrest, refractory shock.
+    *   **Phenylephrine (Neo-Synephrine)**: Pure α1 agonist. Increases SVR. Useful if tachyarrhythmias limit norepinephrine, or in neurogenic shock. Can decrease CO.
+    *   **Vasopressin**: V1 agonist. Adjunct to norepinephrine in septic shock. Not titrated.
+    *   **Dopamine**: Dose-dependent effects (β1 at moderate doses, α1 at high doses). Less favored now due to arrhythmogenic potential.
+*   **Inotropes (Increase contractility)**:
+    *   **Dobutamine**: Primarily β1 agonist. Increases CO, can cause vasodilation/hypotension. Used in cardiogenic shock, severe HF.
+    *   **Milrinone**: PDE3 inhibitor. Inodilator (increases contractility, causes vasodilation). Longer half-life. Useful in HF.
+    *   **Epinephrine**: (at lower doses can have significant inotropic effects).
+*   **Vasodilators (Decrease BP/afterload)**:
+    *   **Nitroglycerin**: Venodilator > Arteriodilator. Used for ACS, hypertensive emergencies, acute pulmonary edema.
+    *   **Nitroprusside**: Potent arterial and venous vasodilator. Used for hypertensive emergencies. Risk of cyanide toxicity with prolonged use/renal impairment.
+    *   **Nicardipine/Clevidipine**: Calcium channel blockers (arterial vasodilators). Used for hypertension control.
 
-| Shock Type                     | CO/CI       | CVP/PAWP    | SVR         | SvO2/ScvO2  | Other Key Features / Treatment Focus                                           |
-|--------------------------------|-------------|-------------|-------------|-------------|--------------------------------------------------------------------------------|
-| **Hypovolemic**                | ↓↓↓         | ↓↓↓         | ↑↑          | ↓           | Hemorrhage, dehydration. Restore intravascular volume (crystalloids, colloids, blood products). |
-| **Cardiogenic**                | ↓↓↓         | ↑↑↑         | ↑↑          | ↓           | MI, severe heart failure, myocarditis. Improve contractility (inotropes), reduce afterload (vasodilators if BP allows), vasopressors for BP support, mechanical circulatory support (IABP, Impella, ECMO). |
-| **Septic (Distributive - early/hyperdynamic "warm shock")** | ↑ or Normal | ↓ or Normal | ↓↓↓         | ↑ or Normal | Infection, massive vasodilation. Fluids, vasopressors (Norepinephrine), antibiotics, source control.      |
-| **Septic (Distributive - late/hypodynamic "cold shock")** | ↓           | Variable (can be low, normal, or high if myocardial depression) | Variable (can be low or high if compensatory vasoconstriction fails) | ↓           | Worsening sepsis, myocardial depression. Fluids, vasopressors, consider inotropes. |
-| **Neurogenic (Distributive)**  | ↓           | ↓           | ↓↓↓         | Normal      | Spinal cord injury (typically T6 or above) causing loss of sympathetic tone. Fluids, vasopressors (Phenylephrine or Norepinephrine), Atropine for bradycardia. |
-| **Anaphylactic (Distributive)**| ↓           | ↓           | ↓↓↓         | Normal      | Allergic reaction, massive histamine release -> vasodilation, bronchospasm, increased capillary permeability. Epinephrine (IM/IV), antihistamines, steroids, fluids. |
-| **Obstructive**                | ↓↓↓         | ↑↑ (CVP often very high, specific findings depend on cause e.g., pulsus paradoxus in tamponade) | Variable (often ↑) | ↓           | Impaired diastolic filling or systolic contraction due to physical obstruction. E.g., Cardiac Tamponade, Tension Pneumothorax, Massive Pulmonary Embolism, Constrictive Pericarditis. Relieve obstruction (e.g., pericardiocentesis, needle decompression/chest tube, thrombolysis/embolectomy). |
-
-*(↓ = Decreased, ↑ = Increased. Number of arrows indicates relative magnitude of change.)*
-
-### Therapeutic Interventions Guided by Hemodynamics
-*   **Fluid Resuscitation**: Guided by dynamic parameters of fluid responsiveness to optimize preload.
-*   **Vasopressors**: For hypotension refractory to fluids (target MAP usually >65 mmHg). Titrate to improve perfusion while minimizing adverse effects.
-*   **Inotropes**: For low CO states with evidence of end-organ hypoperfusion and adequate preload.
-*   **Vasodilators**: To reduce afterload in conditions like hypertensive emergencies or severe heart failure with high SVR, if BP allows.`,
+### Advanced Monitoring: Pulmonary Artery Catheter (PAC)
+*   Placement: Inserted via large central vein (IJ, subclavian) into RA, RV, then "floated" into pulmonary artery.
+*   Measures: CVP, PAP, PAWP, CO (thermodilution), SvO2. Allows calculation of SVR, PVR, O2 delivery/consumption.
+*   Indications: Complex shock states, severe cardiogenic shock, severe pulmonary hypertension, assessment of fluid status/cardiac function when less invasive measures are inconclusive. Use has declined due to risks and lack of proven mortality benefit in many routine ICU settings, but can be invaluable in specific, complex cases.
+*   Complications: Arrhythmias (during insertion), PA rupture (rare, catastrophic), infection, thrombosis, valvular damage, catheter knotting.`,
     categoryType: 'Topic',
-    keywordsForImage: 'hemodynamic monitor waveform',
+    keywordsForImage: 'hemodynamic chart blood pressure',
   },
   {
-    id: 'critical-care-pharmacology',
-    slug: 'critical-care-pharmacology',
-    title: 'Critical Care Pharmacology Deep Dive',
-    summary: 'Detailed pharmacology of common ICU medications, including vasoactive drugs, sedatives, analgesics, and antimicrobials.',
+    id: 'pharmacology',
+    slug: 'pharmacology',
+    title: 'Critical Care Pharmacology',
+    summary: 'Essential guide to common ICU medications, including sedatives, analgesics, paralytics, vasoactive drugs, and antimicrobials.',
     content: `## General Overview
 
-Critical care pharmacology involves the use of potent medications to manage life-threatening conditions. These drugs often have narrow therapeutic windows, significant potential for drug interactions, and require careful titration based on physiological responses. Understanding their mechanisms of action, pharmacokinetics (how the body affects the drug), pharmacodynamics (how the drug affects the body), indications, and adverse effects is crucial for safe and effective ICU care.
+Critical care pharmacology involves the specialized study and application of medications used in the Intensive Care Unit (ICU) setting. Patients in the ICU are often physiologically unstable, with multi-organ dysfunction, and require potent medications that have narrow therapeutic windows and significant potential for adverse effects. Understanding the mechanisms of action, pharmacokinetics (how the body absorbs, distributes, metabolizes, and excretes drugs), pharmacodynamics (how drugs affect the body), indications, contraindications, dosing considerations, and potential interactions of these medications is paramount for safe and effective patient care.
+
+Common classes of drugs frequently utilized in the ICU include sedatives and analgesics to manage pain and anxiety and facilitate mechanical ventilation; neuromuscular blocking agents (paralytics) for specific procedures or severe ARDS; vasoactive agents (vasopressors, inotropes, vasodilators) to manage hemodynamic instability and shock; antimicrobials to treat life-threatening infections; anticoagulants for VTE prophylaxis and treatment; and medications for managing specific organ dysfunctions (e.g., diuretics for renal support, antiarrhythmics for cardiac issues). ICU nurses play a critical role in the administration, titration, and monitoring of these high-alert medications, requiring continuous vigilance, precise calculations, and a deep understanding of their effects and potential complications. Adjustments for organ dysfunction (e.g., renal or hepatic impairment) are frequently necessary.
 
 ## In-Depth ICU Considerations
 
-### Vasoactive Medications
-These drugs act on the cardiovascular system to alter heart rate (chronotropy), contractility (inotropy), and vascular tone (vasoconstriction/vasodilation). They are essential in managing shock states, heart failure, and hypertension.
+### Sedatives and Analgesics
 
-#### Vasopressors
-Used to increase blood pressure, primarily by vasoconstriction, in shock states characterized by vasodilation or inadequate vascular tone. Titrated to achieve a target MAP (usually ≥65 mmHg) and improve tissue perfusion.
+Goal: Maintain patient comfort, relieve pain and anxiety, facilitate tolerance of mechanical ventilation and ICU procedures, reduce oxygen consumption, and prevent self-harm or device dislodgement. Use the lightest effective level of sedation. Regular assessment using validated scales (e.g., RASS, SAS for sedation; CPOT, BPS for pain in non-verbal patients) is crucial.
 
-| Drug Name                     | Primary Receptors & Mechanism                                   | Key Hemodynamic Effects                                 | Common ICU Uses                                          | Key Risks / Considerations                                                                                                |
-|-------------------------------|-----------------------------------------------------------------|---------------------------------------------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| **Norepinephrine (Levophed)** | Potent α1 agonist (vasoconstriction) > β1 agonist (↑HR, ↑contractility). | ↑↑SVR, ↑MAP, modest ↑CO/HR.                             | Septic shock (1st line), cardiogenic shock (if hypotensive), other distributive shocks. | Peripheral/mesenteric ischemia, extravasation (tissue necrosis - treat with Phentolamine), arrhythmias, reflex bradycardia (rare). |
-| **Epinephrine (Adrenaline)**  | Potent α1, β1, β2 agonist (effects are dose-dependent).         | Low dose (β dominant): ↑HR, ↑CO, ↓SVR (β2 vasodilation). High dose (α dominant): ↑↑SVR, ↑↑CO, ↑↑HR, ↑MAP. | Anaphylaxis (drug of choice), cardiac arrest (ACLS), refractory septic shock (adjunct), severe asthma/bronchospasm, symptomatic bradycardia (2nd line). | Tachyarrhythmias (esp. VT), myocardial ischemia, hyperglycemia, ↑lactate (due to β2 stimulation, not necessarily worsening shock), anxiety, tremors. |
-| **Phenylephrine (Neo-Synephrine)** | Pure α1 agonist (vasoconstriction).                             | ↑↑SVR, ↑MAP. May cause reflex bradycardia (baroreceptor mediated) and potentially ↓CO due to ↑afterload. | Hypotension (esp. with normal/high CO and tachycardia, e.g., neurogenic shock, anesthesia-induced hypotension). Used to counteract vasodilator effects. | Reflex bradycardia, severe peripheral/splanchnic vasoconstriction, reduced CO (esp. in HF), extravasation. Use with caution in poor LV function. |
-| **Vasopressin (ADH Analogue)**| V1 receptor agonist in vascular smooth muscle (vasoconstriction). Also V2 receptor (renal - antidiuretic). | Vasoconstriction (non-α-adrenergic, potentiates other vasopressors). ↑SVR, ↑MAP. Minimal direct cardiac effects. | Septic shock (adjunct, often fixed low dose e.g., 0.03-0.04 units/min), refractory shock, GI bleed (variceal - older use). | Splanchnic/digital ischemia (esp. at higher doses), hyponatremia (V2 effect), coronary ischemia. Not titratable for BP in septic shock (fixed dose). |
-| **Dopamine**                  | Dose-dependent receptor activity: Low (1-3 mcg/kg/min, "renal dose" - D1, D2): Renal/mesenteric vasodilation (clinical benefit controversial, not routinely recommended). Mid (3-10 mcg/kg/min, "cardiac dose" - β1): ↑HR, ↑contractility, ↑CO. High (>10 mcg/kg/min, "vasopressor dose" - α1): Vasoconstriction, ↑SVR, ↑MAP. | Variable effects on HR, CO, SVR depending on dose.      | Shock (less common now, considered 2nd line for symptomatic bradycardia refractory to atropine). Hypotension in specific settings. | Tachyarrhythmias (more arrhythmogenic than norepinephrine), N/V, headache, extravasation.                                        |
-| **Angiotensin II (Giapreza)** | Potent AT1 receptor agonist.                                    | Potent vasoconstriction, ↑aldosterone release. ↑SVR, ↑MAP. | Distributive shock (e.g., septic shock) refractory to other vasopressors. | Thromboembolic events (arterial & venous - DVT/PE prophylaxis important), peripheral ischemia, delirium.                             |
+| Drug Class         | Examples                                    | Mechanism of Action                                      | Key Pharmacokinetics/Dynamics                      | Common Side Effects / Considerations                                                                                               |
+|--------------------|---------------------------------------------|----------------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **Opioids (Analgesia)** | Fentanyl, Morphine, Hydromorphone (Dilaudid), Remifentanil | Mu-opioid receptor agonists                            | **Fentanyl**: Rapid onset, short duration (IV bolus), lipophilic (accumulates). **Morphine**: Longer duration, active metabolite (renal excretion - caution in RI). **Hydromorphone**: Potent, intermediate duration. **Remifentanil**: Ultra-short acting (esterase metabolism), good for neuro exams. | Respiratory depression, hypotension (esp. Morphine due to histamine release), constipation, N/V, itching, tolerance, withdrawal. Fentanyl can cause chest wall rigidity with high doses/rapid infusion. |
+| **Benzodiazepines (Sedation, Anxiolysis, Amnesia)** | Midazolam (Versed), Lorazepam (Ativan), Diazepam (Valium) | Enhance effects of GABA at GABA-A receptor              | **Midazolam**: Rapid onset, short duration (IV bolus), active metabolites (renal excretion). **Lorazepam**: Slower onset, longer duration, propylene glycol toxicity with high dose/prolonged infusion. | Respiratory depression, hypotension, delirium (esp. in elderly), tolerance, withdrawal (seizures). Prolonged sedation.                  |
+| **Propofol (Sedation, Hypnosis)** | Diprivan                                    | Potentiates GABA-A receptor activity; NMDA receptor antagonist | Very rapid onset, short duration (IV infusion). Highly lipophilic. | Hypotension, respiratory depression, pain on injection, hypertriglyceridemia, pancreatitis (rare), Propofol Infusion Syndrome (PRIS - rare but fatal: acidosis, rhabdo, HLD, cardiac failure, renal failure - risk with high dose >4mg/kg/hr, prolonged use). Green urine (benign). |
+| **Alpha-2 Agonists (Sedation, Anxiolysis, Analgesia-sparing)** | Dexmedetomidine (Precedex)                    | Selective alpha-2 adrenergic agonist in CNS              | Sedation without significant respiratory depression. Patient rousable. | Hypotension, bradycardia (can be significant). Loading dose often causes transient hypertension. No amnestic properties. Useful for weaning, delirium prevention. |
+| **Ketamine (Analgesia, Sedation, Anesthesia)** | Ketalar                                     | NMDA receptor antagonist                                 | Dissociative anesthetic. Provides analgesia, sedation, amnesia. Bronchodilator. Preserves airway reflexes & respiratory drive (at lower doses). Sympathomimetic (↑HR, ↑BP). | Emergence reactions (hallucinations, delirium - can be mitigated with benzos), increased salivation, ↑ICP (controversial, use with caution in TBI). |
 
-#### Inotropes
-Used to increase myocardial contractility (positive inotropic effect) in states of low cardiac output, such as cardiogenic shock or severe decompensated heart failure.
-
-| Drug Name        | Mechanism / Receptors                                   | Key Hemodynamic Effects                                        | Common ICU Uses                                               | Key Risks / Considerations                                                                                             |
-|------------------|---------------------------------------------------------|----------------------------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| **Dobutamine**   | Primarily β1 agonist, some β2 agonist (mild vasodilation), weak α1 activity. | ↑↑Contractility, ↑CO, often mild ↓SVR (net effect on BP can be variable or ↓). Mild ↑HR. | Cardiogenic shock, acute decompensated heart failure (ADHF) with low CO, stress echocardiography. | Hypotension (especially if patient is hypovolemic), tachyarrhythmias, tolerance with prolonged use (downregulation of β-receptors). |
-| **Milrinone**    | Phosphodiesterase-3 (PDE3) inhibitor. Increases intracellular cAMP. | ↑↑Contractility (inotropy), significant arterial and venous vasodilation (↓SVR, ↓PVR - "inodilator"), ↓preload, ↓afterload. Lusitropic (improves diastolic relaxation). | ADHF (especially with high SVR/PVR), right heart failure, pulmonary hypertension. Weaning from CPB. | Hypotension (due to vasodilation - may require co-administration of vasopressor), arrhythmias (VT), longer half-life (requires dose adjustment in renal impairment). |
-| **Epinephrine (low dose)** | β1, β2 agonist dominant at lower doses.                 | ↑Contractility, ↑HR, ↑CO. May ↓SVR due to β2 effect.           | Post-cardiac surgery low CO states, refractory shock needing inotropic support. | As above for Epinephrine (tachyarrhythmias, ischemia, hyperglycemia).                                                  |
-| **Isoproterenol (Isuprel)**| Non-selective potent β-agonist (β1 and β2).             | Potent ↑HR (chronotropy), ↑Contractility (inotropy), significant ↓↓SVR (vasodilation from β2). | Symptomatic bradycardia refractory to other treatments (e.g., atropine, pacing), AV block (temporary measure), Torsades de Pointes (shortens QT), bronchospasm (rarely). | Profound tachycardia, arrhythmias, hypotension (due to vasodilation), myocardial ischemia. Limited use.                    |
-| **Digoxin**      | Na⁺/K⁺-ATPase inhibitor. Increases intracellular Ca²⁺.    | Mild positive inotrope. Negative chronotrope (slows AV conduction). | Atrial fibrillation/flutter (rate control - less used acutely in ICU vs beta-blockers/CCBs), chronic systolic HF (less common now). | Narrow therapeutic window. Risk of toxicity (N/V, visual changes - yellow halos, arrhythmias - PVCs, VT, AV block). Monitor levels, K⁺, Mg²⁺, renal function. |
-
-### Sedatives & Analgesics
-Essential for patient comfort, anxiolysis, amnesia, and to facilitate mechanical ventilation and procedures. Goal is often light sedation (patient calm and arousable, e.g., RASS -1 to 0) when clinically appropriate, using validated sedation scales. "Analgesia-first" sedation (treat pain before sedating) is a key principle.
-
-#### Sedatives
-
-| Drug Name                     | Class / Mechanism                                              | Key Features / Effects                                                                   | Common ICU Uses                                                    | Key Risks / Considerations                                                                                                                               |
-|-------------------------------|----------------------------------------------------------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Propofol (Diprivan)**       | GABA-A receptor agonist (potentiates inhibitory effects of GABA). Lipid emulsion. | Rapid onset (30-60s), short duration of action (5-10 min after infusion stopped). ↓Cerebral metabolic rate (CMRO2), ↓ICP, anticonvulsant, antiemetic properties. | Sedation for mechanically ventilated patients (short to medium term), procedural sedation, status epilepticus. | Hypotension (vasodilation, myocardial depression), bradycardia, respiratory depression/apnea, Propofol Infusion Syndrome (PRIS - rare but fatal: metabolic acidosis, rhabdo, hyperkalemia, renal/cardiac failure, with high doses/prolonged use), hypertriglyceridemia, pain on injection (can be reduced with lidocaine). Green urine (benign). |
-| **Dexmedetomidine (Precedex)**| Highly selective α2-adrenergic agonist in CNS.                 | "Cooperative sedation" (patient sedated but easily arousable, can interact), analgesia-sparing, anxiolysis, minimal respiratory depression. May reduce delirium. | Light to moderate sedation for mechanically ventilated or non-intubated patients, weaning from ventilation, delirium prevention/management. | Bradycardia, hypotension (can cause initial transient hypertension with loading dose due to peripheral α2 agonism). Not suitable for deep sedation or if NMBAs used. |
-| **Benzodiazepines (Midazolam, Lorazepam, Diazepam)** | GABA-A receptor agonists.                                        | Anxiolysis, amnesia, sedation, anticonvulsant, muscle relaxation.                          | Agitation, alcohol withdrawal syndrome, status epilepticus, procedural sedation (less favored for routine ICU sedation due to delirium risk). | Delirium (strong association), respiratory depression, hypotension, tolerance, withdrawal syndrome with prolonged use. Accumulation, especially Lorazepam (propylene glycol toxicity with high doses/renal impairment) and Diazepam (long-acting metabolites). Midazolam is short-acting but active metabolites can accumulate in renal failure. |
-| **Ketamine**                  | NMDA receptor antagonist. Dissociative anesthetic.             | Analgesia, amnesia, sedation. Preserves respiratory drive and pharyngeal reflexes (at lower doses). Bronchodilation. Sympathomimetic effects (↑HR, ↑BP). | Sedation (often as adjunct), analgesia (especially for neuropathic/opioid-tolerant pain), procedural sedation, status asthmaticus, rapid sequence intubation (RSI). | Emergence reactions (hallucinations, delirium, vivid dreams - can be reduced with benzodiazepines), ↑secretions (may need antisialagogue like glycopyrrolate), ↑HR, ↑BP. May ↑ICP (controversial, use with caution in TBI if ICP is a concern). |
-
-#### Analgesics
-
-| Drug Name                          | Class / Mechanism                                                                | Key Features / Effects                                                       | Common ICU Uses                                                | Key Risks / Considerations                                                                                                                               |
-|------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Opioids (Fentanyl, Hydromorphone, Morphine, Remifentanil)** | Mu, Kappa, Delta opioid receptor agonists (primarily Mu for analgesia). | Potent analgesia. Sedation (dose-dependent), euphoria, cough suppression.      | Management of acute pain (nociceptive, procedural), adjunct to sedation. | Respiratory depression, hypotension (esp. morphine due to histamine release), sedation/oversedation, N/V, constipation, ileus, pruritus, tolerance, physical dependence, withdrawal with abrupt cessation. Fentanyl: rapid onset, short duration (bolus), lipophilic (accumulates). Hydromorphone: potent, intermediate duration. Morphine: longer duration, active metabolite (morphine-6-glucuronide) accumulates in renal failure (risk of prolonged effects/narcosis). Remifentanil: ultra-short acting (metabolized by plasma esterases), used as continuous infusion, no accumulation. Chest wall rigidity with rapid high-dose Fentanyl. |
-| **Acetaminophen (Paracetamol) (IV/PO/PR)** | Inhibits prostaglandin synthesis in CNS (COX inhibitor, primarily central). | Analgesia (mild-moderate pain), antipyretic. Opioid-sparing.                  | Mild to moderate pain, fever. Part of multimodal analgesia.      | Hepatotoxicity with overdose (max dose 4g/day for adults with normal liver function; lower in liver disease, chronic alcohol use, malnutrition). Monitor LFTs. |
-| **NSAIDs (e.g., Ketorolac IV/IM, Ibuprofen IV/PO)** | Non-selective COX-1 & COX-2 inhibitors (inhibit prostaglandin synthesis). | Analgesia (mild-moderate pain), anti-inflammatory, antipyretic. Opioid-sparing. | Mild to moderate pain, inflammation. Part of multimodal analgesia. | GI bleeding/ulceration, renal dysfunction (AKI via afferent arteriole constriction), platelet inhibition (bleeding risk), bronchospasm (in aspirin-sensitive asthma), cardiovascular risks (MI, stroke with chronic use of some NSAIDs). Ketorolac: limit use to ≤5 days. Avoid in renal impairment, active PUD, high bleeding risk. |
-| **Gabapentinoids (Gabapentin, Pregabalin)** | Bind to alpha-2-delta subunit of voltage-gated calcium channels in CNS.      | Neuropathic pain, anxiolysis, anticonvulsant. Opioid-sparing (adjunct).     | Neuropathic pain, chronic pain. May be used for anxiety or as adjunct for acute pain. | Sedation, dizziness, ataxia, peripheral edema. Require renal dose adjustment. Potential for misuse/dependence.                                            |
-| **Lidocaine (IV infusion)**        | Sodium channel blocker.                                                          | Analgesia (neuropathic, visceral), antiarrhythmic, anti-inflammatory. Opioid-sparing. | Refractory neuropathic pain, post-operative pain (adjunct).        | CNS toxicity (paresthesias, tinnitus, seizures), cardiotoxicity (bradycardia, hypotension, arrhythmias) at high doses/rapid infusion. Monitor for signs of toxicity. |
+**Analgesia-First or Analgosedation Approach**: Prioritize pain management (e.g., IV opioid) before adding sedatives. Many patients may only require analgesia.
 
 ### Neuromuscular Blocking Agents (NMBAs / Paralytics)
-Used to induce skeletal muscle paralysis. **Crucially, patients MUST have adequate and continuous sedation and analgesia when paralyzed, as NMBAs do not provide sedation or analgesia.** Monitor depth of paralysis with Train-of-Four (TOF) stimulation (target 1-2 twitches out of 4 on ulnar nerve/orbicularis oculi).
-*   **Indications**: Facilitate endotracheal intubation, improve patient-ventilator synchrony in severe ARDS, reduce oxygen consumption (e.g., severe shivering), manage refractory increased ICP, facilitate certain procedures.
-*   **Complications**: Prolonged muscle weakness/ICU-Acquired Weakness (Acute Quadriplegic Myopathy - esp. with corticosteroids), risk of corneal abrasions (provide eye care), DVT (immobility), patient awareness if inadequately sedated (psychological trauma).
 
-| Drug Name              | Class             | Onset/Duration      | Metabolism / Elimination                                      | Key Considerations                                                                                                                                |
-|------------------------|-------------------|---------------------|---------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Succinylcholine**    | Depolarizing      | Rapid (30-60s) / Ultra-short (5-10 min) | Plasma cholinesterase (pseudocholinesterase).                 | Primarily for RSI. Risks: hyperkalemia (esp. in burn/crush injury, neuromuscular disease, renal failure - can cause cardiac arrest), malignant hyperthermia (rare), ↑ICP/IOP/IGP, bradycardia (esp. in children or with repeat doses), muscle fasciculations/myalgias. |
-| **Rocuronium**         | Non-depolarizing (Aminosteroid) | Rapid (1-2 min) / Intermediate (30-90 min) | Primarily hepatic metabolism, some renal excretion.             | RSI (alternative to succinylcholine, esp. if contraindications), maintenance of paralysis (infusion or bolus). Reversible with Sugammadex (specific binding agent). |
-| **Vecuronium**         | Non-depolarizing (Aminosteroid) | Intermediate (2-4 min) / Intermediate (30-60 min) | Primarily hepatic metabolism, active metabolites renally excreted. | Maintenance of paralysis. Accumulates in renal/hepatic failure, leading to prolonged paralysis.                                                     |
-| **Cisatracurium (Nimbex)** | Non-depolarizing (Benzylisoquinolinium) | Intermediate (3-5 min) / Intermediate (45-75 min) | Hofmann elimination (pH/temperature dependent spontaneous degradation in plasma), ester hydrolysis. | Preferred in renal/hepatic failure (organ-independent elimination). Less histamine release than other benzylisoquinoliniums (e.g., atracurium). Laudanosine (metabolite) can accumulate in renal failure (theoretical CNS effects, rarely clinically significant). |
+Used to facilitate endotracheal intubation, optimize patient-ventilator synchrony in severe ARDS (e.g., to reduce barotrauma, improve oxygenation), manage persistently elevated ICP, or reduce oxygen consumption during therapeutic hypothermia. **Must always be administered with adequate analgesia and sedation** as NMBAs do not provide pain relief or amnesia. Monitor depth of blockade with Train-of-Four (TOF) stimulation.
+
+| Drug Class         | Examples                                     | Mechanism of Action                                      | Onset/Duration                              | Key Considerations / Side Effects                                                                                                  |
+|--------------------|----------------------------------------------|----------------------------------------------------------|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
+| **Depolarizing**   | Succinylcholine (Anectine)                     | Binds to acetylcholine (ACh) receptors, causing persistent depolarization | Rapid onset (30-60s), Ultra-short duration (5-10min) | Used for RSI. Causes transient muscle fasciculations. **Contraindications**: Hyperkalemia (can worsen), major burns/crush injury/denervating neuromuscular disease (>24-48h old - risk of severe hyperK⁺), history of malignant hyperthermia, certain myopathies. ↑ICP/IOP/IGP. |
+| **Non-Depolarizing (Aminosteroids)** | Rocuronium (Zemuron), Vecuronium (Norcuron), Pancuronium | Competitive antagonists at ACh receptors                 | **Rocuronium**: Rapid onset (intermediate duration). **Vecuronium**: Intermediate onset/duration. **Pancuronium**: Slower onset, long duration (vagolytic - causes tachycardia). | Reversible with anticholinesterases (e.g., Neostigmine + Glycopyrrolate) or Sugammadex (for Rocuronium/Vecuronium). Prolonged weakness (ICU-acquired weakness risk, esp. with corticosteroids). Accumulation in renal/hepatic failure (Vec/Panc more than Roc). |
+| **Non-Depolarizing (Benzylisoquinoliniums)** | Cisatracurium (Nimbex), Atracurium           | Competitive antagonists at ACh receptors                 | Intermediate onset/duration.                | **Cisatracurium**: Hofmann elimination (metabolism independent of renal/hepatic function) - good choice in organ failure. Atracurium can cause histamine release (hypotension, tachycardia). Laudanosine metabolite (seizure risk at high doses - more with Atracurium). |
+
+### Vasoactive Agents
+
+Used to manipulate blood pressure, cardiac output, and systemic vascular resistance. Titrated to hemodynamic targets (e.g., MAP, CO, urine output). Administer via central line if possible, especially for potent vasopressors.
+
+| Drug             | Class / Receptors                                 | Primary Effects                                                                    | Common Uses in ICU                                         | Key Side Effects / Considerations                                                                                       |
+|------------------|---------------------------------------------------|------------------------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| **Norepinephrine (Levophed)** | α1 > β1 agonist                                   | ↑SVR (vasoconstriction), modest ↑CO/HR.                                              | Septic shock (first-line), other distributive shocks.      | Peripheral ischemia/necrosis (esp. with extravasation), arrhythmias, hyperglycemia, ↑myocardial O2 demand.                 |
+| **Epinephrine (Adrenaline)** | Potent α1, β1, β2 agonist                           | Dose-dependent: Low dose (β effects predominate): ↑HR, ↑CO, ↓SVR (β2). High dose (α effects): ↑SVR, ↑BP, ↑CO. | Anaphylaxis, cardiac arrest (ACLS), septic shock (refractory), symptomatic bradycardia. | Tachyarrhythmias, hypertension, hyperglycemia, ↑lactate, ↑myocardial O2 demand, peripheral/mesenteric ischemia.          |
+| **Phenylephrine (Neo-Synephrine)** | Pure α1 agonist                                   | Potent vasoconstriction (↑SVR), ↑BP. Can cause reflex bradycardia and ↓CO.             | Hypotension with tachycardia (e.g., if norepinephrine causes severe tachycardia), neurogenic shock. Sepsis (adjunct). | Reflex bradycardia, ↓CO (esp. in HF), peripheral/mesenteric ischemia. Does not increase HR.                               |
+| **Dopamine**     | Dose-dependent: Low (1-3 mcg/kg/min) "renal dose" - D1 (vasodilation - controversial/not recommended for renal protection). Moderate (3-10 mcg/kg/min) - β1 (↑HR, ↑CO). High (>10 mcg/kg/min) - α1 (↑SVR, ↑BP). | Varies with dose.                                                                          | Second-line for septic shock with bradycardia or low risk of tachyarrhythmias. Cardiogenic shock. | Tachyarrhythmias (more than norepinephrine), N/V, headache. Extravasation risk.                                       |
+| **Vasopressin (ADH)** | V1 receptor agonist (vascular smooth muscle)        | Vasoconstriction (↑SVR), ↑water reabsorption in kidneys (V2 effect).               | Septic shock (adjunct to norepinephrine, not titrated, typical dose 0.03-0.04 units/min). Diabetes Insipidus. GI hemorrhage. | Peripheral/mesenteric/coronary ischemia, hyponatremia, ↓CO (due to ↑afterload). Not used as sole pressor in septic shock. |
+| **Dobutamine**   | Primarily β1 agonist, some β2 & α1 activity       | ↑Contractility (inotropy), ↑HR, modest vasodilation (β2 > α1) -> can ↓SVR, ↓BP.  | Cardiogenic shock, severe heart failure with low CO. Septic shock with myocardial dysfunction. | Tachycardia, arrhythmias, hypotension (if hypovolemic or significant vasodilation occurs), ↑myocardial O2 demand.       |
+| **Milrinone (Primacor)** | Phosphodiesterase-3 (PDE3) inhibitor              | ↑Contractility (inotropy), potent vasodilation (arterial & venous) -> ↓SVR, ↓PVR.  | Acute decompensated heart failure, cardiogenic shock (esp. if β-blocker use). Pulmonary hypertension. | Hypotension (significant), arrhythmias (esp. ventricular), thrombocytopenia. Longer half-life, renal excretion (dose adjust). |
+| **Nitroglycerin (NTG)** | Organic nitrate -> NO -> Venodilator > Arteriodilator | ↓Preload (venodilation), ↓Afterload (arterial dilation at higher doses), coronary vasodilation. | Acute coronary syndromes (ACS), hypertensive emergencies, acute pulmonary edema (HF). | Hypotension, headache, reflex tachycardia, tolerance (tachyphylaxis with prolonged use). Avoid in RV infarct, severe aortic stenosis, use with PDE5 inhibitors (sildenafil etc.). |
+| **Nitroprusside (Nipride)** | Potent direct arterial & venous vasodilator       | Rapid ↓BP, ↓preload, ↓afterload.                                                   | Hypertensive emergencies. Severe acute HF.                     | Profound hypotension, reflex tachycardia. **Cyanide toxicity** (risk with prolonged use >24-48h, high doses, renal/hepatic impairment - monitor thiocyanate levels, acid-base status). Methemoglobinemia (rare). Light sensitive. |
 
 ### Antimicrobials
-Selection based on suspected/confirmed pathogen, site of infection, local resistance patterns (antibiogram), patient factors (allergies, organ function, comorbidities), and severity of illness.
-*   **Empiric Therapy**: Broad-spectrum antibiotics initiated promptly for suspected severe infections (e.g., sepsis) before culture results are available.
-*   **De-escalation**: Narrowing antibiotic spectrum once pathogen and sensitivities are known, to reduce resistance development and side effects.
-*   **Pharmacokinetics (PK) / Pharmacodynamics (PD)**: Crucial in critical illness due to altered PK (e.g., increased volume of distribution, altered renal/hepatic clearance).
-    *   **Time-dependent killing (e.g., Beta-lactams)**: Efficacy related to time drug concentration remains above Minimum Inhibitory Concentration (MIC). May require more frequent dosing or continuous/extended infusions.
-    *   **Concentration-dependent killing (e.g., Aminoglycosides, Fluoroquinolones)**: Efficacy related to peak concentration (Cmax/MIC) or Area Under Curve (AUC/MIC). May use once-daily high dosing for aminoglycosides.
-*   **Therapeutic Drug Monitoring (TDM)**: For drugs with narrow therapeutic windows or variable PK (e.g., Vancomycin - trough levels or AUC/MIC; Aminoglycosides - peak/trough levels).
-*   **Common Classes & Examples**:
-    *   **Beta-lactams**: Penicillins (Piperacillin-Tazobactam), Cephalosporins (Ceftriaxone, Cefepime), Carbapenems (Meropenem, Imipenem-Cilastatin), Monobactams (Aztreonam).
-    *   **Glycopeptides**: Vancomycin (for MRSA, C. difficile PO). Risks: nephrotoxicity, ototoxicity, Red Man Syndrome (infusion-related reaction).
-    *   **Oxazolidinones**: Linezolid (MRSA, VRE). Risks: myelosuppression (thrombocytopenia), serotonin syndrome with SSRIs, peripheral/optic neuropathy with prolonged use.
-    *   **Lipopeptides**: Daptomycin (MRSA, VRE - not for pneumonia as inactivated by surfactant). Risks: myopathy (monitor CPK).
-    *   **Fluoroquinolones**: Ciprofloxacin, Levofloxacin, Moxifloxacin. Risks: QTc prolongation, tendonitis/rupture, C. difficile, CNS effects.
-    *   **Aminoglycosides**: Gentamicin, Tobramycin, Amikacin. Risks: nephrotoxicity, ototoxicity.
-    *   **Macrolides**: Azithromycin, Erythromycin. Risks: QTc prolongation, GI upset, drug interactions (CYP inhibitors).
-    *   **Tetracyclines**: Doxycycline, Tigecycline.
-    *   **Lincosamides**: Clindamycin. Risk of C. difficile.
-    *   **Metronidazole**: Anaerobic and protozoal coverage.
-*   **Antifungals (e.g., Fluconazole, Voriconazole, Echinocandins like Caspofungin/Micafungin, Amphotericin B)**: For suspected/confirmed fungal infections.
-*   **Antivirals (e.g., Acyclovir, Ganciclovir, Oseltamivir, Remdesivir)**: For specific viral infections.
+Selection based on suspected pathogen, site of infection, local resistance patterns (antibiogram), patient factors (allergies, organ function, comorbidities), and severity of illness. De-escalate or narrow therapy once culture/sensitivity results are available. Monitor for efficacy and toxicity.
 
-Understanding medication compatibility, dilution requirements, infusion rates, and monitoring parameters for each drug is essential for ICU nurses. Always consult pharmacy and institutional guidelines.`,
+**(This is a vast topic - examples of classes often used in ICU)**
+*   **Beta-lactams**:
+    *   Penicillins (e.g., Piperacillin/Tazobactam - broad spectrum incl. Pseudomonas)
+    *   Cephalosporins (e.g., Ceftriaxone - 3rd gen, Cefepime - 4th gen/anti-pseudomonal, Ceftaroline - anti-MRSA)
+    *   Carbapenems (e.g., Meropenem, Imipenem/Cilastatin - very broad spectrum, often reserved for MDR organisms)
+    *   Monobactams (e.g., Aztreonam - gram-negative coverage, can use in PCN allergy)
+*   **Glycopeptides**: Vancomycin (MRSA, gram-positive coverage). Monitor trough levels. Nephrotoxic, ototoxic, Red Man Syndrome.
+*   **Fluoroquinolones**: (e.g., Ciprofloxacin, Levofloxacin - broad spectrum). QT prolongation, tendon rupture, C. diff risk.
+*   **Aminoglycosides**: (e.g., Gentamicin, Tobramycin, Amikacin - gram-negative, synergy for gram-positive). Nephrotoxic, ototoxic. Monitor peak/trough or extended-interval dosing.
+*   **Macrolides**: (e.g., Azithromycin, Erythromycin - atypical coverage, some gram-positive). GI upset, QT prolongation.
+*   **Tetracyclines**: (e.g., Doxycycline, Tigecycline - broad spectrum incl. MRSA, VRE with Tigecycline). Photosensitivity, GI upset.
+*   **Linezolid (Zyvox)**: MRSA, VRE. Myelosuppression (thrombocytopenia with prolonged use), serotonin syndrome risk with SSRIs.
+*   **Daptomycin (Cubicin)**: MRSA, VRE. Muscle toxicity (monitor CPK). Inactivated by pulmonary surfactant (do not use for pneumonia).
+*   **Metronidazole (Flagyl)**: Anaerobic coverage, C. difficile, protozoa. Disulfiram-like reaction with alcohol. Neurotoxicity.
+*   **Antifungals**:
+    *   Azoles (e.g., Fluconazole, Voriconazole, Posaconazole, Isavuconazole). Drug interactions (CYP450).
+    *   Echinocandins (e.g., Caspofungin, Micafungin, Anidulafungin). Generally well-tolerated.
+    *   Polyenes (e.g., Amphotericin B - conventional or lipid formulations). Broad spectrum but nephrotoxic, infusion reactions.
+*   **Antivirals**: (e.g., Acyclovir - HSV/VZV, Oseltamivir - Influenza, Ganciclovir - CMV).
+
+### Other Important ICU Medications
+*   **Anticoagulants**: Heparin (UFH), LMWH (Enoxaparin), Warfarin, DOACs (e.g., Apixaban, Rivaroxaban). For VTE prophylaxis/treatment, AFib, ACS. Monitor (aPTT for UFH, INR for Warfarin). Bleeding risk. Reversal agents.
+*   **Diuretics**: Loop (Furosemide, Bumetanide, Torsemide), Thiazides (Hydrochlorothiazide, Metolazone), Potassium-sparing (Spironolactone, Amiloride), Osmotic (Mannitol). Manage fluid overload. Monitor electrolytes (esp. K⁺, Mg²⁺), renal function, volume status.
+*   **Antiarrhythmics**: Amiodarone, Lidocaine, Beta-blockers, Calcium Channel Blockers, Adenosine. Complex, based on arrhythmia type. Monitor ECG, BP, electrolytes. Many have proarrhythmic potential.
+*   **Stress Ulcer Prophylaxis**: PPIs (Pantoprazole, Esomeprazole), H2 Receptor Antagonists (Famotidine, Ranitidine). For high-risk patients (e.g., mechanical ventilation >48h, coagulopathy). Risk of C. diff, pneumonia.
+*   **Electrolyte Replacements**: Potassium chloride, Magnesium sulfate, Calcium gluconate/chloride, Sodium phosphate. Monitor levels closely. Administer IV cautiously.
+
+This overview is not exhaustive but covers many core pharmacological concepts and drug classes critical to ICU nursing practice. Always refer to institutional protocols, pharmacy resources, and current guidelines.`,
     categoryType: 'Topic',
-    keywordsForImage: 'medication pills pharmacy',
-  },
-  {
-    id: 'ventilator-management',
-    slug: 'ventilator-management',
-    title: 'Advanced Ventilator Management',
-    summary: 'Principles and practices of mechanical ventilation, including modes, settings, troubleshooting, and liberation strategies.',
-    content: `## General Overview
-
-Mechanical ventilation is a life-sustaining intervention used in the ICU to support patients with respiratory failure. Its primary goals are to improve gas exchange (oxygenation and carbon dioxide elimination), reduce the work of breathing, reverse respiratory muscle fatigue, and allow the underlying lung pathology to heal. Effective ventilator management requires a deep understanding of respiratory physiology, ventilator mechanics, and patient-ventilator interactions.
-
-## In-Depth ICU Considerations
-
-### Key Ventilator Settings & Parameters
-
-| Setting/Parameter                | Description & Typical Range/Target                                                                        | Purpose & Clinical Significance                                                                                                                                  |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **FiO2 (Fraction of Inspired Oxygen)** | 0.21 (room air) - 1.0. Titrate to maintain SpO2 >90-92% (or PaO2 55-80 mmHg, or as per specific goals). | Optimize arterial oxygen content. Use lowest effective FiO2 to avoid oxygen toxicity (absorption atelectasis, oxidative stress).                                         |
-| **PEEP (Positive End-Expiratory Pressure)** | Usually 5-10 cmH2O; can be higher in ARDS (up to 20-24 cmH2O or more, guided by PEEP titration).       | Prevents alveolar collapse at end-expiration (maintains functional residual capacity - FRC), improves oxygenation (recruits alveoli), reduces atelectrauma. Optimal PEEP balances recruitment against overdistension and hemodynamic compromise. |
-| **Tidal Volume (VT)**            | Target 6-8 mL/kg Predicted Body Weight (PBW) for most patients; **4-6 mL/kg PBW for ARDS (lung protective strategy)**. | Volume of air delivered with each breath. PBW calculated based on sex and height.                                                                                     |
-| **Respiratory Rate (RR or f)**   | Usually 10-20 breaths/min for adults. Adjusted based on target PaCO2/pH and minute ventilation (VE).         | Controls minute ventilation (VE = RR x VT) and thus CO2 elimination.                                                                                                |
-| **Minute Ventilation (VE)**      | VE = RR x VT. Normal: 5-10 L/min.                                                                         | Total volume of air moved in/out of lungs per minute.                                                                                                                  |
-| **Inspiratory Time (Ti)**        | Typically 0.8-1.2 seconds for adults.                                                                     | Duration of the inspiratory phase of each breath.                                                                                                                      |
-| **I:E Ratio**                    | Typically 1:2 to 1:3 for adults. Longer expiratory time (e.g., 1:4, 1:5) for obstructive lung disease (asthma, COPD) to allow complete exhalation and prevent air trapping. Inverse ratio (e.g., 2:1) sometimes used in severe ARDS (with APRV or specific PCV strategies). | Ratio of inspiratory time to expiratory time.                                                                                                                          |
-| **Inspiratory Pressure (Pinsp or PIP - in PCV modes)** | Pressure delivered during inspiration in Pressure Control modes. Target lowest effective pressure to achieve desired VT. | Limits peak airway pressure during PCV.                                                                                                                                |
-| **Pressure Support (PS or Psupp)** | Usually 5-20 cmH2O above PEEP during spontaneous breaths (e.g., in PSV or SIMV spontaneous breaths).       | Assists patient's spontaneous inspiratory effort, helps overcome resistance of ETT and ventilator circuit, reduces work of breathing.                                |
-| **Flow Rate (Peak Inspiratory Flow - in VCV modes)** | 40-100 L/min (typically 60 L/min). Adjusted for patient comfort and to achieve desired Ti and I:E ratio. | Speed at which the tidal volume is delivered in Volume Control modes. Higher flow = shorter Ti.                                                                       |
-| **Flow Waveform (in VCV modes)** | **Square (Constant Flow)**: Delivers constant flow throughout inspiration. **Descending Ramp (Decelerating Flow)**: Flow is highest at start of inspiration and decreases. | Pattern of flow delivery. Descending ramp may improve gas distribution, reduce PIP, and improve comfort for some patients.                                              |
-| **Trigger Sensitivity**          | **Pressure Trigger**: -0.5 to -2 cmH2O below PEEP. **Flow Trigger**: 1-3 L/min.                           | Effort required by patient to initiate a ventilator-assisted breath. Should be sensitive enough to detect patient effort but not so sensitive as to cause auto-triggering. |
-| **Peak Inspiratory Pressure (PIP or Ppeak)** | Highest pressure reached in airways during inspiration (dynamic pressure).                             | Reflects airway resistance (e.g., bronchospasm, secretions, ETT kink) + elastic recoil of lung/chest wall. Keep <35-40 cmH2O if possible.                             |
-| **Plateau Pressure (Pplat)**     | Static pressure measured during an end-inspiratory pause (0.5-1 sec).                                       | Reflects alveolar pressure (static compliance). **Key parameter for lung protection: keep <30 cmH2O** to minimize barotrauma/volutrauma.                             |
-| **Driving Pressure (ΔP)**        | ΔP = Pplat - Total PEEP.                                                                                  | Pressure distending the lungs. **Strongly associated with ARDS mortality; aim for <15 cmH2O.**                                                                     |
-| **Auto-PEEP (Intrinsic PEEP / Dynamic Hyperinflation)** | Unintentional PEEP due to incomplete exhalation (air trapping).                                         | Measured with an end-expiratory hold maneuver. Increases WOB, risk of barotrauma, hemodynamic compromise. Common in obstructive diseases or high VE.                |
-| **Static Compliance (Cst)**      | Cst = VT / (Pplat - Total PEEP). Normal: 50-100 mL/cmH2O.                                                  | Measure of lung/chest wall distensibility. ↓Cst (stiff lungs) in ARDS, pneumonia, pulmonary edema, atelectasis, pneumothorax, obesity, abdominal distension.         |
-| **Airway Resistance (Raw)**      | Raw = (PIP - Pplat) / Inspiratory Flow. Normal: <10-15 cmH2O/L/s.                                          | Measure of opposition to airflow. ↑Raw in bronchospasm, secretions, ETT obstruction/kinking, airway edema.                                                           |
-
-### Common Ventilator Modes
-
-| Mode                                     | Description                                                                                                                               | Key Features / Advantages / Disadvantages                                                                                                                                                                                             |
-|------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Volume Control Ventilation (VCV / AC-VC - Assist-Control Volume Control)** | Delivers a preset tidal volume (VT) for every breath, whether patient-triggered (assisted) or ventilator-initiated (controlled). Inspiratory pressure (PIP) varies with lung mechanics (compliance, resistance). | **Guarantees minute ventilation.** Pressure can become excessively high if compliance decreases or resistance increases (risk of barotrauma). Patient can trigger breaths above set rate.                                                         |
-| **Pressure Control Ventilation (PCV / AC-PC - Assist-Control Pressure Control)** | Delivers a preset inspiratory pressure (Pinsp) for a set inspiratory time (Ti). Tidal volume (VT) varies with lung mechanics and patient effort.                                                                 | **Limits peak airway pressure** (protects against barotrauma). VT can be variable, potentially leading to hypo/hyperventilation if lung mechanics change or patient effort varies. Patient can trigger breaths above set rate.                   |
-| **Pressure Support Ventilation (PSV)**   | Patient triggers all breaths. Ventilator provides a set level of inspiratory pressure support (PS) to assist spontaneous effort. Patient controls RR, Ti, inspiratory flow, and VT. Requires reliable respiratory drive.                         | Used for weaning/spontaneous breathing trials (SBTs). Improves comfort, reduces WOB. No backup rate (unless combined with apnea ventilation).                                                                                               |
-| **Synchronized Intermittent Mandatory Ventilation (SIMV-VC or SIMV-PC)** | Delivers a set number of mandatory breaths (either VC or PC) at set intervals. Patient can breathe spontaneously between mandatory breaths, often with added pressure support (PS) for the spontaneous breaths. | Allows patient to contribute to work of breathing. Mandatory breaths are synchronized with patient effort if possible. May prolong weaning compared to PSV or AC modes if set inappropriately (can lead to high WOB for spontaneous breaths). |
-| **CPAP (Continuous Positive Airway Pressure)** | Provides a constant level of positive pressure throughout the entire respiratory cycle (inspiration and expiration) during spontaneous breathing. Often used with PSV (CPAP level = PEEP level with PS added). | Maintains alveolar recruitment, improves FRC and oxygenation. Used for OSA, cardiogenic pulmonary edema, weaning.                                                                                                                           |
-| **PRVC (Pressure Regulated Volume Control)** / VC+ (Volume Control Plus) / AVAPS (Average Volume Assured Pressure Support) - (Mode names vary by ventilator) | A dual-control mode: Volume-targeted, pressure-limited. Ventilator delivers a target VT using the lowest possible inspiratory pressure, adjusting pressure breath-by-breath based on previous breath's VT and compliance. Operates like PCV but with an adaptive pressure target. | Combines benefits of VC (guaranteed VT) and PC (pressure limitation). May improve comfort and synchrony.                                                                                                                             |
-| **APRV (Airway Pressure Release Ventilation)** / BiLevel / BiVent | Provides two levels of CPAP: a high pressure (Phigh) held for a long duration (Thigh), with brief, intermittent releases to a lower pressure (Plow) for a short duration (Tlow) to facilitate CO2 clearance. Patient can breathe spontaneously at both Phigh and Plow. Essentially a form of inverse ratio PCV. | Used in severe ARDS for alveolar recruitment and oxygenation. Aims to maintain high mean airway pressure. Can be complex to manage. Spontaneous breathing is encouraged.                                                                           |
-| **ASV (Adaptive Support Ventilation)**   | A highly automated mode that adjusts settings (RR, VT, Pinsp) based on calculated patient lung mechanics (using Otis formula for optimal WOB) and patient effort to achieve a clinician-set target minute ventilation (e.g., % of predicted). | Aims to optimize ventilation pattern, minimize WOB, and facilitate weaning. Requires careful monitoring and understanding by clinician.                                                                                                       |
-
-### Ventilator Waveform Analysis (Scalars: Pressure, Flow, Volume vs. Time)
-Essential for assessing patient-ventilator interaction, lung mechanics, and troubleshooting.
-
-#### Pressure-Time Waveform
-*   **VCV**: Rises during inspiration to PIP, then drops to PEEP. A distinct Pplat is visible during an inspiratory pause maneuver.
-    *   *Interpretation*: If PIP is significantly higher than Pplat, indicates high airway resistance. If PIP and Pplat are both high and close together, indicates poor lung compliance.
-*   **PCV**: Rapid rise to the set inspiratory pressure (Pinsp), maintained for Ti, then drops to PEEP.
-    *   *Interpretation*: Waveform should be rectangular. If pressure "droops" or "sags" during inspiration, it suggests patient inspiratory effort is exceeding the set pressure or the delivered flow from the ventilator (flow starvation).
-
-#### Flow-Time Waveform
-*   **VCV (Square Flow Pattern)**: Inspiratory flow is constant (rectangular shape), then abruptly drops to zero at end-inspiration. Expiratory flow is passive, decelerating (curved shape).
-*   **VCV (Descending Ramp Flow Pattern)**: Inspiratory flow starts high and linearly decelerates to zero (or near zero) at end-inspiration. Expiratory flow is passive, decelerating.
-*   **PCV**: Inspiratory flow is high initially (driven by pressure difference), then decelerates as alveolar pressure equilibrates with set Pinsp. Ideally, inspiratory flow should reach zero (or close to it) just before inspiration ends (if Ti is adequate). Expiratory flow is passive, decelerating.
-*   **Common Findings & Interpretations**:
-    *   **Flow Starvation (Air Hunger)**: In VCV (square flow), if inspiratory flow waveform appears "scooped" or concave, it suggests patient demand exceeds delivered flow. In PCV, if inspiratory flow rapidly drops to zero and stays there for a significant portion of Ti while the patient is still making effort, or if the pressure waveform sags, it indicates insufficient flow/pressure. *Action: Increase flow rate (VCV), increase Pinsp or shorten Ti (PCV if flow reaches zero too early and Pplat is acceptable).*
-    *   **Auto-PEEP (Air Trapping/Dynamic Hyperinflation)**: Expiratory flow does not return to baseline (zero) before the next breath begins. Indicates incomplete exhalation. *Action: Reduce RR, reduce VT, shorten Ti (to lengthen Te), treat bronchospasm, reduce external PEEP if appropriate and auto-PEEP is significant.*
-    *   **Bronchospasm/Increased Airway Resistance**: Peak expiratory flow rate is reduced, and expiratory flow is prolonged (takes longer to return to baseline).
-    *   **Active Expiration**: Patient actively exhaling against the ventilator, seen as an abrupt spike or irregularity in the expiratory flow waveform.
-    *   **Double Triggering**: Patient's inspiratory effort outlasts the ventilator's set Ti, leading to a second ventilator breath being delivered immediately after the first. Often due to insufficient VT or Ti.
-
-#### Volume-Time Waveform
-*   Smooth rise during inspiration to the set VT (in VCV) or the delivered VT (in PCV), then a smooth fall during exhalation back to baseline (zero, representing FRC).
-*   **Common Findings & Interpretations**:
-    *   **Air Leak**: Expiratory portion of the volume curve does not return to baseline (zero), or measured exhaled VT is consistently less than inhaled VT. Indicates a leak in the ventilator circuit, around the ETT cuff, or a bronchopleural fistula.
-
-### Monitoring & Troubleshooting
-*   **Patient Assessment**: Always assess the patient first. Look for signs of distress, changes in vital signs, chest movement, breath sounds, SpO2.
-*   **Ventilator Circuit**: Check for disconnections, kinks, water/condensation, ETT position and cuff leak.
-*   **Ventilator Settings & Alarms**: Verify settings are appropriate. Understand and respond to alarms promptly.
-
-#### Common Ventilator Alarms
-
-| Alarm Type              | Possible Causes                                                                                                                                  | Initial Actions (Always Assess Patient First!)                                                                                                                             |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **High Pressure Alarm** (PIP limit exceeded) | Kinked tube, secretions/mucus plug (need suction), patient biting ETT, bronchospasm, pneumothorax, worsening ARDS/pulmonary edema, patient-ventilator dyssynchrony (coughing, fighting ventilator), water in circuit, mainstem intubation. | Disconnect patient from ventilator and manually ventilate with bag-valve-mask if severe distress. Suction ETT, check for kinks/water, ensure ETT patency/position, assess breath sounds, provide sedation/analgesia if needed, consider bronchodilator. Obtain CXR if pneumothorax suspected. |
-| **Low Pressure/Low Minute Ventilation/Low Tidal Volume Alarm** | Disconnection (patient from ventilator, circuit components loose), ETT cuff leak or rupture, circuit leak, ETT displacement/extubation, apnea or insufficient respiratory effort (if not in full support mode). | Check all connections from ventilator to patient. Check ETT cuff pressure and listen for leak. Assess patient's respiratory effort and level of consciousness. If disconnected, reconnect immediately. |
-| **Apnea Alarm**         | Insufficient patient respiratory effort (in spontaneous/support modes like PSV, CPAP), oversedation, neurological impairment, respiratory muscle fatigue.                                                                    | Stimulate patient. Ensure adequate ventilatory support (may need to switch to a control mode or adjust settings). Review sedation/analgesia. Assess for underlying causes.   |
-| **High Respiratory Rate Alarm** | Pain, anxiety, agitation, hypoxia, hypercapnia, metabolic acidosis, fever, patient-ventilator dyssynchrony, inappropriate ventilator settings (e.g., too low VT or flow).                                             | Assess patient for cause of tachypnea (ABG, vital signs, comfort, sedation level). Address underlying cause. Optimize ventilator settings to improve synchrony.             |
-| **Low PEEP/CPAP Alarm** | Circuit leak, disconnection, inadequate flow from ventilator to maintain PEEP.                                                                     | Check circuit integrity and connections. Ensure ventilator is functioning correctly.                                                                                     |
-
-### ARDS Management Strategies on Ventilator
-*   **Low Tidal Volume Ventilation (LTVV)**: 4-6 mL/kg PBW.
-*   **Plateau Pressure <30 cmH2O**.
-*   **Driving Pressure (ΔP = Pplat - Total PEEP) <15 cmH2O**.
-*   **Optimize PEEP**: Use PEEP/FiO2 tables (e.g., ARDSNet low or high PEEP/FiO2 tables) or perform decremental PEEP titration to find "best PEEP" (balances alveolar recruitment, oxygenation, and minimizes overdistension/hemodynamic compromise).
-*   **Permissive Hypercapnia**: Allow PaCO2 to rise (typically maintaining arterial pH >7.20-7.25) as a consequence of LTVV to protect lungs, provided there are no contraindications (e.g., severe metabolic acidosis, increased ICP).
-*   **Prone Positioning**: For moderate to severe ARDS (PaO2/FiO2 <150 mmHg on PEEP ≥5 cmH2O and FiO2 ≥0.6). Typically for 12-16 hours per day. Improves oxygenation by recruiting dorsal lung regions, improving V/Q matching.
-*   **Conservative Fluid Management**: After initial resuscitation, aim for even or negative fluid balance in ARDS patients without shock, to reduce pulmonary edema.
-*   **Consider Neuromuscular Blocking Agents (NMBAs)**: For early (first 48h) severe ARDS (PaO2/FiO2 <150) to improve patient-ventilator synchrony, reduce oxygen consumption, and potentially improve outcomes. Requires deep sedation and careful monitoring.
-*   **Recruitment Maneuvers (RMs)**: Controversial. Brief, sustained increases in airway pressure to reopen collapsed alveoli. Potential benefits but also risks (barotrauma, hemodynamic instability). If used, monitor closely.
-
-### Weaning and Liberation from Mechanical Ventilation
-Process of discontinuing mechanical ventilation and removing the artificial airway.
-*   **Criteria for Weaning Readiness**:
-    *   Resolution or significant improvement of underlying cause of respiratory failure.
-    *   Adequate oxygenation (e.g., PaO2/FiO2 >150-200 on PEEP ≤5-8 cmH2O and FiO2 ≤0.4-0.5).
-    *   Hemodynamic stability (minimal or no vasopressors).
-    *   Afebrile or fever controlled.
-    *   Adequate mental status (awake, alert, cooperative, able to follow commands).
-    *   Adequate cough and ability to clear secretions.
-    *   No major procedures planned.
-*   **Daily Spontaneous Awakening Trials (SATs)**: Interrupting or reducing sedation to assess neurological status and readiness for SBT.
-*   **Daily Spontaneous Breathing Trials (SBTs)**: Patient breathes with minimal or no ventilator support (e.g., low PSV ~5-7 cmH2O, CPAP ~5 cmH2O, or T-piece trial) for 30-120 minutes.
-    *   **SBT Failure Criteria**: Tachypnea (RR >35/min), hypoxemia (SpO2 <90%), tachycardia (HR >140/min or >20% increase), bradycardia, arrhythmias, hypertension or hypotension, agitation, anxiety, diaphoresis, altered mental status, signs of increased WOB (accessory muscle use, paradoxical breathing).
-*   **Objective Weaning Parameters (use in conjunction with clinical assessment)**:
-    *   **Rapid Shallow Breathing Index (RSBI)**: RR / VT (in Liters) during SBT. RSBI <105 breaths/min/L predicts weaning success.
-    *   **Negative Inspiratory Force (NIF) / Maximal Inspiratory Pressure (MIP)**: > -20 to -30 cmH2O.
-    *   **Vital Capacity (VC)**: >10-15 mL/kg PBW.
-    *   **Minute Ventilation (VE)**: <10-12 L/min while maintaining normal PaCO2.
-*   **Extubation Criteria**: Successful SBT, effective cough, patent airway (e.g., cuff leak test positive), adequate mentation.
-*   **Post-Extubation Care**: Monitor closely for respiratory distress, stridor (may need racemic epinephrine or heliox), inability to clear secretions. Non-invasive ventilation (NIV) may be used post-extubation in select high-risk patients to prevent reintubation.`,
-    categoryType: 'Topic',
-    keywordsForImage: 'ICU ventilator screen patient',
-  },
-  {
-    id: 'electrolyte-imbalances',
-    slug: 'electrolyte-imbalances',
-    title: 'Electrolyte Imbalances in the ICU',
-    summary: 'Recognition and management of common and critical electrolyte disturbances like hyperkalemia, hyponatremia, and hypomagnesemia in the ICU setting.',
-    categoryType: 'Topic',
-    keywordsForImage: 'electrolyte panel ICU',
-    content: `## General Overview
-Electrolytes are minerals in the body that have an electric charge. They are essential for many bodily functions, including nerve and muscle function, hydration, blood pH, and blood pressure. In critically ill patients, electrolyte imbalances are common due to underlying disease states, organ dysfunction (especially renal), medications, and therapeutic interventions (e.g., IV fluids, diuretics, RRT). Prompt recognition and management are crucial to prevent severe complications.
-
-## In-Depth ICU Considerations
-
-This section will focus on the most frequently encountered and clinically significant electrolyte imbalances in the ICU: Potassium, Sodium, Calcium, Magnesium, and Phosphate.
-
-### Potassium (K⁺)
-Normal Range: 3.5 - 5.0 mEq/L. Critical for neuromuscular function, cardiac excitability, and cellular metabolism.
-
-#### Hyperkalemia (Serum K⁺ >5.0-5.5 mEq/L)
-*   **Causes**:
-    *   **Decreased Excretion**: Acute Kidney Injury (AKI), Chronic Kidney Disease (CKD), adrenal insufficiency (Addison's disease, hypoaldosteronism), K⁺-sparing diuretics (spironolactone, amiloride), ACE inhibitors, ARBs, NSAIDs.
-    *   **Increased Intake**: Excessive K⁺ administration (IV or PO), salt substitutes.
-    *   **Shift from Intracellular to Extracellular Space**: Acidosis (metabolic or respiratory), tissue breakdown (rhabdomyolysis, tumor lysis syndrome, burns, crush injuries, hemolysis), insulin deficiency (DKA), beta-blocker overdose, digoxin toxicity, succinylcholine.
-    *   **Pseudohyperkalemia**: Hemolysis during blood draw, thrombocytosis, leukocytosis.
-*   **Clinical Manifestations**:
-    *   **Muscular**: Weakness (can progress to flaccid paralysis), paresthesias, fatigue.
-    *   **Cardiac (Most Serious)**: Arrhythmias, palpitations.
-        *   **ECG Changes (Progressive)**:
-            1.  **Peaked T waves** (earliest sign, often tall and narrow).
-            2.  Prolonged PR interval.
-            3.  Loss of P waves.
-            4.  Widening of QRS complex (can merge with T wave to form sine wave pattern).
-            5.  Ventricular fibrillation (VFib), asystole.
-    *   **GI**: Nausea, vomiting, diarrhea, abdominal cramping.
-*   **Management (Urgency based on K⁺ level and ECG changes)**:
-    1.  **Stabilize Cardiac Membrane (if ECG changes or K⁺ >6.5-7.0 mEq/L)**:
-        *   **Calcium Gluconate 10%**: 10-20 mL IV over 2-5 minutes (onset <5 min, duration 30-60 min). **Does NOT lower serum K⁺**, but antagonizes cardiac effects. Calcium Chloride can be used (contains 3x more elemental Ca²⁺ per gram, preferred in cardiac arrest, but more irritating to veins).
-    2.  **Shift K⁺ Intracellularly (Temporary Measures)**:
-        *   **Insulin (Regular) + Glucose**: 10 units IV Regular Insulin with 25-50g Dextrose (e.g., D50W) IV over 15-30 min (onset 15-30 min, duration 4-6h). Monitor glucose.
-        *   **Beta-2 Agonists**: Albuterol 10-20 mg nebulized over 10 min (onset 30 min, duration 2-4h). Use with caution in cardiac patients (tachycardia).
-        *   **Sodium Bicarbonate**: 1 amp (50 mEq) IV over 5 min if severe metabolic acidosis (pH <7.1-7.2) coexists (onset 30-60 min, duration variable). Controversial, less effective if no acidosis.
-    3.  **Remove K⁺ from Body (Definitive Measures)**:
-        *   **Loop Diuretics**: Furosemide 20-80 mg IV (if renal function preserved).
-        *   **Cation-Exchange Resins**: Sodium Polystyrene Sulfonate (Kayexalate) PO or PR (onset hours to days, risk of colonic necrosis, esp. with sorbitol). Patiromer or Sodium Zirconium Cyclosilicate (newer, more selective, better tolerated).
-        *   **Hemodialysis/CRRT**: Most effective and rapid method, especially in AKI/CKD or severe/refractory hyperkalemia.
-    4.  Discontinue exogenous K⁺ sources. Identify and treat underlying cause.
-
-#### Hypokalemia (Serum K⁺ <3.5 mEq/L)
-*   **Causes**:
-    *   **Decreased Intake**: Malnutrition, NPO status.
-    *   **Increased Loss**:
-        *   **GI Losses**: Diarrhea (most common GI cause), vomiting, NG suction, laxative abuse, fistulas.
-        *   **Renal Losses**: Diuretics (loop and thiazide), hyperaldosteronism, Cushing's syndrome, renal tubular acidosis (RTA), hypomagnesemia (impairs K⁺ reabsorption).
-        *   **Skin Losses**: Profuse sweating (rarely significant alone).
-    *   **Shift from Extracellular to Intracellular Space**: Alkalosis (metabolic or respiratory), insulin administration, beta-2 agonist use, refeeding syndrome, hypothermic diuresis, treatment of pernicious anemia.
-*   **Clinical Manifestations**:
-    *   **Muscular**: Weakness, fatigue, muscle cramps, myalgias, rhabdomyolysis (severe).
-    *   **Cardiac**: Arrhythmias (PVCs, VT, VFib), palpitations, potentiation of digoxin toxicity.
-        *   **ECG Changes**: Flattened or inverted T waves, prominent U waves, ST segment depression, prolonged QT/QU interval.
-    *   **GI**: Ileus, constipation, N/V.
-    *   **Renal**: Polyuria, polydipsia (nephrogenic DI).
-    *   **Metabolic**: Glucose intolerance.
-*   **Management**:
-    1.  **Oral K⁺ Replacement**: Preferred if mild-moderate and gut is functional (e.g., Potassium Chloride tablets/liquid).
-    2.  **IV K⁺ Replacement**: For severe hypokalemia (K⁺ <2.5 mEq/L), symptomatic patients, or NPO.
-        *   **Peripheral IV**: Max concentration typically 10-20 mEq/100 mL, max rate 10 mEq/hr (to avoid pain, phlebitis, and arrhythmias).
-        *   **Central Line**: Max concentration up to 40 mEq/100 mL, max rate 20 mEq/hr (requires cardiac monitoring). Higher rates only in emergent situations (e.g., K⁺ <2.0 with arrhythmias).
-        *   **Never IV Push Potassium.**
-    3.  **Correct Hypomagnesemia**: Magnesium is a cofactor for Na⁺/K⁺-ATPase. K⁺ repletion is often ineffective if hypomagnesemia is not corrected concurrently.
-    4.  Monitor serum K⁺ levels frequently during repletion. Identify and treat underlying cause.
-
-### Sodium (Na⁺)
-Normal Range: 135 - 145 mEq/L. Major extracellular cation, crucial for fluid balance, nerve impulse transmission, and muscle function. Disorders reflect water imbalance more than sodium imbalance.
-
-#### Hyponatremia (Serum Na⁺ <135 mEq/L)
-Classified by volume status (hypovolemic, euvolemic, hypervolemic).
-*   **Causes**:
-    *   **Hypovolemic**: Renal losses (diuretics, adrenal insufficiency, salt-wasting nephropathy), Extra-renal losses (GI - V/D, NG suction; skin - burns, excessive sweating) with hypotonic fluid replacement.
-    *   **Euvolemic**: SIADH (most common euvolemic cause), psychogenic polydipsia, hypothyroidism, glucocorticoid deficiency, beer potomania, endurance exercise.
-    *   **Hypervolemic**: Heart failure, cirrhosis, nephrotic syndrome, AKI/CKD (impaired water excretion).
-    *   **Pseudohyponatremia**: Severe hyperlipidemia or hyperproteinemia (older lab methods). Hyperglycemia (osmotic shift of water into ECF, Na⁺ decreases ~1.6-2.4 mEq/L for every 100 mg/dL glucose increase above 100 mg/dL - "corrected sodium").
-*   **Clinical Manifestations (depend on severity and acuity)**:
-    *   **Mild (Na⁺ 130-134)**: Often asymptomatic.
-    *   **Moderate (Na⁺ 120-129)**: Nausea, malaise, headache, lethargy, confusion.
-    *   **Severe (Na⁺ <120 or rapid fall)**: Vomiting, seizures, coma, respiratory arrest, brainstem herniation (due to cerebral edema).
-*   **Management (based on severity, symptoms, acuity, and volume status)**:
-    1.  **Acute Symptomatic Hyponatremia (e.g., seizures, coma)**: Medical emergency.
-        *   Administer **Hypertonic Saline (3% NaCl)** IV bolus (e.g., 100-150 mL over 10-20 min, may repeat) to rapidly increase serum Na⁺ by a few mEq/L to alleviate severe symptoms.
-        *   Goal of correction: Raise serum Na⁺ by max 8-10 mEq/L in first 24h, and max 18 mEq/L in 48h to prevent **Osmotic Demyelination Syndrome (ODS)** / Central Pontine Myelinolysis (CPM).
-    2.  **Chronic or Mild/Moderate Asymptomatic Hyponatremia**: Slower correction.
-        *   **Hypovolemic**: Isotonic saline (0.9% NaCl) to restore volume.
-        *   **Euvolemic (SIADH)**: Fluid restriction (e.g., 800-1000 mL/day), oral salt tablets, loop diuretics (with salt tabs), vasopressin receptor antagonists (vaptans - e.g., Tolvaptan PO, Conivaptan IV).
-        *   **Hypervolemic**: Fluid and sodium restriction, diuretics, treat underlying cause (HF, cirrhosis, nephrosis).
-    3.  Treat underlying cause. Monitor serum Na⁺, osmolality, urine Na⁺/osmolality, volume status closely.
-
-#### Hypernatremia (Serum Na⁺ >145 mEq/L)
-Indicates a free water deficit.
-*   **Causes**:
-    *   **Decreased Water Intake**: Impaired thirst (elderly, altered mental status), inability to access water (intubated/sedated patients).
-    *   **Increased Water Loss**:
-        *   **Renal Losses**: Diabetes Insipidus (DI - central or nephrogenic), osmotic diuresis (hyperglycemia, mannitol, high protein tube feeds).
-        *   **Extra-renal Losses**: GI (diarrhea, vomiting), Skin (fever, burns, excessive sweating, open wounds), Respiratory (hyperventilation).
-    *   **Excessive Sodium Intake/Retention**: Hypertonic saline administration, sodium bicarbonate infusion, hyperaldosteronism, Cushing's syndrome.
-*   **Clinical Manifestations**:
-    *   Thirst (if thirst mechanism intact), dry mucous membranes, decreased skin turgor.
-    *   Neurological (due to brain cell shrinkage): Lethargy, weakness, irritability, confusion, twitching, seizures, coma.
-*   **Management**:
-    1.  **Replace Free Water Deficit**: Orally if possible, or IV with hypotonic fluids (D5W, 0.45% NaCl, 0.2% NaCl).
-        *   Calculate free water deficit: e.g., Water Deficit (L) = (Current Na⁺/140 - 1) x Total Body Water (TBW). (TBW ≈ 0.6 x body weight in kg for men, 0.5 for women; adjust for elderly/obese).
-        *   Correct slowly: Aim to lower serum Na⁺ by max 8-10 mEq/L per 24h to prevent cerebral edema.
-    2.  **Treat Underlying Cause**:
-        *   Central DI: Desmopressin (DDAVP).
-        *   Nephrogenic DI: Thiazide diuretics, amiloride, salt restriction.
-    3.  Discontinue/reduce sources of Na⁺ gain. Monitor serum Na⁺, osmolality, urine output closely.
-
-### Calcium (Ca²⁺)
-Normal Total Calcium: 8.5 - 10.5 mg/dL. Normal Ionized Calcium (iCa): 4.5 - 5.6 mg/dL (1.12-1.32 mmol/L) - **physiologically active form.**
-Total calcium levels are affected by albumin (low albumin = low total Ca²⁺, but iCa may be normal). Corrected Total Ca = Measured Total Ca + [0.8 x (4.0 - Measured Albumin)].
-Focus on ionized calcium in ICU.
-
-#### Hypocalcemia (iCa <4.5 mg/dL or <1.12 mmol/L)
-*   **Causes**: Hypoparathyroidism (post-surgical, autoimmune), Vitamin D deficiency, CKD (impaired Vit D activation, hyperphosphatemia), pancreatitis, hypomagnesemia (impairs PTH secretion/action), massive blood transfusions (citrate chelates calcium), rhabdomyolysis (calcium deposition), sepsis, certain drugs (loop diuretics, bisphosphonates, cinacalcet, foscarnet, phenytoin).
-*   **Clinical Manifestations**:
-    *   **Neuromuscular Excitability**: Paresthesias (perioral, fingers, toes), muscle cramps, tetany (Chvostek's sign - facial twitch; Trousseau's sign - carpal spasm with BP cuff), laryngospasm, bronchospasm, seizures.
-    *   **Cardiovascular**: Hypotension, myocardial dysfunction, prolonged QT interval (risk of Torsades de Pointes).
-*   **Management**:
-    1.  **Symptomatic/Severe Hypocalcemia**: IV Calcium Gluconate 1-2g over 10-20 min, followed by continuous infusion if needed. Calcium Chloride (more elemental Ca²⁺, more irritating) can be used. Requires cardiac monitoring.
-    2.  **Asymptomatic/Mild Hypocalcemia**: Oral calcium supplements (e.g., calcium carbonate, calcium citrate) + Vitamin D if deficient.
-    3.  Correct hypomagnesemia. Monitor iCa, total Ca, albumin, Mg, PO4.
-
-#### Hypercalcemia (iCa >5.6 mg/dL or >1.32 mmol/L)
-*   **Causes**: Primary hyperparathyroidism (most common outpatient), Malignancy (bone mets, PTHrP production - most common inpatient/ICU), granulomatous diseases (sarcoidosis, TB - increased Vit D activation), immobilization, Vitamin D toxicity, thiazide diuretics, milk-alkali syndrome, adrenal insufficiency.
-*   **Clinical Manifestations ("Stones, bones, groans, psychiatric overtones")**:
-    *   **Renal**: Nephrolithiasis, polyuria/polydipsia (nephrogenic DI), AKI.
-    *   **Skeletal**: Bone pain, fractures.
-    *   **GI**: Nausea, vomiting, constipation, abdominal pain, pancreatitis.
-    *   **Neurological**: Weakness, fatigue, confusion, lethargy, depression, coma.
-    *   **Cardiovascular**: Hypertension, bradycardia, short QT interval, arrhythmias.
-*   **Management (depends on severity and symptoms)**:
-    1.  **Hydration**: Aggressive IV isotonic saline (0.9% NaCl) to promote calciuresis (e.g., 200-300 mL/hr, monitor for fluid overload).
-    2.  **Loop Diuretics (e.g., Furosemide)**: **After volume repletion**, to enhance calcium excretion. Avoid thiazides.
-    3.  **Bisphosphonates (e.g., Pamidronate, Zoledronic Acid)**: Inhibit osteoclast activity. Onset 2-4 days. For malignancy-associated hypercalcemia.
-    4.  **Calcitonin**: Rapid onset (hours), short duration. Inhibits bone resorption, increases renal excretion. Tachyphylaxis occurs.
-    5.  **Glucocorticoids**: For hypercalcemia due to granulomatous diseases, Vitamin D toxicity, or hematologic malignancies (lymphoma, myeloma).
-    6.  **Dialysis**: For severe, life-threatening hypercalcemia or if renal failure.
-    7.  Treat underlying cause.
-
-### Magnesium (Mg²⁺)
-Normal Range: 1.7 - 2.2 mg/dL. Essential for enzyme function, neuromuscular transmission, cardiac excitability, PTH secretion.
-
-#### Hypomagnesemia (Serum Mg²⁺ <1.7 mg/dL)
-*   **Causes**: Decreased intake (malnutrition, alcoholism, PN without adequate Mg), GI losses (diarrhea, NG suction, fistulas, malabsorption), Renal losses (diuretics - loop/thiazide, aminoglycosides, amphotericin B, cisplatin, cyclosporine, proton pump inhibitors - PPIs), DKA, refeeding syndrome, hungry bone syndrome, acute pancreatitis.
-*   **Clinical Manifestations**:
-    *   **Neuromuscular**: Weakness, tremors, tetany, Chvostek's/Trousseau's signs, seizures, hyperreflexia.
-    *   **Cardiovascular**: Arrhythmias (PVCs, VT, **Torsades de Pointes**, AFib), prolonged QT/PR intervals, ST depression.
-    *   **Associated Electrolyte Abnormalities**: Hypokalemia (due to renal K⁺ wasting), Hypocalcemia (due to impaired PTH release/action).
-*   **Management**:
-    1.  **Symptomatic/Severe (<1 mg/dL or arrhythmias)**: IV Magnesium Sulfate. E.g., 1-2g over 15-60 min for non-emergent; 1-2g over 5-15 min for Torsades (if pulse present) or severe symptoms. Follow with infusion if ongoing losses.
-    2.  **Asymptomatic/Mild**: Oral magnesium (e.g., magnesium oxide - often causes diarrhea).
-    3.  Monitor Mg levels, DTRs, renal function. Correct other electrolyte abnormalities.
-
-#### Hypermagnesemia (Serum Mg²⁺ >2.2 mg/dL)
-*   **Causes**: Renal failure (most common), excessive intake (Mg-containing antacids/laxatives, iatrogenic overdose - e.g., treatment of preeclampsia/eclampsia or asthma), tumor lysis syndrome, rhabdomyolysis.
-*   **Clinical Manifestations (dose-dependent)**:
-    *   **Mild (>2.5-4 mg/dL)**: N/V, flushing, headache.
-    *   **Moderate (4-7 mg/dL)**: Drowsiness, lethargy, hyporeflexia/areflexia, weakness, hypotension, bradycardia, ECG changes (prolonged PR/QT, wide QRS).
-    *   **Severe (>7-10 mg/dL)**: Respiratory depression, apnea, complete heart block, cardiac arrest.
-*   **Management**:
-    1.  Discontinue exogenous magnesium sources.
-    2.  **IV Calcium Gluconate**: 1-2g IV to antagonize neuromuscular and cardiac effects (if symptomatic or severe).
-    3.  Enhance elimination: IV fluids + loop diuretics (if normal renal function).
-    4.  **Hemodialysis**: For severe hypermagnesemia or renal failure.
-
-### Phosphate (PO₄³⁻)
-Normal Range: 2.5 - 4.5 mg/dL. Crucial for ATP production, bone metabolism, cell membrane function, oxygen transport (2,3-DPG).
-
-#### Hypophosphatemia (Serum PO₄³⁻ <2.5 mg/dL)
-*   **Causes**: Decreased intake (malnutrition, alcoholism), Decreased absorption (antacids containing aluminum/magnesium, Vit D deficiency), Increased excretion (hyperparathyroidism, Fanconi syndrome, osmotic diuresis, diuretics), Intracellular shift (Refeeding syndrome - most common ICU cause, respiratory alkalosis, DKA treatment, hungry bone syndrome).
-*   **Clinical Manifestations (usually when <1-1.5 mg/dL)**:
-    *   **Muscular**: Weakness (can lead to respiratory failure from diaphragmatic weakness), myalgia, rhabdomyolysis.
-    *   **Neurological**: Paresthesias, confusion, seizures, coma.
-    *   **Cardiac**: Impaired contractility, heart failure, arrhythmias.
-    *   **Hematologic**: Hemolytic anemia, platelet dysfunction, impaired WBC function.
-    *   **Skeletal**: Bone pain, osteomalacia (chronic).
-*   **Management**:
-    1.  **Severe/Symptomatic (<1-1.5 mg/dL)**: IV phosphate replacement (e.g., Sodium Phosphate or Potassium Phosphate). **Administer slowly** (e.g., 0.08-0.16 mmol/kg over 4-6h, up to 0.24 mmol/kg in severe cases) to avoid hypocalcemia and metastatic calcification. Monitor serum phosphate, calcium, potassium, renal function.
-    2.  **Mild/Moderate Asymptomatic**: Oral phosphate supplements (e.g., K-Phos Neutral, Neutra-Phos). Often causes diarrhea.
-    3.  Treat underlying cause (e.g., manage refeeding syndrome carefully).
-
-#### Hyperphosphatemia (Serum PO₄³⁻ >4.5 mg/dL)
-*   **Causes**: Decreased excretion (AKI/CKD - most common cause), Increased intake (phosphate-containing laxatives/enemas, excessive IV/PO supplementation), Shift from intracellular to extracellular (Tumor lysis syndrome, rhabdomyolysis, DKA, metabolic acidosis), Vitamin D toxicity, hypoparathyroidism.
-*   **Clinical Manifestations**: Often asymptomatic. Symptoms usually related to secondary hypocalcemia (tetany, paresthesias, seizures). Chronic: metastatic calcification (vascular, soft tissue - leading to pruritus, organ damage), renal osteodystrophy.
-*   **Management**:
-    1.  Treat underlying cause.
-    2.  Dietary phosphate restriction.
-    3.  **Phosphate Binders (with meals)**: Calcium-based (calcium carbonate, calcium acetate), Non-calcium based (sevelamer, lanthanum carbonate).
-    4.  Enhance excretion: IV saline hydration + loop diuretics (if renal function permits).
-    5.  **Hemodialysis**: For severe hyperphosphatemia or renal failure.`,
-    categoryType: 'Topic',
-    keywordsForImage: 'electrolyte panel ICU',
-  },
-  {
-    id: 'acid-base-balance-abg-interpretation',
-    slug: 'acid-base-balance-abg-interpretation',
-    title: 'Acid-Base Balance and ABG Interpretation',
-    summary: 'Comprehensive guide to interpreting arterial blood gases (ABGs) and managing complex acid-base disorders encountered in critically ill patients.',
-    categoryType: 'Topic',
-    keywordsForImage: 'ABG analysis chart',
-    content: `## General Overview
-Acid-base balance refers to the physiological mechanisms that maintain the hydrogen ion (H⁺) concentration, and thus the pH, of body fluids within a narrow, optimal range. This balance is crucial for normal cellular function, enzyme activity, and overall homeostasis. Arterial Blood Gas (ABG) analysis is a vital diagnostic tool in critical care, providing key information about a patient's oxygenation status, ventilatory function, and acid-base equilibrium.
-
-## In-Depth ICU Considerations
-
-### Key Components of an ABG
-*   **pH**: Reflects the net H⁺ concentration. Normal: 7.35-7.45.
-    *   <7.35: Acidemia (excess H⁺)
-    *   >7.45: Alkalemia (deficit of H⁺)
-*   **PaCO2 (Partial Pressure of Carbon Dioxide)**: Respiratory component. Normal: 35-45 mmHg.
-    *   CO2 acts as an acid (CO2 + H2O ↔ H2CO3 ↔ H⁺ + HCO3⁻).
-    *   >45 mmHg: Respiratory acidosis (hypoventilation, CO2 retention).
-    *   <35 mmHg: Respiratory alkalosis (hyperventilation, CO2 washout).
-*   **HCO3⁻ (Bicarbonate)**: Metabolic component. Normal: 22-26 mEq/L.
-    *   HCO3⁻ acts as a base.
-    *   <22 mEq/L: Metabolic acidosis (bicarbonate loss or acid gain).
-    *   >26 mEq/L: Metabolic alkalosis (bicarbonate gain or acid loss).
-*   **PaO2 (Partial Pressure of Oxygen)**: Oxygenation status. Normal: 80-100 mmHg (on room air).
-*   **SaO2 (Oxygen Saturation)**: Percentage of hemoglobin saturated with oxygen. Normal: 95-100%.
-*   **Base Excess (BE) / Base Deficit (BD)**: Indicates overall metabolic status. Normal: -2 to +2 mEq/L.
-    *   Negative BE (Base Deficit): Suggests metabolic acidosis.
-    *   Positive BE: Suggests metabolic alkalosis.
-
-### Systematic Approach to ABG Interpretation
-1.  **Assess pH**: Is it acidemia (<7.35), alkalemia (>7.45), or normal (7.35-7.45)?
-2.  **Identify the Primary Disturbance**:
-    *   Look at PaCO2: If pH is low and PaCO2 is high (>45), primary disorder is **Respiratory Acidosis**. If pH is high and PaCO2 is low (<35), primary disorder is **Respiratory Alkalosis**.
-    *   Look at HCO3⁻: If pH is low and HCO3⁻ is low (<22), primary disorder is **Metabolic Acidosis**. If pH is high and HCO3⁻ is high (>26), primary disorder is **Metabolic Alkalosis**.
-    *   If both PaCO2 and HCO3⁻ are abnormal and consistent with the pH change, it indicates a mixed disorder or a primary disorder with compensation. Determine which change (PaCO2 or HCO3⁻) is more aligned with the degree of pH change to identify the primary disorder.
-3.  **Determine if Compensation is Present**: The body attempts to normalize pH by altering the component not primarily affected.
-    *   **Respiratory Compensation for Metabolic Disorders**: Lungs compensate by altering ventilation.
-        *   Metabolic Acidosis: Lungs hyperventilate to blow off CO2 (↓PaCO2). Expected PaCO2 = (1.5 x HCO3⁻) + 8 (±2) (Winter's Formula).
-        *   Metabolic Alkalosis: Lungs hypoventilate to retain CO2 (↑PaCO2). Expected PaCO2 = 0.7 x (Actual HCO3⁻ - 24) + 40 (±2), or PaCO2 rises 0.6-0.7 mmHg for every 1 mEq/L rise in HCO3⁻.
-    *   **Metabolic (Renal) Compensation for Respiratory Disorders**: Kidneys compensate by altering HCO3⁻ reabsorption/excretion. This is slower (hours to days).
-        *   **Acute Respiratory Acidosis**: For every 10 mmHg ↑ in PaCO2, HCO3⁻ ↑ by 1 mEq/L.
-        *   **Chronic Respiratory Acidosis**: For every 10 mmHg ↑ in PaCO2, HCO3⁻ ↑ by 3-4 mEq/L.
-        *   **Acute Respiratory Alkalosis**: For every 10 mmHg ↓ in PaCO2, HCO3⁻ ↓ by 2 mEq/L.
-        *   **Chronic Respiratory Alkalosis**: For every 10 mmHg ↓ in PaCO2, HCO3⁻ ↓ by 4-5 mEq/L.
-    *   **Fully Compensated**: pH is within normal range (7.35-7.45), but PaCO2 and HCO3⁻ are abnormal.
-    *   **Partially Compensated**: pH is still abnormal, but the compensatory system is moving in the correct direction.
-    *   **Uncompensated**: pH is abnormal, and the compensatory system has not yet responded.
-4.  **Assess Oxygenation**: Look at PaO2 and SaO2. Calculate PaO2/FiO2 ratio (P/F ratio) if on supplemental O2 (Normal >400; <300 indicates hypoxemia, <200 ARDS).
-5.  **Calculate Anion Gap (if Metabolic Acidosis is present)**:
-    *   Anion Gap (AG) = Na⁺ - (Cl⁻ + HCO3⁻). Normal: 8-12 mEq/L.
-    *   Helps differentiate causes of metabolic acidosis.
-    *   **High Anion Gap Metabolic Acidosis (HAGMA)**: Due to accumulation of unmeasured anions.
-        *   Mnemonic: **MUDPILES**
-            *   **M**ethanol
-            *   **U**remia (CKD)
-            *   **D**iabetic Ketoacidosis (DKA)
-            *   **P**ropylene Glycol (solvent in some IV meds like lorazepam), Paraldehyde
-            *   **I**ron, Isoniazid, Inborn errors of metabolism
-            *   **L**actic Acidosis (most common cause in ICU)
-            *   **E**thylene Glycol
-            *   **S**alicylates
-    *   **Normal Anion Gap Metabolic Acidosis (NAGMA) / Hyperchloremic Metabolic Acidosis**: Due to loss of HCO3⁻ or gain of Cl⁻.
-        *   Mnemonic: **HARDUPS** or **USED CARP**
-            *   **H**yperalimentation (TPN with high chloride content)
-            *   **A**cetazolamide, Addison's disease
-            *   **R**enal Tubular Acidosis (RTA)
-            *   **D**iarrhea (most common cause of NAGMA)
-            *   **U**reteroenteric fistula/diversion
-            *   **P**ancreatic fistula/drainage
-            *   **S**aline administration (large volumes of 0.9% NaCl)
-
-### Specific Acid-Base Disorders
-
-#### Respiratory Acidosis (pH ↓, PaCO2 ↑)
-*   **Cause**: Alveolar hypoventilation -> CO2 retention.
-*   **Common ICU Etiologies**: CNS depression (opioids, sedatives, head injury), neuromuscular disorders (Guillain-Barré, myasthenia gravis, ICUAW, NMBAs), airway obstruction (COPD/asthma exacerbation, foreign body), restrictive lung disease, severe pneumonia/ARDS (if inadequate VE), chest wall trauma/deformity, ventilator malfunction or inappropriate settings.
-*   **Compensation**: Kidneys retain HCO3⁻ (takes hours to days).
-*   **Management**: Improve alveolar ventilation (treat underlying cause, reverse sedatives, bronchodilators, mechanical ventilation if severe, adjust ventilator settings to ↑VE).
-
-#### Respiratory Alkalosis (pH ↑, PaCO2 ↓)
-*   **Cause**: Alveolar hyperventilation -> CO2 washout.
-*   **Common ICU Etiologies**: Hypoxia (stimulates respiratory drive), anxiety, pain, fever, sepsis, CNS injury (stroke, tumor), salicylate toxicity (early), pulmonary embolism, CHF, liver failure, pregnancy, mechanical hyperventilation (ventilator settings too high).
-*   **Compensation**: Kidneys excrete HCO3⁻ (takes hours to days).
-*   **Management**: Treat underlying cause. If iatrogenic (ventilator), reduce VE. Rebreathing CO2 (paper bag) for psychogenic hyperventilation (rarely used in ICU). Sedation/anxiolytics if appropriate.
-
-#### Metabolic Acidosis (pH ↓, HCO3⁻ ↓)
-*   **Cause**: Increased acid production, loss of HCO3⁻, or decreased renal acid excretion.
-*   **Common ICU Etiologies**:
-    *   **HAGMA**: Lactic acidosis (sepsis, shock, hypoxia, ischemia), DKA, AKI/CKD (uremia), toxic ingestions (methanol, ethylene glycol, salicylates).
-    *   **NAGMA**: Diarrhea, RTA, excessive NS infusion, pancreatic/biliary fistula, ureteral diversions.
-*   **Compensation**: Lungs hyperventilate to ↓PaCO2 (Kussmaul respirations).
-*   **Management**: Treat underlying cause. IV fluids. Bicarbonate therapy is controversial (consider if pH <7.1-7.15 with severe hemodynamic instability, but risks include fluid/Na⁺ overload, ↓ionized Ca²⁺, paradoxical intracellular acidosis, overshoot alkalosis). Renal replacement therapy if severe AKI/CKD.
-
-#### Metabolic Alkalosis (pH ↑, HCO3⁻ ↑)
-*   **Cause**: Loss of H⁺ or gain of HCO3⁻.
-*   **Common ICU Etiologies**:
-    *   **Chloride-Responsive (Urine Cl⁻ <20 mEq/L)**: Vomiting/NG suction (loss of HCl), diuretic therapy (loop/thiazide - volume and Cl⁻ depletion), post-hypercapnic state (after rapid correction of chronic respiratory acidosis).
-    *   **Chloride-Resistant (Urine Cl⁻ >20 mEq/L)**: Hyperaldosteronism, Cushing's syndrome, severe K⁺ depletion, excessive alkali administration (bicarbonate, citrate in blood transfusions, antacids).
-*   **Compensation**: Lungs hypoventilate to ↑PaCO2 (limited by hypoxic drive).
-*   **Management**: Treat underlying cause.
-    *   Chloride-Responsive: Administer isotonic saline (0.9% NaCl) and KCl to correct volume and Cl⁻/K⁺ deficits. Discontinue offending agents (e.g., diuretics). Acetazolamide (carbonic anhydrase inhibitor, promotes HCO3⁻ excretion) may be used if volume overloaded. HCl infusion (rarely, via central line for severe cases).
-    *   Chloride-Resistant: Treat underlying endocrine disorder. Correct severe hypokalemia.
-
-### Mixed Acid-Base Disorders
-Common in critically ill patients. More than one primary disorder is present simultaneously.
-*   Example: Sepsis patient with lactic acidosis (Metabolic Acidosis) and concurrent respiratory failure requiring intubation with inadequate ventilation (Respiratory Acidosis).
-*   Interpretation requires careful assessment of pH, PaCO2, HCO3⁻, AG, and clinical context. The expected compensatory response for one disorder may be blunted or exaggerated by another coexisting primary disorder.
-
-### Advanced Concepts
-*   **Stewart Approach / Physicochemical Approach**: Considers strong ions (Strong Ion Difference - SID), weak acids (Atot), and PCO2 as independent determinants of pH. More complex but can explain some "unexplained" metabolic acidoses.
-*   **Delta-Delta Gap (ΔAG/ΔHCO3⁻)**: (Calculated AG - Normal AG) / (Normal HCO3⁻ - Measured HCO3⁻). Ratio ~1-2 suggests pure HAGMA. <1 suggests coexisting NAGMA. >2 suggests coexisting metabolic alkalosis.
-*   **Urine Anion Gap (UAG)**: UAG = (Urine Na⁺ + Urine K⁺) - Urine Cl⁻. Helps differentiate causes of NAGMA (e.g., positive UAG suggests renal cause like RTA; negative UAG suggests GI HCO3⁻ loss like diarrhea).
-
-Monitoring serial ABGs and correlating with clinical status and other lab data is essential for managing acid-base disturbances in the ICU.`,
-    categoryType: 'Topic',
-    keywordsForImage: 'ABG analysis chart',
-  },
-  {
-    id: 'nutrition-critical-care',
-    slug: 'nutrition-critical-care',
-    title: 'Nutrition in Critical Care',
-    summary: 'Principles of enteral and parenteral nutrition, assessing nutritional risk, managing refeeding syndrome, and metabolic support for ICU patients.',
-    categoryType: 'Topic',
-    keywordsForImage: 'nutrition support ICU',
-    content: `## General Overview
-Nutritional support is a cornerstone of managing critically ill patients. Critical illness induces a hypermetabolic and catabolic state, leading to rapid loss of lean body mass, impaired immune function, weakened respiratory muscles, and delayed wound healing if nutritional needs are not met. The primary goals of nutritional support in the ICU are to preserve lean body mass, support organ function, modulate the stress response, prevent oxidative cellular injury, and improve overall outcomes.
-
-## In-Depth ICU Considerations
-
-### Metabolic Response to Critical Illness
-*   **Hypermetabolism**: Increased resting energy expenditure (REE) due to stress hormones (catecholamines, cortisol, glucagon), cytokines, and fever.
-*   **Catabolism**: Accelerated breakdown of protein (especially skeletal muscle) and fat to provide substrates for gluconeogenesis, acute phase protein synthesis, and energy. Leads to negative nitrogen balance.
-*   **Insulin Resistance**: Common, leading to stress-induced hyperglycemia.
-*   **Altered Nutrient Utilization**: Changes in carbohydrate, lipid, and protein metabolism.
-
-### Nutritional Assessment in the ICU
-Traditional markers (albumin, prealbumin) are often unreliable in critical illness as they are negative acute phase reactants and affected by fluid status/inflammation.
-*   **Risk Screening Tools**:
-    *   **NRS-2002 (Nutritional Risk Screening 2002)**: Considers nutritional status and disease severity.
-    *   **NUTRIC Score (Nutrition Risk in Critically Ill)**: ICU-specific, incorporates APACHE II, SOFA, age, comorbidities, days from hospital to ICU admission, IL-6 levels (if available). Score ≥5 indicates high nutritional risk.
-*   **Clinical Assessment**: History of recent intake, weight loss, physical exam for signs of malnutrition (muscle wasting, edema, skin changes).
-*   **Indirect Calorimetry**: "Gold standard" for measuring REE, but not widely available or practical for all patients. Can help guide calorie targets if available.
-*   **Predictive Equations**: Harris-Benedict, Mifflin-St Jeor, Penn State equations are used to estimate energy needs if indirect calorimetry is unavailable. Often less accurate in ICU. Simple weight-based targets (e.g., 25-30 kcal/kg/day) are commonly used.
-
-### Timing and Route of Nutritional Support
-
-#### Enteral Nutrition (EN) - "If the gut works, use it."
-EN is the preferred route for nutritional support in critically ill patients with a functional GI tract.
-*   **Benefits over Parenteral Nutrition (PN)**:
-    *   Maintains gut mucosal integrity and barrier function (prevents bacterial translocation).
-    *   Supports gut-associated lymphoid tissue (GALT) and immune function.
-    *   Lower risk of infectious complications (e.g., CLABSI).
-    *   More physiologic.
-    *   Less costly.
-*   **Timing**:
-    *   **Early EN**: Initiate within 24-48 hours of ICU admission in patients who are unable to maintain volitional oral intake and are hemodynamically stable.
-    *   Delay EN in patients with severe hemodynamic instability (e.g., escalating vasopressor requirements, uncontrolled shock) until resuscitation and stabilization are achieved.
-*   **Access**:
-    *   **Nasogastric (NG) tube**: Most common for short-term EN.
-    *   **Nasoduodenal (ND) / Nasojejunal (NJ) tubes (post-pyloric)**: Used if high risk of aspiration, gastroparesis, or intolerance to gastric feeding. Placement often requires endoscopic or fluoroscopic guidance.
-    *   **Gastrostomy (PEG) / Jejunostomy (PEJ) tubes**: For long-term EN (>4-6 weeks).
-*   **Formula Selection**:
-    *   **Standard Polymeric Formulas**: 1-1.5 kcal/mL, contain intact proteins, carbohydrates, fats. Suitable for most patients.
-    *   **High-Protein Formulas**: For patients with increased protein needs (e.g., burns, trauma, sepsis).
-    *   **Fiber-Containing Formulas**: May help with diarrhea or constipation in some patients. Avoid in patients at high risk for bowel ischemia.
-    *   **Concentrated Formulas (1.5-2.0 kcal/mL)**: For fluid-restricted patients.
-    *   **Disease-Specific Formulas** (e.g., renal, diabetic, pulmonary, immune-modulating): Use is controversial and generally recommended only in specific patient populations based on current evidence and guidelines.
-*   **Initiation and Advancement**:
-    *   Start at a low rate (e.g., 10-20 mL/hr).
-    *   Advance by 10-20 mL/hr every 4-8 hours as tolerated, towards goal rate (usually within 24-48h).
-    *   Goal: Provide ≥80% of estimated energy and protein needs within 48-72 hours.
-*   **Monitoring for Tolerance & Complications**:
-    *   **Gastric Residual Volumes (GRVs)**: Routine monitoring is controversial. High GRVs alone (e.g., >250-500 mL) without other signs of intolerance should not solely prompt cessation of EN. Consider trends, patient symptoms. If GRV >500mL, hold EN, reassess.
-    *   **Signs of Intolerance**: Nausea, vomiting, abdominal distension, pain, diarrhea, constipation.
-    *   **Aspiration**: Elevate Head of Bed (HOB) 30-45°. Consider prokinetics (e.g., metoclopramide, erythromycin) for gastroparesis. Consider post-pyloric feeding.
-    *   **Diarrhea**: Rule out C. difficile. Consider changing formula (e.g., to fiber-containing or peptide-based), use of antidiarrheals if infectious cause ruled out.
-    *   **Constipation**: Ensure adequate hydration, consider fiber, laxatives/stool softeners.
-    *   **Metabolic Complications**: Hyperglycemia (monitor glucose, insulin if needed), electrolyte imbalances (monitor and replete K, PO4, Mg).
-
-#### Parenteral Nutrition (PN / TPN)
-IV administration of nutrients. Used when EN is contraindicated or insufficient to meet needs.
-*   **Indications**:
-    *   Prolonged inability to use GI tract (e.g., severe ileus, bowel obstruction, high-output fistula, severe pancreatitis with intolerance to EN, short bowel syndrome).
-    *   EN not meeting >60% of needs after 7-10 days.
-    *   Severe malnutrition when EN is not feasible.
-*   **Timing**:
-    *   If patient is well-nourished on admission, delay PN for 7 days if EN not feasible.
-    *   If patient is malnourished or at high nutritional risk, initiate PN earlier if EN is not feasible or tolerated within a few days.
-*   **Access**: Requires central venous access (PPN - peripheral parenteral nutrition - is short-term, low osmolarity/concentration only, rarely sufficient for ICU).
-*   **Components**: Dextrose (carbohydrate), amino acids (protein), intravenous fat emulsion (IVFE/lipids), electrolytes, vitamins, trace elements. Formulated by pharmacy.
-*   **Complications**:
-    *   **Catheter-Related Bloodstream Infection (CLABSI)**: Strict aseptic technique for CVC care.
-    *   **Hyperglycemia**: Common. Monitor glucose frequently, use insulin infusion as needed.
-    *   **Hypoglycemia**: If PN abruptly stopped. Taper PN rate, or provide IV dextrose.
-    *   **Electrolyte Imbalances**: Monitor and adjust PN formulation.
-    *   **Parenteral Nutrition-Associated Liver Disease (PNALD)**: Cholestasis, steatosis, fibrosis. More common with long-term PN.
-    *   **Hypertriglyceridemia**: Monitor triglycerides. Hold/reduce lipids if severe.
-    *   **Refeeding Syndrome**: See below.
-    *   **Fluid Overload**.
-*   **Monitoring**: Daily labs (glucose, electrolytes, LFTs, triglycerides - especially initially), fluid balance, infection signs.
-
-### Protein and Energy Requirements
-*   **Energy**: Typically 25-30 kcal/kg actual body weight/day. Adjust based on clinical condition, nutritional status, and indirect calorimetry if available. Avoid overfeeding (can lead to hyperglycemia, hypercapnia, hepatic steatosis).
-*   **Protein**: Needs are increased in critical illness. Typically 1.2-2.0 g/kg actual body weight/day. Higher in burns, trauma, some catabolic states.
-*   **Hypocaloric, High-Protein Feeding**: In some obese patients (BMI >30), providing ~60-70% of estimated energy needs but high protein (e.g., 2-2.5 g/kg Ideal Body Weight) may be beneficial.
-
-### Refeeding Syndrome
-A potentially fatal condition caused by rapid fluid and electrolyte shifts (especially phosphate, potassium, magnesium) that occur when nutrition (enteral or parenteral) is reintroduced after a period of significant starvation or malnutrition. Thiamine deficiency is also a key component.
-*   **Pathophysiology**: Reintroduction of carbohydrates -> insulin secretion -> stimulates cellular uptake of glucose, phosphate, potassium, magnesium, and water. Thiamine is consumed as a cofactor in carbohydrate metabolism.
-*   **High-Risk Patients**: History of significant weight loss, prolonged NPO/starvation (>7-10 days), chronic alcoholism, anorexia nervosa, malabsorptive syndromes, morbid obesity with massive weight loss, baseline low K/PO4/Mg.
-*   **Clinical Manifestations (can affect multiple organ systems)**:
-    *   **Hypophosphatemia (Hallmark)**: Weakness (respiratory muscle failure), cardiac dysfunction, rhabdomyolysis, AMS, seizures.
-    *   **Hypokalemia**: Arrhythmias, weakness.
-    *   **Hypomagnesemia**: Arrhythmias (Torsades), tetany, seizures.
-    *   **Thiamine Deficiency (Wernicke's Encephalopathy)**: Confusion, ataxia, ophthalmoplegia.
-    *   **Fluid Overload / Cardiac Failure**: Due to sodium and water retention.
-*   **Prevention and Management**:
-    1.  **Identify High-Risk Patients**.
-    2.  **Correct Electrolyte Abnormalities (K, PO4, Mg) BEFORE starting nutrition.**
-    3.  **Administer Thiamine**: (e.g., 100-300mg IV/IM daily for 3-5 days, or more) **BEFORE** starting carbohydrates or glucose-containing fluids.
-    4.  **Start Nutrition Slowly ("Start Low, Go Slow")**: Initiate at a low caloric level (e.g., 10-15 kcal/kg/day or 25-50% of goal for high-risk patients). Advance gradually over several days.
-    5.  **Monitor Electrolytes Closely**: Check K, PO4, Mg at least daily (or more frequently) during the first week of refeeding and replete aggressively.
-    6.  Monitor fluid balance, vital signs, cardiac and respiratory status.
-
-### Adjunctive Therapies & Specific Nutrients
-*   **Immune-Modulating Formulas** (e.g., supplemented with arginine, glutamine, omega-3 fatty acids, antioxidants): Role is controversial. Some guidelines recommend for specific populations (e.g., major surgery, trauma, burns) but not routinely for all septic patients.
-*   **Glutamine**: May be beneficial in burn and trauma patients, but routine supplementation in general ICU patients is not consistently supported.
-*   **Omega-3 Fatty Acids**: May have anti-inflammatory effects. Some evidence for use in ARDS.
-*   **Antioxidants (e.g., Selenium, Vitamin C, Vitamin E, Zinc)**: May be considered, role still under investigation.
-*   **Probiotics**: Role in preventing VAP or C. difficile in ICU is not yet established.
-
-Transitioning from EN/PN to oral diet should occur as soon as the patient is clinically stable, alert, and able to swallow safely (pass dysphagia screen).`,
-    categoryType: 'Topic',
-    keywordsForImage: 'nutrition support ICU',
+    keywordsForImage: 'pills medications pharmacy',
   },
 ];
 
 const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDepthConsiderations'> & { content: string }> = [
   {
-    id: 'stroke-protocols',
-    slug: 'stroke-protocols',
+    id: 'acls-guidelines',
+    slug: 'acls-guidelines',
+    title: 'ACLS Guidelines Summary',
+    summary: 'Key algorithms and interventions from the latest Advanced Cardiovascular Life Support (ACLS) guidelines for managing cardiac arrest and periarrest situations.',
+    content: `## General Overview
+
+Advanced Cardiovascular Life Support (ACLS) refers to a set of clinical algorithms and protocols for the urgent treatment of cardiac arrest, stroke, myocardial infarction (heart attack), and other life-threatening cardiovascular emergencies. These guidelines are developed and periodically updated by international bodies like the American Heart Association (AHA) and the European Resuscitation Council (ERC), based on the latest scientific evidence and expert consensus. The primary goal of ACLS is to improve survival rates and neurological outcomes for patients experiencing these critical events.
+
+ACLS builds upon Basic Life Support (BLS) principles, which include early recognition of cardiac arrest, activation of the emergency response system, high-quality cardiopulmonary resuscitation (CPR - chest compressions and rescue breaths), and rapid defibrillation when indicated. ACLS introduces more advanced interventions, such as management of the airway with advanced adjuncts (e.g., endotracheal intubation, supraglottic airways), administration of resuscitation medications (e.g., epinephrine, amiodarone, lidocaine), interpretation of electrocardiograms (ECGs) to identify specific arrhythmias, and post-cardiac arrest care to optimize recovery. Effective team dynamics, clear communication, and systematic approaches are emphasized in ACLS training and practice. ICU nurses are often key members of the resuscitation team and must be proficient in ACLS protocols to respond effectively to in-hospital cardiac arrests and other cardiovascular emergencies. This module provides a summary of key components; however, clinicians must always refer to the most current and complete official ACLS guidelines from their respective governing bodies for comprehensive information and certification.
+
+## In-Depth ICU Considerations
+
+### Key Principles of ACLS
+*   **High-Quality CPR is Paramount**:
+    *   Push hard (at least 2 inches or 5 cm) and fast (100-120 compressions/min).
+    *   Allow full chest recoil between compressions.
+    *   Minimize interruptions in chest compressions (target compression fraction >80%).
+    *   Avoid excessive ventilation (8-10 breaths/min with advanced airway, or 30:2 compression-to-ventilation ratio without advanced airway).
+*   **Early Defibrillation for Shockable Rhythms**: Ventricular Fibrillation (VF) and pulseless Ventricular Tachycardia (pVT).
+*   **Team Dynamics**: Clear roles, closed-loop communication, mutual respect, debriefing.
+*   **Systematic Approach**: Follow algorithms (e.g., Cardiac Arrest Algorithm, Bradycardia Algorithm, Tachycardia Algorithm).
+*   **Identify and Treat Reversible Causes (H's and T's)**:
+    *   **H's**: Hypovolemia, Hypoxia, Hydrogen ion (acidosis), Hypo/Hyperkalemia, Hypoglycemia, Hypothermia.
+    *   **T's**: Tension pneumothorax, Tamponade (cardiac), Toxins, Thrombosis (pulmonary), Thrombosis (coronary).
+
+### Cardiac Arrest Algorithm (Adult)
+
+**1. BLS Assessment & High-Quality CPR**
+   * Start CPR immediately (Compressions-Airway-Breathing).
+   * Attach monitor/defibrillator as soon as available.
+
+**2. Rhythm Check (Is it shockable?)**
+   * **Shockable Rhythms: VF / pVT**
+      * **Shock**: Deliver 1 shock (defibrillator specific energy, e.g., biphasic 120-200J; monophasic 360J).
+      * **CPR**: Resume CPR immediately for 2 minutes.
+      * Establish IV/IO access.
+      * **Rhythm Check / Shock (if indicated)**
+      * **CPR (2 min)**
+      * **Drug Therapy**:
+         * **Epinephrine** 1 mg IV/IO every 3-5 minutes.
+         * **Amiodarone** 300 mg IV/IO bolus first dose, then consider 150 mg second dose (for refractory VF/pVT).
+         * **OR Lidocaine** 1-1.5 mg/kg IV/IO first dose, then 0.5-0.75 mg/kg every 5-10 min (max 3 doses or 3 mg/kg) if Amiodarone unavailable or per local protocol.
+      * Treat reversible causes.
+      * Consider advanced airway, capnography (quantitative waveform capnography - PETCO2 - to monitor CPR quality and detect ROSC. Target PETCO2 >10-20 mmHg during CPR).
+
+   * **Non-Shockable Rhythms: Asystole / PEA (Pulseless Electrical Activity)**
+      * **CPR**: Resume CPR immediately for 2 minutes.
+      * Establish IV/IO access.
+      * **Drug Therapy**:
+         * **Epinephrine** 1 mg IV/IO every 3-5 minutes (administer as soon as feasible).
+      * Treat reversible causes.
+      * **Rhythm Check**: If organized rhythm, check for pulse. If no pulse, continue CPR. If shockable rhythm develops, go to VF/pVT arm.
+      * Consider advanced airway, capnography.
+
+**3. Repeat Cycle**: Continue CPR, rhythm checks (q2 min), shocks (if indicated), medications, and search for/treat reversible causes until Return of Spontaneous Circulation (ROSC), termination of efforts, or transfer of care.
+
+### Post-Cardiac Arrest Care (If ROSC Achieved)
+*   **Airway Management**: Ensure patent airway, optimize ventilation and oxygenation (target SpO2 92-98%, PaCO2 35-45 mmHg).
+*   **Hemodynamic Optimization**: Treat hypotension (SBP <90 mmHg, MAP <65 mmHg) with IV fluids, vasopressors (Norepinephrine, Epinephrine, Dopamine) to maintain organ perfusion.
+*   **Targeted Temperature Management (TTM)**: For comatose adult patients with ROSC after cardiac arrest, maintain a constant temperature between 32°C and 36°C for at least 24 hours. (Specific temperature and duration may vary by local protocol and evolving evidence).
+*   **Coronary Reperfusion**: If STEMI suspected or high suspicion of ACS, consider urgent coronary angiography.
+*   **Neurological Care**: Continuous EEG monitoring if comatose or seizures suspected. Treat seizures aggressively. Manage glucose (avoid hypoglycemia and severe hyperglycemia).
+*   **Identify and Treat Precipitating Causes**.
+
+### Bradycardia with a Pulse Algorithm (Adult)
+HR <50 bpm (or <60 bpm if symptomatic).
+1.  **Assess Appropriateness for Clinical Condition**.
+2.  **Identify and Treat Underlying Cause**: Maintain patent airway; assist breathing as necessary. Oxygen (if hypoxemic). Cardiac monitor to identify rhythm; monitor blood pressure and oximetry. IV access. 12-lead ECG if available; don’t delay therapy.
+3.  **Persistent Bradyarrhythmia Causing**: Hypotension? Acutely altered mental status? Signs of shock? Ischemic chest discomfort? Acute heart failure?
+    *   **Yes (Symptomatic Bradycardia)**:
+        *   **Atropine** 1 mg IV bolus. Repeat every 3-5 minutes. Max total dose: 3 mg.
+        *   If Atropine ineffective:
+            *   **Transcutaneous Pacing (TCP)**: Prepare for and use immediately.
+            *   **OR Dopamine** infusion: 5-20 mcg/kg/min, titrate to patient response; taper slowly.
+            *   **OR Epinephrine** infusion: 2-10 mcg/min, titrate to patient response.
+        *   Consider expert consultation for transvenous pacing.
+    *   **No (Asymptomatic Bradycardia)**: Monitor and observe.
+
+### Tachycardia with a Pulse Algorithm (Adult)
+HR >150 bpm usually (unless underlying ventricular dysfunction).
+1.  **Assess Appropriateness for Clinical Condition**.
+2.  **Identify and Treat Underlying Cause**: Maintain patent airway; assist breathing as necessary. Oxygen (if hypoxemic). Cardiac monitor to identify rhythm; monitor blood pressure and oximetry. IV access. 12-lead ECG if available; don’t delay therapy.
+3.  **Persistent Tachyarrhythmia Causing**: Hypotension? Acutely altered mental status? Signs of shock? Ischemic chest discomfort? Acute heart failure?
+    *   **Yes (Unstable Tachycardia)**:
+        *   **Synchronized Cardioversion**: Sedate if patient conscious and time permits. Narrow regular (SVT, AFlutter): 50-100J. Narrow irregular (AFib): 120-200J biphasic or 200J monophasic. Wide regular (monomorphic VT): 100J. Wide irregular (polymorphic VT or uncertain): Treat as VF with high-energy defibrillation (unsynchronized shock).
+        *   If regular narrow complex SVT and cardioversion fails, consider Adenosine.
+    *   **No (Stable Tachycardia)**:
+        *   **Assess QRS Duration**:
+            *   **Wide QRS (≥0.12 sec)?**
+                *   **Yes**:
+                    *   If regular and monomorphic: Consider Adenosine (only if regular and monomorphic). Consider antiarrhythmic infusion (e.g., Procainamide, Amiodarone, Sotalol). Expert consultation.
+                    *   If irregular: (e.g., AFib with aberrancy, pre-excited AFib, polymorphic VT/Torsades). Expert consultation. For Torsades de Pointes: Magnesium IV.
+                *   **No (Narrow QRS <0.12 sec)**:
+                    *   **Regular Rhythm?**
+                        *   **Yes (likely SVT)**: Vagal maneuvers (if no contraindication). Adenosine 6 mg rapid IV push; if no conversion, 12 mg IV push. Beta-blocker or Calcium Channel Blocker.
+                        *   **No (Irregular Narrow Complex Tachycardia - likely AFib, AFlutter with variable block, or MAT)**: Control rate (Beta-blocker or Calcium Channel Blocker - e.g., Diltiazem). Consider anticoagulation for AFib/AFlutter. Expert consultation.
+
+**Note**: This is a simplified summary. Always refer to the latest official AHA/ERC ACLS Provider Manual for complete and detailed guidelines, drug dosages, and specific clinical scenarios. Local protocols may also apply.`,
+    categoryType: 'Policy',
+    keywordsForImage: 'cpr heart defibrillator',
+  },
+  {
+    id: 'stroke-management',
+    slug: 'stroke-management',
     title: 'Acute Stroke Management Protocols',
-    summary: 'Unit-specific guidelines for rapid assessment, diagnosis, and intervention in acute ischemic and hemorrhagic stroke.',
-    content: `## General Overview: Purpose of Policy
+    summary: 'Guidelines for rapid assessment, diagnosis (ischemic vs. hemorrhagic), and time-sensitive interventions for acute stroke patients, including tPA and thrombectomy criteria.',
+    content: `## General Overview
 
-This policy outlines the standardized, evidence-based approach to the rapid assessment, diagnosis, and management of adult patients presenting with signs and symptoms of acute stroke (ischemic or hemorrhagic) within this institution. The primary goal is to ensure timely intervention to minimize brain injury, reduce mortality, and improve functional outcomes. **"Time is Brain"** is the guiding principle. This protocol emphasizes interdisciplinary collaboration and adherence to established timelines.
+Acute stroke is a medical emergency characterized by the sudden loss of brain function due to an interruption of blood flow to a part of the brain (ischemic stroke) or the rupture of a blood vessel within or around the brain (hemorrhagic stroke). It is a leading cause of death and long-term disability worldwide. Rapid recognition of stroke symptoms, prompt activation of emergency medical services, and swift transport to a stroke-capable hospital are critical for optimizing patient outcomes. The phrase "Time is Brain" underscores the urgency, as brain cells begin to die within minutes of losing their blood supply.
 
-## In-Depth Protocol Details & Procedures
+Ischemic strokes, accounting for about 87% of all strokes, occur when a cerebral artery is blocked by a thrombus (blood clot forming locally) or an embolus (clot or debris traveling from elsewhere, often the heart). Hemorrhagic strokes result from bleeding, either into the brain tissue itself (intracerebral hemorrhage, ICH) or into the subarachnoid space surrounding the brain (subarachnoid hemorrhage, SAH).
 
-### I. Initial Actions & Stroke Alert Activation (Pre-Hospital & Emergency Department)
+Management of acute stroke in the ICU involves rapid diagnostic workup (including neuroimaging like CT or MRI), close physiological monitoring, and specific interventions tailored to the type and cause of stroke. For ischemic stroke, this may include reperfusion therapies such as intravenous thrombolysis (e.g., alteplase or tPA) or mechanical thrombectomy. For hemorrhagic stroke, management focuses on controlling blood pressure, managing intracranial pressure, reversing anticoagulation if applicable, and potentially surgical intervention. ICU care also involves preventing and managing complications such as cerebral edema, seizures, aspiration pneumonia, and venous thromboembolism.
 
-1.  **Immediate Stroke Alert/Team Activation**:
-    *   **Pre-hospital**: EMS to notify receiving hospital of suspected stroke ("Stroke Alert"), providing LKW time, vital signs, glucose, and pre-hospital stroke scale findings.
-    *   **In-Hospital (ED/Floor)**: Any staff member recognizing acute stroke symptoms must immediately activate the institutional Stroke Alert system.
-2.  **ABCs & Vital Signs**:
-    *   Assess and ensure patent Airway, adequate Breathing, and Circulation.
-    *   Administer Oxygen if SpO2 <94% or signs of hypoxia.
-    *   Obtain full set of vital signs (BP, HR, RR, Temp).
-    *   Perform STAT fingerstick blood glucose. Correct hypoglycemia (<60 mg/dL) promptly with D50W IV.
-3.  **Establish Last Known Well (LKW) Time**: Or last known normal. This is the single most critical piece of historical information for determining eligibility for time-sensitive therapies. Document clearly. If LKW is unknown or unwitnessed, use time patient was last seen at their baseline.
-4.  **Rapid Neurological Assessment**:
-    *   Perform a standardized stroke scale (e.g., Cincinnati Prehospital Stroke Scale - CPSS: Facial droop, Arm drift, Abnormal speech; or Los Angeles Motor Scale - LAMS).
-    *   Upon arrival or activation, a certified provider (Neurology resident/attending, ED physician, stroke nurse) performs the full NIH Stroke Scale (NIHSS). Document score.
-5.  **IV Access & Labs**:
-    *   Establish at least one, preferably two, large-bore IV access lines (e.g., 18-20 gauge).
-    *   Draw blood for STAT labs: CBC with differential and platelets, CMP (electrolytes, BUN, Cr, Glucose, LFTs), PT/INR, aPTT. For patients on DOACs, consider specific DOAC levels or anti-Xa activity if available and timely. Troponin may be indicated. Type & screen if high likelihood of intervention.
-    *   **Crucially, do NOT delay STAT non-contrast head CT or IV thrombolysis (if eligible) waiting for lab results, except for glucose. For patients on anticoagulants, INR/aPTT/platelets are needed before tPA.**
-6.  **STAT Non-Contrast Head CT (NCCT)**:
-    *   This is the **most critical initial diagnostic test** to differentiate ischemic from hemorrhagic stroke.
-    *   Target "door-to-CT" time: ≤20 minutes from ED arrival.
-    *   Target "CT interpretation time": ≤20 minutes from CT completion (total door-to-CT interpretation ≤45 minutes).
-    *   Neuroradiologist or qualified physician to interpret immediately.
-7.  **History & Physical Exam**: Focused H&P concurrently with other actions. Include medications (especially anticoagulants/antiplatelets), allergies, comorbidities, recent trauma/surgery.
+## In-Depth ICU Considerations
 
-### II. Acute Ischemic Stroke (AIS) Management (NCCT shows no hemorrhage)
+### Rapid Recognition and Stroke Team Activation
+*   **Key Symptoms (BE FAST or FAST)**:
+    *   **B**alance: Sudden loss of balance or coordination.
+    *   **E**yes: Sudden trouble seeing in one or both eyes.
+    *   **F**ace Drooping: Sudden facial weakness or asymmetry.
+    *   **A**rm Weakness: Sudden weakness or numbness in one arm.
+    *   **S**peech Difficulty: Sudden slurred speech, difficulty speaking or understanding.
+    *   **T**ime to call emergency services: Note the time symptoms began (Last Known Well - LKW).
+*   **Stroke Code/Alert Activation**: Pre-hospital notification and rapid in-hospital pathways are crucial. Goal: Door-to-Needle time <60 minutes (ideally <45 min) for tPA in ischemic stroke.
 
-#### A. IV Thrombolysis (Alteplase/tPA)
+### Initial Assessment and Stabilization (ED/ICU)
+*   **ABCs**: Ensure patent airway, adequate breathing and oxygenation (SpO2 >94%), and circulatory support.
+*   **Vital Signs & Glucose**: Monitor closely. Treat hypoglycemia (<60 mg/dL) or significant hyperglycemia.
+*   **Brief Neurological Exam**: NIH Stroke Scale (NIHSS) is a standardized tool to quantify stroke severity. GCS.
+*   **Establish IV Access**.
+*   **Obtain Labs**: CBC, electrolytes, renal function, coagulation studies (PT/INR, aPTT), cardiac enzymes, blood glucose.
+*   **Non-Contrast Head CT (NCCT)**: **CRITICAL first imaging study** to differentiate ischemic vs. hemorrhagic stroke and rule out mimics. Goal: Door-to-CT interpretation <20-25 minutes.
+*   **Further Imaging (as indicated)**:
+    *   CT Angiography (CTA) of head and neck: To identify large vessel occlusion (LVO) in ischemic stroke.
+    *   CT Perfusion (CTP) or MR Perfusion: To assess ischemic penumbra vs. core infarct, helps select patients for thrombectomy in extended windows.
+    *   MRI/MRA: More sensitive for early ischemic changes, posterior fossa strokes.
 
-*   **Eligibility Criteria (General Summary - Refer to Institutional Detailed Checklist)**:
-    1.  Age ≥18 years.
-    2.  Clinical diagnosis of ischemic stroke causing a measurable neurological deficit (defined by NIHSS).
-    3.  Time from LKW to initiation of tPA:
-        *   **≤ 3 hours**: Standard window for most eligible patients.
-        *   **3 to 4.5 hours**: Extended window for select patients (e.g., age ≤80, not on oral anticoagulants irrespective of INR, NIHSS score ≤25, no history of both diabetes and prior stroke).
-*   **Strict Exclusion Criteria (Selected Major Examples - Consult Full Institutional Checklist for ALL Exclusions)**:
-    *   Evidence of intracranial hemorrhage (ICH) on NCCT.
-    *   Active internal bleeding or clinically significant bleeding (e.g., GI bleed within last 3 weeks, arterial puncture at non-compressible site within 7 days).
-    *   Recent (within 3 months) significant head trauma, intracranial or intraspinal surgery, or previous stroke.
-    *   Symptoms suggestive of Subarachnoid Hemorrhage (SAH) even if CT negative initially.
-    *   Uncontrolled hypertension: SBP >185 mmHg or DBP >110 mmHg **despite initial aggressive treatment** to lower it to within these limits before tPA.
-    *   Known AVM, aneurysm, or intracranial neoplasm.
-    *   Current use of direct thrombin inhibitors or direct factor Xa inhibitors with evidence of anticoagulant effect (e.g., elevated aPTT, INR, anti-Xa, or recent intake within 48h if normal renal function - specific lab parameters vary).
-    *   Use of warfarin with INR >1.7 or PT >15 seconds.
-    *   Receipt of therapeutic dose LMWH within last 24 hours.
-    *   Platelet count <100,000/mm³.
-    *   Blood glucose <50 mg/dL (treat and reassess) or >400 mg/dL (consider treatment, risk/benefit).
-    *   Seizure at stroke onset if postictal deficits are believed to be the cause of NIHSS findings.
-    *   Extensive regions of obvious hypodensity/ischemia on initial NCCT (suggesting large established infarct, e.g., >1/3 MCA territory).
-*   **Alteplase (tPA) Administration**:
-    *   **Target "Door-to-Needle" (tPA initiation) time: ≤60 minutes from ED arrival.**
-    *   **Dose**: 0.9 mg/kg total dose. Maximum total dose is 90 mg.
-        *   Administer 10% of the total dose as an IV bolus over 1 minute.
-        *   Infuse the remaining 90% of the total dose IV over 60 minutes via infusion pump.
-    *   Confirm patient weight accurately. Double-check dose calculations independently by two licensed professionals.
-*   **Blood Pressure Management for tPA Candidates**:
-    *   **Prior to tPA**: If SBP >185 mmHg or DBP >110 mmHg, gently lower BP to ≤185/110 mmHg before initiating tPA.
-        *   Labetalol 10-20 mg IV over 1-2 minutes, may repeat x1; OR
-        *   Nicardipine infusion 5 mg/hr IV, titrate up by 2.5 mg/hr every 5-15 minutes, max 15 mg/hr; OR
-        *   Other agents per institutional protocol (e.g., Clevidipine, Hydralazine, Enalaprilat). Avoid Nitroglycerin.
-    *   **During and for 24 hours Post-tPA**: Maintain SBP ≤180 mmHg and DBP ≤105 mmHg.
-        *   Monitor BP q15min for 2h, then q30min for 6h, then q1h for 16h.
-        *   Treat BP elevations aggressively using protocolized IV antihypertensives.
-*   **Post-tPA Care & Monitoring**:
-    *   Admit to Stroke Unit or ICU.
-    *   **No antiplatelets (aspirin) or anticoagulants for 24 hours post-tPA.**
-    *   Follow-up head CT or MRI at 24 hours (or sooner if neurological worsening) before initiating antiplatelets/anticoagulants.
-    *   Frequent neurological checks (NIHSS or modified NIHSS): q15min during infusion and for 2h post-infusion, then q30min for 6h, then q1h for 16h.
-    *   Monitor for signs of Intracranial Hemorrhage (ICH): Acute neurological worsening (↑NIHSS), severe headache, acute hypertension, nausea/vomiting. **If suspected, stop tPA infusion immediately, obtain STAT NCCT, and notify Neurology/Neurosurgery.**
-    *   Monitor for angioedema (especially if on ACE inhibitors) or other allergic reactions. Manage per protocol.
-    *   Avoid unnecessary invasive procedures (e.g., NG tube, Foley catheter) for first few hours if possible, or ideally for 24 hours.
+### Ischemic Stroke Management
 
-#### B. Mechanical Thrombectomy (Endovascular Therapy - EVT)
+#### Intravenous Thrombolysis (Alteplase/tPA)
+*   **Mechanism**: Converts plasminogen to plasmin, which degrades fibrin clots.
+*   **Eligibility Criteria (General - always refer to latest guidelines/protocols)**:
+    *   Diagnosis of ischemic stroke causing measurable neurological deficit.
+    *   Symptom onset (LKW) within **3 to 4.5 hours** of treatment initiation (some exceptions for wake-up strokes or extended window with advanced imaging).
+    *   Age ≥18 years.
+*   **Key Exclusion Criteria (Partial List - MANY exclusions exist)**:
+    *   Evidence of intracranial hemorrhage on NCCT.
+    *   Active internal bleeding.
+    *   Recent (within 3 months) significant head trauma, intracranial/intraspinal surgery.
+    *   History of ICH.
+    *   Intracranial AVM, aneurysm, or neoplasm.
+    *   SBP >185 mmHg or DBP >110 mmHg (despite attempts to lower).
+    *   Platelet count <100,000/μL.
+    *   INR >1.7 or PT >15s (if on warfarin). Current use of direct thrombin inhibitors or direct factor Xa inhibitors with evidence of anticoagulant effect.
+    *   Glucose <50 mg/dL.
+    *   NIHSS >25 (relative exclusion, risk/benefit assessment).
+    *   Stroke within last 3 months (relative).
+*   **Dose**: 0.9 mg/kg (max 90 mg). 10% of total dose given as IV bolus over 1 minute, remaining 90% infused over 60 minutes.
+*   **Monitoring during and after tPA**:
+    *   Frequent neurological assessments (NIHSS, GCS, pupils) q15 min during infusion, q30 min for 6h, then hourly for 16h.
+    *   Frequent BP monitoring: q15 min for 2h, then q30 min for 6h, then hourly for 16h. Maintain BP <180/105 mmHg for first 24h.
+    *   **Monitor for signs of Intracranial Hemorrhage (ICH)**: Worsening neuro deficit, severe headache, N/V, acute hypertension. **STOP tPA infusion immediately** and obtain stat NCCT if suspected.
+    *   Avoid antithrombotics (aspirin, heparin) for 24 hours post-tPA (obtain follow-up CT scan at 24h before starting).
+    *   No Foley catheter, NG tube, or arterial puncture for specified period if possible.
 
-*   For acute ischemic stroke due to Large Vessel Occlusion (LVO) in the anterior circulation (internal carotid artery - ICA, middle cerebral artery - M1 or M2 segments). Select posterior circulation LVOs (e.g., basilar artery) may also be considered.
-*   **Imaging for LVO**: Requires CT Angiography (CTA) of head & neck, or MR Angiography (MRA) to identify LVO. This should be performed as soon as possible, often concurrently with or immediately after NCCT if stroke is suspected.
-*   **Time Windows & Eligibility (General Summary)**:
-    *   **LKW within 0 to 6 hours**: Eligible if meet core criteria (e.g., pre-stroke mRS 0-1, causative LVO, NIHSS ≥6, ASPECTS score on NCCT ≥6).
-    *   **LKW within 6 to 24 hours**: Eligible if meet specific advanced imaging criteria (e.g., CT Perfusion or MRI DWI-FLAIR mismatch showing small core infarct and larger salvageable penumbra) as per DAWN / DEFUSE 3 trial criteria.
-*   **Procedure**: Performed by Neurointerventional team. Patient may receive IV tPA prior to or during transfer for EVT if eligible ("drip and ship" or "mothership" models).
-*   **Post-EVT Care**: Similar to post-tPA care regarding BP management (target often SBP <160-180 mmHg, specific targets per Neurointerventionalist), neurological monitoring, and management of potential complications (e.g., reperfusion hemorrhage, access site issues).
+#### Mechanical Thrombectomy (Endovascular Therapy - EVT)
+*   **Indication**: Acute ischemic stroke due to Large Vessel Occlusion (LVO) in anterior circulation (e.g., internal carotid artery, MCA M1/M2 segments).
+*   **Eligibility Criteria (General)**:
+    *   Pre-stroke modified Rankin Scale (mRS) score 0-1.
+    *   Age ≥18 years.
+    *   Causative LVO.
+    *   NIHSS score ≥6.
+    *   Treatment can be initiated (groin puncture) within **6 hours** of symptom onset.
+    *   For select patients with LVO in anterior circulation, EVT may be recommended up to **24 hours** from LKW if they meet specific imaging criteria (e.g., DAWN or DEFUSE 3 trial criteria - small infarct core, large penumbra).
+*   Can be given in addition to IV tPA (bridging therapy) or as primary treatment if tPA contraindicated.
 
-### III. Acute Hemorrhagic Stroke Management
+#### General Supportive Care for Ischemic Stroke
+*   **Blood Pressure Management**:
+    *   If eligible for tPA: Lower BP gently to <185/110 mmHg before tPA (e.g., Labetalol, Nicardipine). Maintain <180/105 mmHg for 24h post-tPA.
+    *   If not eligible for tPA: Permissive hypertension (allow BP up to ~220/120 mmHg) is often tolerated unless other compelling indication for lowering (e.g., ACS, HF, aortic dissection). If BP lowering is needed, aim for ~15% reduction in first 24h.
+*   **Temperature**: Treat fever (temp >38°C or 100.4°F) with antipyretics.
+*   **Glucose**: Maintain euglycemia (target range often 140-180 mg/dL). Treat hypoglycemia (<60 mg/dL) promptly.
+*   **DVT Prophylaxis**: Intermittent pneumatic compression devices. Pharmacologic prophylaxis (LMWH/UFH) usually started 24-48h after stroke if no hemorrhage (and after 24h post-tPA if given).
+*   **Aspiration Precautions**: NPO until swallow screen/assessment performed.
+*   **Antiplatelet Therapy**: Aspirin (e.g., 160-325 mg) usually started within 24-48 hours of ischemic stroke onset (if tPA given, delay aspirin for 24h post-tPA, after repeat CT confirms no hemorrhage). Dual antiplatelet therapy (aspirin + clopidogrel) for minor stroke/high-risk TIA for short duration (e.g., 21-90 days).
+*   **Statin Therapy**: High-intensity statin usually recommended.
+*   **Management of Cerebral Edema / Increased ICP**: Occurs in large strokes ("malignant MCA syndrome"), peaks at 3-5 days.
+    *   HOB elevation, head midline.
+    *   Osmotic therapy (Mannitol, hypertonic saline).
+    *   Hyperventilation (transiently).
+    *   Decompressive Hemicraniectomy: Life-saving for malignant edema in selected patients (e.g., age <60-70, within 48h).
 
-#### A. Intracerebral Hemorrhage (ICH) - Non-traumatic
+### Hemorrhagic Stroke Management
 
-*   **Goal**: Limit hematoma expansion, manage ICP, aggressively control BP, prevent complications.
-*   **Blood Pressure Control**: Crucial to limit ongoing bleeding.
-    *   If SBP >220 mmHg: Aggressive BP reduction with continuous IV antihypertensive infusion to target SBP (e.g., 140-160 mmHg).
-    *   If SBP 150-220 mmHg: Acute lowering of SBP to target **140 mmHg** is generally considered safe and can be effective (per AHA/ASA guidelines).
-    *   Use IV Labetalol, Nicardipine, Clevidipine, Esmolol. Avoid excessive or precipitous BP drops that could compromise cerebral perfusion to penumbral regions.
-*   **Reversal of Anticoagulation (if applicable and patient presents within window of drug effect)**:
-    *   **Warfarin**: Discontinue. Administer Vitamin K 10mg IV (slow infusion over 30min to avoid anaphylaxis). Administer Prothrombin Complex Concentrate (PCC - e.g., Kcentra, Octaplex) based on INR and weight. FFP if PCC unavailable. Target INR <1.4 rapidly.
-    *   **Direct Oral Anticoagulants (DOACs)**:
-        *   Dabigatran: Idarucizumab (Praxbind) 5g IV.
-        *   Factor Xa inhibitors (Rivaroxaban, Apixaban, Edoxaban): Andexanet Alfa (Andexxa) if available. If not, PCC (activated or non-activated) or FEIBA may be considered.
-        *   Activated charcoal if last dose taken <2-4 hours (consult toxicology/pharmacy).
-    *   **Antiplatelet Agents (Aspirin, Clopidogrel, Ticagrelor)**: Platelet transfusion generally not recommended for antiplatelet-associated ICH unless neurosurgical intervention is planned or specific circumstances. Desmopressin (DDAVP) may be considered by some for platelet dysfunction.
-*   **ICP Management**: As per general neurocritical care guidelines (HOB elevation 30°, analgesia/sedation, osmotic therapy - Mannitol or hypertonic saline if signs of herniation or ↑ICP). Consider EVD for hydrocephalus or ICP monitoring if indicated.
-*   **Seizure Prophylaxis/Treatment**: Prophylactic AEDs generally not recommended unless seizure occurs or very high risk (e.g., lobar ICH). If seizures occur, treat promptly with IV AEDs (e.g., Levetiracetam, Fosphenytoin).
-*   **Neurosurgical Consultation**: Consider for potential hematoma evacuation, especially for:
-    *   Cerebellar hematomas >3cm causing brainstem compression or hydrocephalus (often surgical emergency).
-    *   Supratentorial hematomas with significant mass effect, neurological deterioration, or refractory ↑ICP.
-*   **Temperature Control**: Treat fever (>38°C) aggressively.
-*   **Glycemic Control**: Target blood glucose 140-180 mg/dL.
+#### Intracerebral Hemorrhage (ICH)
+*   **Causes**: Hypertension (most common), anticoagulation, AVMs, tumors, amyloid angiopathy, sympathomimetic drug use.
+*   **Management**:
+    *   **Blood Pressure Control**: **Crucial**. Acute lowering of SBP to <140-160 mmHg is often targeted (e.g., using Labetalol, Nicardipine, Esmolol IV infusions). Specific target may vary by guidelines and patient factors. Avoid excessive BP reduction.
+    *   **Reversal of Anticoagulation/Antiplatelets**:
+        *   Warfarin: Vitamin K IV, PCC (e.g., Kcentra) or FFP.
+        *   DOACs: Specific reversal agents (Idarucizumab for Dabigatran; Andexanet alfa for Factor Xa inhibitors like Apixaban/Rivaroxaban) or PCCs.
+        *   Antiplatelets: Platelet transfusion may be considered in some cases (e.g., if undergoing surgery) but utility is debated. DDAVP for aspirin/clopidogrel.
+    *   **Management of Increased ICP**: Similar to TBI/ischemic stroke (HOB elevation, osmotic therapy). EVD if hydrocephalus.
+    *   **Seizure Prophylaxis**: Generally not recommended unless clinical seizures occur or EEG evidence.
+    *   **Surgical Evacuation**: May be considered for cerebellar hemorrhages >3cm with neurological deterioration or brainstem compression/hydrocephalus. Supratentorial ICH evacuation is more controversial (depends on location, size, GCS).
 
-#### B. Subarachnoid Hemorrhage (SAH) - Typically Aneurysmal
+#### Subarachnoid Hemorrhage (SAH)
+*   **Causes**: Ruptured cerebral aneurysm (most common, ~85%), AVM, trauma.
+*   **Presentation**: "Worst headache of life" (thunderclap headache), N/V, neck stiffness, photophobia, LOC.
+*   **Diagnosis**: NCCT head (high sensitivity if done early). If CT negative but high suspicion, Lumbar Puncture (for xanthochromia). CTA/MRA or digital subtraction angiography (DSA) to identify aneurysm/source.
+*   **Management**:
+    *   **Secure Aneurysm**: Early endovascular coiling or surgical clipping to prevent rebleeding (highest risk in first 24-48h).
+    *   **Blood Pressure Control**: Maintain SBP <160 mmHg (or other target per guidelines) until aneurysm secured. Avoid hypotension.
+    *   **Nimodipine**: Oral calcium channel blocker (60 mg q4h for 21 days) to prevent/reduce severity of delayed cerebral ischemia (DCI) from vasospasm. Started within 96h.
+    *   **Vasospasm Monitoring & Management**: Transcranial Doppler (TCD) daily. Neurological exams. If vasospasm occurs (typically 4-14 days post-SAH), induce hypertension (e.g., phenylephrine, norepinephrine), hypervolemia (euvolemia preferred by some), hemodilution ("Triple H" therapy - controversial, focus on euvolemia & induced HTN). Endovascular treatment (angioplasty, intra-arterial vasodilators) for refractory vasospasm.
+    *   **Manage Hydrocephalus**: EVD if needed.
+    *   **Seizure Prophylaxis**: Short-term prophylaxis may be considered.
+    *   Maintain euvolemia, euglycemia, normothermia.
 
-*   **Goal**: Prevent rebleeding, manage vasospasm, treat hydrocephalus, control ICP.
-*   **Secure Aneurysm**: Prompt diagnosis with CTA/MRA/DSA. Early endovascular coiling or surgical clipping of ruptured aneurysm (typically within 24-72 hours) to prevent rebleeding.
-*   **Blood Pressure Control**: Maintain SBP typically <160 mmHg (or as directed by Neurosurgeon/Neurointensivist) until aneurysm is secured to reduce rebleeding risk. After securing, BP targets may be more liberal to maintain CPP if vasospasm occurs.
-*   **Prevent/Manage Cerebral Vasospasm** (typically occurs 4-14 days post-SAH):
-    *   **Nimodipine PO/NG**: 60mg every 4 hours for 21 days for all aneurysmal SAH patients.
-    *   Maintain euvolemia (avoid hypovolemia).
-    *   Monitor with daily Transcranial Dopplers (TCDs) and frequent neurological exams.
-    *   If vasospasm develops and causes neurological deficits: "Triple H" therapy (Hypervolemia, Hypertension, Hemodilution - largely historical, focus now on euvolemia and induced hypertension). Endovascular therapy (intra-arterial vasodilators like Nicardipine/Verapamil, balloon angioplasty).
-*   **Manage Hydrocephalus**: External Ventricular Drain (EVD) may be required for CSF diversion and ICP monitoring if acute hydrocephalus develops.
-*   **Seizure Prophylaxis**: May be considered in the immediate post-hemorrhage period (e.g., for 7 days); treat seizures if they occur.
-*   **Hyponatremia Management**: Common (SIADH or Cerebral Salt Wasting). Careful fluid and sodium management. Avoid hypotonic fluids. Hypertonic saline or salt tablets may be needed. Fludrocortisone for CSW.
+### Stroke Mimics
+Conditions that can present with acute neurological deficits similar to stroke: Seizures (Todd's paralysis), hypoglycemia, hyperglycemia (hyperosmolar state), migraine with aura, brain tumor, CNS infection (meningitis, encephalitis), Bell's palsy, conversion disorder, electrolyte abnormalities, toxic-metabolic encephalopathy, multiple sclerosis exacerbation. NCCT head helps differentiate.
 
-### IV. General Supportive Care & Secondary Prevention (All Stroke Types After Acute Phase)
-
-*   **Airway/Breathing**: Maintain SpO2 >94%. Intubate if GCS ≤8, unprotected airway, or respiratory failure.
-*   **Dysphagia Screen**: Perform bedside swallow screen by trained personnel before any oral intake. Formal swallow evaluation by Speech Language Pathologist (SLP) if screen failed or high risk. Implement aspiration precautions.
-*   **Nutrition**: Initiate enteral nutrition within 24-72 hours if patient is NPO and unable to take PO safely. Consult dietitian.
-*   **Glycemic Control**: Target blood glucose 140-180 mg/dL. Avoid hypoglycemia.
-*   **Temperature Control**: Treat fever (>38°C) aggressively (e.g., acetaminophen, cooling measures).
-*   **VTE Prophylaxis**: Intermittent pneumatic compression (IPC) devices for all immobile stroke patients. Pharmacologic prophylaxis (LMWH/UFH) once bleeding risk is deemed stable (e.g., 24-48 hours post-ischemic stroke if no tPA and no hemorrhagic conversion; timing for hemorrhagic stroke is individualized based on stability and neurosurgical input, often delayed).
-*   **Mobilization & Rehabilitation**: Early involvement of PT, OT, SLP.
-*   **Secondary Prevention (Ischemic Stroke)**:
-    *   Antiplatelet therapy (Aspirin, Clopidogrel, Aspirin/Dipyridamole ER) initiated within 24-48h (if no tPA) or after 24h (if tPA given and follow-up CT clear). Dual antiplatelet therapy (DAPT - Aspirin + Clopidogrel) for short duration (21-90 days) in minor stroke (NIHSS ≤3-5) or TIA.
-    *   Statin therapy (high-intensity) regardless of baseline cholesterol.
-    *   Anticoagulation for atrial fibrillation or other cardioembolic sources (timing individualized).
-    *   BP management (long-term goal <130/80 mmHg).
-    *   Diabetes management. Smoking cessation. Lifestyle modification.
-*   **Depression Screening**: Common post-stroke. Monitor and treat as needed.
-*   **Stroke Education**: Provide education to patient and family regarding stroke, risk factors, recovery, and secondary prevention.
-
-### V. Quality Metrics & Continuous Improvement
-*   Monitor and report on key stroke performance metrics (e.g., door-to-CT, door-to-needle, door-to-puncture times, NIHSS documentation, dysphagia screening, VTE prophylaxis, discharge on antiplatelets/statins/anticoagulants as indicated).
-*   Regular multidisciplinary stroke case reviews and process improvement initiatives.`,
+This summary provides key ICU considerations. Always refer to the latest comprehensive stroke guidelines from organizations like AHA/ASA for detailed protocols.`,
     categoryType: 'Policy',
-    keywordsForImage: 'brain CT scan stroke',
+    keywordsForImage: 'brain scan stroke neurology',
   },
   {
-    id: 'medication-administration',
-    slug: 'medication-administration',
-    title: 'Safe Medication Administration Guidelines',
-    summary: 'ICU-specific policies for ensuring accuracy and safety in medication administration, including high-alert drugs and infusion management.',
-    content: `## General Overview: Purpose of Policy
+    id: 'sepsis-management',
+    slug: 'sepsis-management',
+    title: 'Sepsis Management Protocol',
+    summary: 'Evidence-based guidelines for early recognition, resuscitation, and ongoing management of sepsis and septic shock, aligning with Surviving Sepsis Campaign recommendations.',
+    content: `## General Overview
 
-This policy establishes guidelines for the safe preparation, administration, and documentation of medications for all patients within the Intensive Care Unit (ICU). The purpose is to minimize medication errors, prevent adverse drug events (ADEs), and ensure optimal therapeutic outcomes. Given the complexity of ICU patients and the frequent use of high-alert medications, strict adherence to these guidelines by all healthcare professionals involved in the medication use process is mandatory.
+Sepsis is a life-threatening condition that arises when the body's response to an infection injures its own tissues and organs. It is a medical emergency requiring prompt recognition and intervention to improve outcomes. Septic shock, a more severe form of sepsis, is characterized by persistent hypotension and cellular metabolic abnormalities despite adequate fluid resuscitation, leading to a substantially higher risk of mortality. The Surviving Sepsis Campaign (SSC) publishes regularly updated, evidence-based guidelines to assist clinicians in the diagnosis and management of sepsis and septic shock. These guidelines emphasize early identification, rapid administration of antibiotics, appropriate fluid resuscitation, vasopressor support if needed, and source control of the infection.
 
-## In-Depth Policy Details & Procedures
+The core pathophysiology of sepsis involves a dysregulated host immune response to invading pathogens (bacteria, viruses, fungi, or parasites). This leads to a cascade of inflammatory and anti-inflammatory processes, endothelial dysfunction, microcirculatory alterations, and coagulation abnormalities. The result is widespread tissue hypoperfusion, cellular hypoxia, organ dysfunction, and potentially death. Early recognition tools like qSOFA (quick Sequential Organ Failure Assessment) and SOFA scores help identify patients at risk or with established organ dysfunction. Lactate levels are an important marker of tissue hypoperfusion and illness severity. Effective sepsis management requires a multidisciplinary team approach, with ICU nurses playing a crucial role in monitoring, administering treatments, and titrating therapies according to patient response and established protocols. This module outlines key elements based on SSC recommendations; healthcare providers must always consult the most current official guidelines.
 
-### I. The "Rights" of Medication Administration (Expanded for Critical Care)
+## In-Depth ICU Considerations
 
-A systematic check must be performed by the administering licensed professional (e.g., RN) before any medication is given. The "10 Rights" include:
+### Definitions (Based on Sepsis-3 International Consensus)
+*   **Sepsis**: Life-threatening organ dysfunction caused by a dysregulated host response to infection. Clinically, organ dysfunction can be represented by an increase in the Sequential [Sepsis-related] Organ Failure Assessment (SOFA) score of 2 points or more, which is associated with an in-hospital mortality greater than 10%.
+*   **Septic Shock**: A subset of sepsis in which underlying circulatory and cellular/metabolic abnormalities are profound enough to substantially increase mortality. Clinically identified by persisting hypotension requiring vasopressors to maintain a mean arterial pressure (MAP) of ≥65 mmHg AND having a serum lactate level >2 mmol/L (>18 mg/dL) despite adequate volume resuscitation.
 
-1.  **Right Patient**:
-    *   Verify using at least **two unique patient identifiers** (e.g., patient's full name and date of birth, or name and medical record number).
-    *   Compare identifiers on the Medication Administration Record (MAR) with the patient's identification band.
-    *   Utilize Barcode Medication Administration (BCMA) system if available – scan patient armband.
-2.  **Right Drug (Medication)**:
-    *   Check medication label against the MAR **three times**:
-        1.  When removing the medication from storage (e.g., Pyxis, medication cart, pharmacy).
-        2.  When preparing or drawing up the medication.
-        3.  At the bedside immediately before administration.
-    *   Be vigilant for Look-Alike/Sound-Alike (LASA) drugs. Note Tall Man lettering if used. Question any discrepancies.
-    *   Utilize BCMA – scan medication barcode.
-3.  **Right Dose**:
-    *   Verify the ordered dose is appropriate for the patient's age, weight, clinical condition, and renal/hepatic function.
-    *   Double-check all calculations, especially for pediatric patients, weight-based dosing, titrations, and high-alert medications. **Independent double-check by a second licensed professional is required for specific high-alert medications and calculations (see Section II).**
-    *   Use leading zeros for doses less than 1 (e.g., **0.5 mg**, not .5 mg). Avoid trailing zeros for whole numbers (e.g., **5 mg**, not 5.0 mg).
-    *   Ensure correct concentration is used, especially for IV infusions.
-4.  **Right Route**:
-    *   Confirm the ordered route (e.g., IV, IM, SubQ, PO, NG/OG, SL, PR, Inhaled, Topical) is appropriate and safe for the specific medication and patient.
-    *   For IV medications, ensure correct line access (e.g., peripheral vs. central line, dedicated lumen for specific drugs like TPN or incompatible infusions). Label all IV lines at the hub closest to the patient.
-5.  **Right Time/Frequency**:
-    *   Administer medications within the institutionally defined window (typically 30-60 minutes before or after the scheduled time for non-time-critical meds). Time-critical medications (e.g., antibiotics for sepsis, insulin with meals, anticoagulants) must be given at the exact time or within a very narrow window.
-    *   Consider pharmacokinetics (e.g., half-life, peak/trough levels), drug interactions, and timing related to meals or other medications/procedures.
-6.  **Right Documentation**:
-    *   Document medication administration on the MAR **immediately after** giving the drug, never before.
-    *   Documentation must include: drug name, dose, route, time of administration, and signature/initials of the administering nurse.
-    *   For PRN medications: Document reason for administration and patient's response/effectiveness.
-    *   For titrated infusions: Document start time, initial rate, all rate changes, and corresponding patient responses/parameters (e.g., BP, HR, pain score, sedation score).
-    *   Document any withheld or refused doses with the reason and notification to the provider.
-7.  **Right Reason/Indication**:
-    *   Understand *why* the patient is receiving the medication and if it aligns with their current clinical condition and diagnoses.
-    *   Question any medication orders that seem inappropriate, unclear, or illogical.
-8.  **Right Response/Evaluation**:
-    *   Monitor the patient for the desired therapeutic effects of the medication.
-    *   Assess for and document any adverse reactions, side effects, or allergic responses. Report significant findings to the provider.
-9.  **Right to Refuse**:
-    *   Competent adult patients have the right to refuse medication after being fully informed of the potential benefits and risks/consequences of refusal.
-    *   Educate the patient. If refusal persists, document the refusal, the reason provided, patient education given, and notification of the provider.
-10. **Right Education**:
-    *   Inform the patient (and/or family if appropriate and patient consents) about the medication: name, purpose/intended effect, common side effects, and important information to report to the nurse/provider.
+### Early Recognition and Diagnosis
+*   **Screening**: Routinely screen for sepsis in acutely ill patients with suspected infection. Use tools like qSOFA (outside ICU) or SOFA (inside ICU) to assess for organ dysfunction.
+    *   **qSOFA criteria** (1 point for each, score ≥2 suggests higher risk):
+        1.  Respiratory rate ≥22/min
+        2.  Altered mentation (Glasgow Coma Scale score <15)
+        3.  Systolic blood pressure ≤100 mmHg
+*   **Clinical Suspicion**: Suspect sepsis in any patient presenting with signs and symptoms of infection along with acute organ dysfunction (e.g., altered mental status, oliguria, hypoxemia, hypotension, thrombocytopenia, hyperbilirubinemia).
+*   **Diagnostic Workup**:
+    *   **Cultures**: Obtain appropriate cultures (at least two sets of blood cultures – one aerobic, one anaerobic, from different sites; one peripheral and one from each vascular access device >48h old if present) **before** administering antibiotics, provided this does not cause significant delay (>45 minutes) in antibiotic initiation. Also culture other suspected sites (e.g., urine, sputum, wound, CSF).
+    *   **Laboratory Tests**: CBC with differential, comprehensive metabolic panel (electrolytes, renal and liver function), coagulation studies (PT/INR, aPTT), lactate, C-reactive protein (CRP), procalcitonin (PCT - may help guide antibiotic discontinuation). Arterial blood gas (ABG) if respiratory distress or severe illness.
+    *   **Imaging**: Chest X-ray, CT scans, ultrasound, etc., as indicated to identify source of infection.
 
-### II. High-Alert Medications in the ICU
+### Hour-1 Bundle (Surviving Sepsis Campaign - Initiate as soon as possible)
+For patients with sepsis or septic shock, the following interventions should be initiated ideally **within 1 hour** of recognition:
 
-These medications have an increased risk of causing significant patient harm when used in error. They require enhanced vigilance, standardized protocols, and often specific safety procedures.
+1.  **Measure Lactate Level**: If initial lactate is elevated (>2 mmol/L), remeasure within 2-4 hours to guide resuscitation and assess response.
+2.  **Obtain Blood Cultures Before Administering Antibiotics**: (As above, do not delay antibiotics significantly).
+3.  **Administer Broad-Spectrum Antibiotics**:
+    *   Administer effective IV antimicrobials as soon as possible, ideally within 1 hour of recognition of sepsis or septic shock.
+    *   Empiric broad-spectrum therapy should cover all likely pathogens (bacteria and/or fungi, viruses if suspected) based on patient characteristics (e.g., immunocompromised), suspected site of infection, local pathogen patterns, and hospital/community antibiogram data.
+    *   Consider double coverage for gram-negative bacilli (e.g., a beta-lactam plus an aminoglycoside or fluoroquinolone) in some high-risk patients with septic shock (e.g., neutropenic, MDR risk).
+    *   Empiric MRSA coverage if patient has risk factors.
+    *   Daily assessment for de-escalation of antimicrobial therapy based on culture results and clinical improvement.
+4.  **Begin Rapid Administration of 30 mL/kg Crystalloid for Hypotension or Lactate ≥4 mmol/L**:
+    *   This initial fluid bolus should be completed within 3 hours of recognition.
+    *   Use balanced crystalloids (e.g., Lactated Ringer's) or normal saline.
+    *   Further fluid administration should be guided by reassessment of hemodynamic status.
+5.  **Apply Vasopressors if Hypotensive During or After Fluid Resuscitation to Maintain a Mean Arterial Pressure (MAP) ≥65 mmHg**:
+    *   If MAP remains <65 mmHg despite initial fluid resuscitation, start vasopressors.
+    *   **Norepinephrine** is the first-choice vasopressor.
+    *   If norepinephrine is unavailable, epinephrine or dopamine may be considered (dopamine associated with more arrhythmias).
+    *   **Vasopressin** (up to 0.03 units/minute) or **Epinephrine** can be added to norepinephrine with the intent of raising MAP to target, or to decrease norepinephrine dosage. Angiotensin II can also be considered.
+    *   Arterial catheter for continuous BP monitoring is recommended as soon as practical if vasopressors are required.
 
-| Category / Examples                                                  | Common Risks Associated with Errors                                          | Key Safeguards & ICU-Specific Policies                                                                                                                                                                                                                                                                |
-|----------------------------------------------------------------------|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Insulin (IV continuous infusions & SubQ)**                         | Severe hypoglycemia (can lead to brain injury/death), hyperglycemia (from errors in dosing/omission). | **Independent Double-Check (IDC)** required for all IV insulin doses, rates, and concentration changes by two licensed nurses. Standardized concentrations for IV infusions. Clear labeling of U-100 vs. U-500 insulin. Frequent blood glucose monitoring per protocol. Hypoglycemia treatment protocol readily available. No abbreviations (e.g., write "units," not "U"). |
-| **Anticoagulants (Heparin IV infusion, Warfarin, LMWHs, DOACs, Thrombolytics)** | Severe bleeding (hemorrhage), thrombosis (from subtherapeutic dosing or errors). | **IDC** for initiation and rate changes of IV heparin infusions, and for doses of thrombolytics. Baseline and ongoing monitoring of appropriate labs (PT/INR for warfarin, aPTT or anti-Xa for heparin, platelets). Standardized protocols/nomograms for anticoagulation. Reversal agents readily available. Patient/family education on bleeding precautions. |
-| **Narcotics/Opioids (IV continuous infusions, PCA, Epidural, IVP boluses)** | Respiratory depression, oversedation, hypotension, errors in programming PCA/epidural pumps. | **IDC** for PCA/epidural pump setup, loading doses, and rate/concentration changes. Use of standardized concentrations. Careful titration based on validated pain/sedation scales. Continuous SaO2 and/or ETCO2 monitoring for patients on infusions or at high risk. Frequent assessment of pain, sedation, and respiratory status. Naloxone readily available. |
-| **Sedatives (IV continuous infusions - Propofol, Benzodiazepines, Dexmedetomidine)** | Respiratory depression, hypotension, delirium (esp. benzodiazepines), PRIS (Propofol), bradycardia (Dexmedetomidine). | **IDC** for initiation and rate changes of continuous infusions. Titration based on validated sedation scales (e.g., RASS, SAS) to achieve targeted sedation level (often light sedation). Daily sedation interruption/assessment unless contraindicated. Continuous cardiorespiratory monitoring. Awareness of drug accumulation and potential for withdrawal. |
-| **Concentrated Electrolytes (e.g., Potassium Chloride IV, Potassium Phosphate IV, Magnesium Sulfate IV, Hypertonic Saline >0.9%)** | Life-threatening arrhythmias (esp. K⁺), neurological changes, vein irritation/phlebitis, tissue damage/necrosis if extravasated, fluid overload (hypertonic saline). | **Pharmacy preparation** of all IV electrolyte infusions is strongly preferred. Remove concentrated forms from patient care unit floor stock where possible. Clear "High Alert" labeling ("Dilute Before Use," "Contains Potassium," etc.). Administer via infusion pump with rate limits. Verify compatibility. Monitor serum electrolyte levels closely. Maximum infusion rates and concentrations as per institutional policy (e.g., KCl generally ≤10-20 mEq/hr via peripheral line, higher via central line with cardiac monitoring). |
-| **Vasoactive Agents (e.g., Norepinephrine, Epinephrine, Dopamine, Dobutamine, Vasopressin, Phenylephrine, Milrinone, Nitroprusside, Nitroglycerin IV infusions)** | Extravasation leading to tissue necrosis, severe hypertension/hypotension, arrhythmias, end-organ ischemia (digital, mesenteric). | **Administer via Central Venous Catheter (CVC)** whenever possible, especially for prolonged or high-dose infusions. If peripheral IV must be used short-term, use large vein, monitor site q1h for extravasation. **IDC** for initiation, concentration changes, and rate changes. Use infusion pump with safety limits/drug library. Continuous hemodynamic monitoring (BP, HR, ECG, perfusion). Clear titration orders with specific target parameters (e.g., MAP >65 mmHg) and titration steps. Extravasation kit (containing phentolamine for α-agonists, or other antidotes as appropriate) readily available. |
-| **Neuromuscular Blocking Agents (NMBAs / Paralytics - e.g., Cisatracurium, Rocuronium, Vecuronium)** | Respiratory arrest (if patient becomes disconnected from ventilator or ETT is dislodged), patient awareness and distress (if inadequately sedated/analgesized), prolonged muscle weakness (Acute Quadriplegic Myopathy - esp. with corticosteroids). | **MUST ensure adequate and continuous sedation and analgesia** prior to and during NMBA administration (assess with validated scales, e.g., RASS, CPOT). Mechanical ventilation mandatory. **IDC** for initiation and dose changes. Monitor depth of paralysis with Train-of-Four (TOF) stimulation (target 1-2 twitches). Clear "PARALYTIC AGENT - CAUSES RESPIRATORY ARREST" labeling on infusion bags and lines. Physically separate from other infusions if possible. Provide eye care (lubrication, taping). DVT prophylaxis. |
-| **Chemotherapeutic Agents (Cytotoxic Drugs)**                               | Myelosuppression, severe organ toxicities (cardiac, renal, hepatic, pulmonary), hypersensitivity reactions, extravasation with severe tissue damage. | Specialized training/certification required for handling and administration. Adherence to specific institutional chemotherapy protocols. Use of appropriate Personal Protective Equipment (PPE). Spill kits readily available. **IDC** for all doses and infusion rates. Strict procedures for preparation, administration, and disposal. |
-| **Antiarrhythmics (IV infusions - e.g., Amiodarone, Lidocaine, Diltiazem, Procainamide)** | Proarrhythmic effects (can cause new or worsened arrhythmias), hypotension, bradycardia, heart block, specific organ toxicities (e.g., Amiodarone: pulmonary, thyroid, liver). | Continuous ECG monitoring during initiation and titration. Frequent vital signs. Awareness of drug interactions and QTc prolonging potential. Standardized loading dose and maintenance infusion protocols. **IDC** for initiation and rate changes. |
+### Ongoing Management and Resuscitation Goals (Post Hour-1 Bundle)
 
-**Independent Double-Check (IDC) Procedure**:
-*   Two licensed professionals (e.g., RN-RN, RN-Pharmacist, RN-MD) independently verify the medication order against the prepared medication and pump settings (if applicable) *before* administration or initiation of infusion.
-*   This includes verifying: Right Patient, Right Drug, Right Dose, Right Route, Right Time, Right Concentration, Right Diluent, Right Rate, Right Pump Settings, Line Tracing (from bag to patient).
-*   Both professionals sign/document the check as per institutional policy.
+#### Hemodynamic Support
+*   **Fluid Therapy**:
+    *   After initial fluid resuscitation, subsequent fluid administration should be guided by frequent reassessment of volume status and tissue perfusion.
+    *   Use dynamic measures (e.g., passive leg raise, fluid challenge with stroke volume assessment, stroke volume variation (SVV), pulse pressure variation (PPV)) to predict fluid responsiveness rather than static variables (e.g., CVP, PAWP) alone.
+    *   Avoid excessive fluid administration (fluid overload is harmful).
+*   **Vasopressors**: (As above) Titrate to maintain MAP ≥65 mmHg.
+*   **Inotropic Therapy**:
+    *   Consider adding **Dobutamine** if there is evidence of myocardial dysfunction (e.g., low cardiac output, elevated cardiac filling pressures despite adequate volume status, or persistent hypoperfusion despite adequate MAP and volume status).
+*   **Corticosteroids**:
+    *   Suggest IV **Hydrocortisone** (e.g., 200 mg/day, often given as 50mg IV q6h or continuous infusion) for adult patients with septic shock and ongoing hemodynamic instability (i.e., need for escalating vasopressor doses to maintain MAP ≥65 mmHg) despite adequate fluid and vasopressor therapy.
+    *   Taper when vasopressors are no longer required. Routine use in sepsis without shock is not recommended.
 
-### III. IV Medication Safety Practices
+#### Source Control
+*   Identify or exclude an anatomical source of infection requiring emergent source control (e.g., debridement of necrotic tissue, drainage of abscess, removal of infected device) as rapidly as possible. Intervention should ideally occur within 6-12 hours of diagnosis if feasible.
 
-*   **Compatibility**: Always verify medication compatibility before mixing or Y-siting infusions. Consult pharmacist, Trissel's, Micromedex, or other institutional compatibility resources. Flush lines thoroughly with compatible solution (e.g., Normal Saline) between administration of incompatible medications.
-*   **Labeling**:
-    *   All IV bags/syringes must be clearly labeled with: patient name, second identifier, drug name (generic & brand if appropriate), dose, concentration, diluent and volume, date/time prepared, expiration date/time, and initials of preparer/checker.
-    *   All IV tubing and extension sets must be labeled at the patient-end port (distal hub) indicating the drug being infused and the date/time tubing was initiated.
-    *   Label channels on infusion pumps clearly.
-*   **Smart Infusion Pumps**: Utilize institutional drug libraries with standardized concentrations and pre-set dose limits (soft and hard stops) whenever available. **Always verify pump programming against the order, even when using the library.**
-*   **Line Tracing**: Before initiating any new IV infusion, or when taking over care, trace all IV lines from the infusion container, through the pump (if used), to the patient access site to ensure correct connection and prevent misconnections. Perform this tracing systematically.
-*   **Titratable Infusions**:
-    *   Orders must be clear, complete, and include: drug name, starting dose/rate, titration parameters (e.g., titrate by X amount every Y minutes), specific goal/target parameter (e.g., MAP >65 mmHg, RASS -2, pain score <4, blood glucose 140-180 mg/dL), and a maximum dose or rate.
-    *   Document all titrations (rate changes) and the corresponding patient response/parameter meticulously on the flowsheet or MAR.
-*   **Extravasation Management (for vesicant or irritant drugs)**:
-    *   Vesicants (e.g., vasopressors, chemotherapy, hypertonic solutions, calcium chloride/gluconate, promethazine) can cause severe tissue damage if they leak outside the vein.
-    *   Monitor IV site frequently (e.g., q1h for peripheral vesicant infusions, or per policy), especially peripheral sites. Assess for pain, swelling, redness, blanching, coolness, lack of blood return.
-    *   If extravasation is suspected:
-        1.  **Stop infusion immediately.**
-        2.  Leave catheter in place initially (may attempt to aspirate residual drug - use small syringe, gentle suction).
-        3.  Notify provider STAT.
-        4.  Disconnect tubing from catheter.
-        5.  Administer antidote if available and ordered (e.g., Phentolamine for vasopressors, Hyaluronidase for some agents, Sodium Thiosulfate for mechlorethamine). Follow specific antidote protocol.
-        6.  Apply cool or warm compresses as indicated by drug type and institutional policy (e.g., cool for most vesicants, warm for vinca alkaloids/epipodophyllotoxins).
-        7.  Elevate affected limb.
-        8.  Document incident thoroughly (including assessment, interventions, patient response, photos if permitted by policy).
-    *   Use central venous catheters for continuous vesicant infusions whenever possible. For peripheral administration, use a new IV site in a large vein, avoid areas of flexion (e.g., AC fossa, wrist). Assess patency and blood return before and during administration.
+#### Ventilation
+*   For sepsis-induced ARDS:
+    *   Target tidal volume of 6 mL/kg predicted body weight (PBW).
+    *   Use higher PEEP.
+    *   Maintain plateau pressures <30 cm H2O.
+    *   Consider prone positioning for ARDS with PaO2/FiO2 ratio <150.
+    *   Consider conservative fluid strategy for established ARDS without evidence of tissue hypoperfusion.
+    *   Consider NMBAs for ≤48 hours for ARDS with PaO2/FiO2 <150.
 
-### IV. Medication Reconciliation
-*   Perform a thorough medication reconciliation (comparing patient's home medications with currently ordered medications) upon ICU admission, transfer to/from other units/levels of care, and at discharge.
-*   Identify and resolve any discrepancies (omissions, duplications, dosing errors, contraindications, interactions) in consultation with the provider and pharmacist.
+#### Adjunctive Therapies
+*   **Glucose Control**: Initiate insulin dosing when 2 consecutive blood glucose levels are >180 mg/dL. Target an upper blood glucose level ≤180 mg/dL rather than a more stringent target (e.g., ≤110 mg/dL). Monitor glucose q1-2h until stable, then q4h.
+*   **Renal Replacement Therapy (RRT)**: Continuous or intermittent RRT for AKI with standard indications (e.g., severe acidosis, hyperkalemia, uremia, fluid overload). RRT is not recommended solely for sepsis treatment without AKI.
+*   **Venous Thromboembolism (VTE) Prophylaxis**: Pharmacologic prophylaxis (LMWH or UFH) unless contraindicated. Mechanical prophylaxis (IPCs) if pharmacologic contraindicated, or in addition for high-risk patients.
+*   **Stress Ulcer Prophylaxis**: Use PPIs or H2RAs in patients with sepsis/septic shock who have risk factors for GI bleeding (e.g., mechanical ventilation >48h, coagulopathy).
+*   **Nutrition**: Early enteral nutrition (within 24-48 hours) is preferred over delayed EN or parenteral nutrition if tolerated. Avoid full caloric feeding in the first week; advance feeds as tolerated.
+*   **Bicarbonate Therapy**: Not recommended for treating hypoperfusion-induced lactic acidemia if pH ≥7.15.
+*   **Blood Product Transfusion**:
+    *   RBC transfusion generally only when Hgb <7.0 g/dL in the absence of extenuating circumstances (e.g., active bleeding, acute myocardial ischemia, severe hypoxemia).
+    *   Prophylactic platelet transfusion if counts are <10,000/mm³ in absence of bleeding, or <20,000/mm³ if significant risk of bleeding. Higher counts (e.g., ≥50,000/mm³) for active bleeding or planned surgery/invasive procedures.
 
-### V. Reporting Medication Errors and Near Misses
-*   Report **all** medication errors (whether they reach the patient or not) and near misses (errors caught before reaching the patient) promptly through the institution's confidential, non-punitive event reporting system.
-*   This is crucial for a culture of safety, allowing for system-level analysis, identification of trends, and implementation of corrective actions to prevent future events.
-*   Participate in Root Cause Analysis (RCA) for significant medication events as appropriate.`,
+#### Goals of Care and Communication
+*   Discuss goals of care and prognosis with patients and families. Address end-of-life care preferences early if appropriate.
+
+**Note**: These guidelines are a summary and subject to change. Always refer to the most current Surviving Sepsis Campaign guidelines and local institutional protocols for comprehensive and up-to-date information.`,
     categoryType: 'Policy',
-    keywordsForImage: 'medication safety nurse',
+    keywordsForImage: 'sepsis bacteria infection emergency',
   },
-  {
-    id: 'central-line-care',
-    slug: 'central-line-care',
-    title: 'Central Line Associated Bloodstream Infection (CLABSI) Prevention',
-    summary: 'Comprehensive protocols for CVC insertion, maintenance, dressing changes, and hub care to prevent CLABSIs.',
-    content: `## General Overview: Purpose of Policy
-
-This policy outlines the evidence-based practices for the insertion, care, and maintenance of central venous catheters (CVCs) to prevent Central Line-Associated Bloodstream Infections (CLABSIs) in all patient care areas, with specific emphasis on the Intensive Care Unit (ICU). CLABSIs are serious, costly, and largely preventable healthcare-associated infections (HAIs) that significantly increase patient morbidity, mortality, length of stay, and healthcare costs. Strict adherence to these bundled interventions by all healthcare personnel is mandatory.
-
-## In-Depth Policy Details & Procedures
-
-### I. Central Line Insertion Bundle ("Maximal Sterile Barrier Precautions")
-
-This bundle outlines key infection prevention practices to be followed by the inserting provider and all assisting personnel during the insertion of any CVC (non-tunneled, PICCs, tunneled, implanted ports). A checklist verifying adherence should be used for every CVC insertion.
-
-1.  **Hand Hygiene**:
-    *   All personnel involved in the procedure must perform meticulous hand hygiene using soap and water or an alcohol-based hand rub (ABHR) before donning sterile gloves and any time hands become soiled.
-2.  **Maximal Barrier Precautions During Insertion**:
-    *   **Inserter**: Must wear a cap, mask (covering nose and mouth), sterile gown, and sterile gloves.
-    *   **All other personnel in the room during insertion**: Must wear a cap and mask.
-    *   **Patient**: Cover the patient from head to toe with a large sterile drape, with a small fenestration for the insertion site.
-3.  **Skin Antisepsis at Insertion Site**:
-    *   Cleanse the insertion site with an **alcoholic chlorhexidine gluconate (CHG) solution (>0.5% CHG with alcohol, e.g., 2% CHG in 70% isopropyl alcohol - ChloraPrep™ or equivalent)**.
-    *   Use a vigorous back-and-forth friction scrub for at least **30 seconds**.
-    *   Allow the antiseptic solution to **air dry completely** (typically 30 seconds to 2 minutes, or per manufacturer's instructions) before skin puncture. **Do not fan or blot dry.**
-    *   For patients with CHG contraindication (e.g., allergy, <2 months old per some guidelines), use an alternative antiseptic such as povidone-iodine (allow 2 minutes to dry) or 70% alcohol (allow to dry).
-4.  **Optimal Site Selection & Catheter Choice**:
-    *   **Adult Patients (Non-tunneled CVCs)**:
-        *   The **subclavian vein** is generally the preferred site for non-tunneled CVCs to minimize infection risk, provided it is not contraindicated (e.g., severe coagulopathy, patient with chronic kidney disease (CKD) who may need future AV fistula/graft in that extremity, ipsilateral trauma/pneumothorax).
-        *   Avoid the **femoral vein** if possible due to higher risk of CLABSI and DVT, unless other sites are unavailable or contraindicated (e.g., emergency access, extensive burns/trauma to upper body).
-        *   The **internal jugular (IJ) vein** is an acceptable alternative to subclavian.
-    *   **Use ultrasound guidance** for all IJ CVC insertions and consider for subclavian CVCs to increase success rates, reduce mechanical complications (e.g., arterial puncture, pneumothorax), and minimize the number of insertion attempts.
-    *   Select the catheter with the minimum number of lumens necessary for the patient's therapy.
-5.  **Daily Review of Line Necessity with Prompt Removal**:
-    *   Assess the continued need for the CVC **every day** (e.g., during multidisciplinary rounds).
-    *   Document this daily assessment in the patient's medical record, including the rationale for continued CVC use.
-    *   Remove the CVC **promptly** when it is no longer clinically indicated (e.g., patient can take PO medications, peripheral IV access is sufficient, therapy completed).
-
-### II. Central Line Maintenance Bundle (Nursing & Provider Responsibility)
-
-Consistent, meticulous care and handling of the CVC post-insertion are crucial to prevent CLABSI.
-
-1.  **Hand Hygiene**:
-    *   Perform hand hygiene (soap/water or ABHR) **before and after** any CVC manipulation, including: palpating the insertion site, accessing any part of the CVC system (hubs, tubing, stopcocks), performing dressing changes, or administering medications.
-2.  **Disinfection of Needleless Connectors/Injection Ports ("Scrub the Hub")**:
-    *   Before **each and every access** (e.g., medication administration, IV fluid initiation, blood sampling, flushing):
-        *   Vigorously scrub the surface of all needleless connectors and injection ports for at least **15 seconds** using friction with an appropriate antiseptic (e.g., 70% isopropyl alcohol prep pad, chlorhexidine-based solution, or povidone-iodine - check institutional policy for approved disinfectant and contact time).
-        *   Allow the port to **air dry completely** (typically 5-15 seconds for alcohol) before accessing with a sterile syringe or IV tubing.
-    *   Consider using antiseptic-impregnated port protectors/caps (e.g., Curos™ caps, SwabCaps™) on all lumens when not in active use to maintain disinfection and provide a physical barrier. Replace with each access or per institutional policy.
-3.  **Dressing Care & Site Assessment**:
-    *   **Dressing Type**:
-        *   Use a **sterile, transparent, semipermeable polyurethane dressing (TSM)** to cover the CVC insertion site to allow continuous visualization.
-        *   Consider using a **chlorhexidine-impregnated sponge dressing (e.g., Biopatch™, Tegaderm CHG)** at the insertion site for patients older than 2 months if the CLABSI rate is not decreasing despite adherence to basic prevention measures (unless contraindicated due to allergy or site irritation).
-    *   **Dressing Change Frequency**:
-        *   **TSM Dressings**: Change every **5-7 days** (or per institutional policy, typically not more frequently than q7d unless indicated).
-        *   **Gauze Dressings (if used, e.g., if site is oozing/bleeding or patient is diaphoretic)**: Change every **2 days (48 hours)**.
-        *   **CHG Sponge/Dressing**: Change with each TSM/gauze dressing change.
-        *   **Change any dressing immediately** if it becomes soiled, loose, damp, or if its integrity is compromised.
-    *   **Dressing Change Procedure (Aseptic Technique)**:
-        *   Perform hand hygiene. Wear clean or sterile gloves (per institutional policy, sterile gloves often recommended for CVC dressing changes in ICU) and a mask. Patient should also wear a mask or turn their head away from the site during the procedure.
-        *   Carefully remove the old dressing to avoid dislodging the catheter.
-        *   Assess the insertion site visually and by palpation (through intact dressing if not due for change) daily for signs of infection (redness, pain, swelling, tenderness, warmth, purulence, drainage) and catheter securement.
-        *   Cleanse the skin around the insertion site with alcoholic CHG (>0.5%) using friction and allow to air dry completely before applying the new sterile dressing.
-        *   Document the dressing change, site appearance, catheter position (e.g., external length if marked), and any issues in the medical record.
-4.  **IV Tubing, Needleless Connectors, and Solution Care**:
-    *   **Administration Sets (IV Tubing)**:
-        *   For continuous infusions (not blood, blood products, or lipid emulsions): Change no more frequently than every **96 hours**, but at least every **7 days** (or per institutional policy).
-        *   For intermittent infusions or when tubing is disconnected: Consider changing every 24 hours.
-        *   For blood/blood products: Change tubing within **4 hours** of initiating the transfusion for each unit, or after completion of 2 units if given sequentially (max 4 hours per unit), or every 24 hours if multiple units are given through the same set (check specific blood bank/institutional policy).
-        *   For lipid emulsions (e.g., propofol, TPN with lipids): Change tubing every **12-24 hours** (propofol typically every 12 hours or with each vial/bag change if sooner).
-    *   **Needleless Connectors**: Change according to institutional policy (e.g., every 72-96 hours, with primary IV tubing changes, or if blood/debris is visible within the connector, if the septum is damaged, or if integrity is compromised).
-    *   Keep all components of the IV system closed and sterile. Ensure all lumens are clamped or capped with sterile devices when not in use or during changes to prevent air embolism and contamination.
-5.  **Bathing**:
-    *   Daily bathing with **chlorhexidine gluconate (CHG) cloths/solution** for all ICU patients >2 months old (unless contraindicated, e.g., CHG allergy, severe skin breakdown) has been shown to reduce CLABSI rates and other HAIs.
-6.  **Catheter Securement**:
-    *   Ensure the CVC is properly secured to prevent movement, migration, and pistoning at the insertion site, which can introduce bacteria and cause mechanical complications.
-    *   Use an engineered sutureless securement device whenever possible. If sutures are used, ensure they are intact and the site is clean. The dressing should also help secure the catheter.
-
-### III. Blood Sampling from CVCs
-
-*   Minimize blood draws from CVCs to reduce the risk of contamination and infection. Use peripheral venipuncture when possible, especially for routine labs not requiring immediate results.
-*   If drawing from a CVC, use strict aseptic technique: hand hygiene, meticulously "scrub the hub," use sterile syringe/vacutainer.
-*   **Discard Volume**: Discard an appropriate volume of blood (e.g., 3-5 times the catheter lumen volume, typically 5-10 mL, or per institutional policy) before obtaining the sample for most laboratory tests to avoid contamination with flush solution or infusates. **Exception**: Blood cultures or certain coagulation studies where the initial draw may be required or a smaller discard is indicated (check specific lab/institutional policy).
-*   **Blood Cultures for Suspected CLABSI**: If CLABSI is suspected (e.g., new fever, chills, leukocytosis, hypotension with no other obvious source in a patient with a CVC):
-    *   Obtain at least **two sets of blood cultures**.
-    *   One set should be drawn from a CVC lumen (or each lumen if multi-lumen catheter and suspicion is high for a specific lumen being the source).
-    *   At least one set must be drawn from a **peripheral venipuncture site**.
-    *   Draw samples ideally simultaneously or as close in time as possible. Clearly label the source (CVC lumen #, peripheral site) of each culture bottle.
-    *   **Differential Time to Positivity (DTP)**: If the CVC-drawn culture becomes positive ≥2 hours before the peripheral culture, it is highly suggestive of CLABSI.
-
-### IV. Staff Education, Competency, and Surveillance
-*   Regular training and competency validation for all healthcare personnel involved in CVC insertion, care, and maintenance are essential. This includes physicians, nurses, and other relevant staff.
-*   Monitor adherence to CLABSI prevention bundles through direct observation audits and checklist completion. Provide regular feedback to staff on performance.
-*   Conduct surveillance for CLABSIs using standardized definitions (e.g., NHSN criteria).
-*   Investigate all CLABSIs thoroughly using a root cause analysis (RCA) approach to identify contributing factors and implement targeted corrective actions for system improvement.
-*   Foster a culture of safety where all team members feel empowered to speak up if they observe a breach in infection prevention practices.`,
-    categoryType: 'Policy',
-    keywordsForImage: 'central line CVC care',
-  },
-  {
-    id: 'massive-transfusion-protocol',
-    slug: 'massive-transfusion-protocol',
-    title: 'Massive Transfusion Protocol (MTP)',
-    summary: 'Guidelines for activating and managing massive transfusion in patients with severe hemorrhage, including blood product ratios and monitoring.',
-    categoryType: 'Policy',
-    keywordsForImage: 'blood transfusion emergency',
-    content: `## General Overview: Purpose of Policy
-This policy outlines the standardized procedure for the activation and management of Massive Transfusion Protocol (MTP) in adult patients experiencing, or at high risk for, severe, life-threatening hemorrhage. The goal of MTP is to rapidly provide balanced resuscitation with blood products (Red Blood Cells, Plasma, Platelets) to correct coagulopathy, restore tissue perfusion, and improve survival in massively bleeding patients.
-
-## In-Depth Protocol Details & Procedures
-
-### I. Definition of Massive Transfusion
-Massive transfusion is commonly defined as:
-*   Replacement of >1 blood volume in 24 hours (approximately 10 units of Packed Red Blood Cells - PRBCs - in a 70kg adult).
-*   Transfusion of >4 units of PRBCs within 1 hour when ongoing bleeding is anticipated.
-*   Replacement of 50% of total blood volume within 3 hours.
-*   Specific clinical triggers (see below) may also activate the MTP.
-
-### II. MTP Activation Criteria
-MTP should be activated by a designated attending physician (e.g., Trauma Surgeon, Emergency Physician, Anesthesiologist, Intensivist) based on clinical judgment and/or predefined criteria. Consider MTP activation for patients with:
-1.  **Physiological Triggers**:
-    *   SBP <90 mmHg and HR >120 bpm despite initial fluid resuscitation (e.g., 1-2L crystalloid).
-    *   Persistent hemodynamic instability.
-    *   Evidence of poor end-organ perfusion (e.g., altered mental status, oliguria, mottled skin).
-    *   Base Deficit > -6 mEq/L or Lactate >4 mmol/L in the setting of hemorrhage.
-2.  **Anatomical Triggers (Trauma)**:
-    *   Penetrating torso, neck, or proximal extremity trauma with hemodynamic instability.
-    *   Multiple long bone fractures with hemodynamic instability.
-    *   Unstable pelvic fracture.
-    *   Significant active bleeding from any site.
-3.  **Laboratory Triggers (if rapidly available and patient is actively bleeding)**:
-    *   Severe coagulopathy (e.g., INR >1.8, PTT >60s) in a bleeding patient.
-    *   Severe acidosis (pH <7.2) with active bleeding.
-4.  **Scoring Systems (if used by institution)**:
-    *   Assessment of Blood Consumption (ABC) Score ≥2.
-    *   Trauma Associated Severe Hemorrhage (TASH) Score.
-    *   Emergency Transfusion Score (ETS).
-5.  **Clinical Gestalt**: Experienced clinician's judgment that massive transfusion is imminent or ongoing.
-
-**Notification**: Once MTP is activated, the provider must **clearly announce "MTP ACTIVATION"** and notify:
-*   Blood Bank/Transfusion Service STAT.
-*   Operating Room (if applicable).
-*   ICU (if patient is there or anticipated destination).
-*   Designated MTP runner/team.
-
-### III. Blood Product Resuscitation Strategy
-The MTP aims for a balanced resuscitation approach, often targeting a ratio of:
-*   **1:1:1 (PRBCs : FFP : Platelets)**
-    *   This means for every 1 unit of PRBCs, approximately 1 unit of FFP and 1 apheresis unit of platelets (or equivalent 5-6 whole blood-derived platelets) should be administered.
-*   **MTP "Packs"**: Blood bank will typically issue blood products in predefined "packs" or coolers containing these ratios to facilitate rapid administration.
-    *   Example MTP Pack: 6 units PRBCs, 6 units FFP, 1 apheresis unit Platelets.
-*   **Early Use of Plasma and Platelets**: Do not wait for severe coagulopathy or thrombocytopenia to develop. Administer FFP and platelets empirically along with PRBCs from the outset of MTP.
-*   **Type O Blood**:
-    *   **Type O Rh-negative PRBCs**: Use for females of childbearing potential or if Rh status unknown in emergent situations.
-    *   **Type O Rh-positive PRBCs**: May be used for males or females beyond childbearing potential if O-negative is scarce.
-    *   Switch to type-specific blood as soon as feasible after crossmatch.
-*   **Plasma**: Type AB plasma is universal donor plasma and can be used if ABO type unknown or type-specific is unavailable. Thaw FFP in advance if MTP anticipated or use thawed plasma (if available per institutional policy).
-*   **Cryoprecipitate**: Consider administering cryoprecipitate (1-2 pools, typically 10 units) if fibrinogen level is <100-150 mg/dL or if viscoelastic testing (TEG/ROTEM) indicates fibrinogen deficiency. May be included in later MTP packs or ordered separately.
-*   **Tranexamic Acid (TXA)**:
-    *   For trauma patients with, or at risk of, significant hemorrhage: Administer 1 gram IV over 10 minutes **within 3 hours of injury**, followed by 1 gram IV infusion over 8 hours.
-    *   Consider for other causes of massive hemorrhage (e.g., PPH, some surgical bleeding) per specific guidelines. **Do NOT administer if >3 hours from injury in trauma (potential harm).**
-
-### IV. Monitoring and Laboratory Goals During MTP
-Continuous clinical assessment and frequent laboratory monitoring are crucial.
-*   **Hemodynamics**: Continuous BP, HR, SpO2. Target SBP >90 mmHg or MAP >65 mmHg (may be lower targets in "permissive hypotension" for uncontrolled hemorrhage pre-operatively).
-*   **Temperature**: Prevent and treat hypothermia (target >35°C or 95°F). Use fluid warmers, forced air warmers, warm blankets. Hypothermia worsens coagulopathy.
-*   **Acid-Base Status**: Serial ABGs. Correct severe acidosis (pH <7.1-7.2 may impair coagulation).
-*   **Coagulation Parameters (q30-60min or after each MTP pack)**:
-    *   PT/INR: Target <1.5-1.8
-    *   aPTT: Target <1.5 x control
-    *   Fibrinogen: Target >150-200 mg/dL
-    *   Platelet Count: Target >50,000/μL (consider >100,000/μL for CNS trauma or severe bleeding).
-    *   Viscoelastic Testing (TEG/ROTEM) if available: Provides real-time global assessment of coagulation and can guide component therapy more precisely (e.g., specific need for fibrinogen, platelets, or factor replacement).
-*   **Ionized Calcium (iCa)**: Citrate in transfused blood products chelates calcium, leading to hypocalcemia. Monitor iCa frequently and replete with IV calcium chloride or calcium gluconate to maintain normal levels (e.g., iCa >1.1 mmol/L). Hypocalcemia impairs myocardial contractility and coagulation.
-*   **Potassium (K⁺)**: Stored PRBCs leak potassium. Risk of hyperkalemia, especially with rapid transfusion rates and renal impairment. Monitor closely.
-*   **Hemoglobin/Hematocrit**: Target Hgb typically 7-9 g/dL.
-
-### V. Adjunctive Measures
-*   **Identify and Control Bleeding Source**: Definitive surgical or interventional radiological control of hemorrhage is paramount. MTP is a bridge to definitive hemostasis.
-*   **Damage Control Resuscitation (DCR)**: Encompasses MTP, permissive hypotension (until bleeding controlled), prevention/treatment of hypothermia and acidosis, and damage control surgery (abbreviated initial surgery to control hemorrhage/contamination, followed by resuscitation in ICU and planned re-operation).
-*   **Fluid Warmers**: All blood products and IV fluids should be warmed to prevent hypothermia.
-*   **Rapid Infusion Devices**: May be necessary to deliver products quickly.
-*   **Minimize Crystalloid Use**: Excessive crystalloid administration can lead to dilutional coagulopathy, acidosis, and edema. Focus on blood product resuscitation.
-
-### VI. MTP Deactivation
-The activating physician should clearly announce **"MTP DEACTIVATION"** to all relevant teams (especially Blood Bank) when:
-*   Hemorrhage is controlled.
-*   Patient is hemodynamically stabilizing.
-*   Coagulation parameters are improving/normalizing.
-*   Blood Bank will stop automatic issuance of MTP packs but will continue to provide products as ordered.
-
-### VII. Complications of Massive Transfusion
-*   Transfusion Reactions (hemolytic, febrile, allergic, TRALI, TACO - see Hematologic System).
-*   Coagulopathy (dilutional or consumptive).
-*   Hypothermia.
-*   Acid-Base disturbances (metabolic acidosis from hypoperfusion, metabolic alkalosis from citrate metabolism).
-*   Electrolyte abnormalities (hyperkalemia, hypocalcemia, hypomagnesemia).
-*   Volume overload (TACO).
-*   Acute Respiratory Distress Syndrome (ARDS).
-*   Infection (rare).
-*   Alloimmunization.
-
-### VIII. Documentation
-Thorough documentation is essential:
-*   Time of MTP activation and deactivation.
-*   Clinical indication for MTP.
-*   All blood products administered (type, unit number, volume, start/end times).
-*   All medications administered (e.g., TXA, calcium).
-*   Vital signs, laboratory results, and patient response.
-*   Any complications or adverse events.
-
-### IX. Team Communication & Roles
-Clear, closed-loop communication between all team members (physicians, nurses, blood bank staff, runners, OR/ICU staff) is critical for successful MTP. Pre-defined roles and responsibilities can improve efficiency. Regular MTP drills and debriefings are recommended.`,
-    categoryType: 'Policy',
-    keywordsForImage: 'blood transfusion emergency',
-  },
-  {
-    id: 'ventilator-weaning-protocol',
-    slug: 'ventilator-weaning-protocol',
-    title: 'Ventilator Weaning/Liberation Protocol',
-    summary: 'Standardized approach for assessing readiness for weaning, conducting spontaneous breathing trials (SBTs), and extubation criteria in ICU patients.',
-    categoryType: 'Policy',
-    keywordsForImage: 'ventilator weaning patient',
-    content: `## General Overview: Purpose of Policy
-This policy outlines a standardized, evidence-based protocol for the assessment of readiness for weaning, conduct of Spontaneous Breathing Trials (SBTs), and criteria for liberation from mechanical ventilation (extubation) for adult patients in the Intensive Care Unit (ICU). The goals are to minimize the duration of mechanical ventilation, reduce ventilator-associated complications (e.g., VAP, ICUAW), improve patient comfort, and facilitate timely liberation while ensuring patient safety.
-
-## In-Depth Protocol Details & Procedures
-
-### I. Daily Screening for Weaning Readiness
-All mechanically ventilated patients should be screened daily by the RN and/or RT, in collaboration with the physician, for readiness to begin the weaning process.
-**Criteria for Daily Screening (All must be met to proceed to SBT assessment):**
-1.  **Resolution or significant improvement of the underlying cause of respiratory failure.**
-2.  **Adequate Oxygenation**:
-    *   PaO2/FiO2 ratio >150-200 mmHg (or SpO2 ≥90-92%)
-    *   FiO2 ≤0.4-0.5
-    *   PEEP ≤5-8 cm H2O
-3.  **Hemodynamic Stability**:
-    *   Heart Rate <140 bpm (and stable).
-    *   Systolic Blood Pressure 90-160 mmHg (and stable).
-    *   No or minimal vasopressor support (e.g., Norepinephrine ≤0.1 mcg/kg/min or equivalent, specific thresholds may vary by institution).
-    *   No evidence of active myocardial ischemia.
-4.  **Afebrile**: Temperature ≤38.0-38.5°C.
-5.  **No Active Sedation or Minimal Sedation**: Patient is arousable (e.g., RASS 0 to -2). Ideally, daily Spontaneous Awakening Trial (SAT) has been performed and patient remains comfortable/cooperative off heavy sedation.
-6.  **Adequate Hematocrit/Hemoglobin**: Hgb ≥7-8 g/dL (or patient-specific target).
-7.  **Acceptable Metabolic Status**: No significant uncorrected metabolic acidosis or alkalosis that would impair respiratory drive or muscle function.
-8.  **No planned major surgical procedures or interventions in the next 24 hours that would require ongoing mechanical ventilation.**
-
-### II. Spontaneous Awakening Trial (SAT) / Sedation Interruption
-*   Perform daily SATs in eligible patients by holding or significantly reducing continuous sedative infusions.
-*   **Safety Screen for SAT**:
-    *   No active seizures.
-    *   No active alcohol withdrawal.
-    *   No active agitation (e.g., RASS >+1).
-    *   No NMBAs.
-    *   No evidence of active myocardial ischemia or significantly increased ICP.
-*   **SAT Failure Criteria (Stop SAT and restart sedation at ~50% of prior dose, titrate as needed)**:
-    *   Sustained anxiety, agitation, or pain (e.g., RASS ≥+2 or >2 point increase in pain score).
-    *   Respiratory rate >35/min for >5 minutes.
-    *   SpO2 <88-90% for >5 minutes.
-    *   Acute cardiac arrhythmia.
-    *   Signs of hemodynamic instability (e.g., SBP <80 or >180 mmHg, HR <50 or >140 bpm).
-    *   Signs of respiratory distress (accessory muscle use, paradoxical breathing, diaphoresis).
-*   If SAT is successful (patient remains comfortable and stable off sedation), proceed to SBT assessment.
-
-### III. Spontaneous Breathing Trial (SBT)
-If daily screening criteria and SAT (if applicable) are met, the patient should undergo an SBT to assess their ability to breathe spontaneously with minimal or no ventilator support.
-**SBT Methods (choose one, duration typically 30-120 minutes):**
-1.  **Low-Level Pressure Support (PSV)**: PS of 5-7 cm H2O with PEEP of 0-5 cm H2O.
-2.  **CPAP**: CPAP of 0-5 cm H2O.
-3.  **T-piece (or Tracheostomy Collar for tracheostomized patients)**: Patient breathes humidified oxygen via T-piece circuit connected to ETT/trach. FiO2 typically similar to pre-SBT setting or slightly higher.
-**During SBT, monitor the patient closely for signs of intolerance.**
-
-**SBT Failure Criteria (Stop SBT and return patient to pre-SBT ventilator settings):**
-*   **Respiratory Distress/Increased Work of Breathing**:
-    *   Respiratory Rate (RR) >35 breaths/min for >5 minutes (or >20% increase from baseline).
-    *   Use of accessory muscles, paradoxical abdominal breathing, intercostal retractions.
-    *   Diaphoresis.
-*   **Inadequate Gas Exchange**:
-    *   SpO2 <90% for >5 minutes (or PaO2 <55-60 mmHg on ABG if obtained).
-    *   PaCO2 increase >10 mmHg from baseline or pH <7.30-7.32 (if ABG obtained).
-    *   Change in ETCO2 if continuously monitored.
-*   **Hemodynamic Instability**:
-    *   Heart Rate (HR) >140 bpm or sustained increase/decrease >20% from baseline.
-    *   Systolic Blood Pressure (SBP) >180 mmHg or <90 mmHg.
-    *   Development of new cardiac arrhythmias (e.g., AFib with RVR, frequent PVCs, VT).
-*   **Altered Mental Status/Patient Distress**:
-    *   Agitation, anxiety, combativeness.
-    *   Somnolence, obtundation (not attributable to ongoing sedation).
-    *   Patient complains of severe dyspnea or fatigue.
-
-**Successful SBT**: Patient tolerates the SBT for the predetermined duration (30-120 minutes) without developing any failure criteria.
-
-### IV. Assessment for Extubation (If SBT is Successful)
-If the SBT is successful, assess the patient for readiness for extubation.
-**Key Extubation Criteria**:
-1.  **Successful SBT completion.**
-2.  **Adequate Mental Status**: Patient is alert, cooperative, able to follow commands (e.g., RASS 0 to -1). Able to protect airway.
-3.  **Effective Cough and Ability to Clear Secretions**:
-    *   Assess cough strength (subjectively or Peak Cough Flow >60 L/min).
-    *   Assess quantity and consistency of secretions. Minimal, thin secretions are ideal. Patient should be able to manage secretions without frequent suctioning.
-4.  **Patent Upper Airway**:
-    *   **Cuff Leak Test (CLT)**: Perform if concern for laryngeal edema (e.g., prolonged intubation >48-72h, traumatic intubation, history of stridor, burns, anaphylaxis).
-        *   Procedure: Fully deflate ETT cuff. Occlude ETT lumen. Assess for audible air leak around the ETT during mechanical breaths (VC mode) or spontaneous breaths.
-        *   Interpretation: Presence of a leak suggests minimal laryngeal edema and lower risk of post-extubation stridor. Absence of a leak (or very small leak volume, e.g., <110-130 mL or <10-20% of delivered VT) is concerning for edema. Consider prophylactic systemic steroids (e.g., methylprednisolone 24h prior to planned extubation) if CLT is negative or patient is high risk.
-5.  **No other factors contraindicating extubation** (e.g., impending surgery, unstable condition requiring ongoing airway control).
-
-### V. Extubation Procedure
-*   Explain procedure to patient.
-*   Gather necessary equipment: Suction (oral and ETT), oxygen delivery device (e.g., nasal cannula, face mask, NIV interface if planned), manual resuscitation bag with mask, equipment for potential re-intubation (laryngoscope, ETTs, etc.).
-*   Elevate HOB to semi-Fowler's or high-Fowler's position.
-*   Thoroughly suction oropharynx and ETT.
-*   Pre-oxygenate with 100% FiO2 for a few minutes if tolerated.
-*   Fully deflate ETT cuff.
-*   Instruct patient to take a deep breath or cough as the tube is removed.
-*   Smoothly withdraw ETT at peak inspiration or during cough.
-*   Apply oxygen immediately post-extubation.
-*   Encourage patient to cough and deep breathe.
-*   Assess for stridor, respiratory distress, voice quality, SpO2, RR, HR, BP.
-
-### VI. Post-Extubation Management
-*   **Close Monitoring**: Vital signs, SpO2, work of breathing, mental status, ability to clear secretions, especially in the first 1-2 hours and then regularly.
-*   **Oxygen Therapy**: Titrate to maintain SpO2 target. High-flow nasal cannula (HFNC) may be beneficial in select patients at high risk of re-intubation.
-*   **Pulmonary Hygiene**: Encourage coughing, deep breathing, incentive spirometry. Chest physiotherapy if indicated.
-*   **Non-Invasive Ventilation (NIV)**:
-    *   Consider prophylactic NIV immediately post-extubation for patients at high risk of post-extubation respiratory failure (e.g., hypercapnic respiratory failure like COPD, CHF, obesity hypoventilation, some neuromuscular disease).
-    *   NIV for established post-extubation respiratory failure is less effective and may delay re-intubation; use cautiously.
-*   **Stridor Management**: If mild stridor, humidified oxygen, nebulized racemic epinephrine. If severe or unresponsive, prepare for re-intubation. IV steroids may be considered.
-*   **Assess Swallowing**: Perform dysphagia screen before initiating oral intake if not already done.
-
-### VII. Re-intubation
-If patient develops significant respiratory distress, hypoxemia, hypercapnia, or inability to protect airway post-extubation, re-intubation should be performed promptly by skilled personnel. Delaying necessary re-intubation can worsen outcomes.
-
-### VIII. Protocol Failure and Reassessment
-*   If a patient fails an SBT or is not extubated, return to a stable, non-fatiguing mode of ventilation for at least 24 hours (or until underlying issues resolve).
-*   Re-evaluate daily for weaning readiness. Identify and address factors contributing to weaning failure (e.g., fluid overload, bronchospasm, electrolyte imbalance, ICUAW, delirium, cardiac dysfunction, excessive secretions, psychological factors).
-
-### IX. Documentation
-Thoroughly document all aspects of the weaning process:
-*   Daily screening for weaning readiness.
-*   SAT process and outcome.
-*   SBT method, duration, patient tolerance, reason for failure if applicable.
-*   Objective weaning parameters (RSBI, NIF, VC if measured).
-*   Cuff leak test results (if performed).
-*   Extubation procedure, patient response.
-*   Post-extubation monitoring and interventions.`,
-    categoryType: 'Policy',
-    keywordsForImage: 'ventilator weaning patient',
-  },
-  {
-    id: 'padis-guidelines',
-    slug: 'padis-guidelines',
-    title: 'Pain, Agitation, Delirium, Immobility, and Sleep Disruption (PADIS) Guidelines',
-    summary: 'Key recommendations for managing PADIS in adult ICU patients, including assessment tools and non-pharmacologic/pharmacologic interventions.',
-    categoryType: 'Policy',
-    keywordsForImage: 'ICU patient care comfort',
-    content: `## General Overview: Purpose of Policy
-This policy outlines an integrated, evidence-based approach to the assessment, prevention, and management of Pain, Agitation, Delirium, Immobility, and Sleep Disruption (collectively known as PADIS) in adult patients in the Intensive Care Unit (ICU). Effective management of PADIS is associated with improved patient outcomes, including reduced duration of mechanical ventilation, shorter ICU and hospital length of stay, decreased mortality, and better long-term cognitive function. This policy promotes a patient-centered, interprofessional approach.
-
-## In-Depth Policy Details & Procedures
-
-### I. Pain Assessment and Management ("Analgesia First")
-Pain is a common and distressing experience for ICU patients. Untreated pain contributes to agitation, delirium, sleep disruption, and physiological stress.
-**A. Assessment**:
-1.  **Frequency**: Routinely assess pain in all ICU patients (e.g., at least every 4 hours and PRN, with vital signs, after painful procedures, with changes in condition).
-2.  **Tools**:
-    *   **Self-Report (Gold Standard)**: If patient is able to communicate, use a validated scale like the Numeric Rating Scale (NRS 0-10), Visual Analog Scale (VAS), or Faces Pain Scale-Revised (FPS-R).
-    *   **Behavioral Pain Scales (for non-verbal/unable to self-report patients)**:
-        *   **Behavioral Pain Scale (BPS)**: Scores facial expression, upper limb movements, compliance with ventilation (for intubated patients) or vocalization (for non-intubated). Score 3-12.
-        *   **Critical-Care Pain Observation Tool (CPOT)**: Scores facial expression, body movements, muscle tension, compliance with ventilator (intubated) or vocalization (non-intubated). Score 0-8.
-    *   **Physiological Indicators (Adjunctive, Not Diagnostic Alone)**: Changes in HR, BP, RR, diaphoresis. These are non-specific and should be interpreted cautiously in conjunction with behavioral indicators or patient report.
-3.  **Documentation**: Document pain scores, interventions, and reassessment of effectiveness.
-
-**B. Management**:
-1.  **Non-Pharmacologic Interventions (First-line or Adjunctive)**:
-    *   Proper positioning, splinting.
-    *   Application of cold/heat (as appropriate).
-    *   Massage, relaxation techniques (e.g., guided imagery, music therapy).
-    *   Environmental modifications (reduce noise, comfortable temperature).
-    *   Reassurance and emotional support.
-2.  **Pharmacologic Interventions (Multimodal Analgesia)**:
-    *   **Opioids (IV)**: First-line for moderate to severe nociceptive pain (e.g., Fentanyl, Hydromorphone, Morphine). Titrate to effect using smallest effective dose.
-        *   Consider patient factors (renal/hepatic function, hemodynamic stability, prior opioid exposure).
-        *   Fentanyl: Rapid onset, short duration (bolus), good for hemodynamically unstable patients.
-        *   Hydromorphone: Potent, intermediate duration.
-        *   Morphine: Longer duration, histamine release (can cause hypotension), active metabolites accumulate in renal failure.
-    *   **Non-Opioid Analgesics (Opioid-Sparing)**:
-        *   **Acetaminophen (IV/PO/PR)**: For mild-moderate pain, antipyretic.
-        *   **NSAIDs (e.g., Ketorolac IV/IM, Ibuprofen IV/PO)**: For mild-moderate pain, anti-inflammatory. Use cautiously (risk of GI bleed, AKI, platelet dysfunction). Limit duration.
-        *   **Neuropathic Pain Agents**: Gabapentin, Pregabalin, Ketamine (low-dose infusion), Lidocaine infusion. Consider for neuropathic pain or as adjuncts.
-    *   **Analgesia-First Sedation**: Ensure adequate pain control *before* initiating or escalating sedatives for agitation.
-    *   **Regional Analgesia**: Epidural analgesia, peripheral nerve blocks for specific types of pain (e.g., post-operative, rib fractures).
-
-### II. Agitation and Sedation Management
-Goal: Maintain a calm, comfortable, and cooperative patient (light sedation, e.g., RASS 0 to -2) whenever possible. Avoid deep/prolonged sedation.
-**A. Assessment**:
-1.  **Frequency**: Routinely assess agitation/sedation levels (e.g., q2-4h and PRN).
-2.  **Tools**:
-    *   **Richmond Agitation-Sedation Scale (RASS)**: Score +4 (Combative) to -5 (Unarousable). Target RASS is often 0 to -2.
-    *   **Sedation-Agitation Scale (SAS)**: Score 1 (Unarousable) to 7 (Dangerous Agitation).
-3.  **Identify and Treat Reversible Causes of Agitation**: Pain, delirium, hypoxia, hypercapnia, hypoglycemia, electrolyte imbalance, drug/alcohol withdrawal, ventilator dyssynchrony, fear, anxiety, unmet needs (thirst, full bladder, uncomfortable position).
-
-**B. Management**:
-1.  **Non-Pharmacologic Interventions**: Address reversible causes, optimize environment (reduce stimuli, day/night cycle), reorientation, family presence, music, relaxation.
-2.  **Pharmacologic Interventions (Analgesia-First Approach)**:
-    *   **Ensure adequate analgesia is provided first.**
-    *   **Sedative Choice (Non-Benzodiazepines Preferred over Benzodiazepines for routine sedation)**:
-        *   **Propofol (IV infusion)**: Rapid onset, short half-life, easy titration. Good for deep sedation if needed or for neurological conditions requiring ICP control. Risks: hypotension, bradycardia, PRIS.
-        *   **Dexmedetomidine (IV infusion)**: Provides light to moderate sedation where patient remains rousable ("cooperative sedation"). Minimal respiratory depression. Analgesia-sparing. May reduce delirium. Risks: bradycardia, hypotension (can have initial transient hypertension with loading dose).
-        *   **Benzodiazepines (e.g., Midazolam, Lorazepam IV)**: Associated with increased risk of delirium and prolonged ventilation. Reserve for specific indications like alcohol/benzodiazepine withdrawal, active seizures, or if other agents are contraindicated/ineffective, or for deep sedation for NMBAs. Use intermittent boluses or lowest effective infusion rate for shortest possible duration.
-        *   **Ketamine (IV infusion, low dose)**: May be used as an adjunct for sedation and analgesia, especially in opioid-tolerant patients or those with bronchospasm.
-3.  **Daily Sedation Interruption / Spontaneous Awakening Trials (SATs)**:
-    *   Hold or significantly reduce sedative infusions daily in eligible patients to assess neurological status, facilitate weaning, and reduce drug accumulation.
-    *   Monitor for SAT failure criteria (agitation, pain, respiratory distress, hemodynamic instability). Restart sedation at ~50% of prior dose if SAT fails.
-4.  **Targeted Sedation**: Titrate sedatives to achieve the lightest possible level of sedation consistent with patient safety and comfort, using a validated scale (e.g., RASS 0 to -2).
-
-### III. Delirium Assessment, Prevention, and Management
-Delirium is an acute brain dysfunction characterized by inattention, disorganized thinking, and altered level of consciousness. It is common in ICU and associated with poor outcomes.
-**A. Assessment**:
-1.  **Frequency**: Routinely assess for delirium in all ICU patients (e.g., q8-12h or per shift) once RASS is >-4 (i.e., not deeply sedated/comatose).
-2.  **Tools**:
-    *   **Confusion Assessment Method for the ICU (CAM-ICU)**.
-    *   **Intensive Care Delirium Screening Checklist (ICDSC)**.
-3.  **Identify Delirium Subtypes**: Hyperactive, Hypoactive (most common, often missed), Mixed.
-4.  **Identify and Address Modifiable Risk Factors**:
-    *   **Pre-existing**: Advanced age, dementia, baseline cognitive impairment, hypertension, prior stroke, alcohol abuse.
-    *   **ICU-related**: Sepsis, hypoxia, metabolic disturbances, electrolyte imbalance, dehydration, immobility, restraints, sensory deprivation/overload, sleep disruption, medications (benzodiazepines, opioids, anticholinergics).
-
-**B. Prevention (Multicomponent, Non-Pharmacologic Interventions - "ABCDEF Bundle")**:
-*   **A**wakening (SATs) and **B**reathing (SBTs) Coordination.
-*   **C**hoice of Analgesia and Sedation (avoid benzodiazepines if possible).
-*   **D**elirium Monitoring and Management.
-*   **E**arly Mobility and Exercise.
-*   **F**amily Engagement and Empowerment.
-*   Other strategies: Frequent reorientation, cognitive stimulation, optimizing sleep (see below), providing hearing aids/glasses, minimizing noise/light at night.
-
-**C. Management**:
-1.  **Non-Pharmacologic Interventions (Primary Approach)**: Focus on prevention strategies listed above. Treat underlying medical conditions contributing to delirium.
-2.  **Pharmacologic Interventions (Limited Role, Symptom Control)**:
-    *   **Antipsychotics (e.g., Haloperidol, Quetiapine, Olanzapine, Risperidone)**: Not recommended for routine prevention or treatment of delirium. May be considered for short-term use to manage distressing symptoms (e.g., severe agitation, hallucinations, delusions causing harm to self/others) at the lowest effective dose for the shortest duration, if non-pharmacologic measures fail. Monitor for side effects (QTc prolongation, EPS).
-    *   **Dexmedetomidine**: May be considered for agitated delirium if sedation is also required, potentially reducing duration of delirium compared to benzodiazepines.
-    *   **Avoid Benzodiazepines**: May worsen or prolong delirium.
-
-### IV. Immobility Prevention and Early Mobilization
-Prolonged immobility contributes to ICUAW, VTE, pressure injuries, delirium, prolonged ventilation.
-**A. Assessment**:
-1.  Assess patient's functional status and readiness for mobilization daily.
-2.  Identify contraindications to mobilization (e.g., unstable spine/fractures, severe hemodynamic instability, active myocardial ischemia, uncontrolled ↑ICP, unsecured airway).
-
-**B. Interventions**:
-1.  **Minimize Sedation**: To facilitate active participation.
-2.  **Early and Progressive Mobilization Protocol**:
-    *   Initiate as soon as patient is physiologically stable (often within 24-72h of ICU admission).
-    *   Multidisciplinary approach (RN, PT, OT, RT, MD).
-    *   Progression: Passive range of motion (PROM) -> Active-assisted ROM (AAROM) -> Active ROM (AROM) -> Dangling legs at bedside -> Sitting in chair -> Standing -> Ambulation.
-    *   Use of specialized equipment (e.g., cycle ergometers, slings, lifts) may be beneficial.
-3.  **Reduce Physical Restraints**: Use only when essential for patient safety and least restrictive method. Remove as soon as possible.
-
-### V. Sleep Disruption Prevention and Management
-Sleep disruption is nearly universal in ICU and contributes to delirium, immune dysfunction, and poor recovery.
-**A. Assessment**:
-1.  Subjective assessment if patient can report (e.g., Richards-Campbell Sleep Questionnaire - RCSQ).
-2.  Objective measures (polysomnography) are not practical for routine use. Observe sleep-wake patterns.
-
-**B. Prevention and Management (Non-Pharmacologic Focus)**:
-1.  **Optimize Environment**:
-    *   Reduce noise levels at night (e.g., dim alarms, quiet conversations, earplugs for patient).
-    *   Cluster care activities to allow for uninterrupted sleep periods (at least 2-4 hours).
-    *   Control light (dim lights at night, natural light during day if possible).
-    *   Maintain comfortable room temperature.
-2.  **Promote Circadian Rhythm**: Maintain day-night routines, encourage daytime activity/mobilization.
-3.  **Manage Pain and Discomfort**: Ensure adequate analgesia.
-4.  **Review Medications**: Minimize use of sleep-disrupting medications (e.g., steroids, diuretics, stimulants) especially at night.
-5.  **Pharmacologic Interventions (Use Cautiously, Short-Term if Needed)**:
-    *   **Melatonin or Ramelteon (melatonin receptor agonist)**: May be considered.
-    *   **Non-Benzodiazepine Hypnotics (e.g., Zolpidem, Zaleplon)**: Use with caution, short-term, potential for delirium/side effects in elderly/critically ill.
-    *   **Trazodone**: Low dose may be used for sedative effects.
-    *   **Avoid Benzodiazepines and Diphenhydramine** for sleep due to risk of delirium.
-    *   Dexmedetomidine (if used for sedation) may promote more natural sleep architecture compared to other sedatives.
-
-### VI. Documentation and Interprofessional Collaboration
-*   Document all PADIS assessments, interventions, and patient responses.
-*   Utilize interprofessional team rounds (MD, RN, PharmD, RT, PT/OT, Dietitian) to discuss and coordinate PADIS management strategies daily.
-*   Regularly evaluate the effectiveness of PADIS protocols and make improvements as needed.`,
-    categoryType: 'Policy',
-    keywordsForImage: 'ICU patient care comfort',
-  }
 ];
+
 
 export const bodySystems: ContentItem[] = originalBodySystemsContent.map(item => {
   const { generalOverview, inDepthConsiderations } = splitContent(item.content);
-  // Create a new object without the original 'content' field
   const { content, ...restOfItem } = item;
   return {
     ...restOfItem,
@@ -2593,3 +1618,5 @@ export const policies: ContentItem[] = originalPoliciesContent.map(item => {
 export const getAllContentItems = (): ContentItem[] => {
   return [...bodySystems, ...topics, ...policies];
 };
+
+    

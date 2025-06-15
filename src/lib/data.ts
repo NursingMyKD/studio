@@ -807,7 +807,7 @@ In critical illness, the immune system is often profoundly affected, leading to 
     *   Optimize dosing based on pharmacokinetics/pharmacodynamics (PK/PD), especially in AKI/CRRT (e.g., extended infusions for beta-lactams).
     *   Duration: Typically 7-10 days for most infections, but shorter courses may be appropriate for some (e.g., uncomplicated UTI, source control achieved). Guided by clinical response and biomarkers (e.g., PCT).
 *   **Source Control Nuances**: Balance urgency with patient stability. Some sources (e.g., necrotizing fasciitis, perforated viscus) require immediate surgical intervention. Others (e.g., infected CVC) less emergent but still timely.
-*   **Corticosteroids for Septic Shock**: Hydrocortisone 200mg/day (e.g., 50mg IV q6h or continuous infusion). Benefit is earlier shock reversal, uncertain mortality benefit. Consider if shock is refractory to fluids and adequate vasopressor doses (e.g., norepinephrine >0.25 mcg/kg/min). Taper when shock resolves. No role for sepsis without shock. ACTH stimulation test not recommended to guide therapy.
+*   **Corticosteroids for Septic Shock**: Hydrocortisone 200mg/day (e.g., 50mg IV q6h or continuous infusion). Benefit is earlier shock reversal, uncertain mortality benefit. Consider if shock is refractory to fluids and adequate vasopressor doses (e.g., norepinephrine >0.25 mcg/kg/min or equivalent). Taper when shock resolves. No role for sepsis without shock. ACTH stimulation test not recommended to guide therapy.
 *   **Vitamin C / Thiamine / Hydrocortisone ("HAT" Therapy)**: Investigational, early trials showed promise but larger RCTs (e.g., VITAMINS, VICTAS) did not confirm mortality benefit. Not currently recommended as standard care.
 
 ### Anaphylaxis - Advanced Management
@@ -902,7 +902,7 @@ While primary musculoskeletal disorders are not always the direct cause for admi
 *   **Mechanical Prophylaxis Details**:
     *   IPCs should be applied correctly and ensure consistent use.
     *   GCS: Ensure proper fit to avoid tourniquet effect. Limited evidence for efficacy as sole prophylaxis in high-risk ICU patients.
-*   **Inferior Vena Cava (IVC) Filters**: For patients with acute DVT/PE who have absolute contraindication to anticoagulation, or recurrent VTE despite therapeutic anticoagulation. Retrievable filters preferred. Complications: filter migration, fracture, IVC thrombosis, caval penetration.
+*   **Inferior Vena Cava (IVC) Filters**: For patients with acute DVT/PE who have an absolute contraindication to anticoagulation, or recurrent VTE despite therapeutic anticoagulation. Retrievable filters preferred. Complications: filter migration, fracture, IVC thrombosis, caval penetration.
 
 ### Fat Embolism Syndrome (FES)
 Systemic manifestation of fat emboli in circulation, typically after long bone (femur, tibia) or pelvic fractures, or orthopedic surgery.
@@ -1105,69 +1105,149 @@ Common classes of drugs frequently utilized in the ICU include sedatives and ana
 ## In-Depth ICU Considerations
 
 ### Sedatives and Analgesics - Advanced Concepts
-*   **"ABCDEF Bundle" (ICU Liberation Bundle)**: Incorporates pain/sedation management. (Assess, prevent & manage pain; Both spontaneous awakening trials (SATs) & spontaneous breathing trials (SBTs); Choice of analgesia & sedation; Delirium: assess, prevent & manage; Early mobility & exercise; Family engagement & empowerment).
-*   **Pain Assessment in Non-Verbal Patients**: Critical Pain Observation Tool (CPOT), Behavioral Pain Scale (BPS).
-*   **Sedation Scales**: Richmond Agitation-Sedation Scale (RASS), Sedation-Agitation Scale (SAS). Target light sedation (e.g., RASS -2 to 0) whenever possible. Deep sedation associated with prolonged ventilation, delirium, increased mortality.
-*   **Spontaneous Awakening Trials (SATs) / Sedation Interruption**: Daily interruption of continuous sedative infusions to assess neurological function, facilitate clinical assessment, and potentially reduce duration of mechanical ventilation and ICU stay. Combine with SBTs.
-*   **Delirium in ICU**: Very common. Assess with Confusion Assessment Method for the ICU (CAM-ICU) or Intensive Care Delirium Screening Checklist (ICDSC).
-    *   *Risk Factors*: Pre-existing dementia, HTN, alcoholism, severe illness, coma, benzodiazepine use, immobility.
-    *   *Management*: Non-pharmacologic (reorientation, sleep promotion, early mobility, reduce noise/stimuli, optimize sensory input). Pharmacologic (Haloperidol for agitation - use cautiously, QT prolongation risk; Atypical antipsychotics like Quetiapine, Olanzapine - evidence limited). Dexmedetomidine may reduce delirium incidence compared to benzodiazepines. Avoid benzodiazepines if possible for sedation in most ICU patients (risk factor for delirium).
-*   **Opioid-Sparing Analgesia**: Multimodal approach. Acetaminophen, NSAIDs (use cautiously - renal/GI risk), Ketamine (low-dose infusion for analgesia), Gabapentin/Pregabalin for neuropathic pain, regional anesthesia (nerve blocks, epidurals).
-*   **Propofol Infusion Syndrome (PRIS)**: Risk factors: high doses (>4-5 mg/kg/hr or >67 mcg/kg/min), prolonged duration (>48h), concurrent catecholamine/steroid use, critical illness (sepsis, TBI), young age, poor nutritional status. Monitor triglycerides, CK, lactate, ECG (bradycardia, Brugada-like changes), renal/hepatic function. Early recognition and discontinuation is key.
-*   **Benzodiazepine Withdrawal**: Taper slowly after prolonged use to prevent agitation, tachycardia, HTN, seizures. Consider conversion to longer-acting agent for taper.
+The "ABCDEF Bundle" (ICU Liberation Bundle) emphasizes optimal pain and sedation management. This includes assessing and managing pain first (Assess, prevent & manage pain), followed by Both Spontaneous Awakening Trials (SATs) & Spontaneous Breathing Trials (SBTs), Choice of analgesia & sedation targeting light sedation, Delirium assessment and management, Early mobility & exercise, and Family engagement.
+
+**Pain Assessment in Non-Verbal Patients**: Utilize validated tools like the Critical-Care Pain Observation Tool (CPOT) or Behavioral Pain Scale (BPS).
+
+**Sedation Assessment**: Use scales like Richmond Agitation-Sedation Scale (RASS) or Sedation-Agitation Scale (SAS). Aim for light sedation (e.g., RASS -2 to 0) to reduce ventilation duration, ICU stay, and delirium.
+
+**Delirium Management**: Assess using CAM-ICU or ICDSC. Non-pharmacologic interventions are first-line (reorientation, sleep hygiene, early mobility, family presence, minimizing deliriogenic medications). Pharmacologic treatment is for agitation endangering patient/staff; Haloperidol (use cautiously, monitor QTc) or atypical antipsychotics (Quetiapine, Olanzapine) may be used short-term. Dexmedetomidine for sedation may reduce delirium incidence compared to benzodiazepines. Avoid routine benzodiazepine use for sedation due to delirium risk.
+
+**Propofol Infusion Syndrome (PRIS)**: Rare but life-threatening. Risk factors: high doses (>4-5 mg/kg/hr or >67 mcg/kg/min), prolonged duration (>48h), concurrent catecholamines/steroids, critical illness (sepsis, TBI), pediatric patients, poor nutrition. Manifestations: metabolic acidosis, rhabdomyolysis, hyperkalemia, hyperlipidemia, renal failure, arrhythmias (bradycardia, Brugada-like ECG), cardiac failure, hepatomegaly. Monitor: triglycerides, CK, lactate, ABG, ECG, renal/hepatic function. If suspected, stop propofol immediately and provide supportive care.
+
+**Opioid Withdrawal**: Can occur after prolonged high-dose use. Symptoms: agitation, tachycardia, hypertension, fever, sweating, diarrhea. Taper opioids slowly. Clonidine or dexmedetomidine may help manage symptoms.
+
+**Common ICU Sedatives**
+
+| Drug             | Class             | MOA                                     | PK/PD Highlights                                                                 | Typical ICU Dosing (Adult)                                | Advantages                                                                 | Disadvantages/Cautions                                                                                                                              | Key Monitoring                                                                 |
+|------------------|-------------------|-----------------------------------------|----------------------------------------------------------------------------------|-----------------------------------------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| **Propofol**     | General Anesthetic| GABA-A receptor agonist                 | Rapid onset (30-60s), short duration (5-10 min after infusion stop), lipid emulsion | Load: 0.25-1 mg/kg (rarely). Infusion: 5-50 mcg/kg/min (up to 80) | Rapid titration, anxiolytic, hypnotic, antiemetic, anticonvulsant          | Hypotension, bradycardia, respiratory depression, hypertriglyceridemia, PRIS, pain on injection, green urine (rare), pancreatitis (rare)                 | Hemodynamics, triglycerides (q24-48h if >48h), PRIS signs, RASS/SAS             |
+| **Midazolam**    | Benzodiazepine    | GABA-A receptor agonist                 | Slower onset than propofol, duration depends on dose/duration of infusion (active metabolites can accumulate in renal failure) | Load: 0.02-0.1 mg/kg. Infusion: 0.02-0.1 mg/kg/hr (up to 0.2-0.4)         | Anxiolytic, amnestic, anticonvulsant                                       | Respiratory depression, hypotension, delirium, tolerance/withdrawal, accumulation in renal/hepatic failure and obesity                              | Hemodynamics, respiratory status, RASS/SAS, renal/hepatic function             |
+| **Lorazepam**    | Benzodiazepine    | GABA-A receptor agonist                 | Slower onset, longer duration than midazolam. Propylene glycol solvent (risk of toxicity with high-dose/prolonged infusion) | Load: 0.02-0.05 mg/kg. Infusion: 0.01-0.1 mg/kg/hr (max typically 10mg/hr) | Anxiolytic, amnestic, anticonvulsant, less affected by hepatic CYP metabolism | Slower titration, propylene glycol toxicity (anion gap acidosis, osmolal gap, renal dysfunction - monitor if >1mg/kg/day), delirium, withdrawal | Hemodynamics, RASS/SAS, propylene glycol signs if high dose/prolonged           |
+| **Dexmedetomidine**| Alpha-2 Agonist   | Central alpha-2 adrenergic agonist      | Minimal respiratory depression, cooperative sedation (patient arousable)         | Load: 0.5-1 mcg/kg over 10-20 min (optional). Infusion: 0.2-0.7 mcg/kg/hr (up to 1.5) | "Cooperative sedation", anxiolytic, analgesic-sparing, less delirium?        | Hypotension, bradycardia (esp. with load or high dose), sinus arrest (rare), tolerance/withdrawal (HTN, tachycardia) with prolonged use (>24-48h) | HR, BP (continuous), RASS/SAS. No routine respiratory depression monitoring needed |
+| **Ketamine**     | Dissociative Anesthetic | NMDA receptor antagonist              | Rapid onset, bronchodilation, analgesic, preserves airway reflexes/respiratory drive at lower doses | Sedation: Load 0.5-2 mg/kg. Infusion 0.5-4 mg/kg/hr (lower for analgesia) | Analgesic, bronchodilator, sympathomimetic (maintains BP/HR)               | Emergence reactions (hallucinations, delirium - can be mitigated with BZD), increased secretions, ↑ICP (controversial, use with caution), laryngospasm (rare) | HR, BP, neuro status, secretions. RASS/SAS.                                     |
+
+**Common ICU Analgesics**
+
+| Drug             | Class         | MOA                                 | PK/PD Highlights                                                                  | Typical ICU Dosing (Adult IV)                                | Advantages                                                                 | Disadvantages/Cautions                                                                                             | Key Monitoring                                                                 |
+|------------------|---------------|-------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------------------------------|----------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| **Fentanyl**     | Opioid        | Mu-opioid receptor agonist          | Rapid onset (1-2 min), short duration (30-60 min bolus), lipophilic (accumulates)   | Bolus: 25-100 mcg q0.5-2h. Infusion: 25-200 mcg/hr (or higher) | Rapid onset, hemodynamic stability (less histamine release)                | Respiratory depression, chest wall rigidity (rapid high dose), tolerance/withdrawal, accumulation with prolonged infusion, constipation, ileus | Pain score (CPOT/BPS/VAS), RR, SpO2, sedation, bowel function                |
+| **Morphine**     | Opioid        | Mu-opioid receptor agonist          | Slower onset (5-10 min), longer duration (3-4h), active metabolites (renal excretion) | Bolus: 2-10 mg q1-4h. Infusion: 1-20 mg/hr                       | Good for sustained pain                                                    | Histamine release (hypotension, pruritus), active metabolites accumulate in renal failure, respiratory depression, sedation, N/V, constipation | Pain score, RR, SpO2, sedation, BP, renal function                             |
+| **Hydromorphone**| Opioid        | Mu-opioid receptor agonist          | Faster onset than morphine, duration 3-4h, no active metabolites (safer in renal failure) | Bolus: 0.2-1.5 mg q1-4h. Infusion: 0.5-3 mg/hr                  | Potent (5-7x morphine), less histamine release, good for renal impairment  | Respiratory depression, sedation, N/V, constipation, neurotoxicity at high doses (myoclonus)                          | Pain score, RR, SpO2, sedation, bowel function                                 |
+| **Ketamine** (low dose) | NMDA Antagonist | NMDA receptor antagonist      | Analgesic at sub-anesthetic doses | Infusion: 0.1-0.5 mg/kg/hr (or 5-20 mcg/kg/min for analgesia)       | Opioid-sparing, good for neuropathic pain, less respiratory depression   | Psychomimetic effects (less at low doses), ↑secretions                         | Pain score, sedation, neuro status                                             |
+| **Acetaminophen**| Analgesic/Antipyretic | COX inhibitor (central)            | IV formulation available                                                            | 1g IV q6h or 650mg PO/PR q4-6h (max 4g/day)                  | Opioid-sparing, antipyretic                                                | Hepatotoxicity with overdose or in liver disease. Caution with G6PD deficiency. | LFTs if prolonged/high dose, pain/fever                                        |
 
 ### Neuromuscular Blocking Agents (NMBAs) - Advanced Considerations
-*   **Monitoring Depth of Blockade**:
-    *   *Train-of-Four (TOF) Stimulation*: Delivers 4 electrical stimuli to a peripheral nerve (ulnar, facial). Count number of twitches (T1-T4). Goal for continuous infusion often 1-2 twitches out of 4. Absence of all 4 twitches indicates excessive blockade.
-    *   TOF Ratio (T4/T1): Used to assess recovery from blockade.
-*   **Complications of Prolonged NMBAs**: ICU-Acquired Weakness (Acute Quadriplegic Myopathy - AQM, especially with concurrent corticosteroids), skin breakdown, DVT, corneal abrasions (ensure eye care), awareness during paralysis (if inadequate sedation/analgesia - CRITICAL to prevent).
-*   **Reversal Agents**:
-    *   *Anticholinesterases*: Neostigmine (inhibits acetylcholinesterase, ↑ACh at NMJ). Must be given with anticholinergic (Glycopyrrolate or Atropine) to prevent muscarinic side effects (bradycardia, salivation, bronchospasm). Only effective if some recovery present (e.g., TOF ≥2).
-    *   *Sugammadex*: Selective relaxant binding agent. Rapidly reverses Rocuronium or Vecuronium by encapsulation. Dose-dependent. Can reverse deep blocks. Minimal side effects (anaphylaxis rare).
+NMBAs are high-alert medications. Always ensure adequate sedation and analgesia (patient MUST be unconscious) before and during NMBA use to prevent awareness.
+
+**Monitoring Depth of Blockade**: Train-of-Four (TOF) stimulation is crucial. Apply to ulnar nerve (adductor pollicis muscle) or facial nerve (orbicularis oculi). Goal: 1-2 twitches out of 4 for continuous infusion (represents 75-90% receptor blockade). TOF count 0 = profound blockade. TOF count 4 with no fade = minimal or no blockade. Peripheral nerve stimulators should be used regularly.
+
+**Complications**: ICU-Acquired Weakness (Acute Quadriplegic Myopathy - AQM, especially with concurrent high-dose corticosteroids), prolonged weakness, skin breakdown (due to immobility), DVT, corneal abrasions (ensure eye lubrication), risk of awareness if sedation inadequate.
+
+**Reversal Agents**: Neostigmine (plus glycopyrrolate/atropine) for aminosteroids if partial recovery. Sugammadex for rocuronium/vecuronium, can reverse deep block.
+
+**Common ICU NMBAs**
+
+| Drug             | Class (Type)                 | MOA                                    | Onset/Duration (IV)       | Metabolism/Elimination                                  | Reversal         | Key Considerations                                                                                                                                  |
+|------------------|------------------------------|----------------------------------------|---------------------------|---------------------------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Succinylcholine**| Depolarizing                 | ACh receptor agonist (persistent depolarization) | 30-60s / 5-10 min         | Plasma cholinesterase (pseudocholinesterase)            | None (spontaneous)| RSI, short procedures. Risks: Hyperkalemia (contraindicated in burns >24-48h, crush injury, denervation, massive trauma, renal failure), malignant hyperthermia, ↑ICP/IOP/IGP, bradycardia (esp. peds/repeat doses), fasciculations. |
+| **Rocuronium**   | Non-depolarizing (Aminosteroid)| Competitive ACh antagonist             | 1-2 min / 30-90 min       | Primarily hepatic, some renal excretion                  | Sugammadex, Neostigmine | RSI (higher dose 1-1.2 mg/kg), intubation, maintenance of paralysis. Longer duration in renal/hepatic failure. Tachycardia (mild).                     |
+| **Vecuronium**   | Non-depolarizing (Aminosteroid)| Competitive ACh antagonist             | 2-3 min / 45-90 min       | Primarily hepatic, active metabolites (renal excretion) | Sugammadex, Neostigmine | Intubation, maintenance. Accumulates in renal failure (active metabolite 3-desacetylvecuronium). No histamine release.                             |
+| **Cisatracurium**| Non-depolarizing (Benzylisoquinolinium) | Competitive ACh antagonist | 3-5 min / 45-75 min       | Hoffmann elimination (pH/temp dependent, organ-independent), ester hydrolysis | Neostigmine      | Preferred in renal/hepatic failure due to organ-independent elimination. No histamine release. Laudanosine metabolite (seizure risk at very high doses, rare in clinical use). |
 
 ### Vasoactive Agents - Advanced PK/PD and Titration
-*   **Pharmacokinetics in Critical Illness**:
-    *   *Volume of Distribution (Vd)*: Often increased in ICU due to fluid resuscitation, capillary leak -> may require higher loading doses for some drugs.
-    *   *Protein Binding*: Hypoalbuminemia common, can increase free fraction of highly protein-bound drugs (e.g., phenytoin, warfarin), potentially increasing effect/toxicity.
-    *   *Clearance*: Renal/hepatic dysfunction significantly impacts clearance of many drugs.
-*   **Titration Strategies**: Titrate to specific hemodynamic endpoints (e.g., MAP, CI, UOP, lactate clearance, SvO₂/ScvO₂), not just numbers. Assess end-organ perfusion. Use smallest effective dose.
-*   **Combination Therapy**: Common to use multiple vasoactive drugs with different receptor targets (e.g., norepinephrine for SVR + dobutamine for contractility).
-*   **Extravasation Management**: If potent vasopressor extravasates -> intense vasoconstriction, tissue ischemia/necrosis.
-    *   *Treatment*: Stop infusion immediately, leave cannula in place, try to aspirate residual drug. Infiltrate area with Phentolamine (alpha-blocker, 5-10mg in 10mL NS) SubQ using multiple small injections. Apply warm compresses. Elevate limb. Topical nitroglycerin paste sometimes used.
-*   **"Push-Dose Pressors"**: Small, diluted IV boluses of vasopressors (e.g., Epinephrine 10-20 mcg, Phenylephrine 50-200 mcg) for transient, severe hypotension (e.g., post-intubation, during transport, procedural sedation). Short-acting, bridge to infusion or resolution of hypotension. Prepare from standard concentrations. Use with extreme caution by experienced providers.
+Titrate to specific hemodynamic endpoints (MAP, CI, UOP, lactate, ScvO₂) and signs of end-organ perfusion. Use smallest effective dose. Central line administration preferred for most.
+
+**Push-Dose Pressors**: For emergent, transient hypotension (e.g., post-intubation, procedural sedation). Requires careful dilution and administration by experienced providers.
+*   *Epinephrine Push*: Dilute 1mg (1mL of 1:1000) into 100mL NS -> 10mcg/mL. Give 0.5-2mL (5-20mcg) q2-5min.
+*   *Phenylephrine Push*: Dilute 10mg (1mL of 10mg/mL) into 100mL NS -> 100mcg/mL. Give 0.5-2mL (50-200mcg) q2-5min.
+
+**Common Vasopressors**
+
+| Drug             | Receptor Activity (Primary) | Main Hemodynamic Effects           | Typical ICU Infusion (Adult) | Key Considerations/Side Effects                                                                                                 |
+|------------------|-----------------------------|------------------------------------|------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| **Norepinephrine**| α1 >> β1                    | ↑SVR, ↑MAP, modest ↑CO/HR         | 0.01-3 mcg/kg/min            | First-line for septic shock. Risk of peripheral ischemia/necrosis, arrhythmias (less than Epi/Dopa), hyperglycemia. Extravasation risk. |
+| **Epinephrine**  | α1, β1, β2 (dose-dependent) | Low dose (β): ↑HR, ↑CO, ↓SVR (β2). High dose (α): ↑SVR, ↑MAP, ↑CO, ↑HR | 0.01-1 mcg/kg/min            | Anaphylaxis, septic shock (2nd line/adjunct), bradycardia, post-cardiac arrest. Arrhythmogenic, ↑lactate, ↑glucose, myocardial ischemia. |
+| **Phenylephrine**| Pure α1                     | ↑SVR, ↑MAP, may ↓CO (reflex brady)  | 0.1-2 mcg/kg/min (or fixed rate infusion up to 200-300 mcg/min) | Neurogenic shock, sepsis with tachycardia if NE causes excessive tachycardia. Short duration. Risk of severe vasoconstriction, reflex bradycardia. Extravasation. |
+| **Dopamine**     | D1, β1, α1 (dose-dependent) | Low (D1): Renal/splanchnic VD. Mid (β1): ↑CO, ↑HR. High (α1): ↑SVR, ↑MAP | 2-20 mcg/kg/min              | Symptomatic bradycardia (2nd line), septic shock (alternative to NE if low tachyarrhythmia risk & bradycardia). More arrhythmogenic than NE. |
+| **Vasopressin**  | V1 (vascular smooth muscle)   | ↑SVR (non-adrenergic), ↑MAP, water reabsorption (V2) | 0.01-0.04 units/min (fixed rate) | Adjunct in septic shock (catecholamine-sparing). Not titrated. Risk of coronary/mesenteric ischemia, hyponatremia. Extravasation.    |
+| **Angiotensin II**| AT1 receptor agonist        | Potent vasoconstriction (↑SVR, ↑MAP)| 1.25-80 ng/kg/min (typically start 20, titrate q5min by up to 15) | Refractory distributive shock. Risk of VTE (prophylaxis essential), tachyphylaxis. Expensive.                                  |
+
+**Common Inotropes**
+
+| Drug          | Receptor Activity/MOA       | Main Hemodynamic Effects        | Typical ICU Infusion (Adult) | Key Considerations/Side Effects                                                                                |
+|---------------|-----------------------------|---------------------------------|------------------------------|----------------------------------------------------------------------------------------------------------------|
+| **Dobutamine**| β1 > β2, some α1 (mild)     | ↑Contractility, ↑CO, mild VD (↓SVR), ↑HR | 2-20 mcg/kg/min              | Cardiogenic shock, severe HF, septic cardiomyopathy. Risk of hypotension (if hypovolemic), tachyarrhythmias, myocardial ischemia. Tolerance with prolonged use. |
+| **Milrinone** | PDE-3 Inhibitor             | ↑cAMP -> ↑Contractility (inotropy), Vasodilation (lusitropy, ↓SVR/PVR) | Load: 25-50 mcg/kg over 10min (optional). Infusion: 0.125-0.75 mcg/kg/min | Acute decompensated HF, cardiogenic shock. "Inodilator". Renal excretion (dose adjust). Risk of hypotension, arrhythmias. Longer half-life than dobutamine. |
+
+**Common IV Vasodilators (Primarily for Hypertensive Emergencies/Acute HF)**
+
+| Drug             | Class/MOA                     | Main Hemodynamic Effects      | Typical ICU Infusion (Adult) | Key Considerations/Side Effects                                                                                                         |
+|------------------|-------------------------------|-------------------------------|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
+| **Nitroglycerin**| Organic Nitrate (Venodilator > Arterial) | ↓Preload (venodilation), ↓Afterload (high doses), coronary VD | 5-200 mcg/min (up to 400)  | Acute coronary syndromes, ADHF, hypertensive emergency. Tolerance (tachyphylaxis) with prolonged use. Headache, hypotension, reflex tachycardia. Avoid with PDE-5 inhibitors or severe AS. |
+| **Nitroprusside**| Direct Arterial & Venous Vasodilator | Potent ↓SVR, ↓MAP, ↓Preload | 0.25-10 mcg/kg/min           | Hypertensive emergency, severe HF. Rapid onset/offset. Risk of cyanide toxicity (esp. renal/hepatic impair, prolonged/high dose - monitor thiocyanate, ABG for unexplained acidosis), methemoglobinemia. Protect from light. Hypotension. Coronary steal. |
+| **Nicardipine**  | Dihydropyridine CCB (Arterial Vasodilator) | ↓SVR, ↓MAP                    | 5-15 mg/hr                   | Hypertensive emergency, post-SAH BP control. Reflex tachycardia possible. Peripheral edema.                                          |
+| **Clevidipine**  | Dihydropyridine CCB (Ultra-short acting Arterial Vasodilator) | ↓SVR, ↓MAP                | 1-2 mg/hr initial, double q90s up to max ~32 mg/hr | Hypertensive emergency. Rapid onset/offset (metabolized by plasma esterases). Lipid emulsion (monitor TGs). Reflex tachycardia. Contraindicated soy/egg allergy, defective lipid metabolism. |
+| **Esmolol**      | Beta-1 Selective Blocker (Ultra-short acting) | ↓HR, ↓Contractility, ↓BP      | Load: 250-500 mcg/kg over 1 min. Infusion: 25-300 mcg/kg/min | Aortic dissection, perioperative HTN, SVT rate control. Rapid onset/offset. Bradycardia, hypotension, bronchospasm (less with beta-1 selective). |
+| **Labetalol**    | Alpha-1 & Non-selective Beta Blocker | ↓SVR, ↓HR, ↓BP                | Bolus: 10-20mg IV q10min (max 300mg). Infusion: 0.5-2 mg/min | Hypertensive emergency. Bradycardia, hypotension, bronchospasm. Avoid in ADHF, severe bradycardia/heart block.                      |
 
 ### Antimicrobials - Advanced PK/PD Concepts in ICU
-*   **Augmented Renal Clearance (ARC)**: Increased GFR (e.g., CrCl >130-150 mL/min/1.73m²) seen in some critically ill patients (young, trauma, sepsis initially). Can lead to subtherapeutic levels of renally cleared drugs (esp. beta-lactams, vancomycin). May require higher doses or more frequent administration.
-*   **Therapeutic Drug Monitoring (TDM)**: For drugs with narrow therapeutic index and variable PK (e.g., Vancomycin troughs 15-20 mg/L for severe infections; Aminoglycoside peaks/troughs or once-daily dosing nomograms; Voriconazole levels).
-*   **PK/PD Targets for Specific Antibiotic Classes**:
-    *   *Beta-lactams (Penicillins, Cephalosporins, Carbapenems)*: Time-dependent killing. Goal: Free drug concentration above MIC for extended period of time (%fT>MIC). Often achieved with extended (e.g., 3-4h) or continuous infusions, especially for less susceptible pathogens or in ARC.
-    *   *Aminoglycosides, Fluoroquinolones*: Concentration-dependent killing. Goal: High peak concentration relative to MIC (Peak/MIC ratio). Supports once-daily (extended interval) dosing for aminoglycosides.
-    *   *Vancomycin*: Time-dependent, but AUC/MIC ratio of ≥400 is best predictor of efficacy. Troughs used as surrogate.
-*   **Dosing in Obesity**: Lipophilic drugs (e.g., benzodiazepines, propofol) may have larger Vd, requiring higher loading doses based on total body weight (TBW) or adjusted body weight. Hydrophilic drugs (e.g., beta-lactams, aminoglycosides) Vd may be based on ideal body weight (IBW) or adjusted, but ARC can also be common in obesity.
-*   **Dosing in CRRT/ECMO**: Significant drug removal can occur. Consult specific guidelines/pharmacist. ECMO circuits can adsorb drugs.
+*   **Augmented Renal Clearance (ARC)**: CrCl >130-150 mL/min/1.73m² can lead to subtherapeutic levels of renally cleared drugs (beta-lactams, vancomycin). Consider higher doses/extended infusions.
+*   **Therapeutic Drug Monitoring (TDM)**: Vancomycin troughs (target 15-20 mg/L for severe infections, or AUC/MIC 400-600), aminoglycoside levels. Voriconazole levels.
+*   **PK/PD Targets Summary**:
+    *   *Beta-lactams*: %fT > MIC (Time-dependent). Extended/continuous infusions optimize this.
+    *   *Aminoglycosides, Fluoroquinolones*: Peak/MIC (Concentration-dependent).
+    *   *Vancomycin*: AUC/MIC (Exposure-dependent).
+*   **Dosing in Obesity**: Adjust based on drug lipophilicity/hydrophilicity and Vd changes. No single rule; consult resources.
+*   **Dosing in CRRT/ECMO**: Significant drug removal possible. Consult pharmacist/guidelines.
 
 ### Other Key ICU Drug Classes - Advanced Points
-*   **Anticoagulants**:
-    *   *Heparin (UFH) Resistance*: May occur due_to low Antithrombin (AT) levels (e.g., sepsis, liver disease, DIC, nephrotic syndrome). May require higher heparin doses or AT concentrate supplementation (controversial).
-    *   *Fondaparinux*: Synthetic pentasaccharide (indirect Factor Xa inhibitor). Used for VTE Px/Tx, HIT (off-label in US). Renal excretion, contraindicated CrCl <30. No reversal agent.
-*   **Antiarrhythmics**:
-    *   *Amiodarone*: Broad spectrum. Long half-life (weeks). Many drug interactions (CYP450 inhibitor, esp. warfarin, digoxin). Side effects: Hypotension (IV bolus), bradycardia, QT prolongation (less TdP risk than others), pulmonary toxicity (chronic), thyroid dysfunction (hypo/hyper), liver toxicity, corneal microdeposits, skin discoloration (blue-gray).
-*   **Corticosteroids in ICU**:
-    *   *Stress-dose steroids (Hydrocortisone)*: For septic shock (refractory), ARDS (early moderate-severe, evidence evolving), status asthmaticus, adrenal crisis.
-    *   *High-dose steroids*: For autoimmune flares, spinal cord injury (controversial), some CNS infections (adjunctive Dexamethasone for bacterial meningitis).
-    *   *Side Effects*: Hyperglycemia, immunosuppression/infection risk, delirium/psychosis, myopathy (esp. with NMBAs), GI bleeding, adrenal suppression upon withdrawal (taper if >1-2 weeks use).
-*   **Proton Pump Inhibitors (PPIs) vs. H2 Receptor Antagonists (H2RAs) for Stress Ulcer Prophylaxis (SUP)**:
-    *   *Indications for SUP*: Mechanical ventilation >48h, coagulopathy (Plt <50k, INR >1.5, aPTT >2x control), history of GI ulcer/bleed within 1 yr, TBI, burns >35% BSA, major surgery, two or more minor risk factors (sepsis, ICU stay >1wk, occult GI bleed >6 days, steroid use >250mg hydrocortisone equiv.).
-    *   PPIs generally more effective at acid suppression. Concerns about increased risk of C. difficile, pneumonia, fractures with long-term PPI use (less relevant for short-term ICU SUP). H2RAs may have tachyphylaxis.
+
+**Anticoagulants**
+
+| Drug         | Class/MOA                           | Monitoring         | Reversal Agents                               | Key Considerations/Side Effects                                                                                                 |
+|--------------|-------------------------------------|--------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| **UFH**      | Indirect Thrombin/Xa Inhibitor (via AT)| aPTT or Anti-Xa    | Protamine Sulfate                             | Short half-life, HIT risk, variable response, AT deficiency can cause resistance.                                                 |
+| **LMWH** (Enoxaparin) | Indirect Xa > Thrombin Inhibitor (via AT) | Anti-Xa (select cases) | Protamine (partial)                         | Predictable dose-response, renal excretion (dose adjust/avoid if severe), lower HIT risk than UFH.                                  |
+| **Warfarin** | Vitamin K Antagonist                | INR                | Vitamin K, PCC (Kcentra), FFP                  | Slow onset/offset, many drug/food interactions. Risk of skin necrosis, purple toe syndrome.                                     |
+| **Dabigatran**| Direct Thrombin Inhibitor           | None routine       | Idarucizumab (Praxbind)                       | Renal excretion (contraindicated CrCl <30). Dyspepsia.                                                                          |
+| **Rivaroxaban/Apixaban/Edoxaban** | Direct Xa Inhibitors | None routine       | Andexanet alfa (Andexxa), PCC (off-label)     | Variable renal/hepatic metabolism. Drug interactions (CYP3A4, P-gp).                                                            |
+| **Argatroban**| Direct Thrombin Inhibitor           | aPTT               | None specific (short half-life)               | Hepatic metabolism. For HIT. Falsely elevates INR.                                                                              |
+| **Bivalirudin**| Direct Thrombin Inhibitor          | ACT or aPTT        | None specific (short half-life)               | Renal clearance. Alternative for HIT, PCI.                                                                                      |
+| **Fondaparinux**| Indirect Xa Inhibitor (via AT)     | None routine       | None specific                                 | Renal excretion (contraindicated CrCl <30). Alternative for HIT (off-label). No effect on platelets. Very long half-life.         |
+
+**Antiarrhythmics (Selected ICU Relevant)**
+
+| Drug             | Vaughan Williams Class | Primary MOA                                   | Key ICU Indications              | Dosing Highlights (IV)                                 | Key Cautions/Side Effects                                                                                                         |
+|------------------|------------------------|-----------------------------------------------|----------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Amiodarone**   | III (also I, II, IV)   | K⁺ channel block, also Na⁺/Ca²⁺ channel, β-block | VF/pVT, stable VT, AF/AFlutter rate/rhythm | Load: 150mg over 10min, then 1mg/min x6h, then 0.5mg/min | Hypotension (with rapid bolus), bradycardia, QT prolongation (low TdP risk), phlebitis. Chronic: pulmonary/thyroid/liver tox. Many interactions. |
+| **Lidocaine**    | Ib                     | Na⁺ channel block (fast dissociation)         | VT/VF (alternative to amiodarone)  | Load: 1-1.5mg/kg. Infusion: 1-4mg/min                | CNS toxicity (seizures, confusion, paresthesias), bradycardia. Reduce dose in HF/liver disease.                                       |
+| **Procainamide** | Ia                     | Na⁺ channel block                             | Stable monomorphic VT, AF pre-excitation (WPW) | Load: 20-50mg/min (max 17mg/kg). Infusion: 1-4mg/min | Hypotension, QRS/QT prolongation (stop if QRS >50% wide or QT >500ms), lupus-like syndrome (chronic). Active metabolite (NAPA) renally cleared. |
+| **Esmolol**      | II                     | Beta-1 selective blocker                      | SVT/AF/AFlutter rate control, peri-op HTN/tachy | Load: 0.5mg/kg over 1min. Infusion: 50-300mcg/kg/min | Hypotension, bradycardia, bronchospasm (less likely). Ultra-short acting.                                                          |
+| **Diltiazem**    | IV (Non-DHP CCB)       | Ca²⁺ channel block (AV node)                  | SVT/AF/AFlutter rate control     | Bolus: 0.25mg/kg. Infusion: 5-15mg/hr                  | Hypotension, bradycardia, AV block. Caution in HF with reduced EF.                                                                  |
+| **Adenosine**    | Misc                   | Activates A1 receptors in AV node             | Diagnosis/termination of narrow-complex SVT | 6mg rapid IVP, then 12mg if needed                       | Flushing, dyspnea, chest pain, transient asystole/bradycardia. Very short half-life. Bronchospasm risk.                               |
+| **Digoxin**      | Misc (Cardiac Glycoside)| Inhibits Na/K ATPase, vagotonic               | AF/AFlutter rate control (esp. with HF) | Load: 0.25-0.5mg IV then fractions (rarely fully loaded IV) | Narrow therapeutic index, arrhythmias (scooped ST, VT, AV block), N/V, visual changes. Renal excretion. Many interactions. Monitor levels. |
+| **Magnesium**    | Misc                   | Multiple effects                              | Torsades de Pointes, Digoxin toxicity arrhythmia | TdP: 1-2g IV over 5-20min, then infusion.           | Hypotension, flushing, respiratory depression/areflexia (high doses). Renal excretion.                                                |
+
+**Corticosteroids in ICU**
+
+| Steroid            | Relative Glucocorticoid Potency | Relative Mineralocorticoid Potency | Common ICU Uses/Dosing (Hydrocortisone Equiv.)                     | Key Considerations                                                                    |
+|--------------------|---------------------------------|------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Hydrocortisone** | 1                               | 1                                  | Septic shock (50mg IV q6h or 200mg/day cont. inf.), Adrenal crisis, Status asthmaticus | Has both glucocorticoid and mineralocorticoid effects. Short-acting.                  |
+| **Methylprednisolone**| 5                               | 0.5                                | ARDS (variable protocols), Spinal cord injury (controversial), Severe asthma/COPD exacerbation | More potent anti-inflammatory. Intermediate-acting.                                   |
+| **Dexamethasone**  | 25-30                           | 0                                  | Cerebral edema, COVID-19 (moderate-severe), Anti-emetic, Bacterial meningitis (adjunct) | Potent, long-acting. No mineralocorticoid effect. Less HPA axis suppression for short courses. |
+
+**Stress Ulcer Prophylaxis (SUP) Agents**
+
+| Agent Class | Examples (IV/PO)      | MOA                                  | Typical ICU Dosing (Prophylaxis) | Pros                                                    | Cons                                                                                             |
+|-------------|-----------------------|--------------------------------------|----------------------------------|---------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| **PPIs**    | Pantoprazole, Esomeprazole | Irreversibly inhibit H⁺/K⁺ ATPase pump | Pantoprazole 40mg IV/PO daily    | More potent acid suppression than H2RAs                 | Potential increased risk of C. diff, pneumonia, fractures (long-term use concerns). Drug interactions (e.g., clopidogrel with omeprazole). |
+| **H2RAs**   | Famotidine, Ranitidine | Competitively block H2 receptors on parietal cells | Famotidine 20mg IV/PO q12h      | Less potent than PPIs, generally well-tolerated         | Tachyphylaxis (tolerance) can develop. CNS effects (confusion) in elderly/renal impairment. Thrombocytopenia (rare). |
 
 ### Medication Safety in ICU
-*   **High-Alert Medications**: Opioids, sedatives, NMBAs, insulin, anticoagulants, vasoactive drugs, concentrated electrolytes (K⁺, Mg²⁺, NaCl >0.9%). Require extra precautions (e.g., independent double checks, standardized concentrations, smart pumps with dose error reduction software - DERS).
-*   **Look-Alike Sound-Alike (LASA) Drugs**: Store separately, use tall-man lettering.
-*   **Medication Reconciliation**: On admission, transfer, discharge.
-*   **Drug Compatibility**: Check for IV drug incompatibilities (physical, chemical). Use dedicated lines for incompatible drugs (esp. vasoactives, TPN).
-*   **Adverse Drug Event (ADE) Reporting and Monitoring**.
+High-alert medications (opioids, sedatives, NMBAs, insulin, anticoagulants, vasoactive drugs, concentrated electrolytes) require meticulous care. Employ strategies like independent double checks, standardized concentrations, smart pump technology with dose error reduction software (DERS), clear labeling, and minimizing LASA drug errors. Ensure medication reconciliation at transitions of care. Vigilantly monitor for ADEs and report them. Regular review of medication lists for appropriateness, interactions, and de-escalation opportunities is crucial.
 
-Pharmacology in the ICU is dynamic and complex, requiring continuous learning and vigilance to optimize patient outcomes and ensure safety.`,
+Pharmacology in the ICU is a dynamic and complex field, demanding continuous learning, critical thinking, and strict adherence to safety protocols to optimize patient outcomes.`,
     categoryType: 'Topic',
     keywordsForImage: 'pills medications pharmacy',
   },

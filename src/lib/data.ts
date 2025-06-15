@@ -151,9 +151,7 @@ Beyond basic rhythm, subtle changes are critical.
 *   **Receptor Physiology**: Understand α1 (vasoconstriction), β1 (↑HR, ↑contractility), β2 (vasodilation, bronchodilation), D1 (renal/splanchnic vasodilation), V1 (vasoconstriction) receptor effects of each drug.
 *   **Extravasation Management**: For vasopressors (e.g., norepinephrine, phenylephrine, epinephrine, dopamine). Stop infusion, aspirate drug, administer Phentolamine (alpha-blocker) diluted in NS SubQ around site. Apply warm compresses. Elevate limb.
 *   **Tachyphylaxis**: Diminished response to a drug after repeated administration (e.g., to nitrates, some beta-agonists).
-*   **Push-Dose Pressors**: Small, diluted boluses of vasopressors (e.g., epinephrine 10-20 mcg, phenylephrine 50-100 mcg) for transient severe hypotension (e.g., during intubation, procedural sedation). For temporary use by experienced providers.
-
-This expanded section provides a more granular view suitable for critical care. Similar depth will be applied to other sections.`,
+*   **Push-Dose Pressors**: Small, diluted boluses of vasopressors (e.g., epinephrine 10-20 mcg, phenylephrine 50-100 mcg) for transient severe hypotension (e.g., during intubation, procedural sedation). For temporary use by experienced providers.`,
     categoryType: 'Body System',
     keywordsForImage: 'heart anatomy cardiovascular',
   },
@@ -1261,782 +1259,635 @@ Pharmacology in the ICU is a dynamic and complex field, demanding continuous lea
     categoryType: 'Topic',
     keywordsForImage: 'pills medications pharmacy',
   },
-];
-
-const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDepthConsiderations'> & { content: string }> = [
   {
-    id: 'acls-guidelines',
-    slug: 'acls-guidelines',
-    title: 'ACLS Guidelines Summary',
-    summary: 'Key algorithms and interventions from the latest Advanced Cardiovascular Life Support (ACLS) guidelines for managing cardiac arrest and periarrest situations.',
+    id: 'ventilator-management',
+    slug: 'ventilator-management',
+    title: 'Advanced Ventilator Management',
+    summary: 'Comprehensive guide to mechanical ventilation modes, settings, lung-protective strategies, waveform analysis, patient-ventilator synchrony, and weaning in the ICU.',
+    categoryType: 'Topic',
+    keywordsForImage: 'ventilator icu lungs',
     content: `## General Overview
+Mechanical ventilation is a life-sustaining intervention frequently employed in the Intensive Care Unit (ICU) for patients with acute respiratory failure or those unable to maintain adequate gas exchange or protect their airway. Its primary purposes are to support alveolar ventilation (CO2 removal), improve oxygenation (O2 delivery), reduce the work of breathing, and allow for recovery from the underlying condition causing respiratory compromise. Indications for mechanical ventilation are broad and include hypoxemic respiratory failure (e.g., ARDS, pneumonia, pulmonary edema), hypercapnic respiratory failure (e.g., COPD exacerbation, neuromuscular disease, sedative overdose), airway protection (e.g., coma, GCS ≤8), and facilitation of procedures or recovery from major surgery.
 
-Advanced Cardiovascular Life Support (ACLS) refers to a set of clinical algorithms and protocols for the urgent treatment of cardiac arrest, stroke, myocardial infarction (heart attack), and other life-threatening cardiovascular emergencies. These guidelines are developed and periodically updated by international bodies like the American Heart Association (AHA) and the European Resuscitation Council (ERC), based on the latest scientific evidence and expert consensus through the International Liaison Committee on Resuscitation (ILCOR). The primary goal of ACLS is to improve survival rates and neurological outcomes for patients experiencing these critical events by standardizing care and promoting efficient, evidence-based interventions. ACLS interventions are designed to be implemented by trained healthcare professionals, including physicians, nurses, paramedics, and respiratory therapists, often working as a coordinated resuscitation team.
-
-ACLS builds upon Basic Life Support (BLS) principles, which include early recognition of cardiac arrest (unresponsiveness, absence of normal breathing or only gasping), immediate activation of the emergency response system (e.g., calling a code), high-quality cardiopulmonary resuscitation (CPR - emphasizing chest compressions and rescue breaths), and rapid defibrillation for shockable rhythms (Ventricular Fibrillation or pulseless Ventricular Tachycardia) when an automated external defibrillator (AED) or manual defibrillator is available. ACLS introduces more advanced interventions, such as management of the airway with advanced adjuncts (e.g., endotracheal intubation, supraglottic airways like laryngeal masks or i-Gels), confirmation of airway placement using capnography, administration of resuscitation medications (e.g., epinephrine, amiodarone, lidocaine, atropine, adenosine), interpretation of electrocardiograms (ECGs) to identify specific arrhythmias and guide treatment, establishing intravenous (IV) or intraosseous (IO) access for drug delivery, and comprehensive post-cardiac arrest care to optimize recovery and neurological function. Effective team dynamics, clear communication (using closed-loop communication), defined roles, and systematic approaches (following algorithms) are emphasized in ACLS training and practice. ICU nurses are often key members of the resuscitation team, responsible for CPR, medication administration, defibrillation, monitoring, and documentation during in-hospital cardiac arrests and other cardiovascular emergencies. This module provides a summary of key components; however, clinicians must always refer to the most current and complete official ACLS guidelines from their respective governing bodies for comprehensive information and certification.
+Modern ventilators offer a variety of modes and settings that can be tailored to individual patient needs. Basic modes often involve controlling either the volume of air delivered with each breath (Volume-Controlled Ventilation - VCV) or the pressure applied to the airways during inspiration (Pressure-Controlled Ventilation - PCV). Other common modes include Pressure Support Ventilation (PSV), where the patient triggers each breath and the ventilator provides a set inspiratory pressure support, and Synchronized Intermittent Mandatory Ventilation (SIMV), which delivers a set number of mandatory breaths but allows spontaneous breaths between them. The goals of ventilator management are to achieve adequate gas exchange while minimizing ventilator-induced lung injury (VILI), ensuring patient comfort and synchrony with the ventilator, and facilitating timely liberation (weaning) from mechanical support. Critical care nurses play a pivotal role in continuous monitoring of ventilated patients, adjusting settings per protocol or physician orders, troubleshooting ventilator alarms, managing the artificial airway, preventing complications, and participating in the weaning process.
 
 ## In-Depth ICU Considerations
 
-### Core Principles of High-Quality CPR (Re-emphasized for ACLS)
-*   **Compression Rate**: 100-120 compressions per minute.
-*   **Compression Depth**: At least 2 inches (5 cm) but not more than 2.4 inches (6 cm) in adults.
-*   **Full Chest Recoil**: Allow chest to return to normal position between compressions to permit cardiac filling. Do not lean on the chest.
-*   **Minimize Interruptions**: Limit pauses in chest compressions to <10 seconds (e.g., for rhythm analysis, shock delivery, airway insertion). Aim for chest compression fraction (CCF) ≥80%.
-*   **Ventilation (with advanced airway)**: 1 breath every 6 seconds (10 breaths/minute), asynchronous with chest compressions. Avoid excessive ventilation (hyperventilation can decrease venous return, CO, and cerebral perfusion).
-*   **Quantitative Waveform Capnography (PETCO₂)**:
-    *   Confirms ETT placement (PETCO₂ >10 mmHg after 5-10 breaths).
-    *   Monitors CPR quality (target PETCO₂ ≥10-20 mmHg; if <10 mmHg, improve CPR quality - depth, rate, recoil).
-    *   Detects Return of Spontaneous Circulation (ROSC) (abrupt sustained increase in PETCO₂ to ≥30-40 mmHg).
-    *   May help prognosticate (persistently low PETCO₂ <10 mmHg after 20 min of CPR associated with poor outcome).
-*   **Intra-arterial Pressure Monitoring**: If available, diastolic BP can be used as a surrogate for coronary perfusion pressure (CPP = Aortic Diastolic BP - RA Diastolic BP). Target DBP >20-25 mmHg during CPR.
+### Common Modes of Mechanical Ventilation - Detailed
+*   **Volume Assist/Control (V-A/C or CMV-VC)**:
+    *   *Description*: Operator sets tidal volume (VT), respiratory rate (RR), PEEP, FiO₂, and inspiratory flow rate/pattern. Each patient-triggered breath (assist) or time-triggered breath (control) receives the full set VT.
+    *   *Pressure*: Airway pressure is variable, depending on lung compliance and airway resistance. Peak Inspiratory Pressure (PIP) and Plateau Pressure (Pplat) must be monitored.
+    *   *Advantages*: Guaranteed minute ventilation (MV = VT x RR) as long as patient triggers above set rate or set rate is met.
+    *   *Disadvantages*: Risk of volutrauma/barotrauma if VT is too high or pressures are excessive. Can lead to respiratory alkalosis if patient triggers too frequently and set VT is high. Patient-ventilator asynchrony possible if flow is inadequate.
+*   **Pressure Assist/Control (P-A/C or CMV-PC)**:
+    *   *Description*: Operator sets inspiratory pressure level (Pinsp), RR, PEEP, FiO₂, and inspiratory time (Ti). Each patient-triggered or time-triggered breath receives the set Pinsp for the set Ti.
+    *   *Tidal Volume*: VT is variable, depending on lung compliance, airway resistance, and patient effort.
+    *   *Advantages*: Limits peak airway pressure, potentially reducing barotrauma. May improve gas distribution due to decelerating flow pattern.
+    *   *Disadvantages*: VT and MV are not guaranteed and can change with patient's lung mechanics or effort. Risk of hypoventilation if compliance worsens or effort decreases.
+*   **Pressure Regulated Volume Control (PRVC) / Volume Control Plus (VC+) / Adaptive Pressure Ventilation (APV)**:
+    *   *Description*: A dual-control mode. Operator sets target VT, RR, PEEP, FiO₂, Ti. Ventilator delivers pressure-controlled breaths, but adjusts the inspiratory pressure breath-by-breath to achieve the target VT using the lowest possible pressure. Combines advantages of PCV (pressure limitation) and VCV (guaranteed volume over time).
+    *   *Advantages*: Attempts to deliver target VT with lowest pressure, adapts to changing compliance/resistance.
+    *   *Disadvantages*: Can still result in high pressures if target VT is too large for patient's lung mechanics. Requires careful monitoring of delivered pressures.
+*   **Pressure Support Ventilation (PSV)**:
+    *   *Description*: Patient must trigger all breaths. Ventilator provides a set level of positive pressure (Pressure Support - PS) during inspiration to augment patient's effort and overcome resistance of ETT/circuit. Operator sets PS level, PEEP, FiO₂, and expiratory trigger sensitivity (ETS or flow cycle %). Inspiration ends when inspiratory flow drops to a set percentage of peak flow (e.g., 25%).
+    *   *Advantages*: Patient controls RR and inspiratory time. Improves patient comfort, reduces work of breathing. Commonly used for Spontaneous Breathing Trials (SBTs).
+    *   *Disadvantages*: No backup rate if patient becomes apneic (unless PSV with apnea backup mode is used). VT variable.
+*   **Synchronized Intermittent Mandatory Ventilation (SIMV)**:
+    *   *Description*: Operator sets VT (SIMV-VC) or Pinsp (SIMV-PC) for mandatory breaths at a set RR. Patient can take spontaneous breaths between mandatory breaths, often with PS. Ventilator synchronizes mandatory breaths with patient's effort if detected near scheduled time.
+    *   *Advantages*: Intended to allow gradual transition to spontaneous breathing.
+    *   *Disadvantages*: Can increase work of breathing compared to A/C modes if PS for spontaneous breaths is inadequate. Less commonly used as a primary mode now; PSV preferred for weaning.
+*   **Airway Pressure Release Ventilation (APRV) / BiLevel / BiVent**:
+    *   *Description*: Time-cycled, pressure-limited mode allowing unrestricted spontaneous breathing throughout the ventilatory cycle. Patient breathes at two levels of CPAP: a high pressure (Phigh) for a long duration (Thigh), and a brief release to a low pressure (Plow, often 0 cmH₂O) for a short duration (Tlow, e.g., 0.4-0.8s) to facilitate CO₂ removal. Spontaneous breaths can occur at Phigh and Plow.
+    *   *Advantages*: May improve oxygenation by maintaining higher mean airway pressure and recruiting alveoli. Allows spontaneous breathing, potentially reducing sedation needs and muscle atrophy.
+    *   *Disadvantages*: Can be complex to manage. VT variable. Risk of auto-PEEP if Tlow too short. Hemodynamic effects of high mean airway pressure.
 
-### Detailed Breakdown of Cardiac Arrest Algorithm Rhythms
+### Key Ventilator Settings and Their Impact
+*   **Tidal Volume (VT)**: For LPV in ARDS, 4-6 mL/kg IBW. For other patients, 6-8 mL/kg IBW.
+*   **Respiratory Rate (RR)**: Adjusted to achieve target minute ventilation and PaCO₂/pH.
+*   **PEEP (Positive End-Expiratory Pressure)**: Improves oxygenation by recruiting alveoli, preventing atelectasis, increasing FRC. Titrate to best balance oxygenation and minimize hemodynamic compromise/overdistension.
+*   **FiO₂ (Fraction of Inspired Oxygen)**: Titrate to achieve SpO₂ 92-96% (or PaO₂ 60-80 mmHg). Use lowest possible FiO₂ to avoid oxygen toxicity (aim for <0.6 if possible).
+*   **Inspiratory Time (Ti)**: Typically 0.8-1.2 seconds. Shorter Ti for obstructive disease to allow more expiratory time. Longer Ti may improve oxygenation in ARDS.
+*   **I:E Ratio**: Ratio of inspiratory to expiratory time. Normally 1:2 to 1:3. May need longer E-time (e.g., 1:4, 1:5) in obstructive lung disease (asthma, COPD) to prevent air trapping/auto-PEEP.
+*   **Flow Rate (in VCV)**: Speed of gas delivery. Higher flow = shorter Ti. Usually 60-80 L/min.
+*   **Flow Pattern (in VCV)**: Square (constant) or decelerating. Decelerating may improve gas distribution and reduce PIP for a given VT.
+*   **Trigger Sensitivity**: How much effort patient needs to initiate a breath. Flow trigger (e.g., 1-3 L/min) usually more sensitive and comfortable than pressure trigger (e.g., -1 to -2 cmH₂O). Set to avoid auto-triggering or missed efforts.
 
-#### Shockable Rhythms: VF / Pulseless VT
-*   **Defibrillation Energy**:
-    *   *Biphasic*: Manufacturer specific (typically 120-200 Joules initial, can escalate if needed). If unknown, use maximal available.
-    *   *Monophasic*: 360 Joules.
-    *   Resume CPR *immediately* after shock (do not pause for rhythm/pulse check).
-*   **Drug Therapy - Rationale and Timing**:
-    *   *Epinephrine 1 mg IV/IO*: Alpha-agonist effects (vasoconstriction) increase aortic diastolic pressure and thus coronary and cerebral perfusion pressures during CPR. Beta-agonist effects may increase myocardial oxygen consumption (less desirable). Given every 3-5 minutes (during 2-min CPR cycle after rhythm check).
-    *   *Amiodarone 300 mg IV/IO Bolus*: For VF/pVT refractory to shock and epinephrine. Class III antiarrhythmic. May repeat with 150 mg once.
-    *   *Lidocaine 1-1.5 mg/kg IV/IO Bolus*: Alternative if amiodarone unavailable or per local protocol. Class IB antiarrhythmic. May repeat 0.5-0.75 mg/kg q5-10 min, max total 3 mg/kg.
-*   **Advanced Airway Considerations**: Place ETT or SGA. Confirm placement with capnography and bilateral breath sounds. Secure airway. Do not interrupt compressions for >10 seconds for placement.
-*   **Magnesium Sulfate**: 1-2 g IV/IO diluted in 10mL D5W/NS over 5-20 min for Torsades de Pointes (polymorphic VT with prolonged QT).
+### Ventilator Waveform Analysis - Advanced Interpretation
+*   **Pressure-Time Scalar**:
+    *   *VCV*: PIP, Pplat (inspiratory pause). Difference (PIP-Pplat) reflects airway resistance. Increase in both PIP and Pplat suggests decreased compliance (ARDS, edema, PTX, abdominal distension). Increase in PIP with stable Pplat suggests increased resistance (bronchospasm, secretions, ETT kink).
+    *   *PCV*: Square pressure waveform. Monitor delivered VT.
+    *   *Stress Index (VCV with constant flow)*: Upward concavity (rising slope) suggests overdistension. Straight line suggests optimal inflation. Downward concavity (falling slope) suggests recruitment.
+*   **Flow-Time Scalar**:
+    *   *Inspiratory Flow*: Shape (square, decelerating).
+    *   *Expiratory Flow*: Should return to baseline before next breath. If not, indicates auto-PEEP (air trapping). Quantify with expiratory hold maneuver.
+    *   *Scooped Expiratory Flow*: Bronchospasm/obstructive pattern.
+    *   *Flow Starvation (VCV)*: Concave inspiratory flow pattern, patient "pulling" for more flow.
+*   **Volume-Time Scalar**: Shows delivered VT.
+*   **Pressure-Volume (P-V) Loop**:
+    *   *Shape*: Assesses compliance (slope of inspiratory limb).
+    *   *Lower Inflection Point (LIP)*: Suggests PEEP level needed for recruitment (controversial).
+    *   *Upper Inflection Point (UIP) / "Beaking"*: Suggests overdistension/volutrauma.
+    *   *Hysteresis*: Area between inspiratory and expiratory limbs.
+    *   *Leaks*: Loop does not return to zero volume on expiration.
+*   **Flow-Volume (F-V) Loop**:
+    *   Assesses airway obstruction (scooped expiratory limb).
+    *   Leaks.
 
-#### Non-Shockable Rhythms: Asystole / PEA
-*   **Asystole**: Confirm "true" asystole (check leads, gain, rule out fine VF). Not a shockable rhythm.
-*   **Pulseless Electrical Activity (PEA)**: Organized electrical activity on monitor without a palpable pulse. Prognosis generally poor unless reversible cause found and treated quickly.
-*   **Key Actions**:
-    *   High-quality CPR is the mainstay.
-    *   Epinephrine 1 mg IV/IO as soon as possible, then q3-5 min. Early administration is critical.
-    *   **Aggressively search for and treat reversible causes (H's and T's)**. This is the most important intervention for PEA/Asystole beyond CPR and epinephrine.
-        *   *Hypovolemia*: Give fluids.
-        *   *Hypoxia*: Ensure patent airway, 100% O₂, adequate ventilation.
-        *   *Hydrogen ion (acidosis)*: Consider sodium bicarbonate if severe metabolic acidosis suspected cause (e.g., hyperK, TCA OD) - controversial.
-        *   *Hypo/Hyperkalemia*: Treat based on ECG/labs. HyperK: Calcium, Insulin/Glucose, Bicarb, Albuterol, Dialysis. HypoK: IV Potassium (cautiously).
-        *   *Hypoglycemia*: Check glucose, give D50W if low.
-        *   *Hypothermia*: Rewarm.
-        *   *Tension Pneumothorax*: Needle decompression/chest tube.
-        *   *Tamponade, Cardiac*: Pericardiocentesis.
-        *   *Toxins*: Specific antidotes (e.g., Naloxone for opioids, Flumazenil for benzos - use cautiously, Sodium Bicarb for TCAs).
-        *   *Thrombosis, Pulmonary (Massive PE)*: Consider thrombolytics (e.g., Alteplase) or embolectomy if high suspicion and CPR ongoing/ROSC brief.
-        *   *Thrombosis, Coronary (MI)*: If suspected post-ROSC, urgent PCI.
-*   No routine role for atropine in PEA/Asystole.
+### Patient-Ventilator Asynchrony - Detection and Management
+Mismatch between patient's neural drive and ventilator delivery. Increases work of breathing, discomfort, prolongs ventilation.
+*   **Trigger Asynchrony**:
+    *   *Ineffective/Missed Trigger*: Patient effort not detected. Causes: trigger too insensitive, auto-PEEP, muscle weakness, oversedation. *Fix*: ↑trigger sensitivity, treat auto-PEEP, reduce sedation.
+    *   *Auto-triggering*: Ventilator self-cycles due to leaks, cardiogenic oscillations, condensation. *Fix*: Correct leak, ↓trigger sensitivity.
+*   **Flow Asynchrony (Flow Starvation)**: Patient demands more flow than ventilator delivers (VCV). See concave inspiratory pressure or flow waveform. *Fix*: ↑flow rate, change to decelerating flow, switch to PCV or PSV.
+*   **Cycle Asynchrony**:
+    *   *Premature Cycling*: Inspiration ends before patient's neural Ti. Seen as active expiratory muscle contraction during late inspiration, or patient continues inspiratory effort after mechanical breath ends. *Fix*: ↑Ti (VCV), ↓expiratory trigger sensitivity % (PSV), ↑PS level.
+    *   *Delayed Cycling*: Inspiration continues after patient's neural Ti. Seen as patient trying to actively exhale. *Fix*: ↓Ti (VCV), ↑expiratory trigger sensitivity % (PSV), ↓PS level.
+*   **Double Triggering**: Patient's strong/prolonged effort re-triggers ventilator for a second (stacked) breath immediately after the first. Leads to large VT. Common with low set VT. *Fix*: ↑VT (if appropriate for LPV), ↑Ti, deepen sedation, optimize PS level.
+*   **Reverse Triggering**: Ventilator breath triggers diaphragmatic contraction. Complex, may require sedation adjustment or mode change.
 
-### Advanced Post-Cardiac Arrest Care (ROSC)
-*   **Initial Stabilization (ABCDE approach)**:
-    *   *Airway*: Confirm/secure ETT.
-    *   *Breathing*: Mechanical ventilation. Target SpO₂ 92-98%, PaCO₂ 35-45 mmHg (normocapnia). Avoid hyperoxia and hypoxia.
-    *   *Circulation*:
-        *   12-lead ECG STAT to identify STEMI or ischemia.
-        *   Treat hypotension (SBP <90, MAP <65): IV fluids (crystalloids/colloids, avoid routine large volumes if not hypovolemic), Vasopressors (Norepinephrine, Epinephrine, Dopamine infusion), Inotropes if cardiac dysfunction.
-*   **Targeted Temperature Management (TTM)** / Temperature Control:
-    *   For comatose adult patients (not following commands) after ROSC from any initial rhythm.
-    *   Maintain a constant temperature between 32°C and 36°C for at least 24 hours using cooling devices and continuous core temperature monitoring. Prevent fever for at least 72h post-ROSC.
-    *   Sedation and possibly NMBAs may be needed to prevent shivering.
-*   **Hemodynamic Goals**: Optimize to ensure adequate end-organ perfusion. Consider advanced monitoring (arterial line, CVC, echo).
-*   **Neurological Prognostication**: Multimodal approach. Clinical exam, EEG, somatosensory evoked potentials (SSEPs), brain imaging (CT/MRI), biomarkers (NSE). Usually delayed until ≥72h post-ROSC if TTM used, and after confounders (sedation) removed.
-*   **Glucose Control**: Avoid hypoglycemia. Target glucose 140-180 mg/dL.
-*   **Seizure Management**: Treat clinical seizures promptly (benzodiazepines, AEDs). Consider cEEG if comatose to detect non-convulsive seizures.
-*   **Family Support and Communication**: Crucial throughout.
+### Weaning from Mechanical Ventilation - Advanced
+*   **Readiness Criteria**:
+    *   Resolution/improvement of underlying cause of respiratory failure.
+    *   Hemodynamic stability (minimal/no vasopressors).
+    *   Adequate oxygenation (e.g., PaO₂/FiO₂ >150-200 on PEEP ≤5-8 cmH₂O, FiO₂ ≤0.4-0.5).
+    *   Adequate ventilation (e.g., pH ≥7.25, stable PaCO₂).
+    *   Intact airway reflexes (cough, gag), ability to clear secretions.
+    *   Adequate mentation (awake, alert, cooperative, GCS >8-13).
+*   **Spontaneous Breathing Trial (SBT)**:
+    *   *Methods*: Low PSV (e.g., 5-7 cmH₂O) with PEEP 5 cmH₂O; CPAP 5 cmH₂O; T-piece trial. Duration 30-120 minutes.
+    *   *Failure Criteria*: RR >35-38/min or <8/min; SpO₂ <90%; HR >140 or sustained >20% change; SBP >180 or <90 mmHg; agitation, anxiety, diaphoresis, AMS.
+*   **Predictors of Weaning Success/Failure**:
+    *   *Rapid Shallow Breathing Index (RSBI)*: RR/VT (in Liters) during SBT on minimal support. RSBI <105 breaths/min/L predicts success.
+    *   *Negative Inspiratory Force (NIF) / Maximal Inspiratory Pressure (MIP)*: > -20 to -30 cmH₂O.
+    *   *Vital Capacity (VC)*: >10-15 mL/kg IBW.
+    *   *Work of Breathing (WOB) parameters, P0.1 (airway occlusion pressure)*: Less commonly used routinely.
+*   **Causes of Weaning Failure**: Respiratory muscle weakness/fatigue, excessive respiratory load (↑resistance, ↓compliance, auto-PEEP), cardiac dysfunction (weaning-induced pulmonary edema), psychological factors, fluid overload, malnutrition, electrolyte imbalance, delirium.
+*   **Extubation**: If SBT successful and airway patency/protection confirmed (e.g., cuff leak test if high risk for stridor). Post-extubation monitoring for stridor, respiratory distress. NIV for post-extubation respiratory failure in select patients.
 
-### Bradycardia Algorithm - Advanced Points
-*   **Identifying Unstable (Symptomatic) Bradycardia**: Signs of poor perfusion directly attributable to slow HR.
-*   **Atropine Dosing**: 1 mg IV push (previously 0.5mg, updated to 1mg per 2020 AHA guidelines for symptomatic bradycardia). Repeat q3-5 min. Max total 3 mg.
-    *   Ineffective for Mobitz II or 3rd Degree AV Block with wide QRS (block is likely below AV node). Use with caution in acute MI (can increase ischemia).
-*   **Transcutaneous Pacing (TCP)**:
-    *   Analgesia/sedation essential if patient conscious.
-    *   Set rate (e.g., 60-80 bpm). Increase current (mA) until electrical capture (pacer spike followed by wide QRS) AND mechanical capture (palpable pulse corresponding to paced beat).
-    *   Bridge to transvenous pacing if needed long-term or TCP fails/not tolerated.
-*   **Chronotropic Drug Infusions (Dopamine, Epinephrine)**:
-    *   Dopamine: 5-20 mcg/kg/min.
-    *   Epinephrine: 2-10 mcg/min.
-    *   Titrate to HR and BP response.
+### Complications of Mechanical Ventilation
+*   **Ventilator-Induced Lung Injury (VILI)**: Volutrauma, barotrauma, atelectrauma, biotrauma.
+*   **Ventilator-Associated Pneumonia (VAP)**: Pneumonia developing >48h after intubation. VAP prevention bundle (HOB elevation, oral care, SAT/SBT, PUD/DVT prophylaxis, subglottic suction ETTs).
+*   **Airway Complications**: ETT malposition/dislodgement, laryngeal/tracheal injury, sinusitis.
+*   **Hemodynamic Effects**: ↓venous return, ↓preload (esp. with high PEEP/auto-PEEP) -> ↓CO, hypotension.
+*   **Oxygen Toxicity**: From prolonged high FiO₂.
+*   **Auto-PEEP (Intrinsic PEEP)**: Air trapping due to inadequate expiratory time. Increases WOB, barotrauma risk, hemodynamic compromise.
+*   **Diaphragm Dysfunction**: Ventilator-induced diaphragmatic dysfunction (VIDD) from prolonged controlled ventilation.
 
-### Tachycardia Algorithm - Advanced Points
-*   **Identifying Unstable (Symptomatic) Tachycardia**: Symptoms (hypotension, AMS, shock, ischemic pain, HF) must be *caused by* the tachycardia, not just associated.
-*   **Synchronized Cardioversion vs. Defibrillation**:
-    *   *Synchronized Cardioversion*: Delivers shock timed with R-wave to avoid shocking on T-wave (vulnerable period, can induce VF). Used for unstable tachycardias *with a pulse* (SVT, AFlutter, AFib, Monomorphic VT).
-    *   *Defibrillation (Unsynchronized Shock)*: Used for pulseless rhythms (VF, pVT) or if synchronization is impossible/delayed in critically unstable patient (e.g., polymorphic VT).
-*   **Narrow QRS Tachycardia (SVT)**:
-    *   *Regular SVT (likely AVNRT or AVRT)*:
-        *   Vagal Maneuvers (Valsalva, carotid sinus massage - check for bruits/contraindications).
-        *   Adenosine 6 mg rapid IVP (closest IV site, large vein, follow with 20mL NS flush, raise arm). Expect transient asystole/bradycardia, flushing, chest discomfort. If no effect, 12 mg IVP. Can repeat 12 mg once. Contraindicated in asthma/COPD (bronchospasm risk) or heart transplant (risk of prolonged asystole).
-        *   Beta-blockers (Metoprolol, Esmolol) or non-dihydropyridine CCBs (Diltiazem, Verapamil) if adenosine ineffective or SVT recurs. Use with caution if LV dysfunction.
-    *   *Irregular Narrow QRS (likely AFib with RVR, AFlutter with variable block, MAT)*: Rate control with Beta-blockers or CCBs. Consider anticoagulation. Digoxin for rate control in HF (slower onset). Amiodarone if other agents fail or HF.
-*   **Wide QRS Tachycardia**:
-    *   **Crucial Decision**: VT vs. SVT with aberrancy (e.g., pre-existing BBB or rate-related aberrancy). Assume VT if uncertain, especially if structural heart disease.
-    *   *Stable Monomorphic VT*: Antiarrhythmics IV (Procainamide 20-50 mg/min until arrhythmia suppressed, hypotension, QRS widens >50%, or max 17 mg/kg; Amiodarone 150 mg IV over 10 min, then infusion; Sotalol). Avoid Verapamil/Diltiazem if VT suspected (can cause hemodynamic collapse).
-    *   *Stable Polymorphic VT*:
-        *   If QT normal: Treat ischemia, correct electrolytes. Amiodarone, Beta-blockers.
-        *   If QT prolonged (Torsades de Pointes): IV Magnesium. Discontinue QT-prolonging drugs. Overdrive pacing.
-*   **Expert Consultation**: Often needed for complex tachyarrhythmias, especially wide complex or refractory cases.
-
-This comprehensive summary covers key ACLS interventions with more depth. Healthcare providers should always rely on current official guidelines and complete certification training.`,
-    categoryType: 'Policy',
-    keywordsForImage: 'cpr heart defibrillator',
+Ventilator management requires a deep understanding of respiratory physiology, ventilator mechanics, and careful patient assessment to optimize support and facilitate liberation.`,
+    keywordsForImage: 'ventilator icu lungs',
   },
   {
-    id: 'stroke-management',
-    slug: 'stroke-management',
-    title: 'Acute Stroke Management Protocols',
-    summary: 'Guidelines for rapid assessment, diagnosis (ischemic vs. hemorrhagic), and time-sensitive interventions for acute stroke patients, including tPA and thrombectomy criteria.',
+    id: 'ecmo',
+    slug: 'ecmo',
+    title: 'ECMO (Extracorporeal Membrane Oxygenation)',
+    summary: 'Principles of ECMO, types (VV and VA), indications, cannulation, circuit management, anticoagulation, complications, and weaning, aligned with ELSO guidelines.',
+    categoryType: 'Topic',
+    keywordsForImage: 'ecmo heart lung bypass',
     content: `## General Overview
+Extracorporeal Membrane Oxygenation (ECMO) is an advanced life support modality that provides temporary cardiac and/or respiratory support to patients whose heart and/or lungs are so severely diseased or damaged that they can no longer serve their function. ECMO works by draining venous blood from the patient, circulating it outside the body (extracorporeally) through an artificial lung (membrane oxygenator) where oxygen is added and carbon dioxide is removed, and then returning the oxygenated blood to the patient. This process allows the native heart and/or lungs to rest and recover from the underlying acute injury or provides a bridge to further treatment (e.g., lung transplant, ventricular assist device, or recovery).
 
-Acute stroke is a medical emergency characterized by the sudden loss of brain function due to an interruption of blood flow to a part of the brain (ischemic stroke) or the rupture of a blood vessel within or around the brain (hemorrhagic stroke). It is a leading cause of death and long-term disability worldwide, imposing significant burdens on individuals, families, and healthcare systems. Rapid recognition of stroke symptoms, prompt activation of emergency medical services (EMS), and swift transport to a stroke-capable hospital (preferably a Primary or Comprehensive Stroke Center) are critical for optimizing patient outcomes. The phrase "Time is Brain" underscores the urgency, as millions of neurons are lost each minute that blood flow is compromised, leading to potentially irreversible brain damage. Effective stroke care relies on organized systems of care, including public awareness campaigns, EMS protocols, and streamlined in-hospital processes to minimize delays to diagnosis and treatment.
+There are two main types of ECMO:
+1.  **Veno-Venous ECMO (VV-ECMO)**: Provides respiratory support only. Blood is drained from a large vein and returned to another large vein (typically near the right atrium). The patient's own heart still pumps the blood through the body. It is used for severe refractory hypoxemic or hypercapnic respiratory failure (e.g., severe ARDS).
+2.  **Veno-Arterial ECMO (VA-ECMO)**: Provides both cardiac and respiratory support. Blood is drained from a large vein and returned to a large artery, effectively bypassing the heart and lungs. It is used for refractory cardiogenic shock or cardiac arrest (ECPR - ECMO-assisted CPR).
 
-Ischemic strokes, accounting for about 87% of all strokes, occur when a cerebral artery is blocked by a thrombus (blood clot forming locally, often on an atherosclerotic plaque) or an embolus (clot or debris traveling from elsewhere, commonly the heart in atrial fibrillation, or from carotid artery plaque). This blockage deprives brain tissue of oxygen and glucose, leading to an ischemic cascade and cell death if not rapidly reversed. The area of irreversibly damaged tissue is the infarct core, while surrounding tissue at risk but still viable is the penumbra; reperfusion therapies aim to salvage the penumbra. Hemorrhagic strokes result from bleeding, either into the brain tissue itself (intracerebral hemorrhage, ICH), often due to chronic hypertension or anticoagulation, or into the subarachnoid space surrounding the brain (subarachnoid hemorrhage, SAH), most commonly from a ruptured cerebral aneurysm. Bleeding causes direct tissue damage from hematoma formation, increased intracranial pressure (ICP), and potential toxicity from blood products.
+ECMO is a complex, invasive, and resource-intensive therapy managed by a specialized multidisciplinary team including intensivists, surgeons, perfusionists, ECMO specialist nurses, and respiratory therapists. The Extracorporeal Life Support Organization (ELSO) provides guidelines and a registry for ECMO centers. Patient selection, timing of initiation, meticulous circuit management, anticoagulation, and prevention of complications are critical for successful outcomes.
 
-Management of acute stroke in the ICU involves rapid diagnostic workup (including emergent neuroimaging like non-contrast CT or MRI), close physiological monitoring (neurological status, vital signs, ICP if indicated), and specific interventions tailored to the type and cause of stroke. For ischemic stroke, this may include reperfusion therapies such as intravenous thrombolysis (e.g., alteplase or tenecteplase) or mechanical thrombectomy (endovascular removal of the clot). For hemorrhagic stroke, management focuses on controlling blood pressure, managing intracranial pressure, reversing anticoagulation if applicable, and potentially surgical intervention (e.g., hematoma evacuation, aneurysm clipping/coiling). ICU care also involves preventing and managing secondary complications such as cerebral edema, seizures, aspiration pneumonia, venous thromboembolism (VTE), infections, and malnutrition. A multidisciplinary team approach involving neurologists, neurosurgeons, neuroradiologists, critical care physicians, nurses, pharmacists, and rehabilitation specialists is essential.
+## In-Depth ICU Considerations (Aligned with ELSO Guidelines)
 
-## In-Depth ICU Considerations
+### General ECMO Principles
+*   **Indications (General - specific criteria vary)**:
+    *   Reversible life-threatening respiratory or cardiac failure refractory to maximal conventional therapy.
+    *   High predicted mortality (>50-80%) with conventional therapy.
+    *   Bridge to recovery, transplant, or longer-term device.
+*   **Contraindications (Relative/Absolute)**:
+    *   Irreversible underlying condition or terminal illness.
+    *   Severe irreversible brain injury.
+    *   Uncontrolled bleeding or absolute contraindication to anticoagulation (relative).
+    *   Severe multisystem organ failure with poor prognosis.
+    *   Limited vascular access.
+    *   Prolonged CPR without ROSC (for ECPR, time limits apply).
+    *   Age/weight limits depending on center.
+*   **Circuit Components**:
+    *   *Cannulae*: Large-bore catheters for venous drainage and arterial/venous return.
+    *   *Tubing*: Biocompatible.
+    *   *Pump*: Centrifugal or roller pump (centrifugal more common now).
+    *   *Membrane Oxygenator (Artificial Lung)*: Gas exchange (O₂/CO₂). Made of polymethylpentene (PMP) fibers.
+    *   *Heat Exchanger*: Maintains normothermia.
+    *   *Blender*: Mixes air/oxygen for precise FiO₂ delivery to oxygenator.
+    *   *Pressure Monitors*: Pre-membrane (venous drainage), post-membrane (return pressure).
+    *   *Flow Probe*: Measures ECMO blood flow rate.
 
-### Hyperacute Stroke Recognition and Initial Management
-*   **Stroke Scales**:
-    *   *NIH Stroke Scale (NIHSS)*: Standardized 11-item (or 15-item) scale assessing neurological deficits (LOC, gaze, visual fields, facial palsy, motor arm/leg, limb ataxia, sensory, language, dysarthria, extinction/inattention). Score 0 (no stroke) to 42 (severe stroke). Quantifies severity, guides treatment decisions (e.g., tPA, thrombectomy eligibility), tracks progression, predicts outcome. ICU nurses should be proficient in performing/interpreting NIHSS.
-    *   *Simplified Scales for Prehospital/ED Triage*: Cincinnati Prehospital Stroke Scale (CPSS - Facial droop, Arm drift, Speech), Los Angeles Prehospital Stroke Screen (LAPSS). BE FAST (Balance, Eyes, Face, Arm, Speech, Time).
-*   **Stroke Mimics vs. Chameleons**:
-    *   *Mimics*: Conditions presenting like stroke (seizures/Todd's paralysis, hypoglycemia, migraine with aura, brain tumor, CNS infection, conversion disorder, toxic-metabolic encephalopathy). NCCT helps differentiate.
-    *   *Chameleons*: Atypical stroke presentations (e.g., isolated dizziness, confusion without focal deficits - esp. posterior circulation).
-*   **Last Known Well (LKW) Time**: CRITICAL for determining eligibility for time-sensitive therapies. If LKW unknown or "wake-up stroke," advanced imaging (MRI DWI-FLAIR mismatch, CTP) may help identify candidates for reperfusion.
-*   **Initial Diagnostic Goals (ED/Stroke Unit -> ICU)**:
-    *   Door-to-Doctor: <10 min
-    *   Door-to-CT Scan: <20-25 min
-    *   Door-to-CT Interpretation: <45 min
-    *   Door-to-Needle (tPA): <60 min (ideally <45 min)
-    *   Door-to-Groin Puncture (Thrombectomy): <90 min for direct-to-EVT; <120 min for transfer-to-EVT.
+### Veno-Venous ECMO (VV-ECMO) - Respiratory Support
+*   **Indications for VV-ECMO (Examples based on ELSO guidelines for ARDS)**:
+    *   Severe hypoxemia: PaO₂/FiO₂ < 80 mmHg on FiO₂ > 0.9 and optimal PEEP despite LPV, proning, NMBAs.
+    *   PaO₂/FiO₂ < 50 mmHg for >3 hours.
+    *   pH < 7.20 with PaCO₂ ≥ 60 mmHg for >6 hours (refractory hypercapnia leading to severe respiratory acidosis and high Pplat).
+    *   Murray Score ≥3 (Lung Injury Score).
+*   **Cannulation Strategies**:
+    *   *Femoro-Jugular*: Drainage from femoral vein, return to right internal jugular vein (SVC). Most common.
+    *   *Femoro-Femoral*: Drainage from one femoral vein, return to other femoral vein (requires longer return cannula to reach RA).
+    *   *Dual-Lumen Single Cannula (e.g., Avalon Elite®)*: Inserted via internal jugular vein into RA, with ports for both drainage (SVC/IVC) and return (directed at tricuspid valve). Allows for greater mobility. Requires precise placement.
+*   **Management on VV-ECMO**:
+    *   *ECMO Flow Rate*: Typically 3-7 L/min or 50-80 mL/kg/min. Titrated to achieve target patient oxygenation (e.g., SpO₂ 88-92%, PaO₂ 55-70 mmHg) and CO₂ removal.
+    *   *Sweep Gas Flow Rate*: Controls CO₂ removal. Typically 1:1 to 2:1 ratio with blood flow initially, adjusted based on PaCO₂. FiO₂ in sweep gas usually 100%.
+    *   *Mechanical Ventilation ("Rest Settings")*: Goal is to minimize VILI.
+        *   Mode: PCV or APRV often used.
+        *   Tidal Volume: Very low (e.g., <4-6 mL/kg IBW, sometimes "apneic ventilation" with minimal VT).
+        *   PEEP: Moderate (e.g., 10-15 cmH₂O) to keep lungs open.
+        *   FiO₂: Low (e.g., 0.3-0.5) if ECMO provides adequate oxygenation.
+        *   RR: Low (e.g., 5-10 breaths/min).
+    *   *Anticoagulation*: Continuous unfractionated heparin (UFH) infusion is standard.
+        *   Target: aPTT 60-80 seconds, or Anti-Xa 0.3-0.7 IU/mL, or ACT (Activated Clotting Time) 160-220 seconds (varies by institution).
+        *   Monitor for HIT. Alternative anticoagulants (bivalirudin, argatroban) if HIT.
+    *   *Fluid Management*: Often aim for net even or negative fluid balance once stable to reduce edema.
+    *   *Nutrition*: Early enteral nutrition preferred.
+    *   *Sedation*: Minimize to allow for spontaneous breathing and neuro assessment if possible.
+*   **Monitoring on VV-ECMO**:
+    *   *Patient*: ABGs (patient, pre/post oxygenator membrane), SpO₂, hemodynamics, lactate, end-organ function, anticoagulation parameters, signs of bleeding/thrombosis, infection, cannula site.
+    *   *Circuit*: Pressures (pre-membrane - indicates drainage adequacy; post-membrane - indicates return resistance; transmembrane pressure gradient - indicates oxygenator function), flow, sweep gas, oxygenator function (clots, gas transfer efficiency), air bubbles.
+    *   *Recirculation (VV-ECMO)*: Occurs when oxygenated return blood is immediately re-drained by the ECMO circuit, reducing efficiency. Can be assessed by comparing SvO₂ from drainage cannula to patient's mixed venous (if PAC) or superior vena cava blood. Manage by optimizing cannula position, reducing ECMO flow if excessive, improving native cardiac output.
+*   **Complications of VV-ECMO**: Bleeding (cannula sites, GI, intracranial), thrombosis (circuit, patient), hemolysis, infection (CRBSI, VAP), cannula dislodgement/malposition, circuit failure (oxygenator failure, pump malfunction, tubing rupture), air embolism, neurological events (stroke, seizure), pressure sores, ICUAW.
+*   **Weaning from VV-ECMO**:
+    *   Evidence of lung recovery (improving compliance, clearing on CXR, better gas exchange on ventilator).
+    *   Gradually reduce ECMO support: ↓sweep gas flow (assess CO₂ clearance by native lungs), then ↓ECMO blood flow while increasing ventilator support.
+    *   Trial off: Cap sweep gas, run minimal ECMO flow for several hours. If patient stable, consider decannulation.
 
-### Ischemic Stroke - Advanced Reperfusion Strategies
-#### Intravenous Thrombolysis (IVT)
-*   **Alteplase (tPA)**: Standard of care if within window and eligible.
-    *   *Extended Window (3-4.5 hours)*: Similar exclusions to <3h window but more stringent (e.g., excludes age >80, severe stroke NIHSS >25, history of DM + prior stroke, oral anticoagulant use regardless of INR - unless INR ≤1.7).
-*   **Tenecteplase (TNK)**: Newer thrombolytic, single IV bolus (weight-based). Non-inferior or superior to alteplase in some trials, especially for LVO prior to thrombectomy. Easier administration. Increasing use.
-*   **Post-IVT Management**:
-    *   Strict BP control: SBP <180 mmHg, DBP <105 mmHg for 24h. IV Labetalol, Nicardipine.
-    *   Frequent neuro checks (NIHSS).
-    *   Monitor for bleeding (esp. orolingual angioedema - can be life-threatening, ICH). If angioedema: stop tPA, IV antihistamines, corticosteroids, epinephrine if severe. If ICH: stop tPA, stat NCCT, neurosurgery consult, reverse coagulopathy (cryoprecipitate, FFP, platelets, TXA - consult hematology/stroke team).
-    *   Avoid antithrombotics, invasive procedures (Foley, NG) for 24h. Obtain follow-up CT/MRI at 24h before starting antiplatelets/anticoagulants.
-#### Mechanical Thrombectomy (Endovascular Therapy - EVT)
-*   **Procedure**: Catheter-based removal of LVO using stent retrievers or aspiration devices, performed by neurointerventionalist.
-*   **Imaging for LVO Detection**: CTA or MRA of head and neck.
-*   **ASPECTS Score (Alberta Stroke Program Early CT Score)**: 10-point quantitative score on NCCT to assess extent of early ischemic changes in MCA territory. Lower score = larger infarct. ASPECTS ≥6 often favored for EVT in 0-6h window.
-*   **Advanced Imaging for Extended Window (6-24 hours)**:
-    *   *DAWN Trial Criteria*: Clinical-imaging mismatch (severe clinical deficit with small infarct core on CTP or MRI DWI).
-    *   *DEFUSE 3 Trial Criteria*: Target mismatch profile (small infarct core, salvageable penumbra on CTP or MRI DWI/PWI).
-*   **Post-EVT Care**: ICU monitoring. BP targets may vary (often SBP <160-180 mmHg). Neuro checks. Monitor access site (groin hematoma/retroperitoneal bleed). Assess for reperfusion injury (hemorrhage, edema).
+### Veno-Arterial ECMO (VA-ECMO) - Cardiopulmonary Support
+*   **Indications for VA-ECMO (Examples based on ELSO guidelines)**:
+    *   Refractory cardiogenic shock (e.g., AMI, myocarditis, postcardiotomy shock, decompensated chronic HF) with CI <2.0-2.2 L/min/m², SBP <90 mmHg or need for high-dose vasopressors, evidence of end-organ hypoperfusion despite optimal medical therapy.
+    *   ECPR (ECMO-assisted CPR): For select patients with in-hospital or out-of-hospital cardiac arrest with short no-flow/low-flow times, shockable rhythm initially, and potentially reversible cause.
+*   **Cannulation Strategies**:
+    *   *Peripheral VA-ECMO*: Venous drainage from femoral vein or RA, arterial return to femoral artery (retrograde flow). Most common for rapid initiation.
+    *   *Central VA-ECMO*: Venous drainage from RA, arterial return to ascending aorta. Requires sternotomy, usually for postcardiotomy shock or bridge to VAD.
+*   **Management on VA-ECMO**:
+    *   *ECMO Flow Rate*: Typically 2.5-5 L/min or target CI >2.2-2.5 L/min/m². Adjusted to support systemic perfusion.
+    *   *Sweep Gas Flow and FiO₂*: Similar to VV-ECMO, adjusted for oxygenation and CO₂ removal.
+    *   *Mechanical Ventilation*: Often "rest settings" but may require more support if concurrent lung injury.
+    *   *Anticoagulation, Fluid Management, Nutrition, Sedation*: Similar principles to VV-ECMO.
+    *   **Left Ventricular (LV) Distension**: A major concern with peripheral VA-ECMO. Retrograde aortic flow increases LV afterload. If native LV function is poor, LV cannot eject effectively -> LV dilation, stasis, pulmonary edema, impaired myocardial recovery.
+        *   *Monitoring*: Echocardiography, PA catheter, arterial waveform (pulsatility).
+        *   *Management*: Optimize ECMO flow (may need to reduce), inotropes to support LV ejection, IABP, percutaneous LV vent (e.g., Impella, transseptal atrial antegrade vent), surgical vent.
+    *   **Harlequin Syndrome (Differential Hypoxia / North-South Syndrome)**: In peripheral VA-ECMO (femoral arterial return), if native lung function is poor but some native cardiac ejection occurs, poorly oxygenated blood from LV ejects into ascending aorta, perfusing coronaries, brain, upper extremities. Simultaneously, highly oxygenated ECMO blood perfuses lower body.
+        *   *Detection*: Discrepancy in SpO₂/PaO₂ between right radial artery (upper body) and femoral artery (lower body).
+        *   *Management*: Optimize native lung function, increase ECMO FiO₂, consider converting to central VA-ECMO or adding venous return cannula in upper body (VAV-ECMO).
+*   **Monitoring on VA-ECMO**: Similar to VV-ECMO, plus close monitoring of cardiac function (echo), LV unloading, signs of limb ischemia (with femoral arterial cannulation), differential hypoxia.
+*   **Complications of VA-ECMO**: Similar to VV-ECMO, plus higher risk of limb ischemia, severe differential hypoxia, LV distension, potentially more complex neurological events.
+*   **Weaning from VA-ECMO**:
+    *   Evidence of myocardial recovery (improving EF, pulsatility, reduced vasopressor/inotrope needs).
+    *   Gradually reduce ECMO flow while monitoring hemodynamics and native cardiac function. Ventilator support may need to increase.
+    *   Trial off: Reduce flow to minimal levels for a short period. If stable, consider decannulation.
 
-#### General Ischemic Stroke Supportive Care - Advanced
-*   **Malignant Cerebral Edema**: Life-threatening, peaks 2-5 days post-large hemispheric infarct (esp. MCA). Signs: ↓LOC, pupillary changes, herniation.
-    *   *Management*: HOB elevation (30°), head midline. Osmotic therapy (Mannitol 0.25-1 g/kg IV, target serum osm 300-320 mOsm/L; Hypertonic saline 3% or 23.4% boluses/infusion, target serum Na⁺ 145-155 mEq/L). Monitor ICP if device placed.
-    *   *Decompressive Hemicraniectomy*: Surgical removal of large part of skull over infarct. Reduces mortality and improves functional outcome in selected patients (<60 yrs, some benefit up to 80 yrs; within 48h of stroke onset).
-*   **Hemorrhagic Transformation (HT)**: Conversion of ischemic infarct into hemorrhage. Can be asymptomatic (petechial) or symptomatic (parenchymal hematoma causing neurological worsening). Risk factors: large infarct, tPA, anticoagulation, severe HTN.
-*   **Seizures**: Post-stroke seizures occur in ~5-15%. Prophylactic AEDs generally not recommended. Treat acute seizures with BZDs, load with AED (Levetiracetam, Fosphenytoin).
-*   **Dysphagia & Aspiration**: Perform swallow screen before oral intake. Formal swallow evaluation (SLP consult) if screen failed. NGT/OGT for meds/nutrition if NPO. PEG for long-term.
-*   **Secondary Prevention (Initiate in ICU/hospital once stable)**:
-    *   *Antiplatelets*: Aspirin. Dual Antiplatelet Therapy (DAPT - Aspirin + Clopidogrel) for 21-90 days for minor stroke (NIHSS ≤3-5) or high-risk TIA (ABCD² score ≥4), then monotherapy.
-    *   *Anticoagulation*: For cardioembolic stroke (e.g., AFib). Timing to start debated (depends on infarct size, HT risk). Often delayed days to weeks.
-    *   *Statins*: High-intensity statin (Atorvastatin 80mg, Rosuvastatin 20-40mg) recommended regardless of LDL.
-    *   *BP Control*: Long-term target <130/80 mmHg.
-    *   Lifestyle modification (diet, exercise, smoking cessation). Carotid endarterectomy/stenting for symptomatic severe carotid stenosis.
+### General ELSO Recommendations / Key Principles
+*   ECMO should be performed in experienced centers with a dedicated multidisciplinary team.
+*   Standardized protocols for cannulation, circuit management, anticoagulation, weaning.
+*   Continuous quality improvement and data submission to registries (like ELSO).
+*   Focus on minimizing complications.
+*   Early involvement of palliative care when appropriate.
 
-### Hemorrhagic Stroke - Advanced Management
-#### Intracerebral Hemorrhage (ICH)
-*   **Hematoma Expansion**: Occurs in ~1/3 of patients, mostly within first few hours. Associated with poor outcome. Predictors: "spot sign" on CTA (active contrast extravasation), large initial volume, anticoagulation.
-*   **BP Management**: Aggressive SBP reduction.
-    *   If SBP 150-220 mmHg: Acute lowering to target SBP 140 mmHg is generally safe and may be effective (INTERACT2 trial). Some guidelines suggest <160 mmHg if no contraindications. Avoid SBP <130 mmHg in first few hours if aggressively lowered.
-    *   IV agents: Labetalol, Nicardipine, Clevidipine, Esmolol. Avoid vasodilators like hydralazine/nitrates (can ↑ICP).
-*   **Reversal of Anticoagulation - Specifics**:
-    *   *Warfarin*: IV Vitamin K (10mg) + 4-Factor PCC (e.g., Kcentra - dosed by INR and weight). FFP if PCC unavailable. Target INR <1.3-1.4.
-    *   *Dabigatran*: Idarucizumab 5g IV.
-    *   *Factor Xa Inhibitors (Apixaban, Rivaroxaban, Edoxaban)*: Andexanet alfa (if available). If not, 4-Factor PCC or Activated PCC (FEIBA - use with caution due to thrombotic risk).
-    *   *Antiplatelets*: DDAVP (Desmopressin) 0.4 mcg/kg IV may improve platelet function. Platelet transfusion controversial, may be considered for neurosurgical procedures or ongoing bleeding with severe thrombocytopenia (not routinely for antiplatelet effect reversal alone - PATCH trial showed potential harm).
-*   **Surgical Management**:
-    *   *Cerebellar Hemorrhage*: If >3cm, causing neurological deterioration, brainstem compression, or hydrocephalus -> urgent surgical evacuation.
-    *   *Supratentorial ICH*: Evacuation generally not beneficial for most, unless large lobar clot close to surface causing significant mass effect/herniation. Minimally invasive techniques (stereotactic aspiration, endoscopic evacuation) under investigation.
-    *   *Intraventricular Hemorrhage (IVH) with Hydrocephalus*: EVD placement for CSF diversion and ICP monitoring. Intraventricular thrombolysis (e.g., alteplase via EVD) may be considered (CLEAR III trial).
-
-#### Subarachnoid Hemorrhage (SAH) - Aneurysmal
-*   **Grading Scales**: Hunt & Hess Scale (clinical severity), Fisher Grade (amount of blood on CT - predicts vasospasm risk), World Federation of Neurological Surgeons (WFNS) SAH Scale.
-*   **Preventing Rebleeding**: Secure aneurysm (coiling or clipping) ASAP, ideally within 24-72 hours. Antifibrinolytic therapy (Tranexamic acid, aminocaproic acid) short-term before aneurysm securing is controversial (reduces rebleeding but may increase ischemia).
-*   **Delayed Cerebral Ischemia (DCI) / Vasospasm**: Major cause of morbidity/mortality, peaks 7-10 days post-SAH.
-    *   *Monitoring*: Daily TCDs (↑velocities suggest vasospasm), frequent neuro exams. CTA/P or DSA if DCI suspected.
-    *   *Prophylaxis*: Oral Nimodipine 60mg q4h for 21 days (improves outcomes, mechanism unclear - possibly neuroprotection rather than pure vasodilation). Maintain euvolemia (avoid hypovolemia).
-    *   *Treatment of DCI*: Induced hypertension (target SBP 180-220 or higher, guided by neuro exam/TCDs/perfusion imaging - requires secured aneurysm). Endovascular therapy (intra-arterial vasodilators like nicardipine/verapamil, balloon angioplasty for focal spasm).
-*   **Hydrocephalus**: Acute (EVD) or chronic (VP shunt).
-*   **Hyponatremia**: Common. Differentiate SIADH (euvolemic, treat with fluid restriction, 3% saline if severe) vs. Cerebral Salt Wasting (CSW - hypovolemic, treat with Na⁺/fluid repletion, fludrocortisone). CSW more common in SAH.
-*   **Cardiac Complications**: Stress cardiomyopathy (Takotsubo), arrhythmias, myocardial ischemia (stunned myocardium), QT prolongation.
-
-Stroke care is complex and rapidly evolving. Close adherence to current guidelines and institutional protocols, along with a vigilant multidisciplinary team approach, is essential in the ICU.`,
-    categoryType: 'Policy',
-    keywordsForImage: 'brain scan stroke neurology',
+ECMO is a highly complex therapy with significant risks, reserved for patients with otherwise dismal prognoses. Success depends on careful patient selection, expert management, and a well-coordinated team.`,
+    keywordsForImage: 'ecmo heart lung bypass',
   },
   {
-    id: 'sepsis-management',
-    slug: 'sepsis-management',
-    title: 'Sepsis Management Protocol',
-    summary: 'Evidence-based guidelines for early recognition, resuscitation, and ongoing management of sepsis and septic shock, aligning with Surviving Sepsis Campaign recommendations.',
+    id: 'crrt',
+    slug: 'crrt',
+    title: 'CRRT (Continuous Renal Replacement Therapy)',
+    summary: 'Principles of CRRT, modalities (CVVH, CVVHD, CVVHDF, SCUF), indications, access, prescription, anticoagulation, and management in the ICU.',
+    categoryType: 'Topic',
+    keywordsForImage: 'crrt dialysis kidney icu',
     content: `## General Overview
+Continuous Renal Replacement Therapy (CRRT) refers to a group of extracorporeal blood purification techniques used to provide continuous support for patients with acute kidney injury (AKI), particularly those who are hemodynamically unstable in the Intensive Care Unit (ICU). Unlike intermittent hemodialysis (IHD), which typically runs for 3-5 hours several times a week, CRRT operates continuously (or near-continuously) over a 24-hour period. This slower, more gradual removal of fluid and solutes allows for better hemodynamic tolerance, more precise volume control, and stabler correction of electrolyte and acid-base imbalances, which are often preferred in critically ill patients with vasopressor requirements or significant fluid overload.
 
-Sepsis is a life-threatening condition that arises when the body's response to an infection injures its own tissues and organs. It is a medical emergency requiring prompt recognition and intervention to improve outcomes. Sepsis represents a spectrum of severity, with septic shock being its most severe form, characterized by persistent hypotension and cellular metabolic abnormalities despite adequate fluid resuscitation, leading to a substantially higher risk of mortality. The Surviving Sepsis Campaign (SSC), an international collaboration, publishes regularly updated, evidence-based guidelines to assist clinicians in the diagnosis and management of sepsis and septic shock. These guidelines emphasize a bundled approach to care, focusing on early identification through screening tools, rapid administration of appropriate antibiotics, timely and adequate fluid resuscitation, vasopressor support if needed to maintain organ perfusion, and meticulous source control of the infection. Understanding and implementing these bundles are critical for improving patient survival and reducing sepsis-related morbidity.
+The primary goals of CRRT are to manage the complications of severe AKI, including uremia (accumulation of waste products), electrolyte disturbances (e.g., hyperkalemia, hyperphosphatemia), metabolic acidosis, and fluid overload. It can also be used for some non-renal indications, such as removal of certain toxins or management of severe systemic inflammatory response syndrome (SIRS) by clearing inflammatory mediators (though this is more controversial and less established).
 
-The core pathophysiology of sepsis involves a dysregulated host immune response to invading pathogens (bacteria, viruses, fungi, or parasites). This leads to a complex cascade of pro-inflammatory and anti-inflammatory processes, endothelial dysfunction, microcirculatory alterations (impaired tissue oxygenation), and coagulation abnormalities (often leading to Disseminated Intravascular Coagulation - DIC). The net result is widespread tissue hypoperfusion, cellular hypoxia, mitochondrial dysfunction, and ultimately, organ dysfunction or failure affecting multiple systems (e.g., lungs - ARDS; kidneys - AKI; heart - septic cardiomyopathy; brain - septic encephalopathy). Early recognition tools like qSOFA (quick Sequential Organ Failure Assessment) for patients outside the ICU and SOFA scores for ICU patients help identify individuals at risk or with established organ dysfunction. Serum lactate levels are an important marker of tissue hypoperfusion and illness severity, and lactate clearance can be used to monitor response to resuscitation. Effective sepsis management requires a coordinated, multidisciplinary team approach, with ICU nurses playing a crucial role in continuous monitoring, timely administration of treatments, titration of therapies according to patient response and established protocols, and advocating for the patient. This module outlines key elements based on SSC recommendations; healthcare providers must always consult the most current official guidelines and institutional protocols for comprehensive, up-to-date information.
+Common modalities of CRRT include:
+*   **Slow Continuous Ultrafiltration (SCUF)**: Primarily for fluid removal, with minimal solute clearance.
+*   **Continuous Veno-Venous Hemofiltration (CVVH)**: Solute removal primarily via convection (solvent drag as plasma water moves across a semipermeable membrane). Replacement fluid is administered pre- or post-filter.
+*   **Continuous Veno-Venous Hemodialysis (CVVHD)**: Solute removal primarily via diffusion (movement of solutes down a concentration gradient across a semipermeable membrane into a dialysate solution).
+*   **Continuous Veno-Venous Hemodiafiltration (CVVHDF)**: Combines both convective and diffusive solute clearance, offering removal of a broader range of small and middle-sized molecules. This is often the most commonly used modality in many ICUs.
+
+CRRT requires specialized equipment, vascular access (typically a dual-lumen central venous catheter), and trained personnel for initiation, monitoring, and troubleshooting.
 
 ## In-Depth ICU Considerations
 
-### Sepsis-3 Definitions and Clinical Criteria - Deeper Understanding
-*   **Organ Dysfunction in Sepsis**: An acute change in total SOFA score ≥2 points consequent to the infection. Baseline SOFA can be assumed zero in patients not known to have pre-existing organ dysfunction.
-    *   **SOFA Score Components (0-4 points per system, higher score = more dysfunction)**:
-        *   *Respiration*: PaO₂/FiO₂ ratio.
-        *   *Coagulation*: Platelet count.
-        *   *Liver*: Bilirubin level.
-        *   *Cardiovascular*: MAP or need for vasopressors.
-        *   *Central Nervous System*: Glasgow Coma Scale (GCS) score.
-        *   *Renal*: Creatinine level or urine output.
-*   **Septic Shock Clinical Criteria**: Sepsis AND (vasopressors needed to maintain MAP ≥65 mmHg) AND (serum lactate >2 mmol/L or 18 mg/dL) persisting after adequate fluid resuscitation. This combination is associated with hospital mortality rates >40%.
-*   **qSOFA Limitations**: Intended as a screening tool for patients *with suspected infection* outside the ICU to identify those at higher risk of poor outcomes (death or prolonged ICU stay). It is NOT a diagnostic criterion for sepsis itself and has lower sensitivity than SIRS criteria for identifying infection or organ dysfunction in some settings. Should prompt further investigation for organ dysfunction (e.g., full SOFA, lactate).
+### Indications for CRRT
+The "AEIOU" mnemonic is often used for general RRT indications, but CRRT is particularly favored in the ICU when these conditions are present with hemodynamic instability or when precise, continuous control is desired:
+*   **A**cidosis: Severe metabolic acidosis (e.g., pH <7.1-7.2) refractory to medical therapy, especially if bicarbonate administration is limited by volume concerns.
+*   **E**lectrolytes: Life-threatening hyperkalemia (e.g., K⁺ >6.5 mEq/L with ECG changes) refractory to medical therapy. Severe hyperphosphatemia or hypermagnesemia.
+*   **I**ntoxications: Removal of certain dialyzable drugs or toxins (e.g., lithium, salicylates, methanol, ethylene glycol), particularly if continuous removal is beneficial.
+*   **O**verload (Fluid): Pulmonary edema or severe peripheral edema refractory to diuretics, especially in hemodynamically unstable patients. CRRT allows for controlled and gradual net ultrafiltration.
+*   **U**remia: Symptomatic uremia (e.g., uremic encephalopathy, pericarditis, pleuritis, intractable nausea/vomiting, uremic bleeding). High BUN/Creatinine alone are not sole indications without symptoms or other complications.
+*   **Other Potential Indications**: Sepsis with AKI (some theories suggest removal of inflammatory mediators, though not proven to improve mortality), tumor lysis syndrome, rhabdomyolysis with severe AKI.
 
-### Pathophysiological Nuances in Sepsis
-*   **Endothelial Glycocalyx Damage**: Breakdown of this protective layer on endothelial cells contributes significantly to increased vascular permeability, edema formation, and impaired microcirculatory flow.
-*   **NETosis (Neutrophil Extracellular Traps)**: Neutrophils release DNA and antimicrobial proteins to trap pathogens, but excessive NETosis can contribute to microvascular thrombosis and tissue damage.
-*   **Autophagy Dysfunction**: Impaired cellular waste clearance mechanisms can exacerbate organ injury.
-*   **Role of Nitric Oxide (NO)**: Pathological overproduction of NO by inducible NO synthase (iNOS) contributes to profound vasodilation and hypotension in septic shock.
-*   **Mitochondrial Biogenesis and Function**: Sepsis can impair mitochondrial ATP production and lead to a state of "energy failure" within cells. Strategies to protect or restore mitochondrial function are areas of research.
+### Vascular Access
+*   **Type**: Double-lumen, non-tunneled, high-flow venous catheter.
+*   **Sites (in order of preference by KDIGO guidelines)**:
+    1.  Right internal jugular (IJ) vein: Straightest path to SVC/RA, associated with lower rates of dysfunction and infection compared to femoral.
+    2.  Femoral vein: Higher risk of infection and recirculation, especially in obese patients or if exit site care is difficult. May be preferred in patients with severe respiratory failure (to avoid pneumothorax with IJ/subclavian placement) or if IJ sites are thrombosed.
+    3.  Left internal jugular vein: More tortuous path.
+    4.  Subclavian vein: Highest risk of central venous stenosis, generally avoided if future permanent dialysis access (e.g., AV fistula) is anticipated.
+*   **Catheter Length and Gauge**: Catheter tip should ideally be in the RA or large central vein. Larger gauge (e.g., 12-14 Fr) allows for higher blood flow rates with less access pressure issues.
+*   **Confirmation**: Ultrasound guidance for insertion is standard. CXR to confirm tip position (unless femoral).
 
-### Hour-1 Bundle - Detailed Implementation and Rationale
-**(SSC recommends initiating all elements as soon as possible and completing the bundle within 1 hour of sepsis recognition)**
+### CRRT Modalities - Detailed Mechanisms
+*   **Ultrafiltration (UF)**: Removal of plasma water across a semipermeable membrane driven by a transmembrane pressure (TMP) gradient. This is the primary mechanism for fluid removal.
+*   **Convection (CVVH, CVVHDF)**: Solutes are "dragged" across the membrane with the ultrafiltrate (solvent drag). More effective for middle to larger-sized molecules. Requires replacement fluid to be administered to the patient (either pre-filter or post-filter) to make up for the large volume of ultrafiltrate removed that contains essential solutes.
+*   **Diffusion (CVVHD, CVVHDF)**: Solutes move from an area of higher concentration (blood) to an area of lower concentration (dialysate) across the membrane. Most effective for small solutes (e.g., urea, creatinine, potassium). Dialysate fluid flows counter-current to blood flow on the other side of the membrane.
+*   **Adsorption**: Some solutes (especially inflammatory mediators, some drugs) may adhere to the surface of the hemofilter membrane. Clinical significance is variable.
 
-1.  **Measure Lactate Level**:
-    *   *Rationale*: Elevated lactate reflects tissue hypoperfusion, anaerobic metabolism, or impaired lactate clearance (e.g., liver dysfunction). It's a key prognostic indicator and marker of resuscitation adequacy.
-    *   *Remeasurement*: If initial lactate >2 mmol/L, remeasure within 2-4 hours to guide resuscitation (aim for lactate normalization or significant clearance, e.g., >10-20% per 2h).
-2.  **Obtain Blood Cultures Before Administering Antibiotics**:
-    *   *Rationale*: Identify causative pathogen and guide targeted antibiotic therapy. Critical for de-escalation and stewardship.
-    *   *Procedure*: At least two sets (aerobic and anaerobic bottles per set). One from a percutaneous stick and one from each indwelling vascular access device (e.g., CVC, PICC) in place >48 hours. Volume of blood per bottle is crucial (e.g., 8-10 mL for adults).
-    *   *Timing*: Do NOT delay antibiotic administration by >45 minutes to obtain cultures. If difficult access, prioritize antibiotics.
-3.  **Administer Broad-Spectrum Antibiotics**:
-    *   *Rationale*: Early, appropriate antibiotics are critical for reducing mortality. Each hour delay associated with increased mortality.
-    *   *Selection*: Based on suspected infection source, patient's immune status, comorbidities, recent antibiotic exposure, local hospital/community antibiogram, and severity of illness.
-    *   *Examples*: For severe sepsis/septic shock with unknown source, may include coverage for gram-positives (incl. MRSA if risk factors), gram-negatives (incl. Pseudomonas if risk factors), and sometimes anaerobes. Consider empiric antifungals in select high-risk patients (e.g., immunocompromised, prolonged neutropenia, recent abdominal surgery with recurrent infections).
-    *   *Dosing*: Use adequate loading doses, consider PK/PD principles (see Pharmacology section).
-4.  **Begin Rapid Administration of 30 mL/kg Crystalloid for Hypotension or Lactate ≥4 mmol/L**:
-    *   *Rationale*: Restore intravascular volume, improve preload, and increase CO/MAP in patients with sepsis-induced hypovolemia and vasodilation.
-    *   *Fluid Choice*: Balanced crystalloids (Lactated Ringer's, Plasma-Lyte) generally preferred over 0.9% Saline to avoid hyperchloremic acidosis and potential AKI. Albumin may be considered in patients requiring large volumes of crystalloids.
-    *   *Administration*: This is an initial fixed-volume bolus. Should be completed within 3 hours (ideally sooner).
-    *   *Caution*: Monitor for signs of fluid overload, especially in patients with known cardiac dysfunction or ARDS. This fixed bolus may not be appropriate for all (e.g., end-stage renal disease on dialysis, severe CHF). Clinical judgment is needed.
-5.  **Apply Vasopressors if Hypotensive During or After Fluid Resuscitation to Maintain MAP ≥65 mmHg**:
-    *   *Rationale*: Restore adequate tissue perfusion pressure if fluids alone are insufficient. Hypotension is a major contributor to organ failure.
-    *   *Timing*: Start early if MAP remains <65 mmHg despite initial fluid challenge, or if severe shock evident. Do not wait for full 30mL/kg if patient clearly needs pressors.
-    *   *Choice*: Norepinephrine is first-line. May add Vasopressin (up to 0.03 U/min) or Epinephrine if MAP target not met.
-    *   *Arterial Line*: Recommended for continuous MAP monitoring and titration of vasopressors.
+### CRRT Prescription Components
+*   **Blood Flow Rate (Qb)**: Typically 150-250 mL/min (or 2-5 mL/kg/min). Higher Qb can improve solute clearance (especially diffusive) and reduce filter clotting, but may be limited by vascular access or patient stability.
+*   **Dialysate Flow Rate (Qd) (for CVVHD/CVVHDF)**: Typically 1-2 L/hour (or 15-35 mL/kg/hr). Directly influences diffusive clearance.
+*   **Replacement Fluid Flow Rate (Qr) (for CVVH/CVVHDF)**:
+    *   *Pre-filter*: Dilutes blood before it enters the filter, may reduce filter clotting but also dilutes solute concentration for clearance.
+    *   *Post-filter*: Concentrates blood in filter, potentially increasing clearance efficiency but may increase clotting risk. Higher hematocrit in the filter.
+    *   Rate typically 1-2 L/hour (or 15-35 mL/kg/hr).
+*   **Net Ultrafiltration (UF) Rate / Fluid Removal Rate**: Amount of fluid removed from the patient per hour (mL/hr). Determined by patient's fluid balance goals. This is the *net* fluid removed after accounting for any replacement fluids, dialysate, anticoagulants, and IV infusions the patient receives.
+*   **Dose of CRRT (Effluent Rate)**: Represents the total volume of fluid removed from the blood per unit time (sum of dialysate flow + replacement fluid flow + net UF rate). KDIGO guidelines recommend a delivered effluent volume of **20-25 mL/kg/hr** for AKI. Higher doses have not consistently shown benefit and may increase risks (e.g., electrolyte depletion).
+*   **Choice of Fluids**:
+    *   *Dialysate and Replacement Solutions*: Commercially available, buffered (bicarbonate or lactate - bicarbonate preferred), with varying electrolyte concentrations. Choice depends on patient's metabolic status.
+    *   Calcium-containing vs. calcium-free solutions (important for regional citrate anticoagulation).
 
-### Advanced Hemodynamic Management in Septic Shock
-*   **Beyond MAP ≥65 mmHg**: While MAP is a primary target, also assess other perfusion markers:
-    *   Urine output (>0.5 mL/kg/hr).
-    *   Skin mottling score, capillary refill time.
-    *   Mental status.
-    *   Lactate clearance.
-    *   ScvO₂ (>70%) or SvO₂ (>65%) if CVC/PAC available (target from early goal-directed therapy era, less emphasis now but still provides information).
-*   **Dynamic Assessment of Fluid Responsiveness**: (PLR, SVV, PPV, EEOT, bedside ultrasound of IVC/VTI) after initial 30 mL/kg bolus to guide further fluid therapy. Avoid fluid overload.
-*   **Septic Cardiomyopathy**: Consider if persistent hypoperfusion despite adequate volume and vasopressors. Echocardiography is key for diagnosis. If present, Dobutamine may be added (titrate carefully, monitor for tachyarrhythmias/hypotension).
-*   **Microcirculatory Monitoring**: Investigational techniques (e.g., sublingual videomicroscopy) to directly visualize microcirculation. Not yet standard care.
+### Anticoagulation for CRRT
+Essential to prevent clotting of the extracorporeal circuit and hemofilter.
+*   **Regional Citrate Anticoagulation (RCA)**:
+    *   *Mechanism*: Citrate (trisodium citrate solution) infused into the access (pre-filter) limb of the circuit. Citrate chelates ionized calcium (iCa) in the circuit blood, preventing coagulation (iCa is a cofactor).
+    *   *Target Circuit iCa*: Typically 0.25-0.40 mmol/L (measured from post-filter sample).
+    *   *Calcium Reinfusion*: Systemic calcium (calcium chloride or calcium gluconate) is infused into the patient (usually via separate CVC lumen or return limb of CRRT catheter) to maintain normal systemic iCa levels (e.g., 1.0-1.25 mmol/L).
+    *   *Advantages*: Superior filter life, potentially lower bleeding risk compared to systemic heparin. Recommended as first-line by KDIGO if expertise available.
+    *   *Monitoring*: Circuit iCa, systemic iCa, total calcium, magnesium, bicarbonate, pH, anion gap.
+    *   *Complications*:
+        *   *Citrate Lock/Toxicity*: If citrate metabolism (liver, muscle, kidney) is impaired, citrate accumulates -> metabolic alkalosis, increased total/ionized calcium ratio (>2.5 suggests accumulation), neurological symptoms. Treat by reducing citrate dose, increasing dialysate flow, or temporarily stopping citrate.
+        *   Hypocalcemia (if calcium reinfusion inadequate) or Hypercalcemia (if reinfusion excessive).
+        *   Hypomagnesemia (citrate chelates magnesium).
+*   **Systemic Unfractionated Heparin (UFH)**:
+    *   *Mechanism*: Potentiates antithrombin, inhibiting Factors IIa (thrombin) and Xa.
+    *   *Dosing*: Loading dose then continuous infusion. Target aPTT 60-80s or ACT 180-220s (varies by institution).
+    *   *Advantages*: Widely available, familiar, reversible with protamine.
+    *   *Disadvantages*: Increased bleeding risk, Heparin-Induced Thrombocytopenia (HIT). Shorter filter life compared to RCA.
+*   **No Anticoagulation**:
+    *   For patients with active bleeding or very high bleeding risk (e.g., severe coagulopathy, recent major surgery).
+    *   Often results in shorter filter life. May use saline flushes, higher blood flow rates (if tolerated) to try to prolong.
+*   **Other options (less common)**: Low Molecular Weight Heparin (LMWH - risk of bioaccumulation in AKI), Direct Thrombin Inhibitors (e.g., argatroban, bivalirudin - if HIT).
 
-### Corticosteroids in Septic Shock - Nuances
-*   **ADRENAL Trial and APROCCHSS Trial**: Provided conflicting evidence on mortality, but generally showed faster shock resolution with corticosteroids.
-*   **SSC Recommendation**: Suggest IV hydrocortisone (200 mg/day as continuous infusion or 50mg q6h) if ongoing hemodynamic instability (e.g., norepinephrine dose ≥0.25 mcg/kg/min or equivalent) despite adequate fluids and vasopressors.
-*   **Duration**: Continue until shock resolves, then taper.
-*   **Side Effects**: Hyperglycemia, hypernatremia, weakness, increased risk of superinfections (especially fungal, viral reactivation) with prolonged use.
+### Monitoring and Management on CRRT
+*   **Hemodynamics**: Continuous BP, HR. Monitor for hypotension, especially with initiation or high UF rates.
+*   **Fluid Balance**: Meticulous intake/output records. Daily weights. Adjust UF rate to achieve goals.
+*   **Electrolytes**: Frequent monitoring (q4-12h initially, then daily if stable). K⁺, PO₄³⁻, Mg²⁺ often removed and require supplementation.
+*   **Acid-Base Status**: ABGs/VBGs. Adjust buffer in CRRT solutions if needed.
+*   **Filter Life/Clotting**: Monitor transmembrane pressure (TMP), filter pressure drop, visual inspection of circuit.
+*   **Temperature**: Hypothermia can occur due to extracorporeal blood cooling. Use blood warmer on circuit.
+*   **Nutrition**: Amino acid and water-soluble vitamin losses can occur. Protein needs may be higher. Consult dietitian.
+*   **Drug Dosing**: Many drugs are cleared by CRRT. Dose adjustments are essential. Consult pharmacist and specific drug dosing guidelines for CRRT. Factors affecting clearance: drug molecular weight, protein binding, sieving coefficient/saturation coefficient, CRRT modality and flow rates.
 
-### Adjunctive Therapies - Evidence and Recommendations
-*   **Vitamin C, Thiamine, Hydrocortisone ("Metabolic Cocktail" / "HAT" therapy)**: Initial studies were promising, but subsequent larger RCTs (VITAMINS, VICTAS, LOVIT) did not show mortality benefit or significant improvement in organ dysfunction. Not routinely recommended by SSC.
-*   **Blood Purification Techniques (e.g., hemoadsorption, high-volume hemofiltration, coupled plasma filtration adsorption - CPFA)**: Aim to remove cytokines or endotoxins. Investigational, no proven mortality benefit in large trials. May be considered in specific situations under research protocols or as rescue.
-*   **Immunoglobulin Therapy (IVIG)**: Not routinely recommended for sepsis/septic shock. May have a role in specific conditions like toxic shock syndrome (adjunctive).
+### Complications of CRRT
+*   **Hypotension**: Especially if UF rate too aggressive or patient hypovolemic.
+*   **Filter Clotting**: Despite anticoagulation. Requires circuit change, blood loss.
+*   **Bleeding**: From anticoagulation or access site.
+*   **Catheter-Related Infections (CRBSI)**: Strict aseptic technique.
+*   **Electrolyte Disturbances**: Hypokalemia, hypophosphatemia, hypomagnesemia are common.
+*   **Acid-Base Imbalances**.
+*   **Hypothermia**.
+*   **Air Embolism**: Rare but serious. Ensure all connections secure, air detectors functional.
+*   **Thrombocytopenia**: Can occur, multifactorial.
+*   **Nutrient/Drug Removal**.
 
-### Long-Term Outcomes and Post-Sepsis Syndrome (PSS)
-*   Many sepsis survivors experience long-term physical, cognitive, and psychological sequelae (Post-Sepsis Syndrome - PSS).
-*   Includes: muscle weakness, fatigue, chronic pain, PTSD, anxiety, depression, cognitive impairment (memory, attention deficits), increased risk of future infections and cardiovascular events.
-*   Early mobilization, rehabilitation, nutritional support, and psychological support are important in ICU and post-discharge.
-
-Sepsis management is an evolving field. Adherence to current evidence-based guidelines, early aggressive intervention, and meticulous supportive care are critical for improving outcomes.`,
-    categoryType: 'Policy',
-    keywordsForImage: 'sepsis bacteria infection emergency',
+CRRT is a complex therapy requiring a knowledgeable multidisciplinary team and close patient monitoring to optimize benefits and minimize risks.`,
+    keywordsForImage: 'crrt dialysis kidney icu',
   },
   {
-    id: 'ards-management',
-    slug: 'ards-management',
-    title: 'ARDS Management Protocol',
-    summary: 'Evidence-based guidelines for the diagnosis and management of Acute Respiratory Distress Syndrome (ARDS), including lung-protective ventilation, PEEP titration, and adjunctive therapies.',
-    categoryType: 'Policy',
-    keywordsForImage: 'lungs ventilator icu',
+    id: 'sled',
+    slug: 'sled',
+    title: 'SLED (Sustained Low-Efficiency Dialysis)',
+    summary: 'Principles of SLED/SLEDD-f as a hybrid renal replacement therapy, indications, comparison to IHD/CRRT, prescription, and management in the ICU.',
+    categoryType: 'Topic',
+    keywordsForImage: 'sled dialysis kidney hybrid',
     content: `## General Overview
-Acute Respiratory Distress Syndrome (ARDS) is a life-threatening form of acute hypoxemic respiratory failure characterized by widespread inflammation in the lungs. This inflammation leads to increased permeability of the alveolar-capillary membrane, causing fluid (protein-rich edema) to leak into the alveoli, impairing gas exchange, reducing lung compliance (making the lungs stiff and difficult to inflate), and causing shunting (blood passing through non-ventilated areas of the lung). ARDS can be triggered by various direct lung injuries (e.g., pneumonia, aspiration, inhalation injury) or indirect systemic insults (e.g., sepsis, severe trauma, pancreatitis, multiple transfusions).
+Sustained Low-Efficiency Dialysis (SLED), also often referred to as Prolonged Intermittent Renal Replacement Therapy (PIRRT) or Extended Daily Dialysis (EDD), is a hybrid renal replacement therapy (RRT) modality. It combines features of both conventional intermittent hemodialysis (IHD) and continuous renal replacement therapy (CRRT). SLED treatments are typically run for longer durations than IHD (e.g., 6-12 hours per session, daily or several times a week) but shorter than CRRT (which is usually 24 hours/day). It utilizes lower blood flow rates (Qb) and dialysate flow rates (Qd) compared to IHD, but often higher than those used in typical CRRT. The term SLEDD-f is sometimes used to specify SLED with filtration (i.e., including ultrafiltration for fluid removal).
 
-The Berlin Definition (2012) provides diagnostic criteria for ARDS:
-1.  **Timing**: Onset within 1 week of a known clinical insult or new/worsening respiratory symptoms.
-2.  **Chest Imaging**: Bilateral opacities on chest X-ray or CT scan not fully explained by effusions, lobar/lung collapse, or nodules.
-3.  **Origin of Edema**: Respiratory failure not fully explained by cardiac failure or fluid overload (objective assessment like echocardiography needed to exclude hydrostatic edema if no risk factor present).
-4.  **Oxygenation Impairment (Severity based on PaO₂/FiO₂ ratio with PEEP ≥5 cmH₂O)**:
-    *   **Mild ARDS**: 200 mmHg < PaO₂/FiO₂ ≤ 300 mmHg
-    *   **Moderate ARDS**: 100 mmHg < PaO₂/FiO₂ ≤ 200 mmHg
-    *   **Severe ARDS**: PaO₂/FiO₂ ≤ 100 mmHg
-
-Management of ARDS in the ICU is primarily supportive, focusing on treating the underlying cause, ensuring adequate oxygenation, and minimizing further lung injury (Ventilator-Induced Lung Injury - VILI). Key strategies include lung-protective mechanical ventilation, appropriate PEEP titration, conservative fluid management, and consideration of adjunctive therapies for severe cases.
+The primary aim of SLED is to provide adequate solute clearance and fluid removal with better hemodynamic stability than traditional IHD, making it a suitable option for critically ill patients with acute kidney injury (AKI) who may not tolerate the rapid fluid and solute shifts of IHD but do not necessarily require 24-hour continuous therapy or in settings where CRRT resources (machines, staffing, specialized fluids) are limited. SLED can often be performed using standard IHD machines, with adjustments to flow rates and duration.
 
 ## In-Depth ICU Considerations
 
-### Lung-Protective Ventilation (LPV) Strategy
-The cornerstone of ARDS management is LPV, aimed at minimizing VILI. VILI can occur due to:
-*   **Volutrauma**: Overdistension of alveoli from excessive tidal volumes.
-*   **Barotrauma**: Excessive airway pressures leading to alveolar rupture (e.g., pneumothorax).
-*   **Atelectrauma**: Repetitive opening and closing of unstable alveoli.
-*   **Biotrauma**: Release of inflammatory mediators from injured lung tissue, contributing to systemic inflammation and MODS.
+### Indications for SLED
+SLED is considered for ICU patients with AKI requiring RRT who meet one or more of the following criteria:
+*   **Hemodynamic Instability**: Patients who are too unstable for conventional IHD (e.g., requiring vasopressors, though usually less severe than those absolutely requiring CRRT).
+*   **Need for Solute Clearance with Volume Control**: When both significant solute removal and controlled fluid removal are needed.
+*   **Resource Limitations for CRRT**: If CRRT machines, specialized fluids, or staffing are not readily available, SLED can be a practical alternative.
+*   **Transition from CRRT**: Patients who have stabilized on CRRT but are not yet suitable for conventional IHD.
+*   **Logistical Reasons**: To provide a "dialysis-free" interval for other procedures, tests, or mobilization, which is not possible with 24-hour CRRT.
 
-**Key Components of LPV (based on ARDSNet trials):**
-*   **Tidal Volume (VT)**:
-    *   Target **4-6 mL/kg of Ideal Body Weight (IBW)**. IBW calculation:
-        *   Males: 50 kg + 2.3 kg for each inch over 5 feet.
-        *   Females: 45.5 kg + 2.3 kg for each inch over 5 feet.
-    *   Start at 6 mL/kg IBW, may reduce to 4 mL/kg IBW if Pplat remains high.
-*   **Plateau Pressure (Pplat)**:
-    *   Measure with an inspiratory hold maneuver (0.5-1 sec) on the ventilator.
-    *   Target **Pplat ≤ 30 cmH₂O**. If Pplat >30 cmH₂O, reduce VT (even below 6 mL/kg IBW, down to 4 mL/kg IBW if necessary) or address other factors contributing to high pressures (e.g., PEEP, chest wall compliance).
-*   **Driving Pressure (ΔP)**:
-    *   Calculated as **ΔP = Pplat – PEEP**.
-    *   Represents the cyclic stress applied to the lung.
-    *   Target **ΔP ≤ 15 cmH₂O**. Retrospective data suggests ΔP is a better predictor of mortality than VT or PEEP alone. If ΔP >15, adjust PEEP or VT.
-*   **Positive End-Expiratory Pressure (PEEP)**:
-    *   Use adequate PEEP to prevent alveolar collapse (atelectrauma) and improve oxygenation by recruiting alveoli and increasing functional residual capacity (FRC).
-    *   Titration methods:
-        *   **PEEP/FiO₂ Tables**: (e.g., ARDSNet lower PEEP/higher FiO₂ or higher PEEP/lower FiO₂ tables). Start with lower PEEP table; consider higher PEEP table for moderate-severe ARDS if oxygenation remains poor.
-        *   **Decremental PEEP Trial**: Recruit lungs (e.g., PEEP 30-40 cmH₂O for 30-40s), then set high PEEP (e.g., 20-25 cmH₂O). Gradually decrease PEEP by 2-3 cmH₂O every 15-30 min, monitoring SpO₂, PaO₂, Pplat, ΔP, and compliance. Select PEEP level just above point where oxygenation or compliance starts to deteriorate ("best PEEP" or optimal PEEP).
-        *   **Esophageal Manometry**: Estimates transpulmonary pressure (Ptp = Paw - Pes). Goal is to maintain positive end-expiratory Ptp (e.g., 0-10 cmH₂O) to keep alveoli open, and limit end-inspiratory Ptp to avoid overdistension. More complex, requires specialized equipment and expertise.
-        *   **Stress Index**: Assesses lung recruitment/overdistension based on the shape of the pressure-time curve during constant flow inspiration in VCV mode.
-*   **Respiratory Rate (RR)**:
-    *   Adjust RR to maintain adequate minute ventilation and target pH (see permissive hypercapnia).
-    *   May need RR up to 35 breaths/min to achieve pH goals with low VT.
-*   **Permissive Hypercapnia**:
-    *   Allowing PaCO₂ to rise (and pH to fall) to facilitate low VT and Pplat goals.
-    *   Generally tolerated if pH > 7.15-7.20.
-    *   Contraindicated in patients with severe intracranial hypertension or specific cardiovascular instability.
-    *   Sodium bicarbonate infusion may be considered for severe acidosis (pH <7.15) if hypercapnia is unavoidable.
+### Comparison: SLED vs. IHD vs. CRRT
 
-### Adjunctive Therapies for ARDS
-*   **Prone Positioning**:
-    *   **Indication**: Recommended for patients with moderate to severe ARDS (PaO₂/FiO₂ ratio < 150 mmHg on FiO₂ ≥ 0.6 and PEEP ≥ 5 cmH₂O).
-    *   **Mechanism**: Improves V/Q matching by recruiting dorsal lung regions (which are more consolidated in supine position), facilitates secretion drainage, reduces stress/strain on dependent lung.
-    *   **Duration**: At least 12-16 hours per day.
-    *   **Implementation**: Requires a skilled team, careful attention to airway security, pressure point protection, and hemodynamic monitoring.
-    *   **Contraindications**: Spinal instability, open abdominal wounds, recent thoracic/abdominal surgery, severe hemodynamic instability, massively increased ICP.
-*   **Neuromuscular Blocking Agents (NMBAs)**:
-    *   **Indication**: Early, continuous infusion (up to 48 hours) of an NMBA (e.g., cisatracurium) may be considered for patients with severe ARDS (PaO₂/FiO₂ < 150 mmHg).
-    *   **Rationale**: May improve patient-ventilator synchrony, reduce VILI, decrease oxygen consumption, and potentially improve oxygenation and mortality (evidence from ACURASYS and ROSE trials has been mixed, with ROSE not showing benefit).
-    *   **Monitoring**: Ensure deep sedation (e.g., RASS -4 to -5) before and during NMBA use. Use TOF monitoring if available, but clinical assessment (no patient effort) is primary.
-    *   **Complications**: ICU-acquired weakness (prolonged use), risk of awareness if sedation inadequate.
-*   **Conservative Fluid Management**:
-    *   **Indication**: Once initial shock resuscitation is complete and hemodynamics are stable, a conservative fluid strategy ("de-resuscitation") is recommended.
-    *   **Rationale**: Positive fluid balance is associated with worse outcomes in ARDS. Aim for neutral or negative fluid balance to reduce pulmonary edema.
-    *   **Methods**: Restrict maintenance fluids, use diuretics, or continuous renal replacement therapy (CRRT) with net ultrafiltration if needed. Monitor for hypoperfusion.
-*   **Recruitment Maneuvers (RMs)**:
-    *   **Rationale**: Brief, sustained increases in airway pressure to open collapsed alveoli.
-    *   **Methods**: E.g., CPAP 30-40 cmH₂O for 30-40 seconds.
-    *   **Evidence**: Controversial. ART trial showed potential harm. May provide transient oxygenation improvement but no consistent mortality benefit. If used, monitor closely for hemodynamic compromise and barotrauma. Not routinely recommended.
-*   **Inhaled Pulmonary Vasodilators (e.g., Inhaled Nitric Oxide - iNO, Inhaled Epoprostenol - PGI₂)**:
-    *   **Rationale**: Selective pulmonary vasodilation in well-ventilated lung regions, improving V/Q matching and oxygenation.
-    *   **Indication**: May be used as a rescue therapy for severe refractory hypoxemia in ARDS.
-    *   **Evidence**: Improves oxygenation transiently but no proven mortality benefit or reduction in ventilator days. Expensive.
-*   **Extracorporeal Membrane Oxygenation (ECMO)**:
-    *   **Indication**: For patients with refractory severe ARDS (e.g., PaO₂/FiO₂ < 50-80 mmHg despite optimal LPV, proning, NMBAs, or uncompensated hypercapnia with pH <7.20).
-    *   **Type**: Veno-venous (VV) ECMO provides gas exchange (CO₂ removal, oxygenation).
-    *   **Evidence**: EOLIA trial showed a trend towards mortality benefit. Highly specialized, resource-intensive therapy available at ECMO centers. Early consultation and transfer are key if considered.
+| Feature                   | Conventional IHD                  | SLED/PIRRT                        | CRRT                                 |
+|---------------------------|-----------------------------------|-----------------------------------|--------------------------------------|
+| **Duration/Session**      | 3-5 hours                         | 6-12 hours (typically 8-10h)      | 24 hours (continuous)                |
+| **Frequency**             | 3-7x/week                         | Daily or 3-7x/week                | Daily (continuous)                   |
+| **Blood Flow Rate (Qb)**  | 250-500 mL/min                    | 100-250 mL/min (typically ~200)   | 100-250 mL/min (typically ~150-200)  |
+| **Dialysate Flow Rate (Qd)**| 500-800 mL/min                    | 100-300 mL/min (typically ~200-300)| 1-2 L/hour (16-35 mL/min)            |
+| **Solute Clearance**      | High (rapid removal per session)  | Moderate (slower but sustained)   | Moderate (slow, continuous)          |
+| **Hemodynamic Stability** | Poorer (rapid shifts)             | Better than IHD, similar to CRRT  | Best                                 |
+| **Fluid Removal**         | Rapid, can be large volumes       | Gradual, precise                  | Gradual, very precise                |
+| **Anticoagulation**       | Often systemic heparin            | Variable (heparin, citrate, none) | Often regional citrate or heparin    |
+| **Machine Type**          | Standard IHD machine              | Standard IHD machine (modified settings) | Specialized CRRT machine             |
+| **Staffing**              | Dialysis nurse                    | Dialysis nurse / ICU nurse (depends on model) | ICU nurse trained in CRRT            |
+| **Cost**                  | Lower per session (but frequent)  | Potentially lower than CRRT       | Higher (fluids, disposables, continuous staffing) |
 
-### Ventilator Settings and Weaning
-*   **Ventilation Mode**: Volume-assist/control (V-A/C) or Pressure-assist/control (P-A/C) are common initial modes. Pressure Support Ventilation (PSV) for spontaneous breathing trials. APRV or other modes may be used based on institutional preference and expertise.
-*   **FiO₂**: Titrate to maintain SpO₂ 92-96% (or PaO₂ 60-80 mmHg). Aim to reduce FiO₂ <0.6 as tolerated to minimize oxygen toxicity.
-*   **Weaning**: Once ARDS improves (rising PaO₂/FiO₂, improving compliance, resolution of underlying cause):
-    *   Gradually reduce PEEP and FiO₂ according to PEEP/FiO₂ tables or clinical assessment.
-    *   Perform daily Spontaneous Awakening Trials (SATs) and Spontaneous Breathing Trials (SBTs) when patient meets readiness criteria.
-    *   SBT typically on low PSV (e.g., 5-8 cmH₂O) with PEEP 5 cmH₂O, or via T-piece.
-    *   Extubate if SBT successful and airway reflexes/secretion clearance adequate.
+### SLED Prescription Parameters
+*   **Duration**: Typically 8-10 hours, but can range from 6 to 12 hours.
+*   **Blood Flow Rate (Qb)**: Usually 150-200 mL/min. Limited by vascular access and patient tolerance.
+*   **Dialysate Flow Rate (Qd)**: Usually 100-300 mL/min. Slower Qd reduces the rate of solute removal, contributing to better hemodynamic stability and reducing dialysis disequilibrium syndrome risk.
+*   **Dialyzer**: Standard high-flux or high-efficiency hemodialysis membranes.
+*   **Dialysate Composition**: Standard bicarbonate-based dialysate. Potassium, calcium, and bicarbonate concentrations can be adjusted based on patient's lab values.
+*   **Ultrafiltration (UF) Rate**: Set to achieve desired net fluid removal over the session. Calculated based on total fluid to be removed divided by treatment duration. Slower UF rates contribute to better hemodynamic tolerance.
+*   **Temperature**: Dialysate temperature can be set slightly cooler to aid hemodynamic stability.
 
-### Monitoring and Supportive Care
-*   **Hemodynamic Monitoring**: Arterial line common. CVC if vasopressors or CVP monitoring needed. PA catheter rarely indicated specifically for ARDS management.
-*   **Sedation and Analgesia**: Maintain light sedation (if possible) or deep sedation if needed for LPV/NMBAs. Prioritize analgesia. (See PADIS guidelines).
-*   **Nutrition**: Early enteral nutrition (within 24-48h) is recommended. Trophic feeds initially, advance as tolerated.
-*   **Prophylaxis**: For VTE (pharmacologic unless contraindicated) and stress ulcers (if risk factors present).
-*   **Preventing Complications**: VAP, barotrauma, delirium, ICU-acquired weakness.
+### Anticoagulation in SLED
+The need for anticoagulation depends on treatment duration, blood flow rates, patient's coagulation status, and institutional protocols.
+*   **No Anticoagulation**: May be possible for shorter SLED sessions (e.g., 6-8 hours) or in patients with coagulopathy/high bleeding risk. Regular saline flushes of the circuit may be used.
+*   **Systemic Heparin**: Common. Can be given as intermittent boluses or a continuous infusion with a target aPTT (often lower targets than for therapeutic anticoagulation).
+*   **Regional Citrate Anticoagulation (RCA)**: Less commonly used with SLED than with CRRT due to complexity and the intermittent nature of SLED, but feasible in some centers. Standard IHD machines may not have integrated citrate/calcium pumps, requiring external pumps.
+*   **Priming with Heparinized Saline**: Circuit may be primed with heparin, then rinsed, or a small heparin bolus given at initiation.
 
-Management of ARDS requires a meticulous, evidence-based approach, focusing on minimizing VILI while supporting oxygenation and treating the underlying cause.`,
-    keywordsForImage: 'lungs ventilator icu',
+### Advantages of SLED
+*   **Improved Hemodynamic Stability**: Compared to IHD, due to slower solute and fluid removal rates.
+*   **Efficient Solute Clearance**: Provides better urea clearance per week than CRRT at standard doses, and can achieve similar or better middle molecule clearance depending on duration and dialyzer.
+*   **Flexibility**: Treatment times can be adjusted. Allows for "dialysis-free" intervals.
+*   **Resource Utilization**: Can be performed with standard IHD machines, potentially reducing costs and reliance on specialized CRRT equipment and fluids if these are limited. May require less intensive nursing than 24-hour CRRT.
+*   **Reduced Anticoagulation Exposure**: May require less anticoagulation than CRRT or can be run without it for shorter durations.
+
+### Disadvantages and Challenges of SLED
+*   **Intermittent Nature**: Still an intermittent therapy, so fluctuations in fluid status, electrolytes, and uremic toxins occur between sessions, though less pronounced than with IHD.
+*   **Dialysis Disequilibrium Syndrome (DDS)**: Risk still exists if solute removal is too rapid, especially in patients with very high BUN or severe neurological impairment. Slower initiation parameters can mitigate this.
+*   **Staff Training**: Requires staff familiar with both IHD principles and ICU patient management.
+*   **Not Truly Continuous**: Unlike CRRT, it doesn't provide continuous 24-hour metabolic control, which might be crucial for the most unstable patients or those with severe acid-base disturbances requiring constant correction.
+*   **Nocturnal Treatments**: Often scheduled overnight to free up patients for daytime procedures/mobility, which can impact nursing workflow.
+
+### Monitoring During SLED
+*   **Hemodynamics**: Frequent BP, HR monitoring (continuous arterial line if available).
+*   **Fluid Balance**: Accurate intake/output. UF volume achieved.
+*   **Electrolytes and Acid-Base**: Pre- and post-SLED labs. Adjust dialysate as needed for subsequent treatments.
+*   **Circuit Pressures**: Arterial, venous, transmembrane pressures to monitor for access issues or filter clotting.
+*   **Patient Comfort and Neurological Status**: Monitor for signs of DDS (headache, N/V, restlessness, confusion, seizures).
+
+SLED offers a valuable intermediate RRT option in the ICU, balancing the hemodynamic stability of CRRT with the operational aspects and solute clearance capabilities closer to IHD. The choice of RRT modality should be individualized based on patient stability, clearance and fluid removal goals, and available resources.`,
+    keywordsForImage: 'sled dialysis kidney hybrid',
   },
   {
-    id: 'padis-guidelines',
-    slug: 'padis-guidelines',
-    title: 'PADIS Guidelines Summary',
-    summary: 'Overview of the Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption (PADIS) guidelines for optimizing patient comfort and outcomes in the ICU.',
-    categoryType: 'Policy',
-    keywordsForImage: 'patient comfort icu care',
+    id: 'iabp',
+    slug: 'iabp',
+    title: 'IABP (Intra-Aortic Balloon Pump)',
+    summary: 'Principles of IABP counterpulsation, indications, physiological effects, insertion, timing, weaning, monitoring, and complications in critical care.',
+    categoryType: 'Topic',
+    keywordsForImage: 'iabp heart balloon pump cardiac',
     content: `## General Overview
-The **Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption (PADIS)** guidelines, developed by the Society of Critical Care Medicine (SCCM), provide a comprehensive, evidence-based framework for managing these common and interconnected issues in adult critically ill patients. These guidelines emphasize a holistic and patient-centered approach to improve not only patient comfort but also short-term outcomes (e.g., duration of mechanical ventilation, ICU length of stay) and long-term outcomes (e.g., physical function, cognitive recovery, quality of life after ICU discharge).
+The Intra-Aortic Balloon Pump (IABP) is a mechanical circulatory support device that assists the failing heart by improving the balance between myocardial oxygen supply and demand. It consists of a polyurethane balloon mounted on a catheter, which is typically inserted percutaneously via the femoral artery and positioned in the descending thoracic aorta, just distal to the left subclavian artery and proximal to the renal arteries. The IABP operates on the principle of counterpulsation: the balloon inflates during diastole and deflates just before systole, synchronized with the patient's cardiac cycle.
 
-The core components of PADIS are:
-*   **Pain**: Routine assessment and proactive management of pain are crucial. Untreated pain can lead to agitation, delirium, sleep disruption, and negative physiological consequences (e.g., tachycardia, hypertension, increased oxygen consumption).
-*   **Agitation/Sedation**: While sedation is often necessary for safety and tolerance of ICU interventions (like mechanical ventilation), over-sedation is associated with prolonged ventilation, delirium, and immobility. The goal is light sedation, where patients are calm but easily arousable.
-*   **Delirium**: A common form of acute brain dysfunction in the ICU, characterized by fluctuating mental status, inattention, and disorganized thinking or altered level of consciousness. Delirium is associated with increased mortality, longer hospital stays, and long-term cognitive impairment.
-*   **Immobility**: Prolonged bed rest contributes to ICU-acquired weakness, muscle atrophy, joint contractures, VTE, and pressure injuries. Early mobilization and rehabilitation are key.
-*   **Sleep Disruption**: Sleep is severely fragmented and disrupted in ICU patients due to noise, light, frequent interventions, pain, and medications. Poor sleep can worsen delirium, impair immune function, and delay recovery.
+**Key Goals of IABP Therapy**:
+1.  **Increase Myocardial Oxygen Supply**: Diastolic inflation displaces blood, augmenting aortic diastolic pressure and thus improving coronary artery perfusion pressure (since coronary arteries primarily fill during diastole).
+2.  **Decrease Myocardial Oxygen Demand**: Systolic deflation rapidly reduces aortic end-diastolic pressure (afterload), decreasing the resistance against which the left ventricle must eject blood. This lessens left ventricular workload.
 
-The PADIS guidelines promote an integrated approach, often referred to as the **ICU Liberation Bundle (A-F Bundle)**, to systematically address these issues:
-*   **A**ssess, Prevent, and Manage Pain
-*   **B**oth Spontaneous Awakening Trials (SATs) and Spontaneous Breathing Trials (SBTs)
-*   **C**hoice of Analgesia and Sedation
-*   **D**elirium: Assess, Prevent, and Manage
-*   **E**arly Mobility and Exercise
-*   **F**amily Engagement and Empowerment
-
-Implementation of these bundles has been shown to improve patient outcomes.
+Common indications for IABP include cardiogenic shock (e.g., secondary to acute myocardial infarction), refractory unstable angina, mechanical complications of MI (e.g., acute mitral regurgitation, ventricular septal defect) as a bridge to surgery, support during high-risk percutaneous coronary intervention (PCI) or coronary artery bypass grafting (CABG), and as a bridge to more definitive therapies like ventricular assist devices (VADs) or heart transplantation. While its routine use in some conditions has been questioned by recent trials (e.g., IABP-SHOCK II trial for AMI complicated by cardiogenic shock), it remains a valuable tool in specific clinical scenarios.
 
 ## In-Depth ICU Considerations
 
-### A: Assess, Prevent, and Manage Pain
-*   **Routine Pain Assessment**:
-    *   **Self-Report (if able)**: Use Numeric Rating Scale (NRS) or Visual Analog Scale (VAS). Consider this the gold standard.
-    *   **Behavioral Scales (for non-verbal patients)**: Critical-Care Pain Observation Tool (CPOT) or Behavioral Pain Scale (BPS). Assess facial expression, body movements, muscle tension, compliance with ventilator (or vocalization if extubated).
-    *   **Frequency**: At rest and before/during/after procedures. At least q2-4h and PRN.
-*   **Pain Pathophysiology in ICU**: Nociceptive pain (somatic from incisions, trauma; visceral from organ distension/inflammation) and neuropathic pain (nerve injury).
-*   **Prevention Strategies**: Optimize positioning, minimize unnecessary procedures, preemptive analgesia for procedures.
-*   **Pharmacologic Management**:
-    *   **Analgesia-First Approach**: Treat pain before sedating.
-    *   **IV Opioids (Fentanyl, Hydromorphone, Morphine)**: Mainstay for moderate-severe pain.
-        *   *Fentanyl*: Rapid onset, short duration (good for procedures, boluses). Lipophilic, accumulates with prolonged infusion.
-        *   *Hydromorphone*: Potent, faster onset than morphine. Preferred over morphine in renal impairment (no active metabolites).
-        *   *Morphine*: Longer duration. Active metabolites accumulate in renal failure (morphine-6-glucuronide - analgesic; morphine-3-glucuronide - neurotoxic). Histamine release.
-    *   **Analgesic Sedation ("Analgosedation")**: Use opioids or other analgesics (e.g., ketamine, dexmedetomidine) that also have sedative properties to achieve light sedation and pain control, minimizing need for dedicated sedatives like propofol or benzodiazepines.
-    *   **Non-Opioid Multimodal Analgesia**:
-        *   *Acetaminophen (IV/PO/PR)*: Baseline analgesic, opioid-sparing.
-        *   *NSAIDs (e.g., Ketorolac, Ibuprofen)*: Use with caution in ICU due to risks of GI bleeding, AKI, platelet dysfunction. Short-term use for specific indications.
-        *   *Neuropathic Pain Agents*: Gabapentin or Pregabalin (consider if neuropathic pain suspected, start low, titrate, monitor sedation, adjust for renal function). Carbamazepine for trigeminal neuralgia.
-        *   *Ketamine (low-dose IV infusion, e.g., 0.1-0.5 mg/kg/hr or 5-20 mcg/kg/min)*: NMDA antagonist, opioid-sparing, good for opioid-tolerant patients or severe pain. May reduce opioid-induced hyperalgesia.
-        *   *Lidocaine IV infusion*: For refractory pain, especially neuropathic or post-operative. Requires cardiac monitoring, serum level monitoring if prolonged.
-    *   **Regional Anesthesia**: Epidural analgesia, peripheral nerve blocks. Can significantly reduce systemic opioid needs.
-*   **Non-Pharmacologic Interventions**: Repositioning, massage, cold/heat therapy, music therapy, relaxation techniques, distraction.
+### Physiological Effects of IABP Counterpulsation
+*   **Diastolic Inflation (Augmentation)**:
+    *   Occurs at the onset of diastole (coinciding with the dicrotic notch on the arterial pressure waveform).
+    *   Displaces blood proximally towards the aortic root and distally towards the systemic circulation.
+    *   **Increases coronary perfusion pressure** and flow.
+    *   Increases systemic diastolic pressure, potentially improving perfusion to other vital organs.
+*   **Systolic Deflation**:
+    *   Occurs just prior to the onset of ventricular ejection (before the upstroke of the arterial pressure waveform).
+    *   Creates a "potential space" in the aorta, reducing impedance to left ventricular ejection.
+    *   **Decreases left ventricular afterload**.
+    *   Decreases left ventricular end-diastolic pressure (LVEDP) and volume.
+    *   Decreases myocardial oxygen consumption.
+    *   May slightly increase forward stroke volume and cardiac output (typically by ~0.5 L/min).
 
-### B: Both Spontaneous Awakening Trials (SATs) and Spontaneous Breathing Trials (SBTs)
-*   **Rationale**: Daily interruption of continuous sedative infusions (SAT) and assessment of readiness for extubation (SBT) can reduce duration of mechanical ventilation, ICU/hospital length of stay, and potentially mortality.
-*   **SAT Protocol**:
-    *   *Safety Screen*: Screen daily for eligibility (e.g., no active seizures, no alcohol withdrawal, no agitation, no NMBAs, stable ICP, no active myocardial ischemia).
-    *   *Procedure*: Hold continuous sedative infusions. Monitor for signs of distress/failure (agitation, anxiety, pain, respiratory distress, hemodynamic instability).
-    *   *Restart Criteria*: If failure criteria met, restart sedatives at ~50% of previous dose and titrate.
-    *   *Goal*: Patient remains awake and calm (RASS -1 to +1) or passes through to SBT.
-*   **SBT Protocol**:
-    *   *Safety Screen (after successful SAT or if patient is already alert and calm)*: Adequate oxygenation (e.g., PaO₂/FiO₂ >150-200, PEEP ≤5-8, FiO₂ ≤0.4-0.5), hemodynamic stability, no active ischemia, ability to initiate inspiratory effort.
-    *   *Procedure*: Minimal ventilator support (e.g., PSV 5-8 cmH₂O with PEEP 5 cmH₂O, or CPAP 5 cmH₂O, or T-piece) for 30-120 minutes.
-    *   *Failure Criteria*: Tachypnea (RR >35), hypoxemia (SpO₂ <90%), tachycardia (HR >140 or >20% increase), bradycardia, hemodynamic instability, agitation, anxiety, diaphoresis, altered mental status.
-    *   *Outcome*: If successful, consider extubation.
-*   **Coordination**: Perform SAT then SBT. If SAT fails, patient not ready for SBT.
+### IABP Catheter Insertion and Placement
+*   **Access**: Typically percutaneous via femoral artery using Seldinger technique. Sheathless insertion is possible.
+*   **Balloon Sizing**: Based on patient height, to ensure balloon length does not occlude major aortic branches. Common sizes are 30, 40, 50 cc.
+*   **Positioning**: Tip of the IAB catheter should be approximately 1-2 cm distal to the origin of the left subclavian artery and proximal to the renal arteries.
+    *   **Confirmation**: Fluoroscopy during insertion is ideal. Post-insertion chest X-ray (tip at level of 2nd-3rd intercostal space or just below aortic knob). Incorrect positioning can lead to compromised perfusion to upper extremities (if too high) or renal/mesenteric arteries (if too low).
+*   **Drive Gas**: Helium is used due to its low density, allowing rapid inflation/deflation.
 
-### C: Choice of Analgesia and Sedation
-*   **Target Light Sedation**: RASS -2 to 0 or SAS 3-4. Avoid deep sedation (RASS -4 to -5) unless clinically indicated (e.g., severe ARDS with NMBAs, status epilepticus, elevated ICP).
-*   **Sedation Strategies**:
-    *   **Non-Benzodiazepines Preferred**: Propofol or Dexmedetomidine are generally preferred over benzodiazepines (midazolam, lorazepam) for sedation in mechanically ventilated adult ICU patients due to association of benzodiazepines with longer ventilation duration, increased ICU stay, and higher incidence of delirium.
-    *   **Propofol**: Rapid onset/offset. Good for frequent neuro assessments or when deep sedation is needed initially. Monitor for PRIS (see Pharmacology section).
-    *   **Dexmedetomidine**: Provides "cooperative sedation" (patient arousable and interactive), minimal respiratory depression. May reduce delirium. Bradycardia/hypotension are potential side effects, especially with loading dose or higher rates.
-    *   **Benzodiazepines**: Reserve for specific indications: alcohol/benzo withdrawal, seizures, procedural sedation if others contraindicated, or if deep sedation needed and propofol/dexmedetomidine are not suitable/sufficient. Lorazepam infusions associated with propylene glycol toxicity.
-    *   **Ketamine**: Can be used as a primary sedative or adjunct, especially if sympathomimetic effects are desired or for analgesia-based sedation strategies.
-*   **Analgesia-Based Sedation**: Use analgesic agents (opioids, ketamine, dexmedetomidine) as primary means of achieving light sedation goals, adding specific hypnotics only if needed.
+### IABP Console and Timing
+The IABP console controls balloon inflation/deflation synchronized with the cardiac cycle.
+*   **Triggering Modes**:
+    *   **ECG Trigger**: Most common. Uses R-wave to identify end-systole/start of deflation. T-wave (mid-point) often used to identify onset of diastole/start of inflation. Reliable ECG signal is crucial.
+    *   **Arterial Pressure Waveform Trigger**: Used if ECG signal is poor or during arrhythmias. Identifies dicrotic notch for inflation and systolic upstroke for deflation.
+    *   **Pacer Trigger**: For paced rhythms (atrial, ventricular, A-V sequential).
+    *   **Internal Trigger (Asynchronous)**: Fixed rate (e.g., 80 bpm), used during cardiac arrest/CPR or if other triggers fail. Not ideal for counterpulsation efficacy.
+*   **Timing Adjustments (Crucial for Efficacy and Safety)**:
+    *   **Inflation**: Should occur at the dicrotic notch (onset of diastole).
+        *   *Early Inflation (before dicrotic notch)*: Premature aortic valve closure, increased LV work, potential for LV overload.
+        *   *Late Inflation (after dicrotic notch)*: Suboptimal diastolic augmentation.
+    *   **Deflation**: Should occur just prior to aortic valve opening (end of isovolumetric contraction / beginning of systolic upstroke).
+        *   *Early Deflation (too long before systole)*: Suboptimal afterload reduction, potential for retrograde coronary/carotid flow.
+        *   *Late Deflation (during systole)*: Balloon obstructs LV ejection, increased afterload, increased myocardial oxygen demand. Potentially dangerous.
+    *   Visualized on arterial pressure waveform: Augmented diastolic pressure should be higher than patient's systolic pressure. Balloon deflation should cause a drop in aortic end-diastolic pressure (assisted Aortic EDP) below unassisted Aortic EDP, and assisted systole should be lower than unassisted systole.
+*   **Augmentation Ratio**:
+    *   1:1 (every beat is assisted): Maximum support.
+    *   1:2 (every second beat is assisted).
+    *   1:3 (every third beat is assisted).
+    *   Used for weaning.
 
-### D: Delirium: Assess, Prevent, and Manage
-*   **Routine Delirium Assessment**: Use validated ICU tools: Confusion Assessment Method for the ICU (CAM-ICU) or Intensive Care Delirium Screening Checklist (ICDSC). Assess at least once per shift and PRN if mental status changes.
-*   **Delirium Subtypes**: Hyperactive (agitated, restless), Hypoactive (lethargic, withdrawn - often missed), Mixed. Hypoactive delirium is more common and associated with worse outcomes.
-*   **Risk Factors**: Pre-existing dementia, hypertension, alcoholism, severe illness, coma, benzodiazepine use, immobility, sensory deprivation/overload, sleep disruption.
-*   **Prevention Strategies (Non-Pharmacologic - Multicomponent)**:
-    *   Reorientation (verbal, clocks, calendars).
-    *   Cognitive stimulation.
-    *   Maintain sleep-wake cycles (promote daytime activity, minimize nighttime disruptions, reduce noise/light at night).
-    *   Early mobilization.
-    *   Correct sensory deficits (hearing aids, glasses).
-    *   Minimize psychoactive medications.
-    *   Adequate pain control.
-    *   Family presence and participation.
-*   **Pharmacologic Management**:
-    *   **No routine pharmacologic prophylaxis recommended.**
-    *   **Treatment is primarily for agitation/distress that poses safety risk or impedes care.**
-        *   *Haloperidol*: Small doses IV/PO. Monitor QTc interval (risk of Torsades de Pointes). Avoid in Parkinson's or Lewy Body Dementia.
-        *   *Atypical Antipsychotics (e.g., Quetiapine, Olanzapine, Risperidone)*: May have fewer extrapyramidal side effects than haloperidol. Use with caution.
-        *   *Dexmedetomidine*: May be useful for managing agitation in delirious patients who require ongoing sedation, or to facilitate weaning from other sedatives.
-    *   Treat underlying causes of delirium (infection, hypoxia, electrolyte imbalance, drug withdrawal, etc.).
+### Weaning from IABP
+*   **Criteria**: Hemodynamic stability (e.g., MAP >65-70 mmHg, CI >2.0-2.2 L/min/m², PAWP <18 mmHg) on minimal or no vasopressors/inotropes. Resolution or improvement of underlying condition.
+*   **Method**:
+    1.  Gradually decrease augmentation ratio from 1:1 to 1:2, then 1:3, over several hours.
+    2.  Alternatively, or in combination, gradually decrease balloon volume (less common with modern consoles that automatically adjust volume).
+    *   Monitor closely for hemodynamic deterioration during weaning.
+*   **Removal**: Once stable on minimal support (e.g., 1:3) for a period, the IABP can be removed. Requires careful technique to prevent bleeding/vascular complications. Console may have a "standby" mode for very brief periods, but prolonged non-cycling risks thrombus formation on balloon.
 
-### E: Early Mobility and Exercise
-*   **Rationale**: Counteracts ICU-acquired weakness, improves physical function, reduces delirium, shortens ventilation duration and ICU/hospital stay.
-*   **Safety Screening**: Ensure patient is hemodynamically stable, has secure airway, adequate oxygenation, and no unstable fractures or other contraindications.
-*   **Progressive Mobilization**: From passive range of motion (ROM) -> active ROM -> sitting at edge of bed -> dangling legs -> standing -> transferring to chair -> ambulation (even if ventilated, with appropriate team and equipment).
-*   **Multidisciplinary Team**: PT, OT, RT, RNs, physicians.
-*   **Barriers**: Sedation, staffing, equipment, safety concerns, traditional ICU culture. Protocols and dedicated mobility teams can help overcome these.
+### Monitoring the Patient with IABP
+*   **Hemodynamics**: Continuous arterial pressure (ensure waveform quality), CVP, PA pressures/PAWP (if PAC in situ), CO/CI. Urine output.
+*   **Limb Perfusion**: Distal to insertion site. Check pulses (Doppler if needed), color, temperature, sensation, capillary refill q1-2h. Compare with contralateral limb. High risk of limb ischemia.
+*   **Anticoagulation**: Systemic anticoagulation with unfractionated heparin (UFH) is typically used to prevent thrombus formation on the balloon and catheter (target aPTT or ACT per institutional protocol, e.g., aPTT 50-70s).
+*   **Catheter Position**: Daily CXR to confirm.
+*   **Insertion Site**: Monitor for bleeding, hematoma, infection.
+*   **Platelet Count**: Monitor for IABP-induced thrombocytopenia (mechanical destruction).
+*   **Signs of Balloon Malfunction**: Gas leak alarms, blood in shuttle tubing (indicates balloon rupture - emergency, stop pumping, prepare for removal).
+*   **Urine Output**: Decreased UOP could indicate balloon migration occluding renal arteries.
 
-### F: Family Engagement and Empowerment
-*   **Rationale**: Family presence and involvement can reduce patient anxiety/delirium, improve family satisfaction, and facilitate shared decision-making.
-*   **Strategies**:
-    *   Liberal visiting policies (where feasible and safe).
-    *   Regular communication updates with family (physician and nursing).
-    *   Involve family in care (e.g., reorientation, comfort measures, simple ROM exercises if appropriate, participating in rounds).
-    *   Provide education about ICU environment, patient's condition, and PADIS management.
-    *   Support family needs (psychological, spiritual, practical).
-    *   ICU diaries maintained by staff and family can help patients understand their ICU stay later.
+### Complications of IABP Therapy
+*   **Vascular Complications (Most Common)**:
+    *   Limb ischemia (compartment syndrome, acute arterial occlusion).
+    *   Bleeding or hematoma at insertion site.
+    *   Femoral artery pseudoaneurysm or AV fistula.
+    *   Aortic dissection (rare).
+    *   Peripheral embolization (thrombus, cholesterol).
+*   **Balloon-Related**:
+    *   Balloon rupture (gas embolism - rare with modern systems that detect leaks).
+    *   Balloon entrapment.
+    *   Incorrect positioning leading to occlusion of aortic branches.
+*   **Hematologic**:
+    *   Thrombocytopenia.
+    *   Hemolysis.
+*   **Infection**: Catheter-related bloodstream infection (CRBSI), insertion site infection.
+*   **Timing Errors**: Can worsen hemodynamics and myocardial ischemia.
+*   **Immobility-related complications**: DVT, pressure injuries.
 
-Implementation of the PADIS guidelines requires a culture shift towards more patient-centered, proactive, and integrated care in the ICU. Continuous quality improvement initiatives are essential for successful adoption.`,
-    keywordsForImage: 'patient comfort icu care',
+### Contraindications to IABP
+*   **Absolute**:
+    *   Severe aortic regurgitation (diastolic inflation worsens regurgitation).
+    *   Aortic dissection.
+*   **Relative**:
+    *   Severe peripheral artery disease (precludes safe insertion or increases risk of limb ischemia).
+    *   Abdominal aortic aneurysm.
+    *   Uncontrolled sepsis or bacteremia (risk of device infection).
+    *   Severe coagulopathy or bleeding diathesis.
+
+Effective IABP management requires meticulous attention to timing, anticoagulation, and monitoring for complications to maximize benefit and minimize harm. It's often a bridge to recovery or more definitive therapies.`,
+    keywordsForImage: 'iabp heart balloon pump cardiac',
   },
   {
-    id: 'ttm-post-cardiac-arrest',
-    slug: 'ttm-post-cardiac-arrest',
-    title: 'Targeted Temperature Management (TTM) Post-Cardiac Arrest',
-    summary: 'Protocols for implementing targeted temperature management (therapeutic hypothermia/normothermia) in comatose adult patients following out-of-hospital or in-hospital cardiac arrest.',
-    categoryType: 'Policy',
-    keywordsForImage: 'hypothermia cardiac arrest brain protection',
+    id: 'impella',
+    slug: 'impella',
+    title: 'Impella Device Management',
+    summary: 'Overview of Impella percutaneous ventricular assist devices, mechanism, indications, hemodynamic effects, console management, anticoagulation, complications, and weaning.',
+    categoryType: 'Topic',
+    keywordsForImage: 'impella pvad heart assist',
     content: `## General Overview
-Targeted Temperature Management (TTM), formerly often referred to as therapeutic hypothermia, is a critical intervention implemented for comatose adult patients who achieve Return of Spontaneous Circulation (ROSC) after an in-hospital (IHCA) or out-of-hospital (OHCA) cardiac arrest. The primary goal of TTM is to improve neurological outcomes and potentially survival by mitigating secondary brain injury that occurs following global cerebral ischemia and reperfusion. Ischemic-reperfusion injury involves a complex cascade of detrimental processes, including excitotoxicity, inflammation, free radical production, apoptosis (programmed cell death), and cerebral edema. Lowering core body temperature can attenuate these harmful pathways, reduce cerebral metabolic rate for oxygen (CMRO₂), stabilize cell membranes, and decrease intracranial pressure (ICP).
+The Impella® device is a family of percutaneous microaxial flow pumps that provide temporary mechanical circulatory support (MCS) by directly unloading the ventricle and expelling blood into the great artery. These devices are inserted percutaneously (typically via the femoral artery for left ventricular support, or femoral vein for right ventricular support) and advanced across a heart valve into the ventricle. An internal motor drives an Archimedes screw (rotor), which pulls blood from an inlet area in the ventricle and ejects it through an outlet area in the aorta (for LV support) or pulmonary artery (for RV support).
 
-Current international guidelines (e.g., from the American Heart Association - AHA, European Resuscitation Council - ERC, and International Liaison Committee on Resuscitation - ILCOR) recommend active temperature control for all adult patients who remain comatose (i.e., do not follow commands) after ROSC, regardless of the initial arrest rhythm (shockable or non-shockable) or location of arrest (OHCA or IHCA). The key recommendation is to actively prevent fever (temperature >37.7°C) for at least 72 hours post-ROSC. Some guidelines also suggest selecting and maintaining a constant target temperature between 32°C and 36°C for at least 24 hours. The TTM2 trial (2021) compared a target of 33°C versus strict normothermia (≤37.5°C) with early treatment of fever (≥37.8°C) and found no significant difference in mortality or 6-month neurological outcome, leading to a shift in emphasis towards aggressive fever prevention and potentially a slightly wider acceptable temperature range for hypothermia if chosen. However, many centers still opt for targeted hypothermia (e.g., 33-36°C) for the initial 24 hours followed by proactive fever prevention.
+**Key Impella Devices and General Indications**:
+*   **Left Ventricular (LV) Support Devices**:
+    *   *Impella 2.5®*: Provides up to 2.5 L/min of forward flow. Used for high-risk PCI.
+    *   *Impella CP® (Cardiac Power)*: Provides up to 3.5-4.3 L/min of forward flow. Used for high-risk PCI, AMI complicated by cardiogenic shock (AMICS).
+    *   *Impella 5.0® / Impella LD® (Left Direct)*: Provides up to 5.0 L/min. Requires surgical cutdown for insertion (axillary or femoral artery). Used for more severe cardiogenic shock, postcardiotomy shock, bridge to recovery/decision.
+    *   *Impella 5.5® with SmartAssist®*: Provides up to 5.5 L/min. Inserted via axillary artery cutdown. Longer-term support (e.g., weeks).
+*   **Right Ventricular (RV) Support Device**:
+    *   *Impella RP® (Right Percutaneous)*: Provides up to 4 L/min of flow. Drains blood from IVC/RA and delivers to PA. Used for acute RV failure (e.g., post-LVAD implant, post-cardiotomy, AMI with RV infarct, massive PE).
 
-The TTM process involves three phases:
-1.  **Induction**: Rapidly cooling the patient to the target temperature.
-2.  **Maintenance**: Keeping the patient at the target temperature for a defined period (typically at least 24 hours).
-3.  **Rewarming**: Slowly and controllably rewarming the patient back to normothermia (typically 36.5-37.5°C).
-
-Successful implementation of TTM requires a coordinated multidisciplinary approach, specialized equipment, and meticulous ICU care to manage potential side effects and complications.
+The primary goals of Impella therapy are to unload the failing ventricle (reducing wall stress, end-diastolic pressure/volume, and myocardial oxygen demand), improve systemic perfusion by increasing cardiac output and mean arterial pressure, and allow time for myocardial recovery or as a bridge to other therapies.
 
 ## In-Depth ICU Considerations
 
-### Patient Selection and Initiation
-*   **Inclusion Criteria**:
-    *   Adult patients (typically ≥18 years).
-    *   Comatose (not following commands, GCS Motor Score <6) after ROSC from cardiac arrest (any initial rhythm, OHCA or IHCA).
-    *   Ability to initiate cooling relatively soon after ROSC (e.g., within 6 hours, though earlier is better).
-*   **Exclusion Criteria (Relative/Absolute)**:
-    *   Awake and following commands.
-    *   Known terminal illness with DNR status prior to arrest.
-    *   Pregnancy (relative, discuss risks/benefits).
-    *   Severe cardiogenic shock refractory to initial interventions (may worsen with cooling).
-    *   Recent major surgery with high bleeding risk (cooling can impair coagulation).
-    *   Active severe bleeding.
-    *   Severe sepsis with refractory shock (though sepsis can cause arrest).
-    *   Known coagulopathy or platelet count <50,000/μL (relative).
-    *   Initial core temperature <30-32°C (already significantly hypothermic).
-*   **Initiation**: Should begin as soon as possible after ROSC and decision to proceed.
+### Mechanism of Action and Hemodynamic Effects
+*   **Direct Ventricular Unloading**: The Impella actively pumps blood from the ventricle to the aorta (LV support) or pulmonary artery (RV support), reducing ventricular preload and afterload (for the supported ventricle).
+*   **LV Support (Impella CP, 5.0, 5.5)**:
+    *   ↓ Left Ventricular End-Diastolic Pressure (LVEDP) and Volume (LVEDV).
+    *   ↓ Left Ventricular Stroke Work (LVSW) and Myocardial Oxygen Consumption (MVO₂).
+    *   ↑ Mean Arterial Pressure (MAP).
+    *   ↑ Cardiac Output (CO) / Cardiac Power Output (CPO = MAP x CO / 451).
+    *   May improve coronary perfusion by reducing LVEDP and increasing diastolic pressure (less direct augmentation than IABP).
+    *   Can reduce pulmonary capillary wedge pressure (PCWP) and pulmonary congestion.
+*   **RV Support (Impella RP)**:
+    *   ↓ Right Atrial Pressure (RAP) / Central Venous Pressure (CVP).
+    *   ↓ Right Ventricular End-Diastolic Pressure (RVEDP) and Volume (RVEDV).
+    *   ↑ Pulmonary Artery (PA) flow and pressure.
+    *   Can improve LV filling and subsequently LV output by reducing RV dilation and interventricular septal bowing.
 
-### Temperature Targets and Duration
-*   **Target Temperature Range**: Actively maintain a constant temperature between **32°C and 36°C** for at least **24 hours** if therapeutic hypothermia is chosen. (AHA/ERC 2020/2021 recommendations).
-*   **Fever Prevention**: All comatose post-ROSC patients should have active fever prevention (target core temperature ≤37.5°C to 37.7°C) for at least **72 hours** after ROSC, or for the duration of coma if TTM with hypothermia was used for the first 24 hours.
-*   **Choice of Specific Target (if hypothermia pursued)**: While TTM2 trial data suggests 33°C may not be superior to strict normothermia with active fever prevention, some centers still use 33°C, particularly for patients with initial shockable rhythms or evidence of more severe anoxic injury. Others may target 36°C as a less aggressive hypothermic goal that still ensures avoidance of fever. The key is consistent temperature control.
+### Impella Console and Catheter Management
+*   **Automated Impella Controller (AIC)**:
+    *   Displays flow rate (Performance level P0-P9), motor speed (RPM), placement signals (aortic and ventricular pressures via integrated sensors or fluid-filled lumens), and alarms.
+    *   SmartAssist technology (on newer devices like CP with SmartAssist, 5.5) can provide real-time guidance on positioning, flow optimization, and weaning.
+*   **Purge System**: A continuous dextrose-based solution (typically D5W with heparin) is infused through the motor housing to prevent blood entry and lubricate the bearings. Critical for device function.
+    *   Monitor purge pressure and flow rate. Alarms for low purge flow or high pressure indicate potential issues (kinks, clots).
+*   **Placement and Positioning**:
+    *   Confirmed by fluoroscopy, echocardiography (TTE/TEE), and console placement signals.
+    *   *LV Devices*: Inlet in LV, outlet in aorta, across aortic valve. Correct positioning is vital for optimal flow and to avoid complications (e.g., ventricular suction, damage to aortic valve, migration).
+    *   *Impella RP*: Inlet in IVC/RA, outlet in PA, across tricuspid and pulmonic valves.
+    *   Repositioning may be needed if alarms or poor flow occur.
+*   **Flow (Performance Level - P-level)**:
+    *   Adjusted by changing motor RPM. Higher P-level = higher RPM = higher flow.
+    *   Start at a lower P-level and gradually increase to target flow while monitoring hemodynamics and console parameters.
+    *   Goal: Achieve adequate end-organ perfusion (MAP >65, good UOP, clearing lactate) and ventricular unloading (↓PCWP/CVP, improved echo parameters).
 
-### Cooling Methods
-*   **Surface Cooling**:
-    *   Ice packs (groin, axillae, neck).
-    *   Cooling blankets/pads (circulating water or air).
-    *   Adhesive surface cooling pads (e.g., Arctic Sun). These are often preferred for precise temperature control.
-*   **Internal/Invasive Cooling**:
-    *   Infusion of cold IV fluids (e.g., 0.9% NaCl or LR at 4°C, typically 30 mL/kg, max 2-3L, given rapidly during induction phase). Use with caution due to potential fluid overload.
-    *   Endovascular cooling catheters (placed in large central veins like IVC/SVC, circulate cold saline within a closed-loop balloon system). Highly efficient for induction and maintenance.
-*   **Choice of Method**: Depends on availability, institutional protocol, and speed of cooling desired. Advanced surface cooling devices or endovascular catheters offer more precise temperature control.
+### Anticoagulation
+*   **Systemic Anticoagulation**: Essential to prevent thrombus formation on the catheter and within the pump, as well as patient-related VTE.
+    *   **Unfractionated Heparin (UFH)** infusion is standard.
+    *   **Target**: aPTT 60-80 seconds or ACT 160-180 seconds (institutional protocols vary, ELSO anticoagulation guidelines may be referenced for general MCS principles).
+    *   Heparin is also usually added to the purge solution.
+*   **Monitoring**: aPTT/ACT, platelet count (risk of HIT, consumption), fibrinogen, signs of bleeding.
 
-### Monitoring During TTM
-*   **Core Temperature**: Essential.
-    *   **Sites**: Esophageal (distal third, best non-invasive proxy for brain/core temp), bladder (if adequate urine flow), pulmonary artery catheter (if in situ).
-    *   Avoid axillary, oral, rectal (lags behind core changes), tympanic (unreliable in ICU).
-    *   Continuous monitoring is ideal.
-*   **Hemodynamics**: Arterial line for continuous BP, CVC for CVP/ScvO₂ (if indicated), frequent assessment of perfusion.
-*   **Neurological Status**: GCS, pupillary responses, seizure monitoring (clinical and/or cEEG).
-*   **ECG**: Bradycardia is common and often well-tolerated. Monitor for arrhythmias, QTc prolongation (can occur with hypothermia).
-*   **Labs**:
-    *   Electrolytes: Hypokalemia (K⁺ shifts intracellularly during cooling), hypomagnesemia, hypophosphatemia are common. Hyperkalemia can occur during rewarming. Replete aggressively during cooling.
-    *   Glucose: Hyperglycemia (due to insulin resistance) or hypoglycemia. Frequent monitoring, may require insulin infusion.
-    *   ABGs: Monitor acid-base status, oxygenation. (Note: Blood gas analyzers usually report values corrected to 37°C; pH increases and PCO₂/PO₂ decrease with lower temperatures. Interpret uncorrected "alpha-stat" values for acid-base management, or be aware of temperature correction if applied).
-    *   Coagulation: PT/INR, aPTT, fibrinogen, platelets. Hypothermia can impair platelet function and enzyme activity in coagulation cascade.
-    *   Amylase/Lipase: Risk of pancreatitis.
-    *   CK: For rhabdomyolysis if prolonged immobility or seizures.
-*   **Shivering Management**:
-    *   Shivering increases metabolic rate, oxygen consumption, and heat production, counteracting cooling efforts and worsening brain injury.
-    *   **Assess with a validated scale** (e.g., Bedside Shivering Assessment Scale - BSAS).
-    *   **Treatment (Stepwise Approach)**:
-        1.  *Skin Counterwarming*: Warm air blanket (Bair Hugger) over non-cooling areas, warm hands/feet.
-        2.  *Non-pharmacologic*: Ensure patient is covered.
-        3.  *Pharmacologic*:
-            *   Acetaminophen, Buspirone.
-            *   Magnesium sulfate IV (can reduce shivering threshold).
-            *   Dexmedetomidine (can reduce shivering, provides sedation).
-            *   Opioids (e.g., Meperidine - effective but has active metabolite, use with caution; Fentanyl).
-            *   Propofol if deeper sedation needed.
-            *   **Neuromuscular Blocking Agents (NMBAs)**: Last resort if shivering persists despite other measures and interferes with TTM. Requires deep sedation and mechanical ventilation.
+### Weaning from Impella Support
+*   **Criteria**:
+    *   Evidence of myocardial recovery (improved native ventricular function on echo, e.g., EF, VTI).
+    *   Hemodynamic stability on minimal Impella support and low/no vasopressors/inotropes.
+    *   Resolution/improvement of underlying cause.
+    *   Adequate end-organ perfusion.
+*   **Method**:
+    *   Gradually reduce P-level (flow) under close hemodynamic and echocardiographic monitoring.
+    *   Assess if native heart can maintain adequate CO and MAP at lower support levels.
+    *   "Turn-down study": Reduce to minimal flow (e.g., P2) for a period.
+    *   If stable, device can be explanted.
+*   **Explantation**: Usually performed in cath lab or OR. Careful attention to hemostasis at access site.
 
-### Rewarming Phase
-*   **Timing**: Typically start after at least 24 hours of maintenance at target temperature.
-*   **Rate**: Slow and controlled, **0.25°C to 0.5°C per hour**. Rapid rewarming can cause hypotension (vasodilation), hyperkalemia (K⁺ shifts extracellularly), cerebral edema, and rebound hyperthermia.
-*   **Monitoring**: Closely monitor hemodynamics, electrolytes (especially K⁺), glucose, and neurological status.
-*   **Fever Prevention Post-Rewarming**: Continue aggressive temperature control to maintain normothermia (≤37.5-37.7°C) for at least another 48 hours (total of at least 72 hours post-ROSC including the initial 24h TTM period). Fever is common post-ROSC and associated with worse outcomes.
+### Monitoring the Patient on Impella
+*   **Hemodynamics**: Continuous arterial pressure, CVP (for RV function/RP assessment), PA catheter (PCWP, CO - for LV devices to assess native function and unloading).
+*   **Console Parameters**: Flow, P-level, RPM, placement signals, purge system status, alarms.
+*   **Access Site**: Monitor for bleeding, hematoma, infection, limb ischemia (for femoral access). Frequent neurovascular checks of the cannulated limb.
+*   **Echocardiography**: Serial echos to assess:
+    *   Device position.
+    *   Ventricular unloading (ventricular size, septal position).
+    *   Native ventricular function and recovery.
+    *   Valvular function (e.g., aortic regurgitation).
+    *   Pericardial effusion.
+*   **Laboratory**:
+    *   Hemolysis labs (LDH, haptoglobin, plasma free hemoglobin, bilirubin) - shear stress can cause RBC damage.
+    *   CBC (anemia, thrombocytopenia).
+    *   Coagulation parameters (aPTT/ACT, INR, fibrinogen).
+    *   Renal and hepatic function.
+*   **Urine Output and Other Perfusion Markers**.
 
-### Complications of TTM
-*   **Cardiovascular**: Bradycardia (usually well-tolerated), arrhythmias (risk increases if <30°C), hypotension (during induction or rewarming), QTc prolongation.
-*   **Metabolic/Electrolyte**: Hypokalemia, hypomagnesemia, hypophosphatemia (during cooling). Hyperkalemia (during rewarming). Hyperglycemia.
-*   **Coagulation**: Impaired platelet function, reduced clotting factor activity (increases bleeding risk).
-*   **Infection**: Increased risk of pneumonia, sepsis (hypothermia can mask fever, impair immune function).
-*   **Shivering**: Counteracts cooling, increases metabolic demand.
-*   **Skin Injury**: From cooling devices if not properly applied/monitored.
-*   **Fluid Shifts/Volume Status**: Diuresis can occur during cooling ("cold diuresis").
-*   **Pancreatitis**: Rare.
+### Complications of Impella Therapy
+*   **Vascular Access Complications**: Bleeding, hematoma, pseudoaneurysm, AV fistula, retroperitoneal hemorrhage, limb ischemia (especially with larger femoral sheaths).
+*   **Hemolysis**: Due to shear stress from the pump. Can lead to anemia, AKI. Manage by optimizing position, reducing RPM if severe, transfusions.
+*   **Device Malposition/Migration**: Can lead to inadequate support, suction events, arrhythmias, or valvular damage. Requires repositioning.
+*   **Thrombosis/Embolism**: Device thrombosis or systemic embolism despite anticoagulation.
+*   **Bleeding**: Due to anticoagulation or access site issues.
+*   **Arrhythmias**: Ventricular arrhythmias can be triggered by catheter irritation.
+*   **Aortic Valve Injury / Aortic Insufficiency**: With LV devices.
+*   **Tricuspid/Pulmonic Valve Injury**: With Impella RP.
+*   **Infection**: CRBSI, access site infection.
+*   **Device Malfunction**: Pump failure, purge system issues.
 
-### Neurological Prognostication After TTM
-*   Clinical neurological examination remains the cornerstone but is often confounded by sedation and NMBAs used during TTM.
-*   Prognostication should be **multimodal** and generally delayed until at least **72 hours after rewarming to normothermia** and when confounding effects of medications have worn off.
-*   **Components**:
-    *   Clinical exam: GCS (especially motor response), pupillary and corneal reflexes, brainstem reflexes. Absence of pupillary/corneal reflexes at ≥72h is a poor sign. Myoclonus status epilepticus (persistent myoclonus within 24-48h) associated with poor outcome.
-    *   Electroencephalography (EEG): Continuous EEG (cEEG) or serial EEGs. Patterns like burst suppression with epileptiform activity, generalized suppression, or electrocerebral silence are poor prognostic indicators. Reactivity to stimuli is a good sign.
-    *   Somatosensory Evoked Potentials (SSEPs): Bilateral absence of N20 cortical responses is a highly specific predictor of poor outcome.
-    *   Brain Imaging: CT to rule out acute hemorrhage. MRI (especially DWI and FLAIR sequences) can show extent of anoxic injury but timing and interpretation are complex.
-    *   Biomarkers: Neuron-Specific Enolase (NSE) in serum. Persistently high or rising levels associated with poor outcome.
+### Specific Considerations for Impella RP
+*   Primarily for isolated RV failure.
+*   Successful RV unloading often improves LV filling and CO.
+*   Positioning across two valves (tricuspid and pulmonic) can be challenging.
+*   Weaning focuses on evidence of RV recovery (e.g., improved CVP, RV size/function on echo, reduced need for RV-specific inotropes).
 
-TTM is a complex intervention requiring a dedicated team, clear protocols, and vigilant monitoring to optimize neurological recovery while managing potential complications. The emphasis is increasingly on precise temperature control and aggressive fever prevention.`,
-    keywordsForImage: 'hypothermia cardiac arrest brain protection',
-  },
-  {
-    id: 'nutritional-support-icu',
-    slug: 'nutritional-support-icu',
-    title: 'Nutritional Support in the ICU',
-    summary: 'Guidelines for assessing nutritional risk, determining energy/protein needs, choosing appropriate enteral or parenteral nutrition, and managing complications in critically ill patients.',
-    categoryType: 'Policy',
-    keywordsForImage: 'nutrition feeding tube icu',
-    content: `## General Overview
-Nutritional support is a fundamental component of care for critically ill patients in the Intensive Care Unit (ICU). Critical illness induces a hypermetabolic and catabolic state, characterized by increased energy expenditure, accelerated protein breakdown, insulin resistance, and alterations in nutrient utilization. This can rapidly lead to malnutrition, which is associated with adverse outcomes including impaired immune function, increased susceptibility to infections, poor wound healing, prolonged mechanical ventilation, increased ICU and hospital length of stay, and higher mortality. The primary goals of nutritional support in the ICU are to meet the patient's estimated energy and protein needs, preserve lean body mass and organ function, modulate the stress response, support immune function, and facilitate recovery.
-
-Major societal guidelines (e.g., from SCCM/ASPEN - Society of Critical Care Medicine/American Society for Parenteral and Enteral Nutrition, and ESPEN - European Society for Clinical Nutrition and Metabolism) recommend early initiation of nutritional support, typically within 24-48 hours of ICU admission, once the patient is hemodynamically stable (i.e., after initial resuscitation and shock resolution). Enteral nutrition (EN), delivering nutrients directly into the gastrointestinal (GI) tract via a feeding tube (e.g., nasogastric, nasojejunal, gastrostomy, jejunostomy), is the preferred route whenever the GI tract is functional and accessible. EN helps maintain gut integrity, preserves the gut mucosal barrier, supports the gut microbiome, modulates the immune system (GALT), and is associated with fewer complications and lower cost compared to parenteral nutrition.
-
-Parenteral nutrition (PN), the intravenous administration of nutrients (carbohydrates, amino acids, lipids, electrolytes, vitamins, trace elements), is reserved for patients in whom EN is contraindicated (e.g., complete bowel obstruction, prolonged ileus, severe GI bleed, intestinal ischemia, high-output fistula without distal access) or when EN is unable to meet a significant portion (e.g., >60%) of nutritional needs for an extended period (typically >7-10 days).
-
-Assessment of nutritional status, estimation of energy and protein requirements, selection of appropriate feeding formulas, monitoring for tolerance and complications, and adjusting therapy based on patient response are key aspects of ICU nutritional care, often managed by a multidisciplinary team including intensivists, dietitians, nurses, and pharmacists.
-
-## In-Depth ICU Considerations
-
-### Nutritional Assessment and Risk Stratification
-*   **Identifying Malnutrition Risk**:
-    *   Tools like **NUTRIC score** (Nutrition Risk in the Critically Ill) or modified NUTRIC score (without IL-6) help identify patients at high nutritional risk who may benefit most from aggressive nutritional therapy. Considers age, APACHE II, SOFA, comorbidities, days from hospital to ICU admission.
-    *   Subjective Global Assessment (SGA) can be used if patient history is available.
-    *   Traditional markers like albumin/prealbumin are poor indicators of nutritional status in critical illness due to being negative acute phase reactants.
-*   **Body Composition Assessment**: Difficult in ICU. Clinical assessment, anthropometrics (if feasible), and emerging technologies like ultrasound or bioelectrical impedance analysis (BIA) are areas of research.
-
-### Determining Energy and Protein Requirements
-*   **Energy Requirements**:
-    *   **Indirect Calorimetry (IC)**: Gold standard for measuring Resting Energy Expenditure (REE) via O₂ consumption and CO₂ production. Recommended when available, especially for complex patients or those failing to respond to standard nutrition.
-    *   **Predictive Equations**: If IC unavailable, use simple weight-based equations (e.g., **25-30 kcal/kg/day** actual body weight for most non-obese patients). Penn State equations (PSU 2003b, PSU 2010) are validated for mechanically ventilated patients. Avoid overfeeding (can cause hyperglycemia, hypertriglyceridemia, hepatic steatosis, increased CO₂ production).
-    *   **Obese Patients (BMI ≥30)**: Hypocaloric, high-protein feeding is often recommended.
-        *   BMI 30-50: 11-14 kcal/kg actual body weight/day.
-        *   BMI >50: 22-25 kcal/kg ideal body weight/day.
-*   **Protein Requirements**:
-    *   Increased needs due to catabolism. Target **1.2-2.0 g/kg actual body weight/day** for most ICU patients.
-    *   Higher needs in specific populations: Burns (>2.0-2.5 g/kg/day), trauma, CRRT (due to amino acid losses).
-    *   Obese Patients:
-        *   BMI 30-40: ≥2.0 g/kg ideal body weight/day.
-        *   BMI ≥40: ≥2.5 g/kg ideal body weight/day.
-
-### Enteral Nutrition (EN)
-*   **Timing of Initiation**: Start early (within 24-48 hours of ICU admission and hemodynamic stabilization).
-*   **Route**:
-    *   **Gastric feeding (NG/OG tube)**: Standard initial approach.
-    *   **Post-pyloric (small bowel) feeding (nasojejunal/nasoduodenal tube)**: Consider if high risk of aspiration, gastroparesis, or persistent intolerance to gastric feeds. Placement often requires endoscopic or fluoroscopic guidance, or specialized weighted tubes.
-*   **Formula Selection**:
-    *   **Standard Polymeric Formulas (1-1.2 kcal/mL)**: Appropriate for most patients. Contain intact proteins, carbohydrates, and fats.
-    *   **High-Protein Formulas**: Useful to meet elevated protein needs without excessive volume.
-    *   **Energy-Dense Formulas (1.5-2 kcal/mL)**: For fluid-restricted patients.
-    *   **Specialized Formulas (Disease-Specific)**:
-        *   *Renal formulas*: Lower electrolytes (K, Phos, Na), often calorie-dense. For AKI/CKD patients *not* on RRT.
-        *   *Pulmonary formulas*: Higher fat, lower carbohydrate to reduce CO₂ production (benefit controversial, not routinely recommended just for this purpose).
-        *   *Diabetic formulas*: Lower carbohydrate, higher fat, often with fiber. May help glycemic control.
-        *   *Immune-Modulating Diets (IMDs)*: Enriched with arginine, glutamine, omega-3 fatty acids, nucleotides. SCCM/ASPEN guidelines suggest their use in specific populations (e.g., severe trauma, TBI, perioperative surgical ICU patients). Benefit in general medical ICU or sepsis is less clear or not supported.
-        *   *Hydrolyzed/Elemental Formulas*: Contain partially or fully broken-down nutrients (peptides, amino acids). For patients with malabsorption, pancreatic insufficiency, or severe GI dysfunction. More expensive.
-*   **Initiation and Advancement**:
-    *   Start at low rate (e.g., 10-20 mL/hr).
-    *   Advance by 10-20 mL/hr every 4-8 hours as tolerated, towards goal rate over 24-48 hours.
-    *   **Trophic Feeds (Permissive Underfeeding)**: Low-volume EN (e.g., 10-20 mL/hr or ~500 kcal/day) for the first week in some patients (e.g., early ARDS, initial phase of sepsis) may be as effective as full feeding and cause fewer GI complications. Controversial, but an option.
-*   **Monitoring Tolerance**:
-    *   **Gastric Residual Volumes (GRVs)**: Routine GRV checks are **no longer recommended** by SCCM/ASPEN if not clinically indicated, as they correlate poorly with aspiration risk and often lead to inappropriate cessation of EN.
-    *   **Instead, monitor for clinical signs of intolerance**: Abdominal distension, pain/cramping, vomiting, diarrhea, high NG output, absent bowel sounds (though presence/absence of BS is not a reliable sole indicator of tolerance).
-    *   If GRV >500 mL (or other high threshold per institutional protocol) on a single check, or if >250 mL with other signs of intolerance, hold EN, reassess, consider prokinetics or small bowel feeding.
-*   **Managing Complications**:
-    *   **Aspiration**: Elevate HOB 30-45°. Consider chlorhexidine oral care. Prokinetics if gastroparesis. Small bowel feeding.
-    *   **Diarrhea**: Rule out C. difficile. Review medications (antibiotics, sorbitol in elixirs, laxatives). Consider fiber-containing formula or soluble fiber supplement. Antidiarrheal agents cautiously.
-    *   **Constipation**: Ensure adequate hydration, fiber (if appropriate). Stool softeners, laxatives.
-    *   **Tube Occlusion**: Flush tube regularly with water (e.g., 20-30mL q4h with continuous feeds, before/after intermittent feeds/meds). Use pancreatic enzymes or specialized declogging devices if occluded.
-    *   **Electrolyte Imbalances**: Monitor and replete (K, Phos, Mg common).
-    *   **Refeeding Syndrome**: In severely malnourished patients. Characterized by fluid shifts and severe electrolyte depletion (hypophosphatemia, hypokalemia, hypomagnesemia) upon re-introduction of nutrition. Can cause cardiac, pulmonary, neurological complications.
-        *   *Risk Factors*: Very low BMI, significant recent weight loss, prolonged starvation, alcoholism, eating disorders.
-        *   *Prevention/Management*: Start EN slowly (e.g., 25% of goal calories or 10 kcal/kg/day). Aggressively monitor and replete electrolytes *before* and during feeding. Supplement thiamine before starting nutrition.
-
-### Parenteral Nutrition (PN)
-*   **Indications**: When EN is not feasible or sufficient for >7-10 days in a previously well-nourished patient, or sooner in a malnourished patient.
-*   **Timing**:
-    *   *High Nutritional Risk (e.g., NUTRIC ≥5) or Severely Malnourished*: If EN not feasible, start PN as soon as possible after admission and stabilization.
-    *   *Low Nutritional Risk (e.g., NUTRIC <5)*: If EN not feasible, avoid PN for the first 7 days of ICU stay if EN cannot be established. Supplementary PN may be considered after 7-10 days if EN <60% of goal.
-*   **Route**:
-    *   **Peripheral PN (PPN)**: For short-term use (<1-2 weeks) if central access unavailable/contraindicated. Requires lower osmolarity (<900 mOsm/L) to avoid phlebitis, thus often cannot meet full needs.
-    *   **Central PN (TPN)**: Via CVC. Allows hyperosmolar solutions to meet full nutritional requirements.
-*   **Components**: Dextrose (carbohydrate), amino acids (protein), intravenous fat emulsion (IVFE - lipids), electrolytes, vitamins, trace elements. Compounded by pharmacy.
-*   **Monitoring PN**:
-    *   Glucose: Frequent checks, insulin as needed.
-    *   Triglycerides: Baseline, then weekly. Hold/reduce IVFE if TG >400-500 mg/dL.
-    *   LFTs: Monitor for PN-Associated Liver Disease (PNALD)/cholestasis, especially with long-term PN.
-    *   Electrolytes, BUN/Cr, Mg, Phos: Daily initially.
-*   **Complications**:
-    *   **Catheter-Related Bloodstream Infection (CRBSI)**: Strict aseptic technique for CVC care.
-    *   **Metabolic**: Hyperglycemia, hypoglycemia (if PN abruptly stopped), refeeding syndrome, hypertriglyceridemia, electrolyte abnormalities, acid-base disturbances.
-    *   **Hepatic**: Steatosis, cholestasis, PNALD.
-    *   **Overfeeding**: Can worsen outcomes.
-*   **Transitioning from PN to EN**: Gradually increase EN rate while tapering PN. Discontinue PN once EN meets >60-75% of needs.
-
-### Adjunctive Therapies and Specific Nutrients
-*   **Glutamine**: Evidence does not support routine supplementation in critically ill patients. May be harmful in MODS with hepatic/renal failure.
-*   **Arginine**: Often part of immune-modulating formulas. Use in sepsis controversial (may worsen NO production). May benefit trauma/surgical patients.
-*   **Omega-3 Fatty Acids (Fish Oils)**: Parenteral omega-3s may have some benefit in ARDS or specific inflammatory conditions (data evolving). Enteral formulas with fish oil are available.
-*   **Antioxidants (Selenium, Vitamin C, Vitamin E, Zinc)**: Data mixed, no strong recommendation for routine high-dose supplementation beyond standard multivitamin/trace element provision unless deficiency proven.
-*   **Probiotics**: Use in ICU is controversial. Some studies suggest benefit in reducing VAP or C. diff, but risks (e.g., probiotic-associated bacteremia/fungemia in immunocompromised) exist. Not routinely recommended by most guidelines.
-
-Nutritional support in the ICU is a dynamic process requiring ongoing assessment and adjustment tailored to the individual patient's clinical condition, nutritional risk, and tolerance.`,
-    keywordsForImage: 'nutrition feeding tube icu',
-  }
-];
-
-
-export const bodySystems: ContentItem[] = originalBodySystemsContent.map(item => {
-  const { generalOverview, inDepthConsiderations } = splitContent(item.content);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { content, ...restOfItem } = item; // remove content from the final object
-  return {
-    ...restOfItem,
-    generalOverview,
-    inDepthConsiderations,
-  };
-});
-
-export const topics: ContentItem[] = originalTopicsContent.map(item => {
-  const { generalOverview, inDepthConsiderations } = splitContent(item.content);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { content, ...restOfItem } = item; // remove content from the final object
-  return {
-    ...restOfItem,
-    generalOverview,
-    inDepthConsiderations,
-  };
-});
-
-export const policies: ContentItem[] = originalPoliciesContent.map(item => {
-  const { generalOverview, inDepthConsiderations } = splitContent(item.content);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { content, ...restOfItem } = item; // remove content from the final object
-  return {
-    ...restOfItem,
-    generalOverview,
-    inDepthConsiderations,
-  };
-});
-
-export const getAllContentItems = (): ContentItem[] => {
-  return [...bodySystems, ...topics, ...policies];
-};
-
-    
-
+Impella devices provide powerful, direct ventricular support but require specialized management by a skilled multidisciplinary team. Careful patient selection, meticulous attention to device operation, anticoagulation, and proactive monitoring for complications are essential for optimizing outcomes.

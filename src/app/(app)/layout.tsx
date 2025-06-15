@@ -1,6 +1,7 @@
 
 "use client";
 
+import withAuth from '@/components/auth/withAuth';
 import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
 import AppSidebarNavigation from '@/components/layout/AppSidebarNavigation';
 import { Button } from '@/components/ui/button';
@@ -9,92 +10,15 @@ import { UserCircle, LogOut, LogIn } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter, usePathname } from 'next/navigation';
+import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
 
-const AppSidebarSkeleton = () => {
-  return (
-    <div className="hidden md:flex flex-col h-screen bg-sidebar text-sidebar-foreground border-r p-2" style={{width: "var(--sidebar-width, 16rem)"}}>
-      <div className="flex items-center justify-between p-4 border-b mb-2">
-        <Skeleton className="h-6 w-24" />
-      </div>
-      <div className="p-2 space-y-3 flex-grow">
-        <Skeleton className="h-8 w-full" />
-        <Skeleton className="h-8 w-full" />
-        <Skeleton className="h-8 w-full" />
-        <Skeleton className="h-8 w-full" />
-      </div>
-      <div className="p-4 border-t mt-2">
-        <Skeleton className="h-9 w-full" />
-      </div>
-    </div>
-  );
-};
-
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+function AppLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
-  const { user, logout, loading: authLoading, initialLoading } = useAuth();
-  const router = useRouter();
-  const pathname = usePathname();
+  const { user, logout, loading: authLoading } = useAuth();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  // useEffect(() => {
-  //   // Temporarily commented out for easier previewing without full auth setup.
-  //   // Re-enable for production or when auth is fully functional and required.
-  //   if (!initialLoading && !authLoading && !user && isClient) {
-  //     // Allow access to login/signup even if trying to access an (app) route initially
-  //     if (pathname !== '/login' && pathname !== '/signup') {
-  //       router.push('/login');
-  //     }
-  //   }
-  // }, [user, initialLoading, authLoading, router, isClient, pathname]);
-  
-  // If initial auth state is still loading, show a more comprehensive skeleton.
-  if (initialLoading && !isClient) { // Only show full skeleton on server/initial client load
-    return (
-         <div className="flex min-h-screen">
-            <AppSidebarSkeleton />
-            <SidebarInset>
-                 <header className="sticky top-0 z-10 flex h-16 items-center justify-end border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
-                    <Skeleton className="h-7 w-7 hidden md:flex" /> 
-                </header>
-                <main className="flex-1 p-4 md:p-6 lg:p-8">
-                    <div className="space-y-4">
-                        <Skeleton className="h-10 w-1/2" />
-                        <Skeleton className="h-6 w-3/4" />
-                        <Skeleton className="h-40 w-full" />
-                        <Skeleton className="h-40 w-full" />
-                    </div>
-                </main>
-            </SidebarInset>
-        </div>
-    );
-  }
-
-  // Development/Preview: If initial auth check is done and still no user, 
-  // but we want to allow previewing, render the layout.
-  // The actual content of `children` might still depend on `user` being present.
-  // The `authLoading` check handles cases where login/signup process is active.
-  if (isClient && authLoading) {
-     return ( // Simplified loading for active auth operations once client has mounted
-         <div className="flex min-h-screen">
-            <AppSidebarSkeleton />
-            <SidebarInset>
-                 <header className="sticky top-0 z-10 flex h-16 items-center justify-end border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
-                    {/* Intentionally no trigger skeleton here during active auth load, as sidebar might be shown */}
-                </header>
-                <main className="flex-1 p-4 md:p-6 lg:p-8">
-                    <div className="flex justify-center items-center h-64">
-                        <p>Loading user session...</p>
-                    </div>
-                </main>
-            </SidebarInset>
-        </div>
-    );
-  }
-
 
   return (
     <SidebarProvider defaultOpen={true}>
@@ -153,8 +77,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             }
           </header>
           <main className="flex-1 p-4 md:p-6 lg:p-8">
-            {/* In a bypassed auth scenario for preview, children will always render. 
-                Individual pages should handle `user` being null if they need user data. */}
             {children}
           </main>
         </SidebarInset>
@@ -162,3 +84,5 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     </SidebarProvider>
   );
 }
+
+export default withAuth(AppLayout);

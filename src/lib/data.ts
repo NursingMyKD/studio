@@ -1560,6 +1560,444 @@ Sepsis management is an evolving field. Adherence to current evidence-based guid
     categoryType: 'Policy',
     keywordsForImage: 'sepsis bacteria infection emergency',
   },
+  {
+    id: 'ards-management',
+    slug: 'ards-management',
+    title: 'ARDS Management Protocol',
+    summary: 'Evidence-based guidelines for the diagnosis and management of Acute Respiratory Distress Syndrome (ARDS), including lung-protective ventilation, PEEP titration, and adjunctive therapies.',
+    categoryType: 'Policy',
+    keywordsForImage: 'lungs ventilator icu',
+    content: `## General Overview
+Acute Respiratory Distress Syndrome (ARDS) is a life-threatening form of acute hypoxemic respiratory failure characterized by widespread inflammation in the lungs. This inflammation leads to increased permeability of the alveolar-capillary membrane, causing fluid (protein-rich edema) to leak into the alveoli, impairing gas exchange, reducing lung compliance (making the lungs stiff and difficult to inflate), and causing shunting (blood passing through non-ventilated areas of the lung). ARDS can be triggered by various direct lung injuries (e.g., pneumonia, aspiration, inhalation injury) or indirect systemic insults (e.g., sepsis, severe trauma, pancreatitis, multiple transfusions).
+
+The Berlin Definition (2012) provides diagnostic criteria for ARDS:
+1.  **Timing**: Onset within 1 week of a known clinical insult or new/worsening respiratory symptoms.
+2.  **Chest Imaging**: Bilateral opacities on chest X-ray or CT scan not fully explained by effusions, lobar/lung collapse, or nodules.
+3.  **Origin of Edema**: Respiratory failure not fully explained by cardiac failure or fluid overload (objective assessment like echocardiography needed to exclude hydrostatic edema if no risk factor present).
+4.  **Oxygenation Impairment (Severity based on PaO₂/FiO₂ ratio with PEEP ≥5 cmH₂O)**:
+    *   **Mild ARDS**: 200 mmHg < PaO₂/FiO₂ ≤ 300 mmHg
+    *   **Moderate ARDS**: 100 mmHg < PaO₂/FiO₂ ≤ 200 mmHg
+    *   **Severe ARDS**: PaO₂/FiO₂ ≤ 100 mmHg
+
+Management of ARDS in the ICU is primarily supportive, focusing on treating the underlying cause, ensuring adequate oxygenation, and minimizing further lung injury (Ventilator-Induced Lung Injury - VILI). Key strategies include lung-protective mechanical ventilation, appropriate PEEP titration, conservative fluid management, and consideration of adjunctive therapies for severe cases.
+
+## In-Depth ICU Considerations
+
+### Lung-Protective Ventilation (LPV) Strategy
+The cornerstone of ARDS management is LPV, aimed at minimizing VILI. VILI can occur due to:
+*   **Volutrauma**: Overdistension of alveoli from excessive tidal volumes.
+*   **Barotrauma**: Excessive airway pressures leading to alveolar rupture (e.g., pneumothorax).
+*   **Atelectrauma**: Repetitive opening and closing of unstable alveoli.
+*   **Biotrauma**: Release of inflammatory mediators from injured lung tissue, contributing to systemic inflammation and MODS.
+
+**Key Components of LPV (based on ARDSNet trials):**
+*   **Tidal Volume (VT)**:
+    *   Target **4-6 mL/kg of Ideal Body Weight (IBW)**. IBW calculation:
+        *   Males: 50 kg + 2.3 kg for each inch over 5 feet.
+        *   Females: 45.5 kg + 2.3 kg for each inch over 5 feet.
+    *   Start at 6 mL/kg IBW, may reduce to 4 mL/kg IBW if Pplat remains high.
+*   **Plateau Pressure (Pplat)**:
+    *   Measure with an inspiratory hold maneuver (0.5-1 sec) on the ventilator.
+    *   Target **Pplat ≤ 30 cmH₂O**. If Pplat >30 cmH₂O, reduce VT (even below 6 mL/kg IBW, down to 4 mL/kg IBW if necessary) or address other factors contributing to high pressures (e.g., PEEP, chest wall compliance).
+*   **Driving Pressure (ΔP)**:
+    *   Calculated as **ΔP = Pplat – PEEP**.
+    *   Represents the cyclic stress applied to the lung.
+    *   Target **ΔP ≤ 15 cmH₂O**. Retrospective data suggests ΔP is a better predictor of mortality than VT or PEEP alone. If ΔP >15, adjust PEEP or VT.
+*   **Positive End-Expiratory Pressure (PEEP)**:
+    *   Use adequate PEEP to prevent alveolar collapse (atelectrauma) and improve oxygenation by recruiting alveoli and increasing functional residual capacity (FRC).
+    *   Titration methods:
+        *   **PEEP/FiO₂ Tables**: (e.g., ARDSNet lower PEEP/higher FiO₂ or higher PEEP/lower FiO₂ tables). Start with lower PEEP table; consider higher PEEP table for moderate-severe ARDS if oxygenation remains poor.
+        *   **Decremental PEEP Trial**: Recruit lungs (e.g., PEEP 30-40 cmH₂O for 30-40s), then set high PEEP (e.g., 20-25 cmH₂O). Gradually decrease PEEP by 2-3 cmH₂O every 15-30 min, monitoring SpO₂, PaO₂, Pplat, ΔP, and compliance. Select PEEP level just above point where oxygenation or compliance starts to deteriorate ("best PEEP" or optimal PEEP).
+        *   **Esophageal Manometry**: Estimates transpulmonary pressure (Ptp = Paw - Pes). Goal is to maintain positive end-expiratory Ptp (e.g., 0-10 cmH₂O) to keep alveoli open, and limit end-inspiratory Ptp to avoid overdistension. More complex, requires specialized equipment and expertise.
+        *   **Stress Index**: Assesses lung recruitment/overdistension based on the shape of the pressure-time curve during constant flow inspiration in VCV mode.
+*   **Respiratory Rate (RR)**:
+    *   Adjust RR to maintain adequate minute ventilation and target pH (see permissive hypercapnia).
+    *   May need RR up to 35 breaths/min to achieve pH goals with low VT.
+*   **Permissive Hypercapnia**:
+    *   Allowing PaCO₂ to rise (and pH to fall) to facilitate low VT and Pplat goals.
+    *   Generally tolerated if pH > 7.15-7.20.
+    *   Contraindicated in patients with severe intracranial hypertension or specific cardiovascular instability.
+    *   Sodium bicarbonate infusion may be considered for severe acidosis (pH <7.15) if hypercapnia is unavoidable.
+
+### Adjunctive Therapies for ARDS
+*   **Prone Positioning**:
+    *   **Indication**: Recommended for patients with moderate to severe ARDS (PaO₂/FiO₂ ratio < 150 mmHg on FiO₂ ≥ 0.6 and PEEP ≥ 5 cmH₂O).
+    *   **Mechanism**: Improves V/Q matching by recruiting dorsal lung regions (which are more consolidated in supine position), facilitates secretion drainage, reduces stress/strain on dependent lung.
+    *   **Duration**: At least 12-16 hours per day.
+    *   **Implementation**: Requires a skilled team, careful attention to airway security, pressure point protection, and hemodynamic monitoring.
+    *   **Contraindications**: Spinal instability, open abdominal wounds, recent thoracic/abdominal surgery, severe hemodynamic instability, massively increased ICP.
+*   **Neuromuscular Blocking Agents (NMBAs)**:
+    *   **Indication**: Early, continuous infusion (up to 48 hours) of an NMBA (e.g., cisatracurium) may be considered for patients with severe ARDS (PaO₂/FiO₂ < 150 mmHg).
+    *   **Rationale**: May improve patient-ventilator synchrony, reduce VILI, decrease oxygen consumption, and potentially improve oxygenation and mortality (evidence from ACURASYS and ROSE trials has been mixed, with ROSE not showing benefit).
+    *   **Monitoring**: Ensure deep sedation (e.g., RASS -4 to -5) before and during NMBA use. Use TOF monitoring if available, but clinical assessment (no patient effort) is primary.
+    *   **Complications**: ICU-acquired weakness (prolonged use), risk of awareness if sedation inadequate.
+*   **Conservative Fluid Management**:
+    *   **Indication**: Once initial shock resuscitation is complete and hemodynamics are stable, a conservative fluid strategy ("de-resuscitation") is recommended.
+    *   **Rationale**: Positive fluid balance is associated with worse outcomes in ARDS. Aim for neutral or negative fluid balance to reduce pulmonary edema.
+    *   **Methods**: Restrict maintenance fluids, use diuretics, or continuous renal replacement therapy (CRRT) with net ultrafiltration if needed. Monitor for hypoperfusion.
+*   **Recruitment Maneuvers (RMs)**:
+    *   **Rationale**: Brief, sustained increases in airway pressure to open collapsed alveoli.
+    *   **Methods**: E.g., CPAP 30-40 cmH₂O for 30-40 seconds.
+    *   **Evidence**: Controversial. ART trial showed potential harm. May provide transient oxygenation improvement but no consistent mortality benefit. If used, monitor closely for hemodynamic compromise and barotrauma. Not routinely recommended.
+*   **Inhaled Pulmonary Vasodilators (e.g., Inhaled Nitric Oxide - iNO, Inhaled Epoprostenol - PGI₂)**:
+    *   **Rationale**: Selective pulmonary vasodilation in well-ventilated lung regions, improving V/Q matching and oxygenation.
+    *   **Indication**: May be used as a rescue therapy for severe refractory hypoxemia in ARDS.
+    *   **Evidence**: Improves oxygenation transiently but no proven mortality benefit or reduction in ventilator days. Expensive.
+*   **Extracorporeal Membrane Oxygenation (ECMO)**:
+    *   **Indication**: For patients with refractory severe ARDS (e.g., PaO₂/FiO₂ < 50-80 mmHg despite optimal LPV, proning, NMBAs, or uncompensated hypercapnia with pH <7.20).
+    *   **Type**: Veno-venous (VV) ECMO provides gas exchange (CO₂ removal, oxygenation).
+    *   **Evidence**: EOLIA trial showed a trend towards mortality benefit. Highly specialized, resource-intensive therapy available at ECMO centers. Early consultation and transfer are key if considered.
+
+### Ventilator Settings and Weaning
+*   **Ventilation Mode**: Volume-assist/control (V-A/C) or Pressure-assist/control (P-A/C) are common initial modes. Pressure Support Ventilation (PSV) for spontaneous breathing trials. APRV or other modes may be used based on institutional preference and expertise.
+*   **FiO₂**: Titrate to maintain SpO₂ 92-96% (or PaO₂ 60-80 mmHg). Aim to reduce FiO₂ <0.6 as tolerated to minimize oxygen toxicity.
+*   **Weaning**: Once ARDS improves (rising PaO₂/FiO₂, improving compliance, resolution of underlying cause):
+    *   Gradually reduce PEEP and FiO₂ according to PEEP/FiO₂ tables or clinical assessment.
+    *   Perform daily Spontaneous Awakening Trials (SATs) and Spontaneous Breathing Trials (SBTs) when patient meets readiness criteria.
+    *   SBT typically on low PSV (e.g., 5-8 cmH₂O) with PEEP 5 cmH₂O, or via T-piece.
+    *   Extubate if SBT successful and airway reflexes/secretion clearance adequate.
+
+### Monitoring and Supportive Care
+*   **Hemodynamic Monitoring**: Arterial line common. CVC if vasopressors or CVP monitoring needed. PA catheter rarely indicated specifically for ARDS management.
+*   **Sedation and Analgesia**: Maintain light sedation (if possible) or deep sedation if needed for LPV/NMBAs. Prioritize analgesia. (See PADIS guidelines).
+*   **Nutrition**: Early enteral nutrition (within 24-48h) is recommended. Trophic feeds initially, advance as tolerated.
+*   **Prophylaxis**: For VTE (pharmacologic unless contraindicated) and stress ulcers (if risk factors present).
+*   **Preventing Complications**: VAP, barotrauma, delirium, ICU-acquired weakness.
+
+Management of ARDS requires a meticulous, evidence-based approach, focusing on minimizing VILI while supporting oxygenation and treating the underlying cause.`,
+    keywordsForImage: 'lungs ventilator icu',
+  },
+  {
+    id: 'padis-guidelines',
+    slug: 'padis-guidelines',
+    title: 'PADIS Guidelines Summary',
+    summary: 'Overview of the Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption (PADIS) guidelines for optimizing patient comfort and outcomes in the ICU.',
+    categoryType: 'Policy',
+    keywordsForImage: 'patient comfort icu care',
+    content: `## General Overview
+The **Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption (PADIS)** guidelines, developed by the Society of Critical Care Medicine (SCCM), provide a comprehensive, evidence-based framework for managing these common and interconnected issues in adult critically ill patients. These guidelines emphasize a holistic and patient-centered approach to improve not only patient comfort but also short-term outcomes (e.g., duration of mechanical ventilation, ICU length of stay) and long-term outcomes (e.g., physical function, cognitive recovery, quality of life after ICU discharge).
+
+The core components of PADIS are:
+*   **Pain**: Routine assessment and proactive management of pain are crucial. Untreated pain can lead to agitation, delirium, sleep disruption, and negative physiological consequences (e.g., tachycardia, hypertension, increased oxygen consumption).
+*   **Agitation/Sedation**: While sedation is often necessary for safety and tolerance of ICU interventions (like mechanical ventilation), over-sedation is associated with prolonged ventilation, delirium, and immobility. The goal is light sedation, where patients are calm but easily arousable.
+*   **Delirium**: A common form of acute brain dysfunction in the ICU, characterized by fluctuating mental status, inattention, and disorganized thinking or altered level of consciousness. Delirium is associated with increased mortality, longer hospital stays, and long-term cognitive impairment.
+*   **Immobility**: Prolonged bed rest contributes to ICU-acquired weakness, muscle atrophy, joint contractures, VTE, and pressure injuries. Early mobilization and rehabilitation are key.
+*   **Sleep Disruption**: Sleep is severely fragmented and disrupted in ICU patients due to noise, light, frequent interventions, pain, and medications. Poor sleep can worsen delirium, impair immune function, and delay recovery.
+
+The PADIS guidelines promote an integrated approach, often referred to as the **ICU Liberation Bundle (A-F Bundle)**, to systematically address these issues:
+*   **A**ssess, Prevent, and Manage Pain
+*   **B**oth Spontaneous Awakening Trials (SATs) and Spontaneous Breathing Trials (SBTs)
+*   **C**hoice of Analgesia and Sedation
+*   **D**elirium: Assess, Prevent, and Manage
+*   **E**arly Mobility and Exercise
+*   **F**amily Engagement and Empowerment
+
+Implementation of these bundles has been shown to improve patient outcomes.
+
+## In-Depth ICU Considerations
+
+### A: Assess, Prevent, and Manage Pain
+*   **Routine Pain Assessment**:
+    *   **Self-Report (if able)**: Use Numeric Rating Scale (NRS) or Visual Analog Scale (VAS). Consider this the gold standard.
+    *   **Behavioral Scales (for non-verbal patients)**: Critical-Care Pain Observation Tool (CPOT) or Behavioral Pain Scale (BPS). Assess facial expression, body movements, muscle tension, compliance with ventilator (or vocalization if extubated).
+    *   **Frequency**: At rest and before/during/after procedures. At least q2-4h and PRN.
+*   **Pain Pathophysiology in ICU**: Nociceptive pain (somatic from incisions, trauma; visceral from organ distension/inflammation) and neuropathic pain (nerve injury).
+*   **Prevention Strategies**: Optimize positioning, minimize unnecessary procedures, preemptive analgesia for procedures.
+*   **Pharmacologic Management**:
+    *   **Analgesia-First Approach**: Treat pain before sedating.
+    *   **IV Opioids (Fentanyl, Hydromorphone, Morphine)**: Mainstay for moderate-severe pain.
+        *   *Fentanyl*: Rapid onset, short duration (good for procedures, boluses). Lipophilic, accumulates with prolonged infusion.
+        *   *Hydromorphone*: Potent, faster onset than morphine. Preferred over morphine in renal impairment (no active metabolites).
+        *   *Morphine*: Longer duration. Active metabolites accumulate in renal failure (morphine-6-glucuronide - analgesic; morphine-3-glucuronide - neurotoxic). Histamine release.
+    *   **Analgesic Sedation ("Analgosedation")**: Use opioids or other analgesics (e.g., ketamine, dexmedetomidine) that also have sedative properties to achieve light sedation and pain control, minimizing need for dedicated sedatives like propofol or benzodiazepines.
+    *   **Non-Opioid Multimodal Analgesia**:
+        *   *Acetaminophen (IV/PO/PR)*: Baseline analgesic, opioid-sparing.
+        *   *NSAIDs (e.g., Ketorolac, Ibuprofen)*: Use with caution in ICU due to risks of GI bleeding, AKI, platelet dysfunction. Short-term use for specific indications.
+        *   *Neuropathic Pain Agents*: Gabapentin or Pregabalin (consider if neuropathic pain suspected, start low, titrate, monitor sedation, adjust for renal function). Carbamazepine for trigeminal neuralgia.
+        *   *Ketamine (low-dose IV infusion, e.g., 0.1-0.5 mg/kg/hr or 5-20 mcg/kg/min)*: NMDA antagonist, opioid-sparing, good for opioid-tolerant patients or severe pain. May reduce opioid-induced hyperalgesia.
+        *   *Lidocaine IV infusion*: For refractory pain, especially neuropathic or post-operative. Requires cardiac monitoring, serum level monitoring if prolonged.
+    *   **Regional Anesthesia**: Epidural analgesia, peripheral nerve blocks. Can significantly reduce systemic opioid needs.
+*   **Non-Pharmacologic Interventions**: Repositioning, massage, cold/heat therapy, music therapy, relaxation techniques, distraction.
+
+### B: Both Spontaneous Awakening Trials (SATs) and Spontaneous Breathing Trials (SBTs)
+*   **Rationale**: Daily interruption of continuous sedative infusions (SAT) and assessment of readiness for extubation (SBT) can reduce duration of mechanical ventilation, ICU/hospital length of stay, and potentially mortality.
+*   **SAT Protocol**:
+    *   *Safety Screen*: Screen daily for eligibility (e.g., no active seizures, no alcohol withdrawal, no agitation, no NMBAs, stable ICP, no active myocardial ischemia).
+    *   *Procedure*: Hold continuous sedative infusions. Monitor for signs of distress/failure (agitation, anxiety, pain, respiratory distress, hemodynamic instability).
+    *   *Restart Criteria*: If failure criteria met, restart sedatives at ~50% of previous dose and titrate.
+    *   *Goal*: Patient remains awake and calm (RASS -1 to +1) or passes through to SBT.
+*   **SBT Protocol**:
+    *   *Safety Screen (after successful SAT or if patient is already alert and calm)*: Adequate oxygenation (e.g., PaO₂/FiO₂ >150-200, PEEP ≤5-8, FiO₂ ≤0.4-0.5), hemodynamic stability, no active ischemia, ability to initiate inspiratory effort.
+    *   *Procedure*: Minimal ventilator support (e.g., PSV 5-8 cmH₂O with PEEP 5 cmH₂O, or CPAP 5 cmH₂O, or T-piece) for 30-120 minutes.
+    *   *Failure Criteria*: Tachypnea (RR >35), hypoxemia (SpO₂ <90%), tachycardia (HR >140 or >20% increase), bradycardia, hemodynamic instability, agitation, anxiety, diaphoresis, altered mental status.
+    *   *Outcome*: If successful, consider extubation.
+*   **Coordination**: Perform SAT then SBT. If SAT fails, patient not ready for SBT.
+
+### C: Choice of Analgesia and Sedation
+*   **Target Light Sedation**: RASS -2 to 0 or SAS 3-4. Avoid deep sedation (RASS -4 to -5) unless clinically indicated (e.g., severe ARDS with NMBAs, status epilepticus, elevated ICP).
+*   **Sedation Strategies**:
+    *   **Non-Benzodiazepines Preferred**: Propofol or Dexmedetomidine are generally preferred over benzodiazepines (midazolam, lorazepam) for sedation in mechanically ventilated adult ICU patients due to association of benzodiazepines with longer ventilation duration, increased ICU stay, and higher incidence of delirium.
+    *   **Propofol**: Rapid onset/offset. Good for frequent neuro assessments or when deep sedation is needed initially. Monitor for PRIS (see Pharmacology section).
+    *   **Dexmedetomidine**: Provides "cooperative sedation" (patient arousable and interactive), minimal respiratory depression. May reduce delirium. Bradycardia/hypotension are potential side effects, especially with loading dose or higher rates.
+    *   **Benzodiazepines**: Reserve for specific indications: alcohol/benzo withdrawal, seizures, procedural sedation if others contraindicated, or if deep sedation needed and propofol/dexmedetomidine are not suitable/sufficient. Lorazepam infusions associated with propylene glycol toxicity.
+    *   **Ketamine**: Can be used as a primary sedative or adjunct, especially if sympathomimetic effects are desired or for analgesia-based sedation strategies.
+*   **Analgesia-Based Sedation**: Use analgesic agents (opioids, ketamine, dexmedetomidine) as primary means of achieving light sedation goals, adding specific hypnotics only if needed.
+
+### D: Delirium: Assess, Prevent, and Manage
+*   **Routine Delirium Assessment**: Use validated ICU tools: Confusion Assessment Method for the ICU (CAM-ICU) or Intensive Care Delirium Screening Checklist (ICDSC). Assess at least once per shift and PRN if mental status changes.
+*   **Delirium Subtypes**: Hyperactive (agitated, restless), Hypoactive (lethargic, withdrawn - often missed), Mixed. Hypoactive delirium is more common and associated with worse outcomes.
+*   **Risk Factors**: Pre-existing dementia, hypertension, alcoholism, severe illness, coma, benzodiazepine use, immobility, sensory deprivation/overload, sleep disruption.
+*   **Prevention Strategies (Non-Pharmacologic - Multicomponent)**:
+    *   Reorientation (verbal, clocks, calendars).
+    *   Cognitive stimulation.
+    *   Maintain sleep-wake cycles (promote daytime activity, minimize nighttime disruptions, reduce noise/light at night).
+    *   Early mobilization.
+    *   Correct sensory deficits (hearing aids, glasses).
+    *   Minimize psychoactive medications.
+    *   Adequate pain control.
+    *   Family presence and participation.
+*   **Pharmacologic Management**:
+    *   **No routine pharmacologic prophylaxis recommended.**
+    *   **Treatment is primarily for agitation/distress that poses safety risk or impedes care.**
+        *   *Haloperidol*: Small doses IV/PO. Monitor QTc interval (risk of Torsades de Pointes). Avoid in Parkinson's or Lewy Body Dementia.
+        *   *Atypical Antipsychotics (e.g., Quetiapine, Olanzapine, Risperidone)*: May have fewer extrapyramidal side effects than haloperidol. Use with caution.
+        *   *Dexmedetomidine*: May be useful for managing agitation in delirious patients who require ongoing sedation, or to facilitate weaning from other sedatives.
+    *   Treat underlying causes of delirium (infection, hypoxia, electrolyte imbalance, drug withdrawal, etc.).
+
+### E: Early Mobility and Exercise
+*   **Rationale**: Counteracts ICU-acquired weakness, improves physical function, reduces delirium, shortens ventilation duration and ICU/hospital stay.
+*   **Safety Screening**: Ensure patient is hemodynamically stable, has secure airway, adequate oxygenation, and no unstable fractures or other contraindications.
+*   **Progressive Mobilization**: From passive range of motion (ROM) -> active ROM -> sitting at edge of bed -> dangling legs -> standing -> transferring to chair -> ambulation (even if ventilated, with appropriate team and equipment).
+*   **Multidisciplinary Team**: PT, OT, RT, RNs, physicians.
+*   **Barriers**: Sedation, staffing, equipment, safety concerns, traditional ICU culture. Protocols and dedicated mobility teams can help overcome these.
+
+### F: Family Engagement and Empowerment
+*   **Rationale**: Family presence and involvement can reduce patient anxiety/delirium, improve family satisfaction, and facilitate shared decision-making.
+*   **Strategies**:
+    *   Liberal visiting policies (where feasible and safe).
+    *   Regular communication updates with family (physician and nursing).
+    *   Involve family in care (e.g., reorientation, comfort measures, simple ROM exercises if appropriate, participating in rounds).
+    *   Provide education about ICU environment, patient's condition, and PADIS management.
+    *   Support family needs (psychological, spiritual, practical).
+    *   ICU diaries maintained by staff and family can help patients understand their ICU stay later.
+
+Implementation of the PADIS guidelines requires a culture shift towards more patient-centered, proactive, and integrated care in the ICU. Continuous quality improvement initiatives are essential for successful adoption.`,
+    keywordsForImage: 'patient comfort icu care',
+  },
+  {
+    id: 'ttm-post-cardiac-arrest',
+    slug: 'ttm-post-cardiac-arrest',
+    title: 'Targeted Temperature Management (TTM) Post-Cardiac Arrest',
+    summary: 'Protocols for implementing targeted temperature management (therapeutic hypothermia/normothermia) in comatose adult patients following out-of-hospital or in-hospital cardiac arrest.',
+    categoryType: 'Policy',
+    keywordsForImage: 'hypothermia cardiac arrest brain protection',
+    content: `## General Overview
+Targeted Temperature Management (TTM), formerly often referred to as therapeutic hypothermia, is a critical intervention implemented for comatose adult patients who achieve Return of Spontaneous Circulation (ROSC) after an in-hospital (IHCA) or out-of-hospital (OHCA) cardiac arrest. The primary goal of TTM is to improve neurological outcomes and potentially survival by mitigating secondary brain injury that occurs following global cerebral ischemia and reperfusion. Ischemic-reperfusion injury involves a complex cascade of detrimental processes, including excitotoxicity, inflammation, free radical production, apoptosis (programmed cell death), and cerebral edema. Lowering core body temperature can attenuate these harmful pathways, reduce cerebral metabolic rate for oxygen (CMRO₂), stabilize cell membranes, and decrease intracranial pressure (ICP).
+
+Current international guidelines (e.g., from the American Heart Association - AHA, European Resuscitation Council - ERC, and International Liaison Committee on Resuscitation - ILCOR) recommend active temperature control for all adult patients who remain comatose (i.e., do not follow commands) after ROSC, regardless of the initial arrest rhythm (shockable or non-shockable) or location of arrest (OHCA or IHCA). The key recommendation is to actively prevent fever (temperature >37.7°C) for at least 72 hours post-ROSC. Some guidelines also suggest selecting and maintaining a constant target temperature between 32°C and 36°C for at least 24 hours. The TTM2 trial (2021) compared a target of 33°C versus strict normothermia (≤37.5°C) with early treatment of fever (≥37.8°C) and found no significant difference in mortality or 6-month neurological outcome, leading to a shift in emphasis towards aggressive fever prevention and potentially a slightly wider acceptable temperature range for hypothermia if chosen. However, many centers still opt for targeted hypothermia (e.g., 33-36°C) for the initial 24 hours followed by proactive fever prevention.
+
+The TTM process involves three phases:
+1.  **Induction**: Rapidly cooling the patient to the target temperature.
+2.  **Maintenance**: Keeping the patient at the target temperature for a defined period (typically at least 24 hours).
+3.  **Rewarming**: Slowly and controllably rewarming the patient back to normothermia (typically 36.5-37.5°C).
+
+Successful implementation of TTM requires a coordinated multidisciplinary approach, specialized equipment, and meticulous ICU care to manage potential side effects and complications.
+
+## In-Depth ICU Considerations
+
+### Patient Selection and Initiation
+*   **Inclusion Criteria**:
+    *   Adult patients (typically ≥18 years).
+    *   Comatose (not following commands, GCS Motor Score <6) after ROSC from cardiac arrest (any initial rhythm, OHCA or IHCA).
+    *   Ability to initiate cooling relatively soon after ROSC (e.g., within 6 hours, though earlier is better).
+*   **Exclusion Criteria (Relative/Absolute)**:
+    *   Awake and following commands.
+    *   Known terminal illness with DNR status prior to arrest.
+    *   Pregnancy (relative, discuss risks/benefits).
+    *   Severe cardiogenic shock refractory to initial interventions (may worsen with cooling).
+    *   Recent major surgery with high bleeding risk (cooling can impair coagulation).
+    *   Active severe bleeding.
+    *   Severe sepsis with refractory shock (though sepsis can cause arrest).
+    *   Known coagulopathy or platelet count <50,000/μL (relative).
+    *   Initial core temperature <30-32°C (already significantly hypothermic).
+*   **Initiation**: Should begin as soon as possible after ROSC and decision to proceed.
+
+### Temperature Targets and Duration
+*   **Target Temperature Range**: Actively maintain a constant temperature between **32°C and 36°C** for at least **24 hours** if therapeutic hypothermia is chosen. (AHA/ERC 2020/2021 recommendations).
+*   **Fever Prevention**: All comatose post-ROSC patients should have active fever prevention (target core temperature ≤37.5°C to 37.7°C) for at least **72 hours** after ROSC, or for the duration of coma if TTM with hypothermia was used for the first 24 hours.
+*   **Choice of Specific Target (if hypothermia pursued)**: While TTM2 trial data suggests 33°C may not be superior to strict normothermia with active fever prevention, some centers still use 33°C, particularly for patients with initial shockable rhythms or evidence of more severe anoxic injury. Others may target 36°C as a less aggressive hypothermic goal that still ensures avoidance of fever. The key is consistent temperature control.
+
+### Cooling Methods
+*   **Surface Cooling**:
+    *   Ice packs (groin, axillae, neck).
+    *   Cooling blankets/pads (circulating water or air).
+    *   Adhesive surface cooling pads (e.g., Arctic Sun). These are often preferred for precise temperature control.
+*   **Internal/Invasive Cooling**:
+    *   Infusion of cold IV fluids (e.g., 0.9% NaCl or LR at 4°C, typically 30 mL/kg, max 2-3L, given rapidly during induction phase). Use with caution due to potential fluid overload.
+    *   Endovascular cooling catheters (placed in large central veins like IVC/SVC, circulate cold saline within a closed-loop balloon system). Highly efficient for induction and maintenance.
+*   **Choice of Method**: Depends on availability, institutional protocol, and speed of cooling desired. Advanced surface cooling devices or endovascular catheters offer more precise temperature control.
+
+### Monitoring During TTM
+*   **Core Temperature**: Essential.
+    *   **Sites**: Esophageal (distal third, best non-invasive proxy for brain/core temp), bladder (if adequate urine flow), pulmonary artery catheter (if in situ).
+    *   Avoid axillary, oral, rectal (lags behind core changes), tympanic (unreliable in ICU).
+    *   Continuous monitoring is ideal.
+*   **Hemodynamics**: Arterial line for continuous BP, CVC for CVP/ScvO₂ (if indicated), frequent assessment of perfusion.
+*   **Neurological Status**: GCS, pupillary responses, seizure monitoring (clinical and/or cEEG).
+*   **ECG**: Bradycardia is common and often well-tolerated. Monitor for arrhythmias, QTc prolongation (can occur with hypothermia).
+*   **Labs**:
+    *   Electrolytes: Hypokalemia (K⁺ shifts intracellularly during cooling), hypomagnesemia, hypophosphatemia are common. Hyperkalemia can occur during rewarming. Replete aggressively during cooling.
+    *   Glucose: Hyperglycemia (due to insulin resistance) or hypoglycemia. Frequent monitoring, may require insulin infusion.
+    *   ABGs: Monitor acid-base status, oxygenation. (Note: Blood gas analyzers usually report values corrected to 37°C; pH increases and PCO₂/PO₂ decrease with lower temperatures. Interpret uncorrected "alpha-stat" values for acid-base management, or be aware of temperature correction if applied).
+    *   Coagulation: PT/INR, aPTT, fibrinogen, platelets. Hypothermia can impair platelet function and enzyme activity in coagulation cascade.
+    *   Amylase/Lipase: Risk of pancreatitis.
+    *   CK: For rhabdomyolysis if prolonged immobility or seizures.
+*   **Shivering Management**:
+    *   Shivering increases metabolic rate, oxygen consumption, and heat production, counteracting cooling efforts and worsening brain injury.
+    *   **Assess with a validated scale** (e.g., Bedside Shivering Assessment Scale - BSAS).
+    *   **Treatment (Stepwise Approach)**:
+        1.  *Skin Counterwarming*: Warm air blanket (Bair Hugger) over non-cooling areas, warm hands/feet.
+        2.  *Non-pharmacologic*: Ensure patient is covered.
+        3.  *Pharmacologic*:
+            *   Acetaminophen, Buspirone.
+            *   Magnesium sulfate IV (can reduce shivering threshold).
+            *   Dexmedetomidine (can reduce shivering, provides sedation).
+            *   Opioids (e.g., Meperidine - effective but has active metabolite, use with caution; Fentanyl).
+            *   Propofol if deeper sedation needed.
+            *   **Neuromuscular Blocking Agents (NMBAs)**: Last resort if shivering persists despite other measures and interferes with TTM. Requires deep sedation and mechanical ventilation.
+
+### Rewarming Phase
+*   **Timing**: Typically start after at least 24 hours of maintenance at target temperature.
+*   **Rate**: Slow and controlled, **0.25°C to 0.5°C per hour**. Rapid rewarming can cause hypotension (vasodilation), hyperkalemia (K⁺ shifts extracellularly), cerebral edema, and rebound hyperthermia.
+*   **Monitoring**: Closely monitor hemodynamics, electrolytes (especially K⁺), glucose, and neurological status.
+*   **Fever Prevention Post-Rewarming**: Continue aggressive temperature control to maintain normothermia (≤37.5-37.7°C) for at least another 48 hours (total of at least 72 hours post-ROSC including the initial 24h TTM period). Fever is common post-ROSC and associated with worse outcomes.
+
+### Complications of TTM
+*   **Cardiovascular**: Bradycardia (usually well-tolerated), arrhythmias (risk increases if <30°C), hypotension (during induction or rewarming), QTc prolongation.
+*   **Metabolic/Electrolyte**: Hypokalemia, hypomagnesemia, hypophosphatemia (during cooling). Hyperkalemia (during rewarming). Hyperglycemia.
+*   **Coagulation**: Impaired platelet function, reduced clotting factor activity (increases bleeding risk).
+*   **Infection**: Increased risk of pneumonia, sepsis (hypothermia can mask fever, impair immune function).
+*   **Shivering**: Counteracts cooling, increases metabolic demand.
+*   **Skin Injury**: From cooling devices if not properly applied/monitored.
+*   **Fluid Shifts/Volume Status**: Diuresis can occur during cooling ("cold diuresis").
+*   **Pancreatitis**: Rare.
+
+### Neurological Prognostication After TTM
+*   Clinical neurological examination remains the cornerstone but is often confounded by sedation and NMBAs used during TTM.
+*   Prognostication should be **multimodal** and generally delayed until at least **72 hours after rewarming to normothermia** and when confounding effects of medications have worn off.
+*   **Components**:
+    *   Clinical exam: GCS (especially motor response), pupillary and corneal reflexes, brainstem reflexes. Absence of pupillary/corneal reflexes at ≥72h is a poor sign. Myoclonus status epilepticus (persistent myoclonus within 24-48h) associated with poor outcome.
+    *   Electroencephalography (EEG): Continuous EEG (cEEG) or serial EEGs. Patterns like burst suppression with epileptiform activity, generalized suppression, or electrocerebral silence are poor prognostic indicators. Reactivity to stimuli is a good sign.
+    *   Somatosensory Evoked Potentials (SSEPs): Bilateral absence of N20 cortical responses is a highly specific predictor of poor outcome.
+    *   Brain Imaging: CT to rule out acute hemorrhage. MRI (especially DWI and FLAIR sequences) can show extent of anoxic injury but timing and interpretation are complex.
+    *   Biomarkers: Neuron-Specific Enolase (NSE) in serum. Persistently high or rising levels associated with poor outcome.
+
+TTM is a complex intervention requiring a dedicated team, clear protocols, and vigilant monitoring to optimize neurological recovery while managing potential complications. The emphasis is increasingly on precise temperature control and aggressive fever prevention.`,
+    keywordsForImage: 'hypothermia cardiac arrest brain protection',
+  },
+  {
+    id: 'nutritional-support-icu',
+    slug: 'nutritional-support-icu',
+    title: 'Nutritional Support in the ICU',
+    summary: 'Guidelines for assessing nutritional risk, determining energy/protein needs, choosing appropriate enteral or parenteral nutrition, and managing complications in critically ill patients.',
+    categoryType: 'Policy',
+    keywordsForImage: 'nutrition feeding tube icu',
+    content: `## General Overview
+Nutritional support is a fundamental component of care for critically ill patients in the Intensive Care Unit (ICU). Critical illness induces a hypermetabolic and catabolic state, characterized by increased energy expenditure, accelerated protein breakdown, insulin resistance, and alterations in nutrient utilization. This can rapidly lead to malnutrition, which is associated with adverse outcomes including impaired immune function, increased susceptibility to infections, poor wound healing, prolonged mechanical ventilation, increased ICU and hospital length of stay, and higher mortality. The primary goals of nutritional support in the ICU are to meet the patient's estimated energy and protein needs, preserve lean body mass and organ function, modulate the stress response, support immune function, and facilitate recovery.
+
+Major societal guidelines (e.g., from SCCM/ASPEN - Society of Critical Care Medicine/American Society for Parenteral and Enteral Nutrition, and ESPEN - European Society for Clinical Nutrition and Metabolism) recommend early initiation of nutritional support, typically within 24-48 hours of ICU admission, once the patient is hemodynamically stable (i.e., after initial resuscitation and shock resolution). Enteral nutrition (EN), delivering nutrients directly into the gastrointestinal (GI) tract via a feeding tube (e.g., nasogastric, nasojejunal, gastrostomy, jejunostomy), is the preferred route whenever the GI tract is functional and accessible. EN helps maintain gut integrity, preserves the gut mucosal barrier, supports the gut microbiome, modulates the immune system (GALT), and is associated with fewer complications and lower cost compared to parenteral nutrition.
+
+Parenteral nutrition (PN), the intravenous administration of nutrients (carbohydrates, amino acids, lipids, electrolytes, vitamins, trace elements), is reserved for patients in whom EN is contraindicated (e.g., complete bowel obstruction, prolonged ileus, severe GI bleed, intestinal ischemia, high-output fistula without distal access) or when EN is unable to meet a significant portion (e.g., >60%) of nutritional needs for an extended period (typically >7-10 days).
+
+Assessment of nutritional status, estimation of energy and protein requirements, selection of appropriate feeding formulas, monitoring for tolerance and complications, and adjusting therapy based on patient response are key aspects of ICU nutritional care, often managed by a multidisciplinary team including intensivists, dietitians, nurses, and pharmacists.
+
+## In-Depth ICU Considerations
+
+### Nutritional Assessment and Risk Stratification
+*   **Identifying Malnutrition Risk**:
+    *   Tools like **NUTRIC score** (Nutrition Risk in the Critically Ill) or modified NUTRIC score (without IL-6) help identify patients at high nutritional risk who may benefit most from aggressive nutritional therapy. Considers age, APACHE II, SOFA, comorbidities, days from hospital to ICU admission.
+    *   Subjective Global Assessment (SGA) can be used if patient history is available.
+    *   Traditional markers like albumin/prealbumin are poor indicators of nutritional status in critical illness due to being negative acute phase reactants.
+*   **Body Composition Assessment**: Difficult in ICU. Clinical assessment, anthropometrics (if feasible), and emerging technologies like ultrasound or bioelectrical impedance analysis (BIA) are areas of research.
+
+### Determining Energy and Protein Requirements
+*   **Energy Requirements**:
+    *   **Indirect Calorimetry (IC)**: Gold standard for measuring Resting Energy Expenditure (REE) via O₂ consumption and CO₂ production. Recommended when available, especially for complex patients or those failing to respond to standard nutrition.
+    *   **Predictive Equations**: If IC unavailable, use simple weight-based equations (e.g., **25-30 kcal/kg/day** actual body weight for most non-obese patients). Penn State equations (PSU 2003b, PSU 2010) are validated for mechanically ventilated patients. Avoid overfeeding (can cause hyperglycemia, hypertriglyceridemia, hepatic steatosis, increased CO₂ production).
+    *   **Obese Patients (BMI ≥30)**: Hypocaloric, high-protein feeding is often recommended.
+        *   BMI 30-50: 11-14 kcal/kg actual body weight/day.
+        *   BMI >50: 22-25 kcal/kg ideal body weight/day.
+*   **Protein Requirements**:
+    *   Increased needs due to catabolism. Target **1.2-2.0 g/kg actual body weight/day** for most ICU patients.
+    *   Higher needs in specific populations: Burns (>2.0-2.5 g/kg/day), trauma, CRRT (due to amino acid losses).
+    *   Obese Patients:
+        *   BMI 30-40: ≥2.0 g/kg ideal body weight/day.
+        *   BMI ≥40: ≥2.5 g/kg ideal body weight/day.
+
+### Enteral Nutrition (EN)
+*   **Timing of Initiation**: Start early (within 24-48 hours of ICU admission and hemodynamic stabilization).
+*   **Route**:
+    *   **Gastric feeding (NG/OG tube)**: Standard initial approach.
+    *   **Post-pyloric (small bowel) feeding (nasojejunal/nasoduodenal tube)**: Consider if high risk of aspiration, gastroparesis, or persistent intolerance to gastric feeds. Placement often requires endoscopic or fluoroscopic guidance, or specialized weighted tubes.
+*   **Formula Selection**:
+    *   **Standard Polymeric Formulas (1-1.2 kcal/mL)**: Appropriate for most patients. Contain intact proteins, carbohydrates, and fats.
+    *   **High-Protein Formulas**: Useful to meet elevated protein needs without excessive volume.
+    *   **Energy-Dense Formulas (1.5-2 kcal/mL)**: For fluid-restricted patients.
+    *   **Specialized Formulas (Disease-Specific)**:
+        *   *Renal formulas*: Lower electrolytes (K, Phos, Na), often calorie-dense. For AKI/CKD patients *not* on RRT.
+        *   *Pulmonary formulas*: Higher fat, lower carbohydrate to reduce CO₂ production (benefit controversial, not routinely recommended just for this purpose).
+        *   *Diabetic formulas*: Lower carbohydrate, higher fat, often with fiber. May help glycemic control.
+        *   *Immune-Modulating Diets (IMDs)*: Enriched with arginine, glutamine, omega-3 fatty acids, nucleotides. SCCM/ASPEN guidelines suggest their use in specific populations (e.g., severe trauma, TBI, perioperative surgical ICU patients). Benefit in general medical ICU or sepsis is less clear or not supported.
+        *   *Hydrolyzed/Elemental Formulas*: Contain partially or fully broken-down nutrients (peptides, amino acids). For patients with malabsorption, pancreatic insufficiency, or severe GI dysfunction. More expensive.
+*   **Initiation and Advancement**:
+    *   Start at low rate (e.g., 10-20 mL/hr).
+    *   Advance by 10-20 mL/hr every 4-8 hours as tolerated, towards goal rate over 24-48 hours.
+    *   **Trophic Feeds (Permissive Underfeeding)**: Low-volume EN (e.g., 10-20 mL/hr or ~500 kcal/day) for the first week in some patients (e.g., early ARDS, initial phase of sepsis) may be as effective as full feeding and cause fewer GI complications. Controversial, but an option.
+*   **Monitoring Tolerance**:
+    *   **Gastric Residual Volumes (GRVs)**: Routine GRV checks are **no longer recommended** by SCCM/ASPEN if not clinically indicated, as they correlate poorly with aspiration risk and often lead to inappropriate cessation of EN.
+    *   **Instead, monitor for clinical signs of intolerance**: Abdominal distension, pain/cramping, vomiting, diarrhea, high NG output, absent bowel sounds (though presence/absence of BS is not a reliable sole indicator of tolerance).
+    *   If GRV >500 mL (or other high threshold per institutional protocol) on a single check, or if >250 mL with other signs of intolerance, hold EN, reassess, consider prokinetics or small bowel feeding.
+*   **Managing Complications**:
+    *   **Aspiration**: Elevate HOB 30-45°. Consider chlorhexidine oral care. Prokinetics if gastroparesis. Small bowel feeding.
+    *   **Diarrhea**: Rule out C. difficile. Review medications (antibiotics, sorbitol in elixirs, laxatives). Consider fiber-containing formula or soluble fiber supplement. Antidiarrheal agents cautiously.
+    *   **Constipation**: Ensure adequate hydration, fiber (if appropriate). Stool softeners, laxatives.
+    *   **Tube Occlusion**: Flush tube regularly with water (e.g., 20-30mL q4h with continuous feeds, before/after intermittent feeds/meds). Use pancreatic enzymes or specialized declogging devices if occluded.
+    *   **Electrolyte Imbalances**: Monitor and replete (K, Phos, Mg common).
+    *   **Refeeding Syndrome**: In severely malnourished patients. Characterized by fluid shifts and severe electrolyte depletion (hypophosphatemia, hypokalemia, hypomagnesemia) upon re-introduction of nutrition. Can cause cardiac, pulmonary, neurological complications.
+        *   *Risk Factors*: Very low BMI, significant recent weight loss, prolonged starvation, alcoholism, eating disorders.
+        *   *Prevention/Management*: Start EN slowly (e.g., 25% of goal calories or 10 kcal/kg/day). Aggressively monitor and replete electrolytes *before* and during feeding. Supplement thiamine before starting nutrition.
+
+### Parenteral Nutrition (PN)
+*   **Indications**: When EN is not feasible or sufficient for >7-10 days in a previously well-nourished patient, or sooner in a malnourished patient.
+*   **Timing**:
+    *   *High Nutritional Risk (e.g., NUTRIC ≥5) or Severely Malnourished*: If EN not feasible, start PN as soon as possible after admission and stabilization.
+    *   *Low Nutritional Risk (e.g., NUTRIC <5)*: If EN not feasible, avoid PN for the first 7 days of ICU stay if EN cannot be established. Supplementary PN may be considered after 7-10 days if EN <60% of goal.
+*   **Route**:
+    *   **Peripheral PN (PPN)**: For short-term use (<1-2 weeks) if central access unavailable/contraindicated. Requires lower osmolarity (<900 mOsm/L) to avoid phlebitis, thus often cannot meet full needs.
+    *   **Central PN (TPN)**: Via CVC. Allows hyperosmolar solutions to meet full nutritional requirements.
+*   **Components**: Dextrose (carbohydrate), amino acids (protein), intravenous fat emulsion (IVFE - lipids), electrolytes, vitamins, trace elements. Compounded by pharmacy.
+*   **Monitoring PN**:
+    *   Glucose: Frequent checks, insulin as needed.
+    *   Triglycerides: Baseline, then weekly. Hold/reduce IVFE if TG >400-500 mg/dL.
+    *   LFTs: Monitor for PN-Associated Liver Disease (PNALD)/cholestasis, especially with long-term PN.
+    *   Electrolytes, BUN/Cr, Mg, Phos: Daily initially.
+*   **Complications**:
+    *   **Catheter-Related Bloodstream Infection (CRBSI)**: Strict aseptic technique for CVC care.
+    *   **Metabolic**: Hyperglycemia, hypoglycemia (if PN abruptly stopped), refeeding syndrome, hypertriglyceridemia, electrolyte abnormalities, acid-base disturbances.
+    *   **Hepatic**: Steatosis, cholestasis, PNALD.
+    *   **Overfeeding**: Can worsen outcomes.
+*   **Transitioning from PN to EN**: Gradually increase EN rate while tapering PN. Discontinue PN once EN meets >60-75% of needs.
+
+### Adjunctive Therapies and Specific Nutrients
+*   **Glutamine**: Evidence does not support routine supplementation in critically ill patients. May be harmful in MODS with hepatic/renal failure.
+*   **Arginine**: Often part of immune-modulating formulas. Use in sepsis controversial (may worsen NO production). May benefit trauma/surgical patients.
+*   **Omega-3 Fatty Acids (Fish Oils)**: Parenteral omega-3s may have some benefit in ARDS or specific inflammatory conditions (data evolving). Enteral formulas with fish oil are available.
+*   **Antioxidants (Selenium, Vitamin C, Vitamin E, Zinc)**: Data mixed, no strong recommendation for routine high-dose supplementation beyond standard multivitamin/trace element provision unless deficiency proven.
+*   **Probiotics**: Use in ICU is controversial. Some studies suggest benefit in reducing VAP or C. diff, but risks (e.g., probiotic-associated bacteremia/fungemia in immunocompromised) exist. Not routinely recommended by most guidelines.
+
+Nutritional support in the ICU is a dynamic process requiring ongoing assessment and adjustment tailored to the individual patient's clinical condition, nutritional risk, and tolerance.`,
+    keywordsForImage: 'nutrition feeding tube icu',
+  }
 ];
 
 
@@ -1601,3 +2039,4 @@ export const getAllContentItems = (): ContentItem[] => {
 };
 
     
+

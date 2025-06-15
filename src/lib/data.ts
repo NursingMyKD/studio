@@ -1,7 +1,50 @@
 
 import type { ContentItem } from '@/types/content';
 
-export const bodySystems: ContentItem[] = [
+const splitContent = (markdown: string): { generalOverview: string; inDepthConsiderations: string } => {
+  const generalOverviewMarker = "## General Overview";
+  const inDepthMarker = "## In-Depth ICU Considerations";
+  
+  let generalOverview = "";
+  let inDepthConsiderations = "";
+
+  const inDepthStartIndex = markdown.indexOf(inDepthMarker);
+
+  if (inDepthStartIndex !== -1) {
+    const generalOverviewEndIndex = markdown.substring(0, inDepthStartIndex).indexOf(generalOverviewMarker);
+    if (generalOverviewEndIndex !== -1) {
+      generalOverview = markdown.substring(generalOverviewEndIndex, inDepthStartIndex).trim();
+    } else {
+      // If no "## General Overview" marker but "## In-Depth" exists, assume content before in-depth is overview
+      generalOverview = markdown.substring(0, inDepthStartIndex).trim();
+    }
+    inDepthConsiderations = markdown.substring(inDepthStartIndex).trim();
+  } else {
+    // If no "## In-Depth" marker, assume all content is general overview
+    const generalOverviewStartIndex = markdown.indexOf(generalOverviewMarker);
+    if (generalOverviewStartIndex !== -1) {
+        generalOverview = markdown.substring(generalOverviewStartIndex).trim();
+    } else {
+        generalOverview = markdown.trim(); // Fallback if no markers at all
+    }
+  }
+  
+  // Remove the "## General Overview" heading from the start of generalOverview string if present
+  if (generalOverview.startsWith(generalOverviewMarker)) {
+      generalOverview = generalOverview.substring(generalOverviewMarker.length).trimStart();
+      // Add it back if it wasn't just the marker itself
+      if (generalOverview.length > 0) {
+          generalOverview = `${generalOverviewMarker}\n\n${generalOverview}`;
+      } else {
+         generalOverview = ""; // case where content was ONLY "## General Overview"
+      }
+  }
+
+
+  return { generalOverview, inDepthConsiderations };
+};
+
+const originalBodySystemsContent: Array<Omit<ContentItem, 'generalOverview' | 'inDepthConsiderations'> & { content: string }> = [
   {
     id: 'cardiovascular',
     slug: 'cardiovascular',
@@ -998,7 +1041,7 @@ Major burns are complex traumatic injuries requiring specialized ICU care in a b
   },
 ];
 
-export const topics: ContentItem[] = [
+const originalTopicsContent: Array<Omit<ContentItem, 'generalOverview' | 'inDepthConsiderations'> & { content: string }> = [
   {
     id: 'hemodynamics',
     slug: 'hemodynamics',
@@ -1759,7 +1802,7 @@ Transitioning from EN/PN to oral diet should occur as soon as the patient is cli
   },
 ];
 
-export const policies: ContentItem[] = [
+const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDepthConsiderations'> & { content: string }> = [
   {
     id: 'stroke-protocols',
     slug: 'stroke-protocols',
@@ -2516,9 +2559,37 @@ Sleep disruption is nearly universal in ICU and contributes to delirium, immune 
   }
 ];
 
+export const bodySystems: ContentItem[] = originalBodySystemsContent.map(item => {
+  const { generalOverview, inDepthConsiderations } = splitContent(item.content);
+  // Create a new object without the original 'content' field
+  const { content, ...restOfItem } = item;
+  return {
+    ...restOfItem,
+    generalOverview,
+    inDepthConsiderations,
+  };
+});
+
+export const topics: ContentItem[] = originalTopicsContent.map(item => {
+  const { generalOverview, inDepthConsiderations } = splitContent(item.content);
+  const { content, ...restOfItem } = item;
+  return {
+    ...restOfItem,
+    generalOverview,
+    inDepthConsiderations,
+  };
+});
+
+export const policies: ContentItem[] = originalPoliciesContent.map(item => {
+  const { generalOverview, inDepthConsiderations } = splitContent(item.content);
+  const { content, ...restOfItem } = item;
+  return {
+    ...restOfItem,
+    generalOverview,
+    inDepthConsiderations,
+  };
+});
+
 export const getAllContentItems = (): ContentItem[] => {
   return [...bodySystems, ...topics, ...policies];
 };
-    
-
-

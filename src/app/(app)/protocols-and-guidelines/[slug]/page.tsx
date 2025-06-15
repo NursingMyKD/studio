@@ -2,13 +2,13 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { policies } from '@/lib/data';
+import { policies } from '@/lib/data'; // policies array contains items of type 'Policy'
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import LegalDisclaimerModal from '@/components/modals/LegalDisclaimerModal';
-import { AlertTriangle, CheckCircle, FileText } from 'lucide-react';
+import { AlertTriangle, CheckCircle, FileText, Layers } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
@@ -17,6 +17,7 @@ import remarkGfm from 'remark-gfm';
 
 export default function ProtocolOrGuidelineDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const slug = params.slug as string;
 
   const item = useMemo(() => policies.find(p => p.slug === slug), [slug]);
@@ -27,7 +28,6 @@ export default function ProtocolOrGuidelineDetailPage() {
 
   useEffect(() => {
     setIsClient(true);
-    // Reset state when slug changes
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);
@@ -66,7 +66,7 @@ export default function ProtocolOrGuidelineDetailPage() {
             </div>
             {!showContent && (
               <Button onClick={() => setIsDisclaimerOpen(true)} size="lg" className="w-full md:w-auto">
-                <FileText className="mr-2 h-5 w-5" /> View Protocol/Guideline
+                <FileText className="mr-2 h-5 w-5" /> View Overview
               </Button>
             )}
           </div>
@@ -89,7 +89,12 @@ export default function ProtocolOrGuidelineDetailPage() {
                 </div>
               )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.generalOverview}</ReactMarkdown>
+              </div>
+              <div className="mt-8 text-center">
+                <Button onClick={() => router.push(`/protocols-and-guidelines/${slug}/details`)} size="lg">
+                  <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
+                </Button>
               </div>
             </CardContent>
           </>
@@ -116,4 +121,3 @@ export default function ProtocolOrGuidelineDetailPage() {
     </div>
   );
 }
-

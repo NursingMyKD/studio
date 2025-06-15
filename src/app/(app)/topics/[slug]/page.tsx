@@ -2,13 +2,13 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { topics } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import LegalDisclaimerModal from '@/components/modals/LegalDisclaimerModal';
-import { AlertTriangle, CheckCircle, BookOpen } from 'lucide-react';
+import { AlertTriangle, CheckCircle, BookOpen, Layers } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
@@ -17,6 +17,7 @@ import remarkGfm from 'remark-gfm';
 
 export default function TopicDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const slug = params.slug as string;
 
   const item = useMemo(() => topics.find(t => t.slug === slug), [slug]);
@@ -27,7 +28,6 @@ export default function TopicDetailPage() {
 
   useEffect(() => {
     setIsClient(true);
-    // Reset state when slug changes
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);
@@ -66,7 +66,7 @@ export default function TopicDetailPage() {
             </div>
             {!showContent && (
               <Button onClick={() => setIsDisclaimerOpen(true)} size="lg" className="w-full md:w-auto">
-                <BookOpen className="mr-2 h-5 w-5" /> View Content
+                <BookOpen className="mr-2 h-5 w-5" /> View Overview
               </Button>
             )}
           </div>
@@ -89,7 +89,12 @@ export default function TopicDetailPage() {
                 </div>
               )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.generalOverview}</ReactMarkdown>
+              </div>
+              <div className="mt-8 text-center">
+                <Button onClick={() => router.push(`/topics/${slug}/details`)} size="lg">
+                  <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
+                </Button>
               </div>
             </CardContent>
           </>
@@ -116,5 +121,3 @@ export default function TopicDetailPage() {
     </div>
   );
 }
-
-    

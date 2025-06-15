@@ -2,13 +2,13 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { bodySystems } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import LegalDisclaimerModal from '@/components/modals/LegalDisclaimerModal';
-import { AlertTriangle, CheckCircle, BookOpen } from 'lucide-react';
+import { AlertTriangle, CheckCircle, BookOpen, Layers } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
@@ -17,23 +17,22 @@ import remarkGfm from 'remark-gfm';
 
 export default function BodySystemDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const slug = params.slug as string;
   
   const item = useMemo(() => bodySystems.find(bs => bs.slug === slug), [slug]);
 
   const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(false); // This now controls showing overview + details button
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-    // Reset state when slug changes to ensure disclaimer is shown for new content
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);
 
   if (!isClient) {
-    // Basic skeleton or loading state for server/initial render
     return <div className="h-96 animate-pulse bg-muted rounded-lg"></div>;
   }
 
@@ -67,7 +66,7 @@ export default function BodySystemDetailPage() {
             </div>
             {!showContent && (
               <Button onClick={() => setIsDisclaimerOpen(true)} size="lg" className="w-full md:w-auto">
-                <BookOpen className="mr-2 h-5 w-5" /> View Content
+                <BookOpen className="mr-2 h-5 w-5" /> View Overview
               </Button>
             )}
           </div>
@@ -90,7 +89,12 @@ export default function BodySystemDetailPage() {
                 </div>
               )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.generalOverview}</ReactMarkdown>
+              </div>
+              <div className="mt-8 text-center">
+                <Button onClick={() => router.push(`/body-systems/${slug}/details`)} size="lg">
+                  <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
+                </Button>
               </div>
             </CardContent>
           </>
@@ -117,5 +121,3 @@ export default function BodySystemDetailPage() {
     </div>
   );
 }
-
-    

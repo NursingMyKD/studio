@@ -808,7 +808,7 @@ In critical illness, the immune system is often profoundly affected, leading to 
     *   Duration: Typically 7-10 days for most infections, but shorter courses may be appropriate for some (e.g., uncomplicated UTI, source control achieved). Guided by clinical response and biomarkers (e.g., PCT).
 *   **Source Control Nuances**: Balance urgency with patient stability. Some sources (e.g., necrotizing fasciitis, perforated viscus) require immediate surgical intervention. Others (e.g., infected CVC) less emergent but still timely.
 *   **Corticosteroids for Septic Shock**: Hydrocortisone 200mg/day (e.g., 50mg IV q6h or continuous infusion). Benefit is earlier shock reversal, uncertain mortality benefit. Consider if shock is refractory to fluids and adequate vasopressor doses (e.g., norepinephrine >0.25 mcg/kg/min or equivalent). Taper when shock resolves. No role for sepsis without shock. ACTH stimulation test not recommended to guide therapy.
-*   **Vitamin C / Thiamine / Hydrocortisone ("HAT" Therapy)**: Investigational, early trials showed promise but larger RCTs (e.g., VITAMINS, VICTAS) did not confirm mortality benefit. Not currently recommended as standard care.
+*   **Vitamin C / Thiamine / Hydrocortisone ("HAT" Therapy)**: Investigational, early trials showed promise but larger RCTs (e.g., VITAMINS, VICTAS) did not confirm mortality benefit or significant improvement in organ dysfunction. Not currently recommended as standard care.
 
 ### Anaphylaxis - Advanced Management
 *   **Biphasic Anaphylaxis**: Recurrence of symptoms 1-72 hours (typically within 8-12h) after initial resolution, without re-exposure. Occurs in up to 20% of cases. Justifies prolonged observation (4-8h, or longer if severe/refractory initial reaction or history of biphasic reaction).
@@ -1050,25 +1050,35 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
 | **Mixed Venous O₂ Saturation (SvO₂) / Central Venous O₂ Saturation (ScvO₂)** | SvO₂: 60-80%, ScvO₂: >70% (target in sepsis) | SvO₂ (from PAC) reflects balance of DO₂ and VO₂ (O₂ consumption). ScvO₂ (from CVC in SVC) is surrogate. CaO₂ - CvO₂ = O₂ extraction.                 | Low SvO₂/ScvO₂ (<60-70%): Indicates inadequate DO₂ (↓CO, ↓Hgb, ↓SaO₂) or ↑VO₂ (fever, pain, shivering, seizures). High SvO₂/ScvO₂ (>80%): May indicate ↓VO₂ (sepsis-related cellular dysfunction, shunting, hypothermia, paralysis, anesthesia) or very high DO₂. |
 | **Oxygen Delivery (DO₂)**        | Normal ~1000 mL/min (DO₂I ~500-600 mL/min/m²) | DO₂ = CO x CaO₂ x 10. (CaO₂ = (Hgb x 1.34 x SaO₂) + (PaO₂ x 0.003)). Total amount of O₂ delivered to tissues per minute.               | Critical goal of resuscitation is to optimize DO₂ to meet tissue demands (VO₂). Inadequate DO₂ leads to tissue hypoxia, anaerobic metabolism, lactic acidosis.       |
 | **Oxygen Consumption (VO₂)**     | Normal ~250 mL/min (VO₂I ~120-160 mL/min/m²) | VO₂ = CO x (CaO₂ - CvO₂) x 10. Amount of O₂ consumed by tissues per minute.                                                            | Increases with fever, stress, work of breathing, agitation. Decreases with hypothermia, paralysis. In shock, VO₂ may become DO₂-dependent (pathological supply dependency). |
+| **Pulse Pressure Variation (PPV)** | <10-15% in mechanically ventilated patients | PPV = (PPmax - PPmin) / PPmean x 100%. Variation in pulse pressure during respiratory cycle. Predicts fluid responsiveness. | Higher values suggest fluid responsiveness. Requires controlled mechanical ventilation, regular rhythm, no severe ARDS/RV dysfunction, tidal volume ≥8 mL/kg. |
+| **Stroke Volume Variation (SVV)** | <10-15% in mechanically ventilated patients | Variation in stroke volume during respiratory cycle. Predicts fluid responsiveness. | Higher values suggest fluid responsiveness. Similar limitations to PPV. Requires continuous SV monitoring device. |
+| **Pulmonary Vascular Resistance (PVR) / PVRI** | PVR: <250 dynes·s/cm⁻⁵ (or <3 Wood units), PVRI: 255-285 dynes·s/cm⁻⁵/m² | PVR = (MPAP - PAWP)/CO x 80. Resistance to RV ejection. Affected by lung parenchymal disease, hypoxia, acidosis, PE. | High PVR/PVRI: Pulmonary hypertension, RV afterload. Seen in ARDS, COPD, PE, L-sided HF. Key in RV failure management. Low PVR/PVRI: Pulmonary vasodilation (e.g., some drugs, sepsis initially). |
+| **Right Ventricular Stroke Work Index (RVSWI)** | 5-10 g·m/m²/beat | RVSWI = SVI x (MPAP - CVP) x 0.0136. Measure of RV contractility and work. | Low RVSWI: Indicates RV dysfunction or inadequate preload. |
+| **Left Ventricular Stroke Work Index (LVSWI)** | 40-60 g·m/m²/beat | LVSWI = SVI x (MAP - PAWP) x 0.0136. Measure of LV contractility and work. | Low LVSWI: Indicates LV dysfunction or inadequate preload/excessive afterload. |
+| **Arterial Elastance (Ea)** | Reflects arterial load | Ea = End-Systolic Pressure (ESP) / SV. Often estimated as MAP / SV or 0.9 * SBP / SV. | High Ea indicates high LV afterload. Ventricular-arterial coupling (Ees/Ea) is an important determinant of cardiac efficiency. |
+| **End-Systolic Ventricular Elastance (Ees)** | Reflects LV contractility | Slope of end-systolic pressure-volume relationship (ESPVR). Difficult to measure directly without LV catheter. | Higher Ees means better contractility. Ees/Ea ratio ideally ~1.5-2.0 for optimal efficiency. |
+
 
 ### Advanced Fluid Responsiveness Assessment
 *   **Limitations of Static Measures (CVP, PAWP)**: Poorly predict if SV will increase with fluids. Many factors influence these pressures beyond volume status.
 *   **Dynamic Measures - Prerequisites & Limitations**:
     *   *SVV/PPV*: Require controlled mechanical ventilation (no spontaneous breaths), regular rhythm, tidal volume ≥8 mL/kg IBW (less reliable with low VT), closed chest, no severe ARDS/RV dysfunction.
-    *   *Passive Leg Raise (PLR)*: Requires continuous CO/SV monitoring (arterial pulse contour, esophageal Doppler, echocardiography). Patient must be able to tolerate position change. Effect is transient.
-    *   *End-Expiratory Occlusion Test (EEOT)*: Ventilator hold for 15-30s. Increases venous return. Change in CO/SV by >5% predicts responsiveness. Less affected by arrhythmias/spontaneous breathing than SVV/PPV.
+    *   *Passive Leg Raise (PLR)*: Requires continuous CO/SV monitoring (arterial pulse contour, esophageal Doppler, echocardiography). Patient must be able to tolerate position change. Effect is transient. Provides an "autotransfusion" of ~150-300 mL. Increase in SV/CO >10-15% suggests fluid responsiveness.
+    *   *End-Expiratory Occlusion Test (EEOT)*: Ventilator hold for 15-30s. Increases venous return by preventing cyclic decrease during expiration. Change in CO/SV by >5% predicts responsiveness. Less affected by arrhythmias/spontaneous breathing than SVV/PPV.
     *   *Fluid Challenge Technique*: Give 250-500 mL crystalloid over 5-15 min. Assess SV/CO response (e.g., >10-15% increase). If no response, further fluids unlikely to help and may be harmful.
 *   **Echocardiography for Fluid Responsiveness**:
     *   *IVC Diameter & Collapsibility Index ((Max Diam - Min Diam)/Max Diam x 100%)*: In spontaneously breathing, collapsibility >50% suggests responsiveness. In ventilated patients, distensibility index ((Max Diam - Min Diam)/Min Diam x 100%) >12-18% may predict. Less reliable with high PEEP or RV dysfunction.
-    *   *Velocity Time Integral (VTI) of LVOT*: Change in VTI >10-15% with PLR or fluid challenge indicates responsiveness.
+    *   *Velocity Time Integral (VTI) of LVOT*: Change in VTI >10-15% with PLR or fluid challenge indicates responsiveness. Requires skilled operator.
+    *   *Venous Excess Ultrasound (VExUS) Score*: Graded assessment of IVC, hepatic vein, portal vein, and renal vein Doppler waveforms to detect venous congestion (fluid intolerance). Higher scores suggest higher risk of AKI with further fluids.
 *   **Goal**: Identify patients on the steep part of Frank-Starling curve. Avoid fluid overload (associated with ARDS, AKI, prolonged ICU stay, mortality). "Restrictive" or "de-resuscitation" strategies (diuresis, UF) once shock resolves.
 
 ### Advanced Understanding of Shock States
 *   **Septic Shock**: Vasodilatory (↓SVR), often with septic cardiomyopathy (↓contractility). Microcirculatory dysfunction and impaired O₂ extraction (high SvO₂ sometimes). Resuscitation: Fluids, Norepinephrine (1st line), Vasopressin (adjunct), antibiotics, source control. Dobutamine if cardiac dysfunction persists despite fluids/pressors.
 *   **Cardiogenic Shock**: Primary pump failure (↓contractility, ↓CO). Compensatory ↑SVR. High CVP/PAWP. Resuscitation: Inotropes (Dobutamine, Milrinone), vasopressors if severe hypotension (Norepinephrine), afterload reduction cautiously (vasodilators, IABP), mechanical circulatory support (Impella, ECMO), treat underlying cause (e.g., MI revascularization).
+    *   *SCAI Shock Classification*: Stages A (At risk) to E (Extremis). Helps stratify severity and guide therapy.
 *   **Hypovolemic Shock**: Loss of intravascular volume (↓preload). Compensatory ↑SVR, ↑HR. ↓CO. Resuscitation: Volume replacement (crystalloids, colloids, blood products as indicated), control source of loss.
 *   **Obstructive Shock**: Physical obstruction to blood flow.
-    *   *Pulmonary Embolism (Massive/Submassive)*: RV outflow obstruction -> RV failure -> ↓LV preload -> ↓CO. High CVP, PVR. Treatment: Anticoagulation, thrombolysis or embolectomy for massive PE.
+    *   *Pulmonary Embolism (Massive/Submassive)*: RV outflow obstruction -> RV failure -> ↓LV preload -> ↓CO. High CVP, PVR. Treatment: Anticoagulation, thrombolysis or embolectomy for massive PE. RV support measures.
     *   *Cardiac Tamponade*: Fluid in pericardial sac compresses heart -> impaired diastolic filling. Beck's triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus. Treatment: Pericardiocentesis.
     *   *Tension Pneumothorax*: Air in pleural space shifts mediastinum -> compresses great veins/heart. Tracheal deviation, absent breath sounds, hyperresonance, JVD, hypotension. Treatment: Needle decompression then chest tube.
 *   **Right Ventricular (RV) Failure in ICU**: Causes: PE, ARDS (high PEEP, hypercapnia, hypoxia causing ↑PVR), sepsis, RV infarct. Signs: High CVP, JVD, peripheral edema, hepatomegaly, tricuspid regurgitation. Echo diagnosis. Management: Optimize RV preload (avoid overload), reduce RV afterload (treat cause, inhaled pulmonary vasodilators like iNO/epoprostenol, maintain oxygenation/normocapnia), support RV contractility (dobutamine, milrinone), maintain systemic BP (norepinephrine to support RV coronary perfusion). Avoid PEEP increases if possible.
@@ -1078,14 +1088,14 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
 *   **Combination Therapy**: Using drugs with complementary mechanisms (e.g., Norepinephrine + Vasopressin in septic shock can be synergistic).
 *   **Weaning**: Taper one agent at a time, slowly. Usually wean vasopressors first, then inotropes. Monitor for recurrence of hypotension/hypoperfusion. Wean vasopressin last in septic shock if used.
 *   **Arterial pH and Catecholamine Responsiveness**: Severe acidosis (pH <7.1-7.2) can impair catecholamine receptor function and drug efficacy. Correcting acidosis may improve response.
-*   **Consideration of Dynamic Elastance (Ea_dyn)**: Ratio of PPV to SVV. Can help guide vasopressor vs. fluid therapy. Higher Ea_dyn may suggest benefit from vasopressors.
+*   **Consideration of Dynamic Arterial Elastance (Ea_dyn)**: Ratio of PPV to SVV. Can help guide vasopressor vs. fluid therapy. Higher Ea_dyn may suggest benefit from vasopressors if PPV/SVV also high.
 
 ### Mechanical Circulatory Support (MCS) - Overview
-*   **Intra-Aortic Balloon Pump (IABP)**: Inflates during diastole (augments coronary perfusion, ↑diastolic BP), deflates before systole (↓afterload). Used in cardiogenic shock, high-risk PCI, bridge to transplant/VAD.
-*   **Percutaneous Ventricular Assist Devices (pVADs)**: (e.g., Impella, TandemHeart). Provide direct LV (or RV) unloading and support. Used in severe cardiogenic shock, high-risk PCI.
+*   **Intra-Aortic Balloon Pump (IABP)**: Inflates during diastole (augments coronary perfusion, ↑diastolic BP), deflates before systole (↓afterload). Used in cardiogenic shock, high-risk PCI, bridge to transplant/VAD. Minimal impact on CO directly.
+*   **Percutaneous Ventricular Assist Devices (pVADs)**: (e.g., Impella, TandemHeart). Provide direct LV (or RV) unloading and support, directly increasing forward flow. Used in severe cardiogenic shock, high-risk PCI.
 *   **Extracorporeal Membrane Oxygenation (ECMO)**:
-    *   *Veno-Arterial (VA) ECMO*: Provides both cardiac and respiratory support (bypasses heart and lungs). Used in refractory cardiogenic shock, cardiac arrest.
-    *   *Veno-Venous (VV) ECMO*: Provides only respiratory support (gas exchange). Used in refractory ARDS.
+    *   *Veno-Arterial (VA) ECMO*: Provides both cardiac and respiratory support (bypasses heart and lungs). Drains venous blood, oxygenates it, and returns it to arterial system. Used in refractory cardiogenic shock, cardiac arrest.
+    *   *Veno-Venous (VV) ECMO*: Provides only respiratory support (gas exchange). Drains venous blood, oxygenates it, and returns it to venous system. Used in refractory ARDS.
 
 Hemodynamic management is a cornerstone of ICU care, requiring continuous assessment, integration of multiple data points, and thoughtful, individualized interventions.`,
     categoryType: 'Topic',

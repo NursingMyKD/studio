@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Bookmark as BookmarkIcon, Star } from 'lucide-react'; // Added BookmarkIcon
 import React, { useEffect, useState } from 'react';
 import { useBookmarks } from '@/hooks/useBookmarks';
+import { cn } from "@/lib/utils"; // Added this import
 
 interface ModuleCardProps {
   item: ContentItem;
@@ -86,3 +87,4 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
 
 const ModuleCard = React.memo(ModuleCardComponent);
 export default ModuleCard;
+

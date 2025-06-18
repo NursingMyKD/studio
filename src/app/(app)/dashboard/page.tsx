@@ -1,113 +1,115 @@
 
+"use client";
+
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Lightbulb, BookOpenText, ShieldCheck, HeartPulse, Search, Star } from "lucide-react";
+import { Search as SearchIcon, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import TrendingTopics from "@/components/dashboard/TrendingTopics";
+import BookmarksDisplay from "@/components/dashboard/BookmarksDisplay";
+import { SearchInput } from "@/components/SearchInput"; // Reusable search input
+import ModuleCard from "@/components/cards/ModuleCard"; // To display search results
+import { bodySystems, topics, policies } from '@/lib/data';
+import type { ContentItem } from '@/types/content';
+import { Separator } from "@/components/ui/separator";
+
+const allContent: ContentItem[] = [...bodySystems, ...topics, ...policies];
 
 export default function DashboardPage() {
-  const quickLinks = [
-    { title: "Body Systems", href: "/body-systems", icon: HeartPulse, description: "Explore educational content by physiological systems." , dataAiHint: "anatomy chart"},
-    { title: "Critical Topics", href: "/topics", icon: BookOpenText, description: "Dive into key ICU subjects like hemodynamics." , dataAiHint: "medical textbook"},
-    { title: "Protocols and Guidelines", href: "/protocols-and-guidelines", icon: ShieldCheck, description: "Access important unit-specific protocols and guidelines." , dataAiHint: "hospital policy"},
-  ];
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isClient, setIsClient] = useState(false);
 
-  const spotlightModule = {
-    title: "Advanced Hemodynamics",
-    href: "/topics/hemodynamics",
-    icon: Star,
-    description: "Deep dive into hemodynamic principles, monitoring techniques, interpretation, and therapeutic interventions in critical care. Essential for managing complex patient scenarios.",
-    dataAiHint: "medical chart analysis"
-  };
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const filteredContent = useMemo(() => {
+    if (!searchTerm.trim()) {
+      return []; // No search results if search term is empty
+    }
+    const lowercasedTerm = searchTerm.toLowerCase();
+    return allContent.filter(item =>
+      item.title.toLowerCase().includes(lowercasedTerm) ||
+      item.summary.toLowerCase().includes(lowercasedTerm) ||
+      (item.keywordsForImage && item.keywordsForImage.toLowerCase().includes(lowercasedTerm)) ||
+      item.categoryType.toLowerCase().includes(lowercasedTerm)
+    );
+  }, [searchTerm]);
 
   return (
     <div className="space-y-8">
-      <header className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight font-headline">Welcome to ICU Edu Hub</h1>
-        <p className="text-muted-foreground">
-          Your central resource for critical care education and unit-specific protocols.
+      <header className="space-y-2 text-center md:text-left">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight font-headline text-primary">Welcome to ICU Hub</h1>
+        <p className="text-lg text-muted-foreground">
+          Your central point for critical care knowledge and collaboration.
         </p>
       </header>
 
       <section>
-        <h2 className="text-xl font-semibold mb-3 font-headline sr-only">Search Content</h2>
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-          <Input
-            type="search"
-            placeholder="Search modules, topics, protocols..."
-            className="w-full pl-10 pr-4 py-2 text-base rounded-lg border-2 border-border focus:border-primary transition-colors"
-            aria-label="Search content"
-          />
-        </div>
+        <SearchInput
+          value={searchTerm}
+          onChange={setSearchTerm}
+          placeholder="Quick search topics, systems, or protocols..."
+          containerClassName="max-w-xl mx-auto md:mx-0"
+        />
       </section>
 
-      <section>
-        <h2 className="text-2xl font-semibold mb-4 font-headline">Quick Access</h2>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {quickLinks.map((link) => (
-            <Card key={link.href} className="flex flex-col hover:shadow-lg transition-shadow duration-300">
-              <CardHeader className="flex flex-row items-center space-x-4 pb-2">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <link.icon className="h-6 w-6" />
-                </div>
-                <div>
-                  <CardTitle className="text-xl font-headline">{link.title}</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                <p className="text-sm text-muted-foreground">{link.description}</p>
-              </CardContent>
-              <div className="p-4 pt-0">
-                <Link href={link.href} passHref>
-                  <Button className="w-full" variant="outline">
-                    Go to {link.title}
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="text-2xl font-semibold mb-4 font-headline">Spotlight On</h2>
-        <Card className="bg-secondary/30 border-secondary/50 hover:shadow-lg transition-shadow duration-300">
-            <CardHeader className="flex flex-row items-start space-x-4 pb-3">
-                <div className="p-3 rounded-full bg-accent/10 text-accent mt-1">
-                    <spotlightModule.icon className="h-7 w-7" />
-                </div>
-                <div>
-                    <CardTitle className="text-xl font-headline text-accent-foreground">{spotlightModule.title}</CardTitle>
-                    <CardDescription className="text-accent-foreground/90 mt-1">
-                        {spotlightModule.description}
-                    </CardDescription>
-                </div>
-            </CardHeader>
-            <CardContent>
-                 {/* Placeholder for potential image or more details */}
-            </CardContent>
-            <div className="p-4 pt-0">
-                <Link href={spotlightModule.href} passHref>
-                  <Button className="w-full md:w-auto" variant="default">
-                    View {spotlightModule.title}
-                  </Button>
-                </Link>
+      {isClient && searchTerm.trim() && (
+        <section className="space-y-6">
+          <h2 className="text-2xl font-semibold font-headline text-primary">Search Results ({filteredContent.length})</h2>
+          {filteredContent.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredContent.map((item) => {
+                let basePath = "/topics"; // Default
+                if (item.categoryType === "Body System") basePath = "/body-systems";
+                else if (item.categoryType === "Policy") basePath = "/protocols-and-guidelines";
+                return <ModuleCard key={item.id} item={item} basePath={basePath} />;
+              })}
             </div>
-        </Card>
-      </section>
+          ) : (
+            <div className="flex flex-col items-center justify-center text-center py-10 px-6 rounded-lg bg-card border border-border shadow-sm">
+              <AlertCircle className="h-12 w-12 text-muted-foreground mb-4" />
+              <h3 className="text-xl font-semibold mb-2">No Results Found</h3>
+              <p className="text-muted-foreground">
+                Try adjusting your search term or exploring the sections below.
+              </p>
+            </div>
+          )}
+           <Separator className="my-8" />
+        </section>
+      )}
+      
+      {isClient && !searchTerm.trim() && (
+        <>
+          <TrendingTopics />
+          <Separator className="my-8" />
+          <BookmarksDisplay />
+        </>
+      )}
+       {!isClient && ( // Skeleton loaders for SSR/initial load
+         <>
+            <div className="space-y-6">
+                <div className="flex items-center justify-between">
+                    <div className="h-8 w-48 bg-muted rounded-md animate-pulse"></div>
+                    <div className="h-6 w-20 bg-muted rounded-md animate-pulse"></div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {[1,2,3].map(i => <div key={i} className="h-96 w-full bg-muted rounded-lg animate-pulse" />)}
+                </div>
+            </div>
+            <Separator className="my-8" />
+            <div className="space-y-6">
+                <div className="h-8 w-48 bg-muted rounded-md animate-pulse"></div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                     {[1,2].map(i => <div key={i} className="h-96 w-full bg-muted rounded-lg animate-pulse" />)}
+                </div>
+            </div>
+         </>
+       )}
 
-      <Card className="bg-accent/30 border-accent/50">
-        <CardHeader className="flex flex-row items-center space-x-3">
-          <Lightbulb className="h-8 w-8 text-accent" />
-          <div>
-            <CardTitle className="text-xl text-accent-foreground font-headline">Tip of the Day</CardTitle>
-            <CardDescription className="text-accent-foreground/80">
-              Always double-check medication calculations for high-alert drugs.
-            </CardDescription>
-          </div>
-        </CardHeader>
-      </Card>
+
     </div>
   );
 }

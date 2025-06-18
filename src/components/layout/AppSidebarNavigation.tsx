@@ -2,7 +2,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, HeartPulse, BookOpenText, ShieldCheck, LayoutDashboard, UserCircle as UserProfileIcon } from 'lucide-react';
+import { Home, HeartPulse, BookOpenText, ShieldCheck, LayoutDashboard } from 'lucide-react'; // Removed UserProfileIcon
 import { SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
 
@@ -13,7 +13,7 @@ const navItems = [
   { href: '/protocols-and-guidelines', label: 'Protocols & Guidelines', icon: ShieldCheck },
 ];
 
-// Profile item is handled in SidebarFooter, so no need to add it here for main navigation.
+// Profile item is now handled in UserNav in the main app header.
 
 export default function AppSidebarNavigation() {
   const pathname = usePathname();
@@ -27,7 +27,7 @@ export default function AppSidebarNavigation() {
               className={cn(
                 (pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))) 
                 ? 'bg-sidebar-accent text-sidebar-accent-foreground' 
-                : 'hover:bg-sidebar-accent/50'
+                : 'hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground' // Adjusted hover
               )}
               isActive={pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))}
               tooltip={{ children: item.label, side: 'right' }}

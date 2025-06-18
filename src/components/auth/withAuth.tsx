@@ -5,8 +5,9 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
-import SidebarInset from '@/components/layout/SidebarInset';
+// import SidebarInset from '@/components/layout/SidebarInset'; // SidebarInset is part of AppLayout directly
 import { Skeleton } from '@/components/ui/skeleton';
+import { Menu, Info } from "lucide-react"; // For header skeleton
 
 const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
   const WithAuthComponent = (props: P) => {
@@ -15,17 +16,23 @@ const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
 
     useEffect(() => {
       if (!initialLoading && !loading && !user) {
-        router.push('/login');
+        // router.push('/login'); // Temporarily commented out for preview
       }
     }, [user, loading, initialLoading, router]);
 
-    if (initialLoading || loading) {
+    if (initialLoading) { // Show skeleton only during initial auth state check
       return (
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen bg-background">
           <AppSidebarSkeleton />
-          <SidebarInset>
-            <header className="sticky top-0 z-10 flex h-16 items-center justify-end border-b bg-background/80 backdrop-blur-sm px-4 md:px-6">
-              <Skeleton className="h-7 w-7 hidden md:flex" />
+          {/* Simplified Main Content Skeleton */}
+          <div className="flex flex-col flex-1">
+            <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 shadow-sm backdrop-blur-sm sm:px-6">
+                <Skeleton className="h-7 w-7 md:hidden" />
+                <Skeleton className="h-7 w-7 hidden md:flex" />
+                <Skeleton className="h-6 w-24" />
+                <div className="flex-1" />
+                <Skeleton className="h-8 w-8 rounded-full" />
+                <Skeleton className="h-8 w-8 rounded-full" />
             </header>
             <main className="flex-1 p-4 md:p-6 lg:p-8">
               <div className="space-y-4">
@@ -35,14 +42,16 @@ const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
                 <Skeleton className="h-40 w-full" />
               </div>
             </main>
-          </SidebarInset>
+          </div>
         </div>
       );
     }
 
-    if (!user) {
-      return null;
-    }
+    // If not initial loading and no user, and redirection is active, this would redirect.
+    // For now, allow component rendering even if no user.
+    // if (!user && !initialLoading && !loading) {
+    //   return null; // Or a more specific "login required" component if not redirecting immediately
+    // }
 
     return <WrappedComponent {...props} />;
   };

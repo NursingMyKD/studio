@@ -4,6 +4,7 @@
 import { Input } from "@/components/ui/input";
 import { Search as SearchIcon } from "lucide-react";
 import type { ChangeEvent, HTMLProps } from "react";
+import { cn } from "@/lib/utils"; // Added this import
 
 interface SearchInputProps extends Omit<HTMLProps<HTMLInputElement>, 'onChange' | 'type'> {
   value: string;
@@ -40,3 +41,4 @@ export function SearchInput({
     </div>
   );
 }
+

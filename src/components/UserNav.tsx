@@ -38,15 +38,9 @@ export function UserNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            {user && userProfile?.name ? (
-              <AvatarImage src={`https://placehold.co/32x32.png?text=${getInitials(userProfile.name)}`} alt={userProfile.name || "User"} data-ai-hint="person avatar" />
-            ) : user && user?.email ? (
-              <AvatarImage src={`https://placehold.co/32x32.png?text=${getInitials(user.email)}`} alt={user.email} data-ai-hint="person initial" />
-            ) : (
-              <AvatarImage src="https://placehold.co/32x32.png" alt="User" data-ai-hint="placeholder user"/>
-            )}
+            <AvatarImage src="https://placehold.co/32x32.png" alt={userProfile?.name || user?.email || "User"} data-ai-hint="person avatar" />
             <AvatarFallback>
-              {user && userProfile?.name ? getInitials(userProfile.name) : user && user?.email ? getInitials(user.email) : <UserIcon className="h-5 w-5"/>}
+              {userProfile?.name ? getInitials(userProfile.name) : user?.email ? getInitials(user.email) : <UserIcon className="h-5 w-5"/>}
             </AvatarFallback>
           </Avatar>
         </Button>

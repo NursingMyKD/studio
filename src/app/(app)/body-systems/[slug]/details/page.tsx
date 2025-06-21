@@ -6,11 +6,13 @@ import { useParams, useRouter } from 'next/navigation';
 import { bodySystems } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { AlertTriangle, ArrowLeft } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, Bookmark as BookmarkIcon } from 'lucide-react';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Separator } from '@/components/ui/separator';
+import { useBookmarks } from '@/hooks/useBookmarks';
+import { cn } from '@/lib/utils';
 
 export default function BodySystemInDepthDetailPage() {
   const params = useParams();
@@ -19,10 +21,26 @@ export default function BodySystemInDepthDetailPage() {
 
   const item = useMemo(() => bodySystems.find(bs => bs.slug === slug), [slug]);
   const [isClient, setIsClient] = useState(false);
+  
+  const { isBookmarked, toggleBookmark, isLoaded } = useBookmarks();
+  const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      setBookmarked(isBookmarked(slug));
+    }
+  }, [isLoaded, slug, isBookmarked]);
+
+  const handleBookmarkToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggleBookmark(slug);
+    setBookmarked(!bookmarked);
+  };
 
   if (!isClient) {
     return <div className="h-96 animate-pulse bg-muted rounded-lg"></div>;
@@ -48,8 +66,23 @@ export default function BodySystemInDepthDetailPage() {
       </Button>
       <Card className="shadow-lg">
         <CardHeader>
-          <CardTitle className="font-headline text-3xl md:text-4xl">{item.title} - In-Depth Details</CardTitle>
-          {item.summary && <CardDescription className="pt-2 text-lg">{item.summary}</CardDescription>}
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-grow">
+                <CardTitle className="font-headline text-3xl md:text-4xl">{item.title} - In-Depth Details</CardTitle>
+                {item.summary && <CardDescription className="pt-2 text-lg">{item.summary}</CardDescription>}
+            </div>
+            {isLoaded && (
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleBookmarkToggle}
+                    aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
+                    className="h-10 w-10 shrink-0"
+                >
+                    <BookmarkIcon className={cn("h-7 w-7 transition-all", bookmarked ? "fill-primary text-primary" : "text-muted-foreground")} />
+                </Button>
+            )}
+          </div>
         </CardHeader>
         <Separator />
         <CardContent className="pt-6">

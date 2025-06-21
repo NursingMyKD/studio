@@ -12,7 +12,7 @@ import { AlertTriangle, CheckCircle, BookOpen, Layers, Bookmark as BookmarkIcon 
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
-import { useBookmarks } from '@/hooks/useBookmarks';
+import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from '@/lib/utils';
 import MarkdownRenderer from '@/components/content/MarkdownRenderer';
 
@@ -28,7 +28,7 @@ export default function BodySystemDetailPage() {
   const [isClient, setIsClient] = useState(false);
 
   const { isBookmarked, toggleBookmark, isLoaded } = useBookmarks();
-  const [bookmarked, setBookmarked] = useState(false);
+  const bookmarked = isBookmarked(slug, PAGE_BOOKMARK_SLUG);
 
   useEffect(() => {
     setIsClient(true);
@@ -36,17 +36,10 @@ export default function BodySystemDetailPage() {
     setShowContent(false);
   }, [slug]);
 
-  useEffect(() => {
-    if (isLoaded) {
-      setBookmarked(isBookmarked(slug));
-    }
-  }, [isLoaded, slug, isBookmarked]);
-
   const handleBookmarkToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleBookmark(slug);
-    setBookmarked(!bookmarked);
+    toggleBookmark(slug, PAGE_BOOKMARK_SLUG);
   };
 
   if (!isClient) {
@@ -118,7 +111,7 @@ export default function BodySystemDetailPage() {
                   />
                 </div>
               )}
-              <MarkdownRenderer content={item.generalOverview} />
+              <MarkdownRenderer content={item.generalOverview} pageSlug={slug} />
               <div className="mt-8 text-center">
                 <Button onClick={() => router.push(`/body-systems/${slug}/details`)} size="lg">
                   <Layers className="mr-2 h-5 w-5" /> View In-Depth Details

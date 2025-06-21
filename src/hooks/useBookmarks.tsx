@@ -1,24 +1,32 @@
 
 "use client";
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import type { ContentItem } from '@/types/content';
-import { bodySystems, topics, policies } from '@/lib/data'; // Assuming these are the full arrays
+import { bodySystems, topics, policies, getContentItemBySlug } from '@/lib/data';
 
 const allContentItems: ContentItem[] = [...bodySystems, ...topics, ...policies];
 
-const BOOKMARKS_STORAGE_KEY = 'icuHubBookmarks';
+const BOOKMARKS_STORAGE_KEY = 'icuHubBookmarks_v2';
+
+// New data structure: { pageSlug: [sectionSlug1, sectionSlug2, ...] }
+export type BookmarkData = Record<string, string[]>;
+export const PAGE_BOOKMARK_SLUG = '__PAGE__';
 
 export function useBookmarks() {
-  const [bookmarkedSlugs, setBookmarkedSlugs] = useState<Set<string>>(new Set());
-  const [bookmarkedItems, setBookmarkedItems] = useState<ContentItem[]>([]);
+  const [bookmarks, setBookmarks] = useState<BookmarkData>({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const storedSlugs = localStorage.getItem(BOOKMARKS_STORAGE_KEY);
-      if (storedSlugs) {
-        setBookmarkedSlugs(new Set(JSON.parse(storedSlugs)));
+      try {
+        const storedData = localStorage.getItem(BOOKMARKS_STORAGE_KEY);
+        if (storedData) {
+          setBookmarks(JSON.parse(storedData));
+        }
+      } catch (error) {
+        console.error("Failed to parse bookmarks from localStorage", error);
+        setBookmarks({});
       }
       setIsLoaded(true);
     }
@@ -26,40 +34,56 @@ export function useBookmarks() {
 
   useEffect(() => {
     if (isLoaded && typeof window !== 'undefined') {
-      localStorage.setItem(BOOKMARKS_STORAGE_KEY, JSON.stringify(Array.from(bookmarkedSlugs)));
+      localStorage.setItem(BOOKMARKS_STORAGE_KEY, JSON.stringify(bookmarks));
+    }
+  }, [bookmarks, isLoaded]);
+
+  const toggleBookmark = useCallback((pageSlug: string, sectionSlug: string = PAGE_BOOKMARK_SLUG) => {
+    setBookmarks(prev => {
+      const newBookmarks = JSON.parse(JSON.stringify(prev));
+      const pageBookmarks = new Set(newBookmarks[pageSlug] || []);
+
+      if (pageBookmarks.has(sectionSlug)) {
+        pageBookmarks.delete(sectionSlug);
+      } else {
+        pageBookmarks.add(sectionSlug);
+      }
+
+      if (pageBookmarks.size === 0) {
+        delete newBookmarks[pageSlug];
+      } else {
+        newBookmarks[pageSlug] = Array.from(pageBookmarks);
+      }
       
-      const items = allContentItems.filter(item => bookmarkedSlugs.has(item.slug));
-      setBookmarkedItems(items);
-    }
-  }, [bookmarkedSlugs, isLoaded]);
-
-  const addBookmark = useCallback((slug: string) => {
-    setBookmarkedSlugs(prevSlugs => {
-      const newSlugs = new Set(prevSlugs);
-      newSlugs.add(slug);
-      return newSlugs;
+      return newBookmarks;
     });
   }, []);
 
-  const removeBookmark = useCallback((slug: string) => {
-    setBookmarkedSlugs(prevSlugs => {
-      const newSlugs = new Set(prevSlugs);
-      newSlugs.delete(slug);
-      return newSlugs;
-    });
-  }, []);
+  const isBookmarked = useCallback((pageSlug: string, sectionSlug: string = PAGE_BOOKMARK_SLUG) => {
+    return bookmarks[pageSlug]?.includes(sectionSlug) ?? false;
+  }, [bookmarks]);
 
-  const isBookmarked = useCallback((slug: string) => {
-    return bookmarkedSlugs.has(slug);
-  }, [bookmarkedSlugs]);
+  const bookmarkedPages = useMemo(() => {
+    const pageSlugs = Object.keys(bookmarks);
+    return allContentItems.filter(item => pageSlugs.includes(item.slug));
+  }, [bookmarks]);
 
-  const toggleBookmark = useCallback((slug: string) => {
-    if (isBookmarked(slug)) {
-      removeBookmark(slug);
-    } else {
-      addBookmark(slug);
-    }
-  }, [isBookmarked, addBookmark, removeBookmark]);
+  const getBookmarkedSectionsForPage = useCallback((pageSlug: string) => {
+      const sections = bookmarks[pageSlug]?.filter(s => s !== PAGE_BOOKMARK_SLUG) || [];
+      return sections;
+  }, [bookmarks]);
 
-  return { bookmarkedItems, bookmarkedSlugs, addBookmark, removeBookmark, isBookmarked, toggleBookmark, isLoaded };
+  const bookmarkedItems = useMemo(() => {
+     return bookmarkedPages;
+  }, [bookmarkedPages]);
+
+  return { 
+    bookmarks, 
+    toggleBookmark, 
+    isBookmarked, 
+    bookmarkedPages, 
+    getBookmarkedSectionsForPage,
+    bookmarkedItems, // For backward compatibility with some components if needed
+    isLoaded 
+  };
 }

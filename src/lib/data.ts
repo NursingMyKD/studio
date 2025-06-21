@@ -1,5 +1,6 @@
 
 import type { ContentItem } from '@/types/content';
+import { slugify } from './utils';
 
 const splitContent = (markdown: string): { generalOverview: string; inDepthConsiderations: string } => {
   const generalOverviewMarker = "## General Overview";
@@ -624,7 +625,7 @@ While primary musculoskeletal disorders are not always the direct cause for admi
     summary: 'Management of skin integrity, pressure injuries, burns, and common dermatological conditions in the ICU.',
     content: `## General Overview
 
-The integumentary system is the body's largest and most externally visible organ system. It is primarily composed of the skin, which forms a continuous protective covering, along with its various appendages. These appendages include hair (found over most of_the body surface, providing some insulation and sensory input), nails (keratinized plates on the fingers and toes, protecting the distal phalanges and aiding in grasping), and several types of glands, such as sweat glands (eccrine glands for thermoregulatory sweating and apocrine glands in axillary/genital areas active after puberty) and sebaceous glands (which produce sebum, an oily substance that lubricates the skin and hair, and has some antimicrobial properties). The skin itself is a complex, multi-layered organ consisting of:
+The integumentary system is the body's largest and most externally visible organ system. It is primarily composed of the skin, which forms a continuous protective covering, along with its various appendages. These appendages include hair (found over most of the body surface, providing some insulation and sensory input), nails (keratinized plates on the fingers and toes, protecting the distal phalanges and aiding in grasping), and several types of glands, such as sweat glands (eccrine glands for thermoregulatory sweating and apocrine glands in axillary/genital areas active after puberty) and sebaceous glands (which produce sebum, an oily substance that lubricates the skin and hair, and has some antimicrobial properties). The skin itself is a complex, multi-layered organ consisting of:
 1.  **Epidermis**: The outermost, avascular layer, primarily composed of keratinocytes that undergo continuous renewal (turnover ~28 days). It provides the primary waterproof barrier and includes melanocytes (producing melanin pigment for UV protection), Langerhans cells (immune surveillance - antigen presentation), and Merkel cells (sensory receptors for light touch). Layers from deep to superficial: Stratum basale (germinativum - stem cells), Stratum spinosum (desmosomes), Stratum granulosum (keratohyalin granules), Stratum lucidum (thick skin only - palms/soles), Stratum corneum (outermost layer of dead, anucleated keratinocytes - "horny layer").
 2.  **Dermis**: The underlying, thicker layer of connective tissue, rich in collagen (strength) and elastin fibers (elasticity), providing strength and elasticity. It contains blood vessels (for nutrient supply and thermoregulation), lymphatic vessels, nerve endings (for touch - Meissner's corpuscles; pressure - Pacinian corpuscles; pain - free nerve endings; temperature), hair follicles, arrector pili muscles, sebaceous glands, and sweat glands. Two layers: Papillary dermis (superficial, loose connective tissue, dermal papillae interdigitate with epidermis) and Reticular dermis (deeper, dense irregular connective tissue).
 3.  **Subcutaneous Tissue (Hypodermis or Superficial Fascia)**: Located beneath the dermis, composed mainly of adipose tissue (fat) and loose connective tissue. It provides insulation, cushioning against trauma, energy storage, and connects the skin to underlying structures like muscles and bones.
@@ -899,7 +900,7 @@ There are two main types of ECMO:
 
 ECMO is a complex, invasive, and resource-intensive therapy managed by a specialized multidisciplinary team including intensivists, surgeons (cardiothoracic or vascular), perfusionists, ECMO specialist nurses, and respiratory therapists. The Extracorporeal Life Support Organization (ELSO) provides guidelines and a registry for ECMO centers. Patient selection, timing of initiation, meticulous circuit management, anticoagulation, and prevention of complications are critical for successful outcomes.
 
-## In-Depth ICU Considerations (Aligned with ELSO Guidelines)
+## In-Depth ICU Considerations
 
 ### Veno-Venous ECMO (VV-ECMO) - Respiratory Support
 *   **Indications**: Severe refractory hypoxemic respiratory failure (e.g., ARDS with PaO₂/FiO₂ < 80) despite optimal conventional therapy ([LPV](/ventilator-management), proning, NMBAs).
@@ -1132,7 +1133,7 @@ The primary goals of Impella therapy are to unload the failing ventricle (reduci
     *   **Device Malposition**: Can lead to inadequate support, suction, arrhythmias, or valvular damage.
     *   **Thrombosis/Embolism**: Requires systemic anticoagulation (heparin to target aPTT).
     *   **Bleeding**: Due to anticoagulation.
-*   Impella management is complex and requires a specialized team. For more on MCS, see the [IABP](/iabp) and [ECMO](/ecmo) topics.`,
+Impella devices provide powerful, direct ventricular support but require specialized management by a skilled multidisciplinary team. Careful patient selection, meticulous attention to device operation, anticoagulation, and proactive monitoring for complications are essential for optimizing outcomes.`,
     keywordsForImage: 'impella pvad heart assist',
   }
 ];
@@ -1159,7 +1160,7 @@ Stroke is a medical emergency characterized by a sudden interruption of blood fl
     *   **Subarachnoid Hemorrhage (SAH)**: Usually aneurysmal. Secure aneurysm (coiling/clipping), nimodipine for vasospasm prevention, management of hydrocephalus, ICP, and vasospasm.
 *   **Stroke Unit / ICU Care**: Continuous neurological and hemodynamic monitoring, management of complications (cerebral edema, seizures, infections, DVT), secondary prevention strategies, rehabilitation.
 
-## In-Depth ICU Considerations for Stroke
+## In-Depth ICU Considerations
 
 ### Acute Ischemic Stroke (AIS) - ICU Management
 *   **Post-IV Thrombolysis (Alteplase) Care**:
@@ -1211,17 +1212,15 @@ Safe and effective medication administration is a cornerstone of critical care n
 *   **Pharmacist Involvement**: Clinical pharmacists play a vital role in ICU medication management (prospective order review, therapeutic drug monitoring - TDM, drug information, interaction checks, antimicrobial stewardship, participation in rounds).
 *   **Communication**: Clear communication between physicians, pharmacists, and nurses regarding medication orders, changes, and patient response. Use standardized handoff communication (e.g., SBAR).
 
-## In-Depth ICU Considerations for Specific Medication Classes
+## In-Depth ICU Considerations
 
-This section provides more detailed guidelines for commonly used high-alert medication classes in the ICU. Refer to the [Critical Care Pharmacology](/pharmacology) topic for more extensive drug-specific details.
-
-### 1. Vasoactive Medications (Vasopressors, Inotropes, Vasodilators)
+### Vasoactive Medications (Vasopressors, Inotropes, Vasodilators)
 *   **Administration**: Administer via a central venous catheter (CVC) whenever possible.
 *   **Monitoring**: Continuous arterial blood pressure monitoring via an arterial line is essential.
 *   **Titration**: Titrate based on clearly defined hemodynamic goals (e.g., MAP, CI, UOP, lactate clearance).
 *   **Extravasation Management**: Stop infusion, aspirate, administer Phentolamine SubQ for alpha-agonist vasopressors.
 
-### 2. Sedatives and Analgesics
+### Sedatives and Analgesics
 *   **Strategy**: Prioritize "analgesia-first" or "analgosedation."
 *   **Assessment**: Use validated pain (CPOT, BPS) and sedation (RASS, SAS) scales.
 *   **Goal**: Target light sedation (e.g., RASS -2 to 0) whenever possible.
@@ -1229,24 +1228,24 @@ This section provides more detailed guidelines for commonly used high-alert medi
 *   **Choice**: Propofol or dexmedetomidine are generally preferred over benzodiazepines.
 *   (See [PADIS Guidelines](/padis-guidelines) for more details)
 
-### 3. Neuromuscular Blocking Agents (NMBAs)
+### Neuromuscular Blocking Agents (NMBAs)
 *   **HIGH-ALERT**: Ensure prominent labeling.
 *   **Prerequisite**: **ALWAYS ensure adequate sedation and analgesia before and during use.**
 *   **Monitoring**: Train-of-Four (TOF) stimulation is essential for continuous infusions (Goal: 1-2 twitches).
 *   **Supportive Care**: Meticulous eye care, skin care, and DVT prophylaxis.
 
-### 4. Insulin Infusions
+### Insulin Infusions
 *   **Protocols**: Use a validated institutional protocol for titration and hypoglycemia management.
 *   **Monitoring**: Frequent blood glucose monitoring (e.g., q1h initially).
 *   **Target**: 140-180 mg/dL for most ICU patients.
 *   **Transition**: Overlap IV infusion with first dose of subcutaneous basal insulin by 1-2 hours.
 
-### 5. Anticoagulants
+### Anticoagulants
 *   **Heparin Infusion**: Use weight-based nomograms. Monitor aPTT and platelet count (for HIT). Reversal: Protamine sulfate.
 *   **Warfarin**: Monitor INR. Reversal: Vitamin K, PCC.
 *   **DOACs**: Specific reversal agents exist (Idarucizumab, Andexanet alfa).
 
-### 6. Concentrated Electrolytes
+### Concentrated Electrolytes
 *   **Potassium Chloride**: HIGH-ALERT. Maximum peripheral infusion rate: 10 mEq/hour. Central line preferred for higher rates/concentrations. NEVER IV push.
 *   **Magnesium Sulfate**: Infuse slowly to prevent hypotension. Monitor DTRs.
 *   **Hypertonic Saline (3%)**: For ↑ICP or severe symptomatic hyponatremia. Administer via CVC. Monitor Na+ levels closely to avoid overly rapid correction (risk of ODS).`,
@@ -1274,40 +1273,40 @@ Acute Respiratory Distress Syndrome (ARDS) is a life-threatening form of acute d
 
 The cornerstone of ARDS management is treating the underlying cause and providing supportive care, primarily through lung-protective mechanical ventilation strategies aimed at minimizing ventilator-induced lung injury (VILI). Other key aspects include optimizing PEEP, conservative fluid management, and consideration of adjunctive therapies in severe cases.
 
-## In-Depth ICU Considerations for ARDS Management
+## In-Depth ICU Considerations
 
-### 1. Lung-Protective Ventilation (LPV)
+### Lung-Protective Ventilation (LPV)
 **Goal**: Minimize VILI while maintaining adequate gas exchange. (See [Advanced Ventilator Management](/ventilator-management) for more details).
 *   **Tidal Volume (VT)**: Target **4-6 mL/kg of Ideal Body Weight (IBW)**.
 *   **Plateau Pressure (Pplat)**: Target **Pplat ≤ 30 cmH₂O**.
 *   **Driving Pressure (ΔP)**: Target **ΔP ≤ 14-15 cmH₂O** (ΔP = Pplat - PEEP).
 *   **Permissive Hypercapnia**: Allow PaCO₂ to rise (target pH >7.15-7.20) to achieve LPV goals.
 
-### 2. PEEP Optimization
+### PEEP Optimization
 **Goal**: Improve oxygenation by recruiting alveoli while avoiding overdistension and hemodynamic compromise.
 *   **Methods**: Use ARDSNet PEEP/FiO₂ tables, incremental/decremental PEEP trials (assessing compliance/oxygenation), or advanced methods like esophageal manometry.
 
-### 3. Fluid Management
+### Fluid Management
 **Goal**: Aim for a conservative or restrictive fluid strategy after initial resuscitation to minimize pulmonary edema.
 *   **Strategy**: Target a neutral or negative cumulative fluid balance once shock is resolved (ARDSNet FACTT trial).
 
-### 4. Prone Positioning
+### Prone Positioning
 **Goal**: Improve oxygenation and potentially survival in moderate to severe ARDS.
 *   **Indications**: Moderate to severe ARDS (PaO₂/FiO₂ < 150 mmHg).
 *   **Protocol**: Initiate early, for at least 12-16 hours per day. Requires a skilled team.
 
-### 5. Neuromuscular Blocking Agents (NMBAs)
+### Neuromuscular Blocking Agents (NMBAs)
 **Goal**: Improve patient-ventilator synchrony in early, severe ARDS.
 *   **Indications**: Early (first 48 hours) severe ARDS (PaO₂/FiO₂ < 150 mmHg).
 *   **Protocol**: Continuous infusion (e.g., Cisatracurium) for up to 48 hours. Ensure deep sedation. Use is debated (ROSE trial vs. ACURASYS trial).
 
-### 6. Adjunctive Therapies (Refractory Cases)
+### Adjunctive Therapies (Refractory Cases)
 *   **Recruitment Maneuvers (RMs)**: Use with caution due to risk of barotrauma/hemodynamic compromise.
 *   **Inhaled Pulmonary Vasodilators (iNO, inhaled epoprostenol)**: Rescue therapy for severe refractory hypoxemia. Improves V/Q matching but no proven mortality benefit.
 *   **Extracorporeal Membrane Oxygenation (ECMO)**: For severe ARDS refractory to all other therapies. (See the [ECMO](/ecmo) topic).
 *   **Corticosteroids**: May be considered in early moderate-severe ARDS or unresolving ARDS. Role is still evolving.
 
-### 7. General Supportive Care
+### General Supportive Care
 *   Treat underlying cause, provide early enteral nutrition, manage sedation/delirium (see [PADIS Guidelines](/padis-guidelines)), and implement VTE/SUP prophylaxis.`,
     categoryType: 'Policy',
     keywordsForImage: 'ards lungs ventilator icu',
@@ -1329,7 +1328,7 @@ The Society of Critical Care Medicine (SCCM) has published clinical practice gui
 *   **Non-pharmacologic Interventions**: Prioritize or use in conjunction with pharmacologic approaches.
 *   **Interprofessional Approach**: Collaboration among physicians, nurses, pharmacists, respiratory therapists, physical/occupational therapists, and families.
 
-## In-Depth ICU Considerations for PADIS Management
+## In-Depth ICU Considerations
 
 ### P: Pain Assessment and Management
 *   **Assessment**: Use self-report (NRS) if possible. In non-verbal patients, use validated behavioral scales (CPOT, BPS).
@@ -1375,23 +1374,23 @@ The TTM protocol involves three phases:
 
 Throughout all phases, meticulous ICU care is required, including hemodynamic support, mechanical ventilation, management of shivering, electrolyte and glucose monitoring, and prevention of complications.
 
-## In-Depth ICU Considerations for TTM Post-Cardiac Arrest
+## In-Depth ICU Considerations
 
-### 1. Patient Selection and Initiation
+### Patient Selection and Initiation
 *   **Inclusion**: Comatose adult patients with ROSC after cardiac arrest (any rhythm, in- or out-of-hospital).
 *   **Exclusion (Relative)**: Awake, severe shock, active bleeding, terminal illness.
 *   **Timing**: Initiate as soon as possible after ROSC.
 
-### 2. Target Temperature and Duration
+### Target Temperature and Duration
 *   **Target Temperature**: **Actively prevent fever** by targeting a core temperature between **32°C and 36°C**. The key emphasis is on precision and avoiding fever (>37.7°C).
 *   **Duration**: Maintain target temperature for **at least 24 hours**.
 
-### 3. Cooling Methods
+### Cooling Methods
 *   **Induction**: Can use rapid infusion of cold IV fluids (30 mL/kg) and/or surface cooling (pads, blankets, ice packs) or internal cooling (intravascular catheters).
 *   **Maintenance**: Automated surface or intravascular cooling systems with feedback control are preferred for precise temperature maintenance.
 *   **Monitoring**: Core temperature monitoring is essential (esophageal, bladder, or PA catheter).
 
-### 4. Management During TTM
+### Management During TTM
 *   **Shivering Management**: Shivering increases metabolic rate and counteracts cooling. Treat aggressively with a tiered approach: skin counterwarming, increased sedation, magnesium, buspirone, and as a last resort, NMBAs.
 *   **Sedation and Analgesia**: Deep sedation is required to prevent shivering and ensure comfort.
 *   **Hemodynamics**: Hypothermia can cause bradycardia and vasoconstriction. Maintain adequate MAP to ensure cerebral perfusion.
@@ -1400,7 +1399,7 @@ Throughout all phases, meticulous ICU care is required, including hemodynamic su
 *   **Coagulation**: Hypothermia impairs coagulation; monitor for bleeding.
 *   **EEG**: Consider continuous EEG to monitor for seizures.
 
-### 5. Rewarming Phase and Post-TTM Care
+### Rewarming Phase and Post-TTM Care
 *   **Rate**: Rewarm slowly and controllably: **0.25°C to 0.5°C per hour**. Rapid rewarming can cause hypotension, hyperkalemia, and hypoglycemia.
 *   **Post-Rewarming Fever Prevention**: **Crucially important.** Maintain normothermia (e.g., <37.7°C) for at least 72 hours after rewarming is complete.
 *   **Neurological Prognostication**: A multimodal approach is recommended, but should be delayed until at least 72 hours after rewarming to normothermia and after sedation has cleared to avoid premature withdrawal of care.`,
@@ -1427,3 +1426,31 @@ export const policies: ContentItem[] = originalPoliciesContent.map(item => {
   const { generalOverview, inDepthConsiderations } = splitContent(item.content);
   return { ...item, generalOverview, inDepthConsiderations };
 });
+
+export const allContentItems: ContentItem[] = [...bodySystems, ...topics, ...policies];
+
+export function getContentItemBySlug(slug: string): ContentItem | undefined {
+  return allContentItems.find(item => item.slug === slug);
+}
+
+function getSectionsFromContent(content: string): Array<{slug: string, name: string}> {
+  const sections: Array<{slug: string, name: string}> = [];
+  const headingRegex = /^## (.*$)/gm;
+  let match;
+  while ((match = headingRegex.exec(content)) !== null) {
+    const name = match[1];
+    if (name) {
+        const sectionSlug = slugify(name);
+        sections.push({ slug: sectionSlug, name });
+    }
+  }
+  return sections;
+}
+
+export function getSectionsBySlug(pageSlug: string): Array<{slug: string, name: string}> {
+  const item = getContentItemBySlug(pageSlug);
+  if (!item) return [];
+  const generalSections = getSectionsFromContent(item.generalOverview);
+  const inDepthSections = getSectionsFromContent(item.inDepthConsiderations);
+  return [...generalSections, ...inDepthSections];
+}

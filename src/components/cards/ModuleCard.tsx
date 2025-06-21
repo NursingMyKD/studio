@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Bookmark as BookmarkIcon, Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { useBookmarks } from '@/hooks/useBookmarks';
+import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from "@/lib/utils";
 
 interface ModuleCardProps {
@@ -23,15 +23,14 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
 
   useEffect(() => {
     if (isLoaded) {
-      setBookmarked(isBookmarked(item.slug));
+      setBookmarked(isBookmarked(item.slug, PAGE_BOOKMARK_SLUG));
     }
-  }, [isLoaded, item.slug, isBookmarked]);
+  }, [isLoaded, item.slug, isBookmarked, bookmarked]); // Added bookmarked to dependencies to ensure re-render
 
   const handleBookmarkToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleBookmark(item.slug);
-    setBookmarked(!bookmarked);
+    toggleBookmark(item.slug, PAGE_BOOKMARK_SLUG);
   };
   
   if (!item) return null;

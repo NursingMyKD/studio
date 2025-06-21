@@ -9,7 +9,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { AlertTriangle, ArrowLeft, Bookmark as BookmarkIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
-import { useBookmarks } from '@/hooks/useBookmarks';
+import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from '@/lib/utils';
 import MarkdownRenderer from '@/components/content/MarkdownRenderer';
 
@@ -22,23 +22,16 @@ export default function ProtocolOrGuidelineInDepthDetailPage() {
   const [isClient, setIsClient] = useState(false);
   
   const { isBookmarked, toggleBookmark, isLoaded } = useBookmarks();
-  const [bookmarked, setBookmarked] = useState(false);
+  const bookmarked = isBookmarked(slug, PAGE_BOOKMARK_SLUG);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  useEffect(() => {
-    if (isLoaded) {
-      setBookmarked(isBookmarked(slug));
-    }
-  }, [isLoaded, slug, isBookmarked]);
-
   const handleBookmarkToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleBookmark(slug);
-    setBookmarked(!bookmarked);
+    toggleBookmark(slug, PAGE_BOOKMARK_SLUG);
   };
 
   if (!isClient) {
@@ -85,7 +78,7 @@ export default function ProtocolOrGuidelineInDepthDetailPage() {
         </CardHeader>
         <Separator />
         <CardContent className="pt-6">
-          <MarkdownRenderer content={item.inDepthConsiderations} />
+          <MarkdownRenderer content={item.inDepthConsiderations} pageSlug={slug} />
         </CardContent>
       </Card>
        <div className="mt-8 text-center">

@@ -12,10 +12,9 @@ import { AlertTriangle, CheckCircle, FileText, Layers, Bookmark as BookmarkIcon 
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { useBookmarks } from '@/hooks/useBookmarks';
 import { cn } from '@/lib/utils';
+import MarkdownRenderer from '@/components/content/MarkdownRenderer';
 
 export default function ProtocolOrGuidelineDetailPage() {
   const params = useParams();
@@ -119,9 +118,7 @@ export default function ProtocolOrGuidelineDetailPage() {
                   />
                 </div>
               )}
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.generalOverview}</ReactMarkdown>
-              </div>
+              <MarkdownRenderer content={item.generalOverview} />
               <div className="mt-8 text-center">
                 <Button onClick={() => router.push(`/protocols-and-guidelines/${slug}/details`)} size="lg">
                   <Layers className="mr-2 h-5 w-5" /> View In-Depth Details

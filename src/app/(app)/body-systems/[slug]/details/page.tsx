@@ -8,11 +8,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { AlertTriangle, ArrowLeft, Bookmark as BookmarkIcon } from 'lucide-react';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { Separator } from '@/components/ui/separator';
 import { useBookmarks } from '@/hooks/useBookmarks';
 import { cn } from '@/lib/utils';
+import MarkdownRenderer from '@/components/content/MarkdownRenderer';
 
 export default function BodySystemInDepthDetailPage() {
   const params = useParams();
@@ -86,9 +85,7 @@ export default function BodySystemInDepthDetailPage() {
         </CardHeader>
         <Separator />
         <CardContent className="pt-6">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.inDepthConsiderations}</ReactMarkdown>
-          </div>
+          <MarkdownRenderer content={item.inDepthConsiderations} />
         </CardContent>
       </Card>
        <div className="mt-8 text-center">

@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/body-systems', label: 'Body Systems', icon: HeartPulse },
-  { href: '/topics', label: 'Critical Topics', icon: BookOpenText },
+  { href: '/topics', label: 'Critical Care Topics', icon: BookOpenText },
   { href: '/protocols-and-guidelines', label: 'Protocols & Guidelines', icon: ShieldCheck },
 ];
 

@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+    unoptimized: true,
   },
   async redirects() {
     return [
@@ -28,7 +29,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  allowedDevOrigins: ['https://6000-firebase-studio-1749696820275.cluster-pgviq6mvsncnqxx6kr7pbz65v6.cloudworkstations.dev'],
+  allowedDevOrigins: ['https://9003-firebase-studio-1749696820275.cluster-pgviq6mvsncnqxx6kr7pbz65v6.cloudworkstations.dev'],
 };
 
 export default nextConfig;

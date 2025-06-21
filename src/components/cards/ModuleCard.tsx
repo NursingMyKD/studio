@@ -7,10 +7,10 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Bookmark as BookmarkIcon, Star } from 'lucide-react'; // Added BookmarkIcon
+import { ArrowRight, Bookmark as BookmarkIcon, Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useBookmarks } from '@/hooks/useBookmarks';
-import { cn } from "@/lib/utils"; // Added this import
+import { cn } from "@/lib/utils";
 
 interface ModuleCardProps {
   item: ContentItem;
@@ -28,7 +28,7 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   }, [isLoaded, item.slug, isBookmarked]);
 
   const handleBookmarkToggle = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent link navigation if card is wrapped in Link
+    e.preventDefault();
     e.stopPropagation();
     toggleBookmark(item.slug);
     setBookmarked(!bookmarked);
@@ -36,11 +36,18 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   
   if (!item) return null;
 
+  const getImagePath = (item: ContentItem) => {
+    if (item.categoryType === 'Body System') {
+      return `/assets/${item.id}.png`;
+    }
+    return `/assets/${item.id}.png`;
+  };
+
   return (
     <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-card text-card-foreground">
-      <div className="relative h-48 w-full">
+      <div className="relative h-48 w-full dark:bg-white">
         <Image
-          src={`https://placehold.co/400x200.png`}
+          src={getImagePath(item)}
           alt={item.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -72,7 +79,6 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
         )}
       </CardHeader>
       <CardContent className="flex-grow">
-        {/* Additional content can go here if needed */}
       </CardContent>
       <CardFooter>
         <Link href={`${basePath}/${item.slug}`} passHref className="w-full">
@@ -87,4 +93,3 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
 
 const ModuleCard = React.memo(ModuleCardComponent);
 export default ModuleCard;
-

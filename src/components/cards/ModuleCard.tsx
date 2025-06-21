@@ -36,18 +36,11 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   
   if (!item) return null;
 
-  const getImagePath = (item: ContentItem) => {
-    if (item.categoryType === 'Body System') {
-      return `/assets/${item.id}.png`;
-    }
-    return `/assets/${item.id}.png`;
-  };
-
   return (
     <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-card text-card-foreground">
-      <div className="relative h-48 w-full dark:bg-white">
+      <div className="relative h-48 w-full">
         <Image
-          src={getImagePath(item)}
+          src="https://placehold.co/600x400.png"
           alt={item.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

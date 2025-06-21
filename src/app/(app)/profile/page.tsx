@@ -110,7 +110,7 @@ export default function ProfilePage() {
       <Card className="max-w-2xl mx-auto shadow-lg">
         <CardHeader className="text-center">
           <Avatar className="mx-auto h-24 w-24 mb-4">
-            <AvatarImage src="/assets/user-profile-avatar.png" alt={`${name || 'User'} Avatar`} data-ai-hint="person avatar" />
+            <AvatarImage src="https://placehold.co/96x96.png" alt={`${name || 'User'} Avatar`} data-ai-hint="person avatar" />
             <AvatarFallback>
               {name ? getInitials(name) : <User className="h-12 w-12" />}
             </AvatarFallback>

@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, Search as SearchIcon } from 'lucide-react'; 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton';
 import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -17,9 +18,18 @@ import { Input } from '@/components/ui/input';
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
+  const [headerSearchTerm, setHeaderSearchTerm] = useState("");
+  const router = useRouter();
+
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  const handleHeaderSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!headerSearchTerm.trim()) return;
+    router.push(`/search?q=${encodeURIComponent(headerSearchTerm.trim())}`);
+  };
 
   return (
     <SidebarProvider defaultOpen={true}>
@@ -56,19 +66,22 @@ function AppLayout({ children }: { children: React.ReactNode }) {
                 </SidebarTrigger>
 
                 <Link href="/dashboard" className="flex items-center gap-2 text-lg font-semibold md:text-base">
-                  <Image src="/assets/app-logo.png" alt="ICU Hub Logo" width={24} height={24} className="h-6 w-6 text-primary" />
+                  <Image src="https://placehold.co/24x24.png" alt="ICU Hub Logo" width={24} height={24} className="h-6 w-6 text-primary" data-ai-hint="logo abstract" />
                   <span className="font-headline text-primary">ICU Hub</span>
                 </Link>
                 
                 <div className="relative hidden md:flex flex-1 justify-center max-w-sm mx-auto">
-                  <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input
-                    type="search"
-                    placeholder="Search topics..."
-                    className="w-full pl-10 pr-4 py-2 text-sm rounded-lg bg-muted/50 border-border focus:border-primary transition-colors"
-                    aria-label="Search topics (header)"
-                    disabled
-                  />
+                  <form onSubmit={handleHeaderSearch} className="relative w-full">
+                    <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                    <Input
+                      type="search"
+                      placeholder="Search topics..."
+                      className="w-full pl-10 pr-4 py-2 text-sm rounded-lg bg-muted/50 border-border focus:border-primary transition-colors"
+                      aria-label="Search topics (header)"
+                      value={headerSearchTerm}
+                      onChange={(e) => setHeaderSearchTerm(e.target.value)}
+                    />
+                  </form>
                 </div>
 
                 <div className="ml-auto flex items-center gap-2">

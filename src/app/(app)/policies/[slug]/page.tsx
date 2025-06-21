@@ -2,23 +2,23 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { policies } from '@/lib/data';
+import { policies } from '@/lib/data'; // policies array contains items of type 'Policy'
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import LegalDisclaimerModal from '@/components/modals/LegalDisclaimerModal';
-import { AlertTriangle, CheckCircle, FileText, Bookmark as BookmarkIcon } from 'lucide-react';
+import { AlertTriangle, CheckCircle, FileText, Layers, Bookmark as BookmarkIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { useBookmarks } from '@/hooks/useBookmarks';
+import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from '@/lib/utils';
+import MarkdownRenderer from '@/components/content/MarkdownRenderer';
 
-export default function ProtocolOrGuidelineDetailPage() {
+export default function PolicyDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const slug = params.slug as string;
 
   const item = useMemo(() => policies.find(p => p.slug === slug), [slug]);
@@ -28,26 +28,18 @@ export default function ProtocolOrGuidelineDetailPage() {
   const [isClient, setIsClient] = useState(false);
   
   const { isBookmarked, toggleBookmark, isLoaded } = useBookmarks();
-  const [bookmarked, setBookmarked] = useState(false);
+  const bookmarked = isBookmarked(slug, PAGE_BOOKMARK_SLUG);
 
   useEffect(() => {
     setIsClient(true);
-    // Reset state when slug changes
     setIsDisclaimerOpen(false);
     setShowContent(false);
   }, [slug]);
 
-  useEffect(() => {
-    if (isLoaded) {
-      setBookmarked(isBookmarked(slug));
-    }
-  }, [isLoaded, slug, isBookmarked]);
-
   const handleBookmarkToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleBookmark(slug);
-    setBookmarked(!bookmarked);
+    toggleBookmark(slug, PAGE_BOOKMARK_SLUG);
   };
 
   if (!isClient) {
@@ -81,7 +73,7 @@ export default function ProtocolOrGuidelineDetailPage() {
               <Badge variant="outline" className="mb-2">{item.categoryType}</Badge>
               <div className="flex items-center gap-4">
                 <CardTitle className="font-headline text-3xl md:text-4xl">{item.title}</CardTitle>
-                 {isLoaded && (
+                {isLoaded && (
                   <Button
                     variant="ghost"
                     size="icon"
@@ -97,7 +89,7 @@ export default function ProtocolOrGuidelineDetailPage() {
             </div>
             {!showContent && (
               <Button onClick={() => setIsDisclaimerOpen(true)} size="lg" className="w-full md:w-auto shrink-0">
-                <FileText className="mr-2 h-5 w-5" /> View Protocol/Guideline
+                <FileText className="mr-2 h-5 w-5" /> View Overview
               </Button>
             )}
           </div>
@@ -119,8 +111,11 @@ export default function ProtocolOrGuidelineDetailPage() {
                   />
                 </div>
               )}
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{item.content}</ReactMarkdown>
+              <MarkdownRenderer content={item.generalOverview} pageSlug={slug} />
+              <div className="mt-8 text-center">
+                <Button onClick={() => router.push(`/policies/${slug}/details`)} size="lg">
+                  <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
+                </Button>
               </div>
             </CardContent>
           </>

@@ -143,7 +143,10 @@ export default function BookmarksDisplay() {
 
                 return (
                   <li key={`${pageSlug}-${sectionSlug}`}>
-                    <Link href={href} className="flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors">
+                    <Link
+                      href={href}
+                      className="flex items-center gap-4 p-4 hover:bg-muted/50 transition-colors"
+                      legacyBehavior>
                       <div className="flex-shrink-0">
                         {isPageBookmark ? <FileText className="h-5 w-5 text-primary" /> : <Bookmark className="h-5 w-5 text-accent" />}
                       </div>

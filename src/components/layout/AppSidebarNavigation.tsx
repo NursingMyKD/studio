@@ -1,4 +1,3 @@
-
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -20,24 +19,27 @@ export default function AppSidebarNavigation() {
 
   return (
     <SidebarMenu>
-      {navItems.map((item) => (
-        <SidebarMenuItem key={item.href}>
-          <Link href={item.href}>
-            <SidebarMenuButton
-              className={cn(
-                (pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))) 
-                ? 'bg-sidebar-accent text-sidebar-accent-foreground' 
-                : 'hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground' // Adjusted hover
-              )}
-              isActive={pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href))}
-              tooltip={{ children: item.label, side: 'right' }}
-            >
-              <item.icon className="h-5 w-5" />
-              <span className="truncate">{item.label}</span>
-            </SidebarMenuButton>
-          </Link>
-        </SidebarMenuItem>
-      ))}
+      {navItems.map((item) => {
+        const isActive = !!pathname && (pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href)));
+        return (
+          <SidebarMenuItem key={item.href}>
+            <Link href={item.href}>
+              <SidebarMenuButton
+                className={cn(
+                  isActive
+                    ? 'bg-sidebar-accent text-sidebar-accent-foreground'
+                    : 'hover:bg-sidebar-accent/80 hover:text-sidebar-accent-foreground'
+                )}
+                isActive={isActive}
+                tooltip={{ children: item.label, side: 'right' }}
+              >
+                <item.icon className="h-5 w-5" />
+                <span className="truncate">{item.label}</span>
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+        );
+      })}
     </SidebarMenu>
   );
 }

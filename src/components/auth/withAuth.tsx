@@ -4,9 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
-// import SidebarInset from '@/components/layout/SidebarInset'; // SidebarInset is part of AppLayout directly
 import { Skeleton } from '@/components/ui/skeleton';
-import { Menu, Info } from "lucide-react"; // For header skeleton
 
 const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
   const WithAuthComponent = (props: P) => {
@@ -14,16 +12,18 @@ const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
     const router = useRouter();
 
     useEffect(() => {
+      // Redirect if not loading and no user is found
       if (!initialLoading && !loading && !user) {
         router.push('/login');
       }
     }, [user, loading, initialLoading, router]);
 
-    if (initialLoading) { // Show skeleton only during initial auth state check
+    // If we are in any loading state, or if there is no user, show a skeleton screen.
+    // This prevents flashing unauthenticated content before the redirect can happen.
+    if (initialLoading || loading || !user) {
       return (
         <div className="flex min-h-screen bg-background">
           <AppSidebarSkeleton />
-          {/* Simplified Main Content Skeleton */}
           <div className="flex flex-col flex-1">
             <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background/80 px-4 shadow-sm backdrop-blur-sm sm:px-6">
                 <Skeleton className="h-7 w-7 md:hidden" />
@@ -46,14 +46,11 @@ const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
       );
     }
 
-    // If not initial loading and no user, and redirection is active, this would redirect.
-    // For now, allow component rendering even if no user.
-    // if (!user && !initialLoading && !loading) {
-    //   return null; // Or a more specific "login required" component if not redirecting immediately
-    // }
-
+    // If authenticated and not loading, render the actual component
     return <WrappedComponent {...props} />;
   };
+
+  WithAuthComponent.displayName = `WithAuth(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
   return WithAuthComponent;
 };

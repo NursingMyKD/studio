@@ -91,7 +91,9 @@ export default function TopicDetailsClientPage({ item }: TopicDetailsClientPageP
         {/* Link back to the main topic page, not the details page itself again */}
         <Button variant="outline" asChild>
           <Link href={`/topics/${slug}`}>
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
+            <>
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
+            </>
           </Link>
         </Button>
       </div>

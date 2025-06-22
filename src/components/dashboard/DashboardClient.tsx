@@ -93,9 +93,7 @@ export default function DashboardClient({ trendingTopics }: DashboardClientProps
           Your central point for critical care knowledge and collaboration.
         </p>
       </header>
-
       <Separator />
-
       {isClient && searchResults.length > 0 && (
         <section className="space-y-6">
           <h2 className="text-2xl font-semibold font-headline text-primary">
@@ -135,7 +133,6 @@ export default function DashboardClient({ trendingTopics }: DashboardClientProps
            <Separator className="my-8" />
         </section>
       )}
-      
       {isClient && !searchTerm.trim() && (
         <>
           <div className="flex flex-col gap-8">
@@ -145,26 +142,26 @@ export default function DashboardClient({ trendingTopics }: DashboardClientProps
           <Separator className="my-8" />
         </>
       )}
-       {!isClient && ( // Skeleton loaders for SSR/initial load
-         <>
-            <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                    <div className="h-8 w-48 bg-muted rounded-md animate-pulse"></div>
-                    <div className="h-6 w-20 bg-muted rounded-md animate-pulse"></div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {[1,2,3].map(i => <div key={i} className="h-96 w-full bg-muted rounded-lg animate-pulse" />)}
-                </div>
-            </div>
-            <Separator className="my-8" />
-            <div className="space-y-6">
-                <div className="h-8 w-48 bg-muted rounded-md animate-pulse"></div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                     {[1,2].map(i => <div key={i} className="h-96 w-full bg-muted rounded-lg animate-pulse" />)}
-                </div>
-            </div>
-         </>
-       )}
+      {!isClient && ( // Skeleton loaders for SSR/initial load
+        (<>
+          <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                  <div className="h-8 w-48 bg-muted rounded-md animate-pulse"></div>
+                  <div className="h-6 w-20 bg-muted rounded-md animate-pulse"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[1,2,3].map(i => <div key={i} className="h-96 w-full bg-muted rounded-lg animate-pulse" />)}
+              </div>
+          </div>
+          <Separator className="my-8" />
+          <div className="space-y-6">
+              <div className="h-8 w-48 bg-muted rounded-md animate-pulse"></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                   {[1,2].map(i => <div key={i} className="h-96 w-full bg-muted rounded-lg animate-pulse" />)}
+              </div>
+          </div>
+        </>)
+      )}
     </div>
   );
 }

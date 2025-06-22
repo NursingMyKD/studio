@@ -85,13 +85,15 @@ export default function BodySystemDetailsClientPage({ item }: BodySystemDetailsC
           <MarkdownRenderer content={item.inDepthConsiderations || "No in-depth details available."} pageSlug={slug} />
         </CardContent>
       </Card>
-       <div className="mt-8 text-center">
-          <Button variant="outline" asChild>
-            <Link href={`/body-systems/${slug}`}>
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
-            </Link>
-          </Button>
-        </div>
+      <div className="mt-8 text-center">
+         <Button variant="outline" asChild>
+           <Link href={`/body-systems/${slug}`}>
+             <>
+               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
+             </>
+           </Link>
+         </Button>
+       </div>
     </div>
   );
 }

@@ -23,7 +23,7 @@ export function TrendingTopics({ trendingTopics }: TrendingTopicsProps) {
     <section className="space-y-6">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-semibold font-headline text-primary">Trending Topics</h2>
-        <Link href="/topics" passHref>
+        <Link href="/topics" passHref legacyBehavior>
           <Button variant="outline">View All</Button>
         </Link>
       </div>

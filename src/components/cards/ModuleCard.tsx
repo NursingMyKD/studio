@@ -66,41 +66,39 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
 
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
-      <Link href={`${basePath}/${item.slug}`} passHref legacyBehavior>
-        <a className="flex flex-col h-full">
-          <CardHeader className="p-0 relative">
-            <div className="aspect-video overflow-hidden">
-              <Image
-                src={imageUrl}
-                alt={item.title || 'Module image'}
-                width={400}
-                height={225}
-                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-          </CardHeader>
-          <CardContent className="flex-grow p-4">
-            <CardTitle className="text-lg font-bold font-headline leading-tight mb-2">{item.title}</CardTitle>
-            <CardDescription className="text-sm text-muted-foreground line-clamp-3">
-              {item.summary}
-            </CardDescription>
-          </CardContent>
-          <CardFooter className="p-4 pt-0 mt-auto flex justify-between items-center">
-            <Button variant="link" className="p-0 h-auto text-primary font-semibold">
-              Read More <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <button
-              onClick={handleBookmarkClick}
-              className={cn(
-                "p-2 rounded-full transition-colors",
-                isBookmarkedState ? "bg-accent text-accent-foreground" : "hover:bg-muted"
-              )}
-              aria-label={isBookmarkedState ? 'Remove bookmark' : 'Add bookmark'}
-            >
-              <BookmarkIcon className={cn("h-5 w-5", isBookmarkedState ? "fill-current" : "")} />
-            </button>
-          </CardFooter>
-        </a>
+      <Link href={`${basePath}/${item.slug}`} className="flex flex-col h-full">
+        <CardHeader className="p-0 relative">
+          <div className="aspect-video overflow-hidden">
+            <Image
+              src={imageUrl}
+              alt={item.title || 'Module image'}
+              width={400}
+              height={225}
+              className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+        </CardHeader>
+        <CardContent className="flex-grow p-4">
+          <CardTitle className="text-lg font-bold font-headline leading-tight mb-2">{item.title}</CardTitle>
+          <CardDescription className="text-sm text-muted-foreground line-clamp-3">
+            {item.summary}
+          </CardDescription>
+        </CardContent>
+        <CardFooter className="p-4 pt-0 mt-auto flex justify-between items-center">
+          <Button variant="link" className="p-0 h-auto text-primary font-semibold">
+            Read More <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+          <button
+            onClick={handleBookmarkClick}
+            className={cn(
+              "p-2 rounded-full transition-colors",
+              isBookmarkedState ? "bg-accent text-accent-foreground" : "hover:bg-muted"
+            )}
+            aria-label={isBookmarkedState ? 'Remove bookmark' : 'Add bookmark'}
+          >
+            <BookmarkIcon className={cn("h-5 w-5", isBookmarkedState ? "fill-current" : "")} />
+          </button>
+        </CardFooter>
       </Link>
     </Card>
   );

@@ -17,6 +17,35 @@ interface ModuleCardProps {
   basePath: string;
 }
 
+const imageMap: { [key: string]: string } = {
+  'cardiovascular': '/assets/body-system-cardiovascular.png',
+  'respiratory': '/assets/body-system-respiratory.png',
+  'neurological': '/assets/body-system-neurological.png',
+  'renal': '/assets/body-systems.png',
+  'endocrine': '/assets/body-systems.png',
+  'gastrointestinal': '/assets/body-systems.png',
+  'hematologic': '/assets/body-systems.png',
+  'immune': '/assets/body-systems.png',
+  'musculoskeletal': '/assets/body-systems.png',
+  'integumentary': '/assets/body-systems.png',
+  'hemodynamics': '/assets/hemodynamics.png',
+  'pharmacology': '/assets/category-critical-care-pharmacology.png',
+  'ventilator-management': '/assets/ventilator-management.png',
+  'ecmo': '/assets/ecmo.png',
+  'crrt': '/assets/crrt.png',
+  'sled': '/assets/sled.png',
+  'iabp': '/assets/iabp.png',
+  'impella': '/assets/impella.png',
+  'stroke-protocols': '/assets/stroke-protocols.png',
+  'medication-guidelines': '/assets/medication-guidelines.png',
+  'ards-management': '/assets/ards-management.png',
+  'padis-guidelines': '/assets/padis-guidelines.png',
+  'ttm-post-cardiac-arrest': '/assets/ttm-post-cardiac-arrest.png',
+  'body-systems': '/assets/category-body-systems.png',
+  'topics': '/assets/category-critical-care.png',
+  'default': '/assets/topics.png'
+};
+
 function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   const { isBookmarked, toggleBookmark, isLoaded } = useBookmarks();
   const [bookmarked, setBookmarked] = useState(false);
@@ -35,11 +64,13 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   
   if (!item) return null;
 
+  const imagePath = imageMap[item.slug] || imageMap['default'];
+
   return (
     <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-card text-card-foreground">
       <div className="relative h-48 w-full">
         <Image
-          src="https://placehold.co/600x400.png"
+          src={imagePath}
           alt={item.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

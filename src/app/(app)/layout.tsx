@@ -1,4 +1,3 @@
-
 "use client";
 
 import { SidebarProvider, Sidebar, SidebarContent, SidebarFooter, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
@@ -14,6 +13,7 @@ import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { UserNav } from '@/components/UserNav';
 import { Input } from '@/components/ui/input';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -100,11 +100,12 @@ function AppLayout({ children }: { children: React.ReactNode }) {
               </>
             )}
           </header>
-          <SidebarInset>
-            <main className="flex-1 p-4 md:p-6 lg:p-8">
+
+          <main className="flex-1 p-4 sm:p-6">
+            <ErrorBoundary>
               {children}
-            </main>
-          </SidebarInset>
+            </ErrorBoundary>
+          </main>
         </div>
       </div>
     </SidebarProvider>

@@ -1,9 +1,18 @@
-
-import { policies } from '@/lib/data';
+import { getContentByCategory } from '@/lib/firebase-admin';
 import ModuleCard from '@/components/cards/ModuleCard';
 import { Separator } from '@/components/ui/separator';
+import type { Metadata } from 'next';
 
-export default function ProtocolsAndGuidelinesPage() {
+export const metadata: Metadata = {
+  title: 'Protocols and Guidelines | ICU Hub',
+  description:
+    'Access unit protocols and guidelines for critical care, including stroke protocols, medication guidelines, and more.',
+};
+
+export default async function ProtocolsAndGuidelinesPage() {
+  // Assuming 'Policy' is the categoryType for items that should appear here.
+  const policies = await getContentByCategory('Policy');
+
   return (
     <div className="space-y-8">
       <header className="space-y-2">

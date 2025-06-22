@@ -1,15 +1,10 @@
-
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import type { ContentItem } from '@/types/content';
-import { bodySystems, topics, policies, getContentItemBySlug } from '@/lib/data';
-
-const allContentItems: ContentItem[] = [...bodySystems, ...topics, ...policies];
 
 const BOOKMARKS_STORAGE_KEY = 'icuHubBookmarks_v2';
 
-// New data structure: { pageSlug: [sectionSlug1, sectionSlug2, ...] }
+// Data structure: { pageSlug: [sectionSlug1, sectionSlug2, ...] }
 export type BookmarkData = Record<string, string[]>;
 export const PAGE_BOOKMARK_SLUG = '__PAGE__';
 
@@ -40,7 +35,7 @@ export function useBookmarks() {
 
   const toggleBookmark = useCallback((pageSlug: string, sectionSlug: string = PAGE_BOOKMARK_SLUG) => {
     setBookmarks(prev => {
-      const newBookmarks = JSON.parse(JSON.stringify(prev));
+      const newBookmarks = JSON.parse(JSON.stringify(prev)); // Deep copy
       const pageBookmarks = new Set(newBookmarks[pageSlug] || []);
 
       if (pageBookmarks.has(sectionSlug)) {
@@ -63,27 +58,29 @@ export function useBookmarks() {
     return bookmarks[pageSlug]?.includes(sectionSlug) ?? false;
   }, [bookmarks]);
 
-  const bookmarkedPages = useMemo(() => {
-    const pageSlugs = Object.keys(bookmarks);
-    return allContentItems.filter(item => pageSlugs.includes(item.slug));
+  // Returns an array of page slugs that have any bookmarks (page itself or sections)
+  const bookmarkedPageSlugs = useMemo(() => {
+    return Object.keys(bookmarks).filter(pageSlug => bookmarks[pageSlug] && bookmarks[pageSlug].length > 0);
   }, [bookmarks]);
 
-  const getBookmarkedSectionsForPage = useCallback((pageSlug: string) => {
+  const getBookmarkedSectionsForPage = useCallback((pageSlug: string): string[] => {
       const sections = bookmarks[pageSlug]?.filter(s => s !== PAGE_BOOKMARK_SLUG) || [];
       return sections;
   }, [bookmarks]);
 
-  const bookmarkedItems = useMemo(() => {
-     return bookmarkedPages;
-  }, [bookmarkedPages]);
+  // bookmarkedItems now returns slugs, consistent with bookmarkedPageSlugs
+  // Components needing full item details should fetch them using these slugs.
+  const bookmarkedItemsSlugs = useMemo(() => {
+     return bookmarkedPageSlugs;
+  }, [bookmarkedPageSlugs]);
 
   return { 
     bookmarks, 
     toggleBookmark, 
     isBookmarked, 
-    bookmarkedPages, 
+    bookmarkedPageSlugs, // Renamed from bookmarkedPages for clarity
     getBookmarkedSectionsForPage,
-    bookmarkedItems, // For backward compatibility with some components if needed
+    bookmarkedItemsSlugs, // Renamed from bookmarkedItems for clarity
     isLoaded 
   };
 }

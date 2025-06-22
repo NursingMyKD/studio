@@ -1,33 +1,33 @@
-
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { policies } from '@/lib/data'; // policies array contains items of type 'Policy'
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import LegalDisclaimerModal from '@/components/modals/LegalDisclaimerModal';
-import { AlertTriangle, CheckCircle, FileText, Layers, Bookmark as BookmarkIcon } from 'lucide-react';
+import { CheckCircle, BookOpen, Layers, Bookmark as BookmarkIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from '@/lib/utils';
 import MarkdownRenderer from '@/components/content/MarkdownRenderer';
+import type { ContentItem } from '@/types/content';
 
-export default function PolicyDetailPage() {
-  const params = useParams();
+interface BodySystemClientPageProps {
+  item: ContentItem;
+}
+
+export default function BodySystemClientPage({ item }: BodySystemClientPageProps) {
   const router = useRouter();
-  const slug = params.slug as string;
-
-  const item = useMemo(() => policies.find(p => p.slug === slug), [slug]);
+  const slug = item.slug;
 
   const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [isClient, setIsClient] = useState(false);
   
-  const { isBookmarked, toggleBookmark, isLoaded } = useBookmarks();
+  const { isBookmarked, toggleBookmark, isLoaded: bookmarksLoaded } = useBookmarks();
   const bookmarked = isBookmarked(slug, PAGE_BOOKMARK_SLUG);
 
   useEffect(() => {
@@ -42,27 +42,32 @@ export default function PolicyDetailPage() {
     toggleBookmark(slug, PAGE_BOOKMARK_SLUG);
   };
 
-  if (!isClient) {
-    return <div className="h-96 animate-pulse bg-muted rounded-lg"></div>;
-  }
-
-  if (!item) {
-    return (
-      <div className="text-center py-20">
-        <AlertTriangle className="mx-auto h-16 w-16 text-destructive mb-4" />
-        <h2 className="text-2xl font-semibold mb-2 font-headline">Content Not Found</h2>
-        <p className="text-muted-foreground mb-6">The requested protocol or guideline could not be found.</p>
-        <Button asChild>
-          <Link href="/protocols-and-guidelines">Back to Protocols and Guidelines</Link>
-        </Button>
-      </div>
-    );
-  }
-
   const handleAcceptDisclaimer = () => {
     setShowContent(true);
     setIsDisclaimerOpen(false);
   };
+
+  if (!isClient) {
+    return (
+      <div className="space-y-6">
+        <Card className="shadow-lg">
+          <CardHeader>
+            <div className="h-8 w-1/4 bg-muted rounded animate-pulse mb-2"></div>
+            <div className="h-10 w-3/4 bg-muted rounded animate-pulse"></div>
+            <div className="mt-2 h-6 w-full bg-muted rounded animate-pulse"></div>
+          </CardHeader>
+          <Separator />
+          <CardContent className="pt-6">
+            <div className="relative w-full h-60 md:h-80 mb-6 rounded-md overflow-hidden shadow-md bg-muted animate-pulse"></div>
+            <div className="h-40 w-full bg-muted rounded animate-pulse"></div>
+          </CardContent>
+          <CardFooter>
+            <div className="h-10 w-32 bg-muted rounded animate-pulse"></div>
+          </CardFooter>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -73,7 +78,7 @@ export default function PolicyDetailPage() {
               <Badge variant="outline" className="mb-2">{item.categoryType}</Badge>
               <div className="flex items-center gap-4">
                 <CardTitle className="font-headline text-3xl md:text-4xl">{item.title}</CardTitle>
-                {isLoaded && (
+                {bookmarksLoaded && (
                   <Button
                     variant="ghost"
                     size="icon"
@@ -89,7 +94,7 @@ export default function PolicyDetailPage() {
             </div>
             {!showContent && (
               <Button onClick={() => setIsDisclaimerOpen(true)} size="lg" className="w-full md:w-auto shrink-0">
-                <FileText className="mr-2 h-5 w-5" /> View Overview
+                <BookOpen className="mr-2 h-5 w-5" /> View Overview
               </Button>
             )}
           </div>
@@ -102,18 +107,17 @@ export default function PolicyDetailPage() {
               {item.keywordsForImage && (
                 <div className="relative w-full h-60 md:h-80 mb-6 rounded-md overflow-hidden shadow-md">
                   <Image
-                    src={`https://placehold.co/800x300.png`}
+                    src={`https://placehold.co/800x300.png?text=${encodeURIComponent(item.title)}`}
                     alt={`${item.title} visual representation`}
                     fill
                     style={{ objectFit: 'cover' }}
-                    data-ai-hint={item.keywordsForImage}
                     priority
                   />
                 </div>
               )}
-              <MarkdownRenderer content={item.generalOverview} pageSlug={slug} />
+              <MarkdownRenderer content={item.generalOverview || "No overview available."} pageSlug={slug} />
               <div className="mt-8 text-center">
-                <Button onClick={() => router.push(`/policies/${slug}/details`)} size="lg">
+                <Button onClick={() => router.push(`/body-systems/${slug}/details`)} size="lg">
                   <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
                 </Button>
               </div>
@@ -131,12 +135,12 @@ export default function PolicyDetailPage() {
       {showContent && (
         <div className="flex items-center text-sm text-green-700 dark:text-green-300 p-4 bg-green-50 dark:bg-green-900/20 rounded-md border border-green-200 dark:border-green-700/40">
           <CheckCircle className="h-5 w-5 mr-3 flex-shrink-0" />
-          <span>You have accepted the legal disclaimer. The content is provided for informational purposes only.</span>
+          <span>You have accepted the legal disclaimer. The content is provided for educational purposes only.</span>
         </div>
       )}
        <CardFooter className="mt-4">
           <Button variant="outline" asChild>
-            <Link href="/protocols-and-guidelines">Back to All Protocols and Guidelines</Link>
+            <Link href="/body-systems">Back to All Body Systems</Link>
           </Button>
         </CardFooter>
     </div>

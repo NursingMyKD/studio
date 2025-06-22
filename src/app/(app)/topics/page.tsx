@@ -1,14 +1,26 @@
-import { topics } from '@/lib/data';
+import { getContentByCategory } from '@/lib/firebase-admin';
 import ModuleCard from '@/components/cards/ModuleCard';
 import { Separator } from '@/components/ui/separator';
+import type { Metadata } from 'next';
 
-export default function TopicsPage() {
+export const metadata: Metadata = {
+  title: 'Critical Care Topics | ICU Hub',
+  description:
+    'Explore learning modules based on key ICU topics like hemodynamics, pharmacology, and more.',
+};
+
+export default async function TopicsPage() {
+  const topics = await getContentByCategory('Topic');
+
   return (
     <div className="space-y-8">
       <header className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight font-headline">Critical Care Topics</h1>
+        <h1 className="text-3xl font-bold tracking-tight font-headline">
+          Critical Care Topics
+        </h1>
         <p className="text-muted-foreground">
-          Access learning modules based on key ICU topics like hemodynamics and pharmacology.
+          Access learning modules based on key ICU topics like hemodynamics and
+          pharmacology.
         </p>
       </header>
       <Separator />
@@ -20,7 +32,9 @@ export default function TopicsPage() {
         </div>
       ) : (
         <div className="text-center py-10">
-          <p className="text-lg text-muted-foreground">No topic-based modules available at this time.</p>
+          <p className="text-lg text-muted-foreground">
+            No topic-based modules available at this time.
+          </p>
         </div>
       )}
     </div>

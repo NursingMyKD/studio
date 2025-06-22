@@ -58,8 +58,8 @@ Ensure your tsconfig.json has proper JSX configuration:
 
 After installing dependencies:
 
-1.  In VS Code: Ctrl+Shift+P → "TypeScript: Restart TS Server"
-2.  Or restart your development server
+1. In VS Code: Ctrl+Shift+P → "TypeScript: Restart TS Server"
+2. Or restart your development server
 
 ### 5. ErrorBoundary Component (Create after fixing types)
 
@@ -133,7 +133,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
 ## Next Steps
 
-1.  Install the missing dependencies
-2.  Restart your development server
-3.  The JSX errors should resolve
-4.  Then you can add the ErrorBoundary component back
+1. Install the missing dependencies
+2. Restart your development server
+3. The JSX errors should resolve
+4. Then you can add the ErrorBoundary component back

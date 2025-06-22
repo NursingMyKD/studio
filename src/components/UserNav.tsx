@@ -1,8 +1,7 @@
-
 "use client";
 
 import Link from "next/link";
-import { LogOut, Settings, UserCircle as UserIcon } from "lucide-react";
+import { LogOut, Settings, User as UserIcon } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -15,6 +14,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Skeleton } from "./ui/skeleton";
 
 export function UserNav() {
   const { user, userProfile, logout, loading: authLoading } = useAuth();
@@ -29,16 +29,15 @@ export function UserNav() {
   };
   
   if (authLoading && !user) {
-     return <div className="h-8 w-8 rounded-full bg-muted animate-pulse" />;
+     return <Skeleton className="h-8 w-8 rounded-full" />;
   }
-
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/assets/avatar-default.png" alt={userProfile?.name || user?.email || "User"} data-ai-hint="person avatar" />
+            <AvatarImage src={user?.photoURL || "/assets/avatar-default.png"} alt={userProfile?.name || user?.email || "User"} />
             <AvatarFallback>
               {userProfile?.name ? getInitials(userProfile.name) : user?.email ? getInitials(user.email) : <UserIcon className="h-5 w-5"/>}
             </AvatarFallback>

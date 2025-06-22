@@ -14,7 +14,6 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { UserNav } from '@/components/UserNav';
 import { Input } from '@/components/ui/input';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
-import withAuth from '@/components/auth/withAuth'; // Add this import
 
 
 function AppLayout({ children }: { children: React.ReactNode }) {
@@ -143,4 +142,4 @@ function AppLayout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default withAuth(AppLayout); // Wrap AppLayout with withAuth
+export default AppLayout;

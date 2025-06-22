@@ -1,11 +1,7 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-const handler = clerkMiddleware();
-
-export default function middleware(req: NextRequest, event: any) {
-  console.log('Clerk middleware running for:', req.nextUrl.pathname);
-  return handler(req, event);
+export function middleware(req: NextRequest) {
+  return NextResponse.next();
 }
 
 export const config = {

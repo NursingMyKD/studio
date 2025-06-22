@@ -27,16 +27,15 @@ const debounce = <F extends (...args: any[]) => any>(func: F, waitFor: number) =
 };
 
 interface DashboardClientProps {
-    bookmarks: any[]; // Should be a specific type
     trendingTopics: ContentItem[];
 }
 
-export default function DashboardClient({ bookmarks, trendingTopics }: DashboardClientProps) {
+export default function DashboardClient({ trendingTopics }: DashboardClientProps) {
   // Handle missing or empty data
-  if (!bookmarks || !trendingTopics) {
+  if (!trendingTopics) {
     return <div className="text-center text-destructive py-10">Dashboard data is missing or failed to load.</div>;
   }
-  if (bookmarks.length === 0 && trendingTopics.length === 0) {
+  if (trendingTopics.length === 0) {
     return <div className="text-center text-muted-foreground py-10">No dashboard data available.</div>;
   }
 
@@ -95,16 +94,9 @@ export default function DashboardClient({ bookmarks, trendingTopics }: Dashboard
         </p>
       </header>
 
-      <section>
-        <SearchInput
-          value={searchTerm}
-          onChange={setSearchTerm}
-          placeholder="Quick search topics, systems, or protocols..."
-          containerClassName="max-w-xl mx-auto md:mx-0"
-        />
-      </section>
+      <Separator />
 
-      {isClient && searchTerm.trim() && (
+      {isClient && searchResults.length > 0 && (
         <section className="space-y-6">
           <h2 className="text-2xl font-semibold font-headline text-primary">
             Search Results ({isLoading ? "Searching..." : searchResults.length})
@@ -148,7 +140,7 @@ export default function DashboardClient({ bookmarks, trendingTopics }: Dashboard
         <>
           <div className="flex flex-col gap-8">
             <TrendingTopics trendingTopics={trendingTopics} />
-            <BookmarksDisplay initialBookmarks={bookmarks} />
+            <BookmarksDisplay />
           </div>
           <Separator className="my-8" />
         </>

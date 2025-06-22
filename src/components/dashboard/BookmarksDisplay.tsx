@@ -25,8 +25,8 @@ function getSectionsFromMarkdown(markdownContent: string): Array<{ slug: string;
   return sections;
 }
 
-export default function BookmarksDisplay({ initialBookmarks }: { initialBookmarks: any[] }) {
-  const { bookmarks, isLoaded: bookmarksLoaded } = useBookmarks(initialBookmarks);
+export default function BookmarksDisplay() {
+  const { bookmarks, isLoaded: bookmarksLoaded } = useBookmarks();
   const [bookmarkedItemsDetails, setBookmarkedItemsDetails] = useState<ContentItem[]>([]);
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const [errorDetails, setErrorDetails] = useState<string | null>(null);

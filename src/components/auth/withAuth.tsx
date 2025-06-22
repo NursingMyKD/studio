@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useAuth } from '@/contexts/AuthContext';
@@ -16,7 +15,7 @@ const withAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
 
     useEffect(() => {
       if (!initialLoading && !loading && !user) {
-        // router.push('/login'); // Temporarily commented out for preview
+        router.push('/login');
       }
     }, [user, loading, initialLoading, router]);
 

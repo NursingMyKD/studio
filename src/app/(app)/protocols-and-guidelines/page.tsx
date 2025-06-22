@@ -2,6 +2,7 @@ import { getContentByCategory } from '@/lib/firebase-admin';
 import ModuleCard from '@/components/cards/ModuleCard';
 import { Separator } from '@/components/ui/separator';
 import type { Metadata } from 'next';
+import type { ContentItem } from '@/types/content';
 
 export const metadata: Metadata = {
   title: 'Protocols and Guidelines | ICU Hub',
@@ -10,8 +11,14 @@ export const metadata: Metadata = {
 };
 
 export default async function ProtocolsAndGuidelinesPage() {
-  // Assuming 'Policy' is the categoryType for items that should appear here.
-  const policies = await getContentByCategory('Policy');
+  let policies: ContentItem[] = [];
+  let error = null;
+  try {
+    policies = await getContentByCategory('Policy');
+  } catch (e) {
+    console.error('Failed to fetch protocols and guidelines:', e);
+    error = 'Failed to load protocols and guidelines.';
+  }
 
   return (
     <div className="space-y-8">
@@ -22,7 +29,9 @@ export default async function ProtocolsAndGuidelinesPage() {
         </p>
       </header>
       <Separator />
-      {policies.length > 0 ? (
+      {error ? (
+        <div className="text-center py-10 text-destructive">{error}</div>
+      ) : policies.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {policies.map((item) => (
             <ModuleCard key={item.id} item={item} basePath="/protocols-and-guidelines" />

@@ -1,16 +1,12 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
-import type { NextRequest } from 'next/server';
 
-const handler = clerkMiddleware();
-
-export default function middleware(req: NextRequest, event: any) {
+export default function middleware(req) {
   console.log('Clerk middleware running for:', req.nextUrl.pathname);
-  return handler(req, event);
+  return clerkMiddleware()(req);
 }
 
 export const config = {
   matcher: [
-    // Protect all routes in (app) except for public ones
     '/((?!api|_next/static|_next/image|favicon.ico|login|signup|public).*)',
   ],
 };

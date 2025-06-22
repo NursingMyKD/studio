@@ -13,7 +13,13 @@ export async function generateMetadata(
   { params }: BodySystemDetailPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
+  const slug = params?.slug;
+  if (!slug) {
+    return {
+      title: "Content Not Found",
+      description: "No slug provided."
+    };
+  }
   const item = await getContentItemBySlug(slug);
 
   if (!item || item.categoryType !== 'Body System') {
@@ -39,6 +45,7 @@ export default async function BodySystemDetailPageServer({ params }: BodySystemD
 
   if (!item || item.categoryType !== 'Body System') {
     notFound();
+    return null;
   }
 
   return <BodySystemClientPage item={item} />;

@@ -1,8 +1,18 @@
-import { bodySystems } from '@/lib/data';
+import { getContentByCategory } from '@/lib/firebase-admin';
 import ModuleCard from '@/components/cards/ModuleCard';
 import { Separator } from '@/components/ui/separator';
+import type { ContentItem } from '@/types/content';
 
-export default function BodySystemsPage() {
+export default async function BodySystemsPage() {
+  let bodySystems: ContentItem[] = [];
+  let error = null;
+  try {
+    bodySystems = await getContentByCategory('Body System');
+  } catch (e) {
+    console.error("Failed to fetch body systems:", e);
+    error = 'Failed to load body system modules.';
+  }
+
   return (
     <div className="space-y-8">
       <header className="space-y-2">
@@ -12,7 +22,9 @@ export default function BodySystemsPage() {
         </p>
       </header>
       <Separator />
-      {bodySystems.length > 0 ? (
+      {error ? (
+        <div className="text-center py-10 text-destructive">{error}</div>
+      ) : bodySystems && bodySystems.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {bodySystems.map((item) => (
             <ModuleCard key={item.id} item={item} basePath="/body-systems" />

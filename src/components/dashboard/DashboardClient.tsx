@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
@@ -33,6 +32,14 @@ interface DashboardClientProps {
 }
 
 export default function DashboardClient({ bookmarks, trendingTopics }: DashboardClientProps) {
+  // Handle missing or empty data
+  if (!bookmarks || !trendingTopics) {
+    return <div className="text-center text-destructive py-10">Dashboard data is missing or failed to load.</div>;
+  }
+  if (bookmarks.length === 0 && trendingTopics.length === 0) {
+    return <div className="text-center text-muted-foreground py-10">No dashboard data available.</div>;
+  }
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState<ContentItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);

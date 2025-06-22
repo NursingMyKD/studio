@@ -1,4 +1,3 @@
-
 "use client";
 
 import type { ContentItem } from '@/types/content';
@@ -7,7 +6,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Bookmark as BookmarkIcon, Star } from 'lucide-react';
+import { ArrowRight, Bookmark as BookmarkIcon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from "@/lib/utils";
@@ -48,71 +47,63 @@ const imageMap: { [key: string]: string } = {
 
 function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   const { isBookmarked, toggleBookmark, isLoaded } = useBookmarks();
-  const [bookmarked, setBookmarked] = useState(false);
+  const [isBookmarkedState, setIsBookmarkedState] = useState(false);
 
   useEffect(() => {
     if (isLoaded) {
-      setBookmarked(isBookmarked(item.slug, PAGE_BOOKMARK_SLUG));
+      setIsBookmarkedState(isBookmarked(item.slug, PAGE_BOOKMARK_SLUG));
     }
-  }, [isLoaded, item.slug, isBookmarked, bookmarked]); // Added bookmarked to dependencies to ensure re-render
+  }, [isLoaded, item.slug, isBookmarked]);
 
-  const handleBookmarkToggle = (e: React.MouseEvent) => {
+  const handleBookmarkClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     toggleBookmark(item.slug, PAGE_BOOKMARK_SLUG);
+    setIsBookmarkedState(prev => !prev);
   };
-  
-  if (!item) return null;
 
-  const imagePath = imageMap[item.slug] || imageMap['default'];
+  const imageUrl = imageMap[item.slug] || imageMap['default'];
 
   return (
-    <Card className="flex flex-col h-full overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-card text-card-foreground">
-      <div className="relative h-48 w-full">
-        <Image
-          src={imagePath}
-          alt={item.title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          style={{ objectFit: 'cover' }}
-          data-ai-hint={item.keywordsForImage || "medical education"}
-          priority={false} 
-        />
-         <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-2 right-2 bg-background/70 hover:bg-background/90 text-foreground"
-            onClick={handleBookmarkToggle}
-            aria-label={bookmarked ? "Remove bookmark" : "Add bookmark"}
-          >
-            <BookmarkIcon className={cn("h-5 w-5", bookmarked ? "fill-primary text-primary" : "text-muted-foreground")} />
-          </Button>
-      </div>
-      <CardHeader className="pb-3">
-        <div className="flex justify-between items-start">
-          <CardTitle className="text-xl font-semibold font-headline">{item.title}</CardTitle>
-          {item.categoryType && (
-            <Badge variant="secondary" className="capitalize shrink-0 ml-2">{item.categoryType.toLowerCase().replace(' system', '').replace(' topic', '').replace(' policy', '')}</Badge>
-          )}
-        </div>
-        {item.summary && (
-            <CardDescription className="mt-1 h-16 overflow-hidden text-ellipsis text-muted-foreground">
-            {item.summary}
+    <Card className="flex flex-col h-full overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
+      <Link href={`${basePath}/${item.slug}`} passHref legacyBehavior>
+        <a className="flex flex-col h-full">
+          <CardHeader className="p-0 relative">
+            <div className="aspect-video overflow-hidden">
+              <Image
+                src={imageUrl}
+                alt={item.title || 'Module image'}
+                width={400}
+                height={225}
+                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+          </CardHeader>
+          <CardContent className="flex-grow p-4">
+            <CardTitle className="text-lg font-bold font-headline leading-tight mb-2">{item.title}</CardTitle>
+            <CardDescription className="text-sm text-muted-foreground line-clamp-3">
+              {item.summary}
             </CardDescription>
-        )}
-      </CardHeader>
-      <CardContent className="flex-grow">
-      </CardContent>
-      <CardFooter>
-        <Link href={`${basePath}/${item.slug}`} passHref className="w-full">
-          <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary/10">
-            View Details <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
-      </CardFooter>
+          </CardContent>
+          <CardFooter className="p-4 pt-0 mt-auto flex justify-between items-center">
+            <Button variant="link" className="p-0 h-auto text-primary font-semibold">
+              Read More <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+            <button
+              onClick={handleBookmarkClick}
+              className={cn(
+                "p-2 rounded-full transition-colors",
+                isBookmarkedState ? "bg-accent text-accent-foreground" : "hover:bg-muted"
+              )}
+              aria-label={isBookmarkedState ? 'Remove bookmark' : 'Add bookmark'}
+            >
+              <BookmarkIcon className={cn("h-5 w-5", isBookmarkedState ? "fill-current" : "")} />
+            </button>
+          </CardFooter>
+        </a>
+      </Link>
     </Card>
   );
 }
 
-const ModuleCard = React.memo(ModuleCardComponent);
-export default ModuleCard;
+export default React.memo(ModuleCardComponent);

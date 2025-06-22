@@ -2,6 +2,7 @@ import { getContentByCategory } from '@/lib/firebase-admin';
 import ModuleCard from '@/components/cards/ModuleCard';
 import { Separator } from '@/components/ui/separator';
 import type { Metadata } from 'next';
+import type { ContentItem } from '@/types/content';
 
 export const metadata: Metadata = {
   title: 'Critical Care Topics | ICU Hub',
@@ -10,7 +11,14 @@ export const metadata: Metadata = {
 };
 
 export default async function TopicsPage() {
-  const topics = await getContentByCategory('Topic');
+  let topics: ContentItem[] = [];
+  let error = null;
+  try {
+    topics = await getContentByCategory('Topic');
+  } catch (e) {
+    console.error('Failed to fetch topics:', e);
+    error = 'Failed to load critical care topics.';
+  }
 
   return (
     <div className="space-y-8">
@@ -24,7 +32,9 @@ export default async function TopicsPage() {
         </p>
       </header>
       <Separator />
-      {topics.length > 0 ? (
+      {error ? (
+        <div className="text-center py-10 text-destructive">{error}</div>
+      ) : topics.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {topics.map((item) => (
             <ModuleCard key={item.id} item={item} basePath="/topics" />

@@ -159,3 +159,29 @@ export async function getBookmarkedContent(contentIds: string[]): Promise<Conten
   return results;
 }
 
+export async function getContentItemsBySlugs(slugs: string[]): Promise<ContentItem[]> {
+  if (!slugs || slugs.length === 0) {
+    return [];
+  }
+
+  const contentRef = adminDb.collection('content');
+  const batches = [];
+  // Firestore 'in' queries can handle up to 30 items. Batching for safety.
+  for (let i = 0; i < slugs.length; i += 10) {
+    const batchSlugs = slugs.slice(i, i + 10);
+    batches.push(
+      contentRef.where('slug', 'in', batchSlugs).get()
+    );
+  }
+
+  const results = await Promise.all(batches);
+  const items: ContentItem[] = [];
+  results.forEach(snapshot => {
+    snapshot.docs.forEach(doc => {
+      items.push({ id: doc.id, ...doc.data() } as ContentItem);
+    });
+  });
+
+  return items;
+}
+

@@ -6,13 +6,25 @@ import DashboardClient from "@/components/dashboard/DashboardClient";
 export default async function DashboardPage() {
   const user = await currentUser();
   if (!user) {
-    return <div>Not logged in</div>;
+    return <div>Please log in to view your dashboard.</div>;
   }
 
-  const [bookmarks, trendingTopics] = await Promise.all([
-    getUserBookmarks(user.id),
-    getContentByCategory("trending"),
-  ]);
+  let bookmarks = [];
+  let trendingTopics = [];
+  let error = null;
+
+  try {
+    [bookmarks, trendingTopics] = await Promise.all([
+      getUserBookmarks(user.id),
+      getContentByCategory("trending"),
+    ]);
+  } catch (e) {
+    error = "Failed to load dashboard data.";
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return <DashboardClient bookmarks={bookmarks} trendingTopics={trendingTopics} />;
 }

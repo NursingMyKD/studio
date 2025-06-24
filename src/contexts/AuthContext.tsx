@@ -1,9 +1,8 @@
-
 "use client";
 
 import type { ReactNode } from 'react';
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseSignOut, type User as FirebaseUser } from 'firebase/auth';
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseSignOut, type User as FirebaseUser, getIdTokenResult } from 'firebase/auth';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 import type { UserProfile } from '@/types/user';
@@ -15,6 +14,7 @@ interface AuthContextType {
   userProfile: UserProfile | null;
   loading: boolean;
   initialLoading: boolean;
+  isAdmin: boolean;
   signup: (email: string, password: string, name: string, role: string) => Promise<FirebaseUser | null>;
   login: (email: string, password: string) => Promise<FirebaseUser | null>;
   logout: () => Promise<void>;
@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(false); // For async operations like login/signup
   const [initialLoading, setInitialLoading] = useState(true); // For initial auth state check
+  const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -39,16 +40,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (userDocSnap.exists()) {
           setUserProfile(userDocSnap.data() as UserProfile);
         } else {
-          // Profile doesn't exist, could be new user or data sync issue
-          setUserProfile(null); 
+          setUserProfile(null);
         }
+        // Fetch admin claim
+        const tokenResult = await getIdTokenResult(firebaseUser, true);
+        setIsAdmin(!!tokenResult.claims.admin);
       } else {
         setUser(null);
         setUserProfile(null);
+        setIsAdmin(false);
       }
       setInitialLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
 
@@ -131,7 +134,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, userProfile, loading, initialLoading, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, userProfile, loading, initialLoading, isAdmin, signup, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

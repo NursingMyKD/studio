@@ -87,7 +87,7 @@ export default function BodySystemDetailsClientPage({ item }: BodySystemDetailsC
       </Card>
       <div className="mt-8 text-center">
          <Button variant="outline" asChild>
-           <Link href={`/body-systems/${slug}`}>
+           <Link href={`/body-systems/${slug}`} legacyBehavior>
              <>
                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
              </>

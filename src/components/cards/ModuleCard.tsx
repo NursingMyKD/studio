@@ -66,7 +66,10 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
 
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg">
-      <Link href={`${basePath}/${item.slug}`} className="flex flex-col h-full">
+      <Link
+        href={`${basePath}/${item.slug}`}
+        className="flex flex-col h-full"
+        legacyBehavior>
         <CardHeader className="p-0 relative">
           <div className="aspect-video overflow-hidden">
             <Image

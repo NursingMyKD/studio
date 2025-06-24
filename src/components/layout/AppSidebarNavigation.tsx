@@ -23,7 +23,7 @@ export default function AppSidebarNavigation() {
         const isActive = !!pathname && (pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href)));
         return (
           <SidebarMenuItem key={item.href}>
-            <Link href={item.href}>
+            <Link href={item.href} legacyBehavior>
               <SidebarMenuButton
                 className={cn(
                   isActive

@@ -57,12 +57,12 @@ export function UserNav() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <Link href="/profile" passHref legacyBehavior>
-                <DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/profile">
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>
-                </DropdownMenuItem>
-              </Link>
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={logout} disabled={authLoading}>
@@ -71,12 +71,12 @@ export function UserNav() {
             </DropdownMenuItem>
           </>
         ) : (
-          <Link href="/login" passHref legacyBehavior>
-            <DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/login">
               <LogOut className="mr-2 h-4 w-4" />
               <span>Log in</span>
-            </DropdownMenuItem>
-          </Link>
+            </Link>
+          </DropdownMenuItem>
         )}
       </DropdownMenuContent>
     </DropdownMenu>

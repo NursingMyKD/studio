@@ -87,8 +87,10 @@ export default function ProtocolDetailsClientPage({ item }: ProtocolDetailsClien
       </Card>
       <div className="mt-8 text-center">
          <Button variant="outline" asChild>
-           <Link href={`/protocols-and-guidelines/${slug}`} legacyBehavior>
-             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
+           <Link href={`/protocols-and-guidelines/${slug}`}>
+             <span className="flex items-center justify-center">
+               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
+             </span>
            </Link>
          </Button>
        </div>

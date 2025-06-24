@@ -87,10 +87,10 @@ export default function BodySystemDetailsClientPage({ item }: BodySystemDetailsC
       </Card>
       <div className="mt-8 text-center">
          <Button variant="outline" asChild>
-           <Link href={`/body-systems/${slug}`} legacyBehavior>
-             <>
+           <Link href={`/body-systems/${slug}`}>
+             <span className="flex items-center justify-center">
                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
-             </>
+             </span>
            </Link>
          </Button>
        </div>

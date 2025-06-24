@@ -90,10 +90,10 @@ export default function TopicDetailsClientPage({ item }: TopicDetailsClientPageP
       <div className="mt-8 text-center">
         {/* Link back to the main topic page, not the details page itself again */}
         <Button variant="outline" asChild>
-          <Link href={`/topics/${slug}`} legacyBehavior>
-            <>
+          <Link href={`/topics/${slug}`}>
+            <span className="flex items-center justify-center">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Overview
-            </>
+            </span>
           </Link>
         </Button>
       </div>

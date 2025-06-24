@@ -69,9 +69,11 @@ function AppLayout({ children }: { children: React.ReactNode }) {
                 <Link
                   href="/dashboard"
                   className="flex items-center gap-2 text-lg font-semibold md:text-base"
-                  legacyBehavior>
-                  <Image src="/assets/app-logo.png" alt="ICU Hub Logo" width={24} height={24} className="h-6 w-6 text-primary" />
-                  <span className="font-headline text-primary">ICU Hub</span>
+                >
+                  <span className="flex items-center gap-2">
+                    <Image src="/assets/app-logo.png" alt="ICU Hub Logo" width={24} height={24} className="h-6 w-6 text-primary" />
+                    <span className="font-headline text-primary">ICU Hub</span>
+                  </span>
                 </Link>
                 
                 <div className="relative hidden md:flex flex-1 justify-center max-w-sm mx-auto">

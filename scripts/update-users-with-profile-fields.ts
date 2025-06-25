@@ -1,14 +1,7 @@
-import { getFirestore } from 'firebase-admin/firestore';
-import admin from 'firebase-admin';
-
-// Initialize Firebase Admin SDK
-if (!admin.apps.length) {
-  admin.initializeApp();
-}
-const db = getFirestore();
+import { adminDb } from '../src/lib/firebase-admin';
 
 async function updateUsers() {
-  const usersRef = db.collection('users');
+  const usersRef = adminDb.collection('users');
   const snapshot = await usersRef.get();
   for (const doc of snapshot.docs) {
     const data = doc.data();

@@ -5,8 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Bookmark as BookmarkIcon, Star } from 'lucide-react';
+import { ArrowRight, Bookmark as BookmarkIcon } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from "@/lib/utils";
@@ -85,14 +84,6 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
                       className="object-cover group-hover/card:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-                    <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
-                      <span className="backdrop-blur bg-white/30 border border-white/40 rounded-full p-2 shadow-lg flex items-center justify-center">
-                        <Star className="h-7 w-7 text-primary" />
-                      </span>
-                      <Badge className="bg-primary/90 text-white shadow-lg px-3 py-1 text-xs font-semibold rounded-full">
-                        {item.categoryType || 'Module'}
-                      </Badge>
-                    </div>
                   </div>
                 </CardItem>
               </CardHeader>

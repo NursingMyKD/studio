@@ -142,16 +142,8 @@ export const CardItem = ({
   const x = useSpring(useMotionValue(0), { stiffness: 100, damping: 20 });
   const y = useSpring(useMotionValue(0), { stiffness: 100, damping: 20 });
 
-  const translateXValue = useTransform(
-    isMouseEntered ? x : useMotionValue(0),
-    [-1, 1],
-    [-translateX, translateX]
-  );
-  const translateYValue = useTransform(
-    isMouseEntered ? y : useMotionValue(0),
-    [-1, 1],
-    [-translateY, translateY]
-  );
+  const translateXValue = useTransform(x, [0, 1], [0, translateX]);
+  const translateYValue = useTransform(y, [0, 1], [0, translateY]);
 
   useEffect(() => {
     if (isMouseEntered) {

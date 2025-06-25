@@ -17,33 +17,48 @@ interface ModuleCardProps {
 }
 
 const imageMap: { [key: string]: string } = {
+  // --- Slug-specific images ---
+  // Body Systems
   'cardiovascular': '/assets/body-system-cardiovascular.png.png',
-  'respiratory': '/assets/body-system-respiratory.png.png',
   'neurological': '/assets/body-system-neurological.png.png',
-  'renal': '/assets/body-systems.png',
-  'endocrine': '/assets/body-systems.png',
-  'gastrointestinal': '/assets/body-systems.png',
-  'hematologic': '/assets/body-systems.png',
-  'immune': '/assets/body-systems.png',
-  'musculoskeletal': '/assets/body-systems.png',
-  'integumentary': '/assets/body-systems.png',
-  'hemodynamics': '/assets/hemodynamics.png',
-  'pharmacology': '/assets/pharmacology.png',
-  'ventilator-management': '/assets/ventilator-management.png',
-  'ecmo': '/assets/ecmo.png',
-  'crrt': '/assets/crrt.png',
-  'sled': '/assets/sled.png',
-  'iabp': '/assets/iabp.png',
-  'impella': '/assets/impella.png',
-  'stroke-protocols': '/assets/stroke-protocols.png',
-  'medication-guidelines': '/assets/medication-guidelines.png',
-  'ards-management': '/assets/ards-management.png',
-  'padis-guidelines': '/assets/padis-guidelines.png',
-  'ttm-post-cardiac-arrest': '/assets/ttm-post-cardiac-arrest.png',
-  'body-systems': '/assets/category-body-systems.png.png',
-  'topics': '/assets/category-critical-care.png.png',
-  'protocols': '/assets/protocols.png',
-  'default': '/assets/topics.png',
+  'respiratory': '/assets/body-system-respiratory.png.png',
+
+  // Critical Care Topics
+  'ecmo': '/assets/category-critical-care-ECMO.png',
+  'ventilator-management': '/assets/category-critical-care-Ventilator.png',
+  'pharmacology': '/assets/category-critical-care-pharmacology.png',
+
+  // Protocols & Guidelines
+  'stroke-protocols': '/assets/category-protocols-stroke.png',
+
+  // --- Category-level fallback images ---
+  'Body System': '/assets/category-body-systems.png',
+  'Topic': '/assets/category-critical-care.png',
+  'Policy': '/assets/category-protocols-stroke.png', // Best available generic for this category
+
+  // --- Generic fallback images ---
+  'body-systems-default': '/assets/body-systems.png', // For body systems without a specific image
+  'default': '/assets/app-logo.png' // The final fallback
+};
+
+const getImageUrl = (item: ContentItem): string => {
+  // 1. Check for a direct match on the item's slug
+  if (imageMap[item.slug]) {
+    return imageMap[item.slug];
+  }
+
+  // 2. Fall back to the category type
+  if (imageMap[item.categoryType]) {
+    return imageMap[item.categoryType];
+  }
+
+  // 3. Special fallback for Body System items that didn't have a specific image
+  if (item.categoryType === 'Body System') {
+      return imageMap['body-systems-default'];
+  }
+  
+  // 4. Use the absolute default image if no other match is found
+  return imageMap['default'];
 };
 
 function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
@@ -63,7 +78,7 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
     setIsBookmarkedState(prev => !prev);
   };
 
-  const imageUrl = imageMap[item.slug] || imageMap['default'];
+  const imageUrl = getImageUrl(item);
 
   return (
     <Card className="flex flex-col h-full overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl group bg-gradient-to-br from-background to-muted relative">

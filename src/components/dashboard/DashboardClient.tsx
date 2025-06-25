@@ -39,12 +39,28 @@ export default function DashboardClient({
     criticalCareTopics,
     protocolsAndGuidelines
 }: DashboardClientProps) {
-  // Handle missing or empty data
-  if (!trendingTopics) {
+  // Add console log for debugging purposes to see what props are received.
+  console.log('DashboardClient Props:', {
+    trendingTopics: trendingTopics?.length,
+    bodySystems: bodySystems?.length,
+    criticalCareTopics: criticalCareTopics?.length,
+    protocolsAndGuidelines: protocolsAndGuidelines?.length,
+  });
+
+  // Handle missing or empty data more robustly
+  const allDataLoaded = trendingTopics && bodySystems && criticalCareTopics && protocolsAndGuidelines;
+  if (!allDataLoaded) {
     return <div className="text-center text-destructive py-10">Dashboard data is missing or failed to load.</div>;
   }
-  if (trendingTopics.length === 0) {
-    return <div className="text-center text-muted-foreground py-10">No dashboard data available.</div>;
+
+  const allCategoriesEmpty = 
+    trendingTopics.length === 0 &&
+    bodySystems.length === 0 &&
+    criticalCareTopics.length === 0 &&
+    protocolsAndGuidelines.length === 0;
+
+  if (allCategoriesEmpty) {
+    return <div className="text-center text-muted-foreground py-10">No content is available at the moment.</div>;
   }
 
   const [searchTerm, setSearchTerm] = useState("");

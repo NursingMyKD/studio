@@ -124,7 +124,7 @@ export default function TopicClientPage({ item }: TopicClientPageProps) {
                       <CardTitle>In-Depth Considerations</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <MarkdownRenderer content={item.inDepthConsiderations} />
+                      <MarkdownRenderer content={item.inDepthConsiderations} pageSlug={slug} />
                     </CardContent>
                   </Card>
                 </div>

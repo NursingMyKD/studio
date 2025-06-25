@@ -3,13 +3,14 @@
 import type { ContentItem } from '@/types/content';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Bookmark as BookmarkIcon, Star } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from "@/lib/utils";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 interface ModuleCardProps {
   item: ContentItem;
@@ -63,57 +64,80 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   const imageUrl = getImageUrl(item);
 
   return (
-    <Card className="flex flex-col h-[450px] overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl group bg-gradient-to-br from-background to-muted relative">
-      <Link
-        href={`${basePath}/${item.slug}`}
-        className="flex flex-col h-full"
-      >
-        <div className="flex flex-col h-full">
-          <CardHeader className="p-0 relative">
-            <div className="relative h-56 w-full overflow-hidden">
-              <Image
-                src={imageUrl}
-                alt={item.title || 'Module image'}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-              <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
-                <span className="backdrop-blur bg-white/30 border border-white/40 rounded-full p-2 shadow-lg flex items-center justify-center animate-fade-in">
-                  <Star className="h-7 w-7 text-primary" />
-                </span>
-                <Badge className="bg-primary/90 text-white shadow-lg px-3 py-1 text-xs font-semibold rounded-full animate-fade-in">
-                  {item.categoryType || 'Module'}
-                </Badge>
-              </div>
+    <CardContainer containerClassName="w-full h-full">
+      <CardBody className="relative group/card w-full h-full">
+        <div className="flex flex-col h-[450px] overflow-hidden rounded-xl border border-border bg-gradient-to-br from-background to-muted shadow-md transition-shadow hover:shadow-xl w-full h-full">
+          <Link
+            href={`${basePath}/${item.slug}`}
+            className="flex flex-col h-full"
+          >
+            <div className="flex flex-col h-full">
+              <CardHeader className="p-0 relative">
+                <CardItem
+                  translateZ={50}
+                  className="w-full"
+                >
+                  <div className="relative h-56 w-full overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt={item.title || 'Module image'}
+                      fill
+                      className="object-cover group-hover/card:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+                    <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
+                      <span className="backdrop-blur bg-white/30 border border-white/40 rounded-full p-2 shadow-lg flex items-center justify-center">
+                        <Star className="h-7 w-7 text-primary" />
+                      </span>
+                      <Badge className="bg-primary/90 text-white shadow-lg px-3 py-1 text-xs font-semibold rounded-full">
+                        {item.categoryType || 'Module'}
+                      </Badge>
+                    </div>
+                  </div>
+                </CardItem>
+              </CardHeader>
+              <CardContent className="flex-grow p-4">
+                <CardItem
+                  as="h3"
+                  translateZ={60}
+                  className="text-lg font-bold font-headline leading-tight mb-2 group-hover/card:text-primary transition-colors duration-200"
+                >
+                  {item.title}
+                </CardItem>
+                <CardItem
+                  as="p"
+                  translateZ={40}
+                  className="text-sm text-muted-foreground line-clamp-3"
+                >
+                  {item.summary}
+                </CardItem>
+              </CardContent>
+              <CardFooter className="p-4 pt-0 mt-auto flex justify-between items-center">
+                <CardItem
+                  translateZ={20}
+                  as="div" // Use a div for the CardItem wrapper
+                  className="p-0 h-auto"
+                >
+                  <Button variant="link" className="p-0 h-auto text-primary font-semibold group-hover/card:underline">
+                    Read More <ArrowRight className="ml-2 h-4 w-4 group-hover/card:translate-x-1 transition-transform duration-200" />
+                  </Button>
+                </CardItem>
+                <button
+                  onClick={handleBookmarkClick}
+                  className={cn(
+                    "p-2 rounded-full transition-colors z-10",
+                    isBookmarkedState ? "bg-accent text-accent-foreground" : "hover:bg-muted"
+                  )}
+                  aria-label={isBookmarkedState ? 'Remove bookmark' : 'Add bookmark'}
+                >
+                  <BookmarkIcon className={cn("h-5 w-5", isBookmarkedState ? "fill-current" : "")} />
+                </button>
+              </CardFooter>
             </div>
-          </CardHeader>
-          <CardContent className="flex-grow p-4">
-            <CardTitle className="text-lg font-bold font-headline leading-tight mb-2 group-hover:text-primary transition-colors duration-200">
-              {item.title}
-            </CardTitle>
-            <CardDescription className="text-sm text-muted-foreground line-clamp-3">
-              {item.summary}
-            </CardDescription>
-          </CardContent>
-          <CardFooter className="p-4 pt-0 mt-auto flex justify-between items-center">
-            <Button variant="link" className="p-0 h-auto text-primary font-semibold group-hover:underline">
-              Read More <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </Button>
-            <button
-              onClick={handleBookmarkClick}
-              className={cn(
-                "p-2 rounded-full transition-colors",
-                isBookmarkedState ? "bg-accent text-accent-foreground" : "hover:bg-muted"
-              )}
-              aria-label={isBookmarkedState ? 'Remove bookmark' : 'Add bookmark'}
-            >
-              <BookmarkIcon className={cn("h-5 w-5", isBookmarkedState ? "fill-current" : "")} />
-            </button>
-          </CardFooter>
+          </Link>
         </div>
-      </Link>
-    </Card>
+      </CardBody>
+    </CardContainer>
   );
 }
 

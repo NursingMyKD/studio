@@ -13,6 +13,7 @@ import {
   useTransform,
   useSpring,
   type MotionValue,
+  useMotionTemplate,
 } from "framer-motion";
 
 const MouseEnterContext = createContext<
@@ -128,12 +129,12 @@ export const CardItem = ({
   as?: React.ElementType;
   children: React.ReactNode;
   className?: string;
-  translateX?: number | MotionValue<number>;
-  translateY?: number | MotionValue<number>;
-  translateZ?: number | MotionValue<number>;
-  rotateX?: number | MotionValue<number>;
-  rotateY?: number | MotionValue<number>;
-  rotateZ?: number | MotionValue<number>;
+  translateX?: number;
+  translateY?: number;
+  translateZ?: number;
+  rotateX?: number;
+  rotateY?: number;
+  rotateZ?: number;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMouseEntered] = useMouseEnter();
@@ -162,17 +163,21 @@ export const CardItem = ({
     }
   }, [isMouseEntered, x, y]);
 
+  const transform = useMotionTemplate`translateX(${translateXValue}px) translateY(${translateYValue}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
+  
+  const MotionTag = motion(Tag as React.ElementType);
+
   return (
-    <Tag
+    <MotionTag
       ref={ref}
       className={cn(className)}
       style={{
-        transform: `translateX(${translateXValue}px) translateY(${translateYValue}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`,
+        transform: transform,
       }}
       {...rest}
     >
       {children}
-    </Tag>
+    </MotionTag>
   );
 };
 

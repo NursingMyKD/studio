@@ -16,49 +16,31 @@ interface ModuleCardProps {
   basePath: string;
 }
 
+// A strict map of slugs to their specific, unique images.
 const imageMap: { [key: string]: string } = {
-  // --- Slug-specific images ---
-  // Body Systems
-  'cardiovascular': '/assets/body-system-cardiovascular.png.png',
-  'neurological': '/assets/body-system-neurological.png.png',
-  'respiratory': '/assets/body-system-respiratory.png.png',
-
-  // Critical Care Topics
+  'cardiovascular': '/assets/body-system-cardiovascular.png',
+  'neurological': '/assets/body-system-neurological.png',
+  'respiratory': '/assets/body-system-respiratory.png',
   'ecmo': '/assets/category-critical-care-ECMO.png',
   'ventilator-management': '/assets/category-critical-care-Ventilator.png',
   'pharmacology': '/assets/category-critical-care-pharmacology.png',
-
-  // Protocols & Guidelines
   'stroke-protocols': '/assets/category-protocols-stroke.png',
-
-  // --- Category-level fallback images ---
-  'Body System': '/assets/category-body-systems.png',
-  'Topic': '/assets/category-critical-care.png',
-  'Policy': '/assets/category-protocols-stroke.png', // Best available generic for this category
-
-  // --- Generic fallback images ---
-  'body-systems-default': '/assets/body-systems.png', // For body systems without a specific image
-  'default': '/assets/app-logo.png' // The final fallback
+  'body-systems': '/assets/category-body-systems.png',
+  'critical-care-topics': '/assets/category-critical-care.png',
+  'crrt': '/assets/CRRT.png',
+  'ards-management': '/assets/ARDS.png',
+  'hemodynamics': '/assets/hemodynamics.png',
+  'renal': '/assets/Category-systems-renal.png',
+  'iabp': '/assets/IABP.png',
+  'ttm-post-cardiac-arrest': '/assets/TTM.png'
 };
 
+// A single, global default image for any module without a specific image.
+const defaultImageUrl = '/assets/app-logo.png';
+
 const getImageUrl = (item: ContentItem): string => {
-  // 1. Check for a direct match on the item's slug
-  if (imageMap[item.slug]) {
-    return imageMap[item.slug];
-  }
-
-  // 2. Fall back to the category type
-  if (imageMap[item.categoryType]) {
-    return imageMap[item.categoryType];
-  }
-
-  // 3. Special fallback for Body System items that didn't have a specific image
-  if (item.categoryType === 'Body System') {
-      return imageMap['body-systems-default'];
-  }
-  
-  // 4. Use the absolute default image if no other match is found
-  return imageMap['default'];
+  // Return the specific image if it exists, otherwise return the global default.
+  return imageMap[item.slug] || defaultImageUrl;
 };
 
 function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
@@ -81,20 +63,19 @@ function ModuleCardComponent({ item, basePath }: ModuleCardProps) {
   const imageUrl = getImageUrl(item);
 
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl group bg-gradient-to-br from-background to-muted relative">
+    <Card className="flex flex-col h-[450px] overflow-hidden transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-2xl group bg-gradient-to-br from-background to-muted relative">
       <Link
         href={`${basePath}/${item.slug}`}
         className="flex flex-col h-full"
       >
         <div className="flex flex-col h-full">
           <CardHeader className="p-0 relative">
-            <div className="aspect-video overflow-hidden relative">
+            <div className="relative h-56 w-full overflow-hidden">
               <Image
                 src={imageUrl}
                 alt={item.title || 'Module image'}
-                width={400}
-                height={225}
-                className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
               <div className="absolute top-3 left-3 flex items-center gap-2 z-10">

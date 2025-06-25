@@ -15,7 +15,7 @@ interface AuthContextType {
   loading: boolean;
   initialLoading: boolean;
   isAdmin: boolean;
-  signup: (email: string, password: string, name: string, role: string) => Promise<FirebaseUser | null>;
+  signup: (email: string, password: string, name: string, role: string, position: string, manager?: string) => Promise<FirebaseUser | null>;
   login: (email: string, password: string) => Promise<FirebaseUser | null>;
   logout: () => Promise<void>;
 }
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
-  const signup = async (email: string, password: string, name: string, role: string): Promise<FirebaseUser | null> => {
+  const signup = async (email: string, password: string, name: string, role: string, position: string, manager?: string): Promise<FirebaseUser | null> => {
     setLoading(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -68,6 +68,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           email: firebaseUser.email,
           name,
           role,
+          position,
+          manager: position === 'Assistant Nurse Manager' ? manager || '' : undefined,
           memberSince: serverTimestamp() as any, // Firestore will convert this
           certifications: [],
           competencies: [],

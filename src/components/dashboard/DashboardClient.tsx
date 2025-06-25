@@ -28,9 +28,17 @@ const debounce = <F extends (...args: any[]) => any>(func: F, waitFor: number) =
 
 interface DashboardClientProps {
     trendingTopics: ContentItem[];
+    bodySystems: ContentItem[];
+    criticalCareTopics: ContentItem[];
+    protocolsAndGuidelines: ContentItem[];
 }
 
-export default function DashboardClient({ trendingTopics }: DashboardClientProps) {
+export default function DashboardClient({ 
+    trendingTopics,
+    bodySystems,
+    criticalCareTopics,
+    protocolsAndGuidelines
+}: DashboardClientProps) {
   // Handle missing or empty data
   if (!trendingTopics) {
     return <div className="text-center text-destructive py-10">Dashboard data is missing or failed to load.</div>;
@@ -85,6 +93,29 @@ export default function DashboardClient({ trendingTopics }: DashboardClientProps
     debouncedSearch(searchTerm);
   }, [searchTerm, debouncedSearch]);
 
+  const ContentSection = ({ title, items, basePath, viewAllLink }: {
+    title: string;
+    items: ContentItem[];
+    basePath: string;
+    viewAllLink: string;
+  }) => (
+    <section className="space-y-4">
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-semibold font-headline">{title}</h2>
+        {items.length > 4 && (
+            <Button asChild variant="link">
+                <Link href={viewAllLink}>View All</Link>
+            </Button>
+        )}
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {items.slice(0, 4).map((item) => (
+          <ModuleCard key={item.id} item={item} basePath={basePath} />
+        ))}
+      </div>
+    </section>
+  );
+
   return (
     <div className="space-y-8">
       <header className="space-y-2 text-center md:text-left">
@@ -93,8 +124,17 @@ export default function DashboardClient({ trendingTopics }: DashboardClientProps
           Your central point for critical care knowledge and collaboration.
         </p>
       </header>
+
+      <SearchInput
+        value={searchTerm}
+        onChange={setSearchTerm}
+        placeholder="Search for topics, protocols, and more..."
+      />
+
       <Separator />
-      {isClient && searchResults.length > 0 && (
+
+      {/* Search Results Section */}
+      {isClient && searchTerm.trim().length > 0 && (
         <section className="space-y-6">
           <h2 className="text-2xl font-semibold font-headline text-primary">
             Search Results ({isLoading ? "Searching..." : searchResults.length})
@@ -133,17 +173,25 @@ export default function DashboardClient({ trendingTopics }: DashboardClientProps
            <Separator className="my-8" />
         </section>
       )}
-      {isClient && !searchTerm.trim() && (
-        <>
-          <div className="flex flex-col gap-8">
-            <TrendingTopics trendingTopics={trendingTopics} />
-            <BookmarksDisplay />
-          </div>
-          <Separator className="my-8" />
-        </>
+
+      {/* Main Dashboard Content */}
+      {isClient && (
+        <div className="space-y-8">
+          <TrendingTopics trendingTopics={trendingTopics} />
+          <Separator />
+          <ContentSection title="Body Systems" items={bodySystems} basePath="/body-systems" viewAllLink="/body-systems" />
+          <Separator />
+          <ContentSection title="Critical Care Topics" items={criticalCareTopics} basePath="/topics" viewAllLink="/topics" />
+          <Separator />
+          <ContentSection title="Protocols & Guidelines" items={protocolsAndGuidelines} basePath="/protocols-and-guidelines" viewAllLink="/protocols-and-guidelines" />
+          <Separator />
+          <BookmarksDisplay />
+        </div>
       )}
-      {!isClient && ( // Skeleton loaders for SSR/initial load
-        (<>
+
+      {/* Skeleton loaders for SSR/initial load */}
+      {!isClient && (
+        <>
           <div className="space-y-6">
               <div className="flex items-center justify-between">
                   <div className="h-8 w-48 bg-muted rounded-md animate-pulse"></div>
@@ -160,7 +208,7 @@ export default function DashboardClient({ trendingTopics }: DashboardClientProps
                    {[1,2].map(i => <div key={i} className="h-96 w-full bg-muted rounded-lg animate-pulse" />)}
               </div>
           </div>
-        </>)
+        </>
       )}
     </div>
   );

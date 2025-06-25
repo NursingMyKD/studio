@@ -116,11 +116,12 @@ export default function ProtocolClientPage({ item }: ProtocolClientPageProps) {
                 </div>
               )}
               <MarkdownRenderer content={item.generalOverview || "No overview available."} pageSlug={slug} />
-              <div className="mt-8 text-center">
-                <Button onClick={() => router.push(`/protocols-and-guidelines/${slug}/details`)} size="lg">
-                  <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
-                </Button>
-              </div>
+              {item.inDepthConsiderations && (
+                <div className="mt-8">
+                  <h3 className="text-2xl font-bold mb-4">In-Depth Details</h3>
+                  <MarkdownRenderer content={item.inDepthConsiderations} pageSlug={slug} />
+                </div>
+              )}
             </CardContent>
           </>
         )}

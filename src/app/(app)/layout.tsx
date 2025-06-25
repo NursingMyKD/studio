@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, Search as SearchIcon } from 'lucide-react'; 
-import { useState, useEffect, type FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, type FormEvent, useRef } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton';
 import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -15,16 +15,31 @@ import { UserNav } from '@/components/UserNav';
 import { Input } from '@/components/ui/input';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import withAuth from '@/components/auth/withAuth';
+import { logAnalyticsEvent } from '@/lib/analytics';
 
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
   const [headerSearchTerm, setHeaderSearchTerm] = useState("");
   const router = useRouter();
+  const pathname = usePathname();
+  const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    // Log page/module view
+    logAnalyticsEvent('page_view', { path: pathname });
+    startTimeRef.current = Date.now();
+    return () => {
+      if (startTimeRef.current) {
+        const duration = Math.round((Date.now() - startTimeRef.current) / 1000); // seconds
+        logAnalyticsEvent('time_spent', { path: pathname, duration });
+      }
+    };
+  }, [pathname]);
 
   const handleHeaderSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

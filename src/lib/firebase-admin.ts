@@ -185,3 +185,12 @@ export async function getContentItemsBySlugs(slugs: string[]): Promise<ContentIt
   return items;
 }
 
+export function initFirebaseAdmin() {
+  // This file already ensures initialization at the top, so this is a no-op for compatibility
+  return;
+}
+
+export async function verifyIdToken(token: string) {
+  return admin.auth().verifyIdToken(token);
+}
+

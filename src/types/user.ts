@@ -1,4 +1,3 @@
-
 import type { Timestamp } from 'firebase/firestore';
 
 export interface UserProfile {
@@ -15,4 +14,5 @@ export interface UserProfile {
   notificationsEnabled?: boolean;
   manager?: string; // Name or UID of manager
   directReports?: string[]; // Array of names or UIDs
+  position?: string; // e.g., 'Assistant Nurse Manager', 'ICU Registered Nurse', etc.
 }

@@ -40,17 +40,33 @@ export default function AdminUserList() {
       <table className="min-w-full border">
         <thead>
           <tr>
-            <th className="border px-2 py-1">Email</th>
+            <th className="border px-2 py-1">First Name</th>
+            <th className="border px-2 py-1">Last Name</th>
+            <th className="border px-2 py-1">Position</th>
+            <th className="border px-2 py-1">Manager</th>
             <th className="border px-2 py-1">Admin</th>
           </tr>
         </thead>
         <tbody>
-          {users.map((u) => (
-            <tr key={u.uid}>
-              <td className="border px-2 py-1">{u.email}</td>
-              <td className="border px-2 py-1">{u.admin ? 'Yes' : 'No'}</td>
-            </tr>
-          ))}
+          {users.map((u) => {
+            // Assume user.name is 'First Last' or split by space
+            let firstName = '';
+            let lastName = '';
+            if (u.name) {
+              const parts = u.name.split(' ');
+              firstName = parts[0];
+              lastName = parts.slice(1).join(' ');
+            }
+            return (
+              <tr key={u.uid}>
+                <td className="border px-2 py-1">{firstName}</td>
+                <td className="border px-2 py-1">{lastName}</td>
+                <td className="border px-2 py-1">{u.position || ''}</td>
+                <td className="border px-2 py-1">{u.position === 'Assistant Nurse Manager' ? (u.manager || 'N/A') : ''}</td>
+                <td className="border px-2 py-1">{u.admin ? 'Yes' : 'No'}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

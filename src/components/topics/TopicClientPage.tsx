@@ -117,6 +117,18 @@ export default function TopicClientPage({ item }: TopicClientPageProps) {
                 </div>
               )}
               <MarkdownRenderer content={item.generalOverview || "No overview available."} pageSlug={slug} />
+              {item.inDepthConsiderations && (
+                <div className="mt-8">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>In-Depth Considerations</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <MarkdownRenderer content={item.inDepthConsiderations} />
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
               <div className="mt-8 text-center">
                 <Button onClick={() => router.push(`/topics/${slug}/details`)} size="lg">
                   <Layers className="mr-2 h-5 w-5" /> View In-Depth Details

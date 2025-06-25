@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -20,6 +19,8 @@ const signupSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
   role: z.string().min(1, { message: "Please select a role." }),
+  position: z.string().min(2, { message: "Position is required." }),
+  manager: z.string().optional(),
 });
 
 type SignupFormValues = z.infer<typeof signupSchema>;
@@ -48,13 +49,17 @@ export default function SignupPage() {
       email: "",
       password: "",
       role: "",
+      position: "",
+      manager: "",
     },
   });
+
+  const watchPosition = form.watch('position');
 
   const onSubmit = async (data: SignupFormValues) => {
     setFormError(null);
     try {
-      await signup(data.email, data.password, data.name, data.role);
+      await signup(data.email, data.password, data.name, data.role, data.position, data.manager);
       toast({ title: "Signup Successful", description: "Your account has been created." });
       router.push('/dashboard'); // Redirect to dashboard after successful signup
     } catch (error: any) {
@@ -136,6 +141,34 @@ export default function SignupPage() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="position"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Position</FormLabel>
+                  <FormControl>
+                    <Input placeholder="e.g. Assistant Nurse Manager" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {watchPosition === 'Assistant Nurse Manager' && (
+              <FormField
+                control={form.control}
+                name="manager"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Manager Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Manager's full name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             {formError && <p className="text-sm font-medium text-destructive">{formError}</p>}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Creating Account...' : 'Create Account'}

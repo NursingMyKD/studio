@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getAuth } from 'firebase-admin/auth';
 import { initializeApp, applicationDefault, cert, getApps } from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
 
 // Helper to initialize Firebase Admin SDK
 function getAdminApp() {
@@ -27,11 +28,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'GET') {
     const users = await getAuth().listUsers();
-    return res.json(users.users.map(u => ({
-      uid: u.uid,
-      email: u.email,
-      admin: u.customClaims?.admin || false,
-    })));
+    const db = getFirestore();
+    // Fetch Firestore user profiles in parallel
+    const userProfiles = await Promise.all(users.users.map(async (u) => {
+      let profile = {};
+      try {
+        const doc = await db.collection('users').doc(u.uid).get();
+        if (doc.exists) {
+          profile = doc.data() || {};
+        }
+      } catch (e) {}
+      return {
+        uid: u.uid,
+        email: u.email,
+        admin: u.customClaims?.admin || false,
+        name: (profile as any).name || '',
+        position: (profile as any).position || '',
+        manager: (profile as any).manager || '',
+      };
+    }));
+    return res.json(userProfiles);
   }
   res.status(405).end();
 }

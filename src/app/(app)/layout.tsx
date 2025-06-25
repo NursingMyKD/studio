@@ -5,14 +5,13 @@ import AppSidebarNavigation from '@/components/layout/AppSidebarNavigation';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, Search as SearchIcon } from 'lucide-react'; 
+import { Menu } from 'lucide-react'; 
 import { useState, useEffect, type FormEvent, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton';
 import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { UserNav } from '@/components/UserNav';
-import { Input } from '@/components/ui/input';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import withAuth from '@/components/auth/withAuth';
 import { logAnalyticsEvent } from '@/lib/analytics';
@@ -86,25 +85,11 @@ function AppLayout({ children }: { children: React.ReactNode }) {
                   className="flex items-center gap-2 text-lg font-semibold md:text-base"
                 >
                   <span className="flex items-center gap-2">
-                    <Image src="/assets/LOGO.PNG" alt="ICU Hub Logo" width={24} height={24} className="h-6 w-6 text-primary" />
+                    <Image src="/assets/LOGO.PNG" alt="ICU Hub Logo" width={32} height={32} className="h-8 w-8 object-contain text-primary" />
                     <span className="font-headline text-primary">ICU Hub</span>
                   </span>
                 </Link>
                 
-                <div className="relative hidden md:flex flex-1 justify-center max-w-sm mx-auto">
-                  <form onSubmit={handleHeaderSearch} className="relative w-full">
-                    <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                    <Input
-                      type="search"
-                      placeholder="Search topics..."
-                      className="w-full pl-10 pr-4 py-2 text-sm rounded-lg bg-muted/50 border-border focus:border-primary transition-colors"
-                      aria-label="Search topics (header)"
-                      value={headerSearchTerm}
-                      onChange={(e) => setHeaderSearchTerm(e.target.value)}
-                    />
-                  </form>
-                </div>
-
                 <div className="ml-auto flex items-center gap-2">
                   <ThemeToggle />
                   <UserNav />

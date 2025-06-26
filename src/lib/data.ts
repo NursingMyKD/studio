@@ -753,7 +753,29 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
     slug: 'ventilator-management',
     title: 'Advanced Ventilator Management',
     summary: 'In-depth guide to mechanical ventilation modes, settings, troubleshooting, and weaning strategies for critically ill patients.',
-    content: `Content for Advanced Ventilator Management`,
+    content: `## General Overview
+
+Mechanical ventilation is a life-sustaining intervention used to support patients with acute respiratory failure. It involves the use of a machine (ventilator) to assist or replace spontaneous breathing, ensuring adequate oxygenation and carbon dioxide removal. The primary goals are to improve gas exchange, reduce the work of breathing, and allow the respiratory muscles to rest and recover while the underlying condition is treated.
+
+## In-Depth ICU Considerations
+
+### Modes of Ventilation
+*   **Volume Control (VC)**: Delivers a preset tidal volume (VT).
+*   **Pressure Control (PC)**: Delivers a preset inspiratory pressure.
+*   **Pressure Support Ventilation (PSV)**: Provides a set pressure to support spontaneous breaths.
+*   **Synchronized Intermittent Mandatory Ventilation (SIMV)**: Delivers a set number of mandatory breaths (VC or PC) while allowing spontaneous breaths between them.
+*   **Airway Pressure Release Ventilation (APRV)**: Applies continuous positive airway pressure (Phigh) with intermittent releases to a lower pressure (Plow) to facilitate CO2 removal.
+
+### Key Ventilator Settings
+*   **Tidal Volume (VT)**: Volume of air delivered with each breath. Lung-protective strategy aims for 4-6 mL/kg of ideal body weight.
+*   **Respiratory Rate (RR)**: Number of breaths per minute.
+*   **Positive End-Expiratory Pressure (PEEP)**: Pressure maintained in the airways at the end of exhalation to prevent alveolar collapse and improve oxygenation.
+*   **Fraction of Inspired Oxygen (FiO2)**: Concentration of oxygen delivered to the patient.
+*   **Driving Pressure (ΔP)**: The difference between plateau pressure and PEEP (Pplat - PEEP). A key indicator of lung stress, should be kept <15 cmH2O.
+
+### Weaning from Mechanical Ventilation
+*   **Spontaneous Awakening Trials (SAT)** and **Spontaneous Breathing Trials (SBT)** are key components of weaning protocols.
+*   **Rapid Shallow Breathing Index (RSBI)**: Ratio of respiratory rate to tidal volume (RR/VT). An RSBI < 105 is a good predictor of successful extubation.`,
     categoryType: 'Topic',
     keywordsForImage: 'mechanical ventilator lungs icu',
   },
@@ -762,7 +784,38 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
     slug: 'pharmacology',
     title: 'Critical Care Pharmacology',
     summary: 'Review of commonly used ICU medications, including vasoactive drugs, sedatives, analgesics, paralytics, and antimicrobials.',
-    content: `Content for Critical Care Pharmacology`,
+    content: `## General Overview
+
+Pharmacology in the critical care setting is complex due to the severity of illness, organ dysfunction, and polypharmacy. Understanding the mechanisms, indications, and potential adverse effects of commonly used drugs is essential for safe and effective patient care.
+
+## In-Depth ICU Considerations
+
+### Vasoactive Medications
+*   **Vasopressors**: Increase blood pressure by vasoconstriction.
+    *   *Norepinephrine*: First-line for septic shock.
+    *   *Vasopressin*: Adjunct in septic shock.
+    *   *Epinephrine*: Used for anaphylaxis, second-line in septic shock.
+    *   *Phenylephrine*: Pure alpha-agonist, useful in specific situations.
+*   **Inotropes**: Increase cardiac contractility.
+    *   *Dobutamine*: Primarily beta-1 agonist.
+    *   *Milrinone*: Phosphodiesterase inhibitor, causes vasodilation.
+
+### Sedatives and Analgesics
+*   **Analgesia-first sedation** is the preferred approach.
+*   **Analgesics**: Fentanyl, Hydromorphone, Morphine.
+*   **Sedatives**:
+    *   *Propofol*: Rapid onset/offset, risk of hypotension and PRIS.
+    *   *Dexmedetomidine*: Provides sedation without respiratory depression.
+    *   *Benzodiazepines (Midazolam, Lorazepam)*: Associated with delirium and longer ventilation times.
+
+### Neuromuscular Blocking Agents (NMBAs)
+*   Used to facilitate mechanical ventilation, manage severe ARDS, or control intracranial pressure.
+*   Requires continuous monitoring with a Train-of-Four (TOF) monitor.
+*   Patients must have adequate analgesia and sedation.
+
+### Antimicrobials
+*   Broad-spectrum antibiotics are initiated empirically in sepsis and narrowed based on culture results.
+*   Pharmacokinetic and pharmacodynamic principles are crucial for optimal dosing in critically ill patients.`,
     categoryType: 'Topic',
     keywordsForImage: 'medications pharmacology pills iv',
   },
@@ -771,7 +824,31 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
     slug: 'iabp',
     title: 'Intra-aortic Balloon Pump (IABP)',
     summary: 'Principles, indications, contraindications, and management of IABP therapy for cardiogenic shock and other cardiac conditions.',
-    content: `Content for Intra-aortic Balloon Pump (IABP)`,
+    content: `## General Overview
+
+The Intra-Aortic Balloon Pump (IABP) is a mechanical circulatory support device that helps the heart pump more effectively. It consists of a balloon catheter placed in the descending aorta that inflates during diastole and deflates during systole.
+
+## In-Depth ICU Considerations
+
+### Principles of IABP Therapy
+*   **Diastolic Inflation**: Increases coronary artery perfusion by augmenting diastolic pressure.
+*   **Systolic Deflation**: Reduces afterload, decreasing the workload of the left ventricle and improving cardiac output.
+
+### Indications
+*   Cardiogenic shock
+*   High-risk PCI
+*   Acute mitral regurgitation
+*   Bridge to transplant or VAD
+
+### Contraindications
+*   Severe aortic regurgitation
+*   Aortic dissection
+*   Severe peripheral vascular disease
+
+### Management and Troubleshooting
+*   **Timing**: Proper timing of inflation and deflation is critical for optimal effect and to prevent harm.
+*   **Weaning**: Gradually decrease the assist ratio (e.g., from 1:1 to 1:2, then 1:3) as the patient's condition improves.
+*   **Complications**: Limb ischemia, bleeding, balloon rupture, infection.`,
     categoryType: 'Topic',
     keywordsForImage: 'iabp cardiac assist device heart',
   },
@@ -780,7 +857,25 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
     slug: 'impella',
     title: 'Impella',
     summary: 'Overview of the Impella device, a percutaneous ventricular assist device, including its function, management, and clinical applications.',
-    content: `Content for Impella`,
+    content: `## General Overview
+
+The Impella is a percutaneous ventricular assist device (pVAD) that provides temporary mechanical circulatory support. It is a microaxial pump that is inserted through the femoral or axillary artery, across the aortic valve, and into the left ventricle.
+
+## In-Depth ICU Considerations
+
+### Function
+*   The Impella pump pulls blood from the left ventricle and expels it into the ascending aorta, directly unloading the ventricle and increasing forward blood flow.
+*   This action reduces myocardial oxygen demand and improves end-organ perfusion.
+
+### Indications
+*   Cardiogenic shock following acute MI
+*   High-risk percutaneous coronary intervention (PCI)
+*   Post-cardiotomy shock
+
+### Management
+*   **Placement**: Correct positioning is confirmed by imaging and monitoring of placement signals.
+*   **Anticoagulation**: A continuous heparin purge solution is required to prevent thrombosis within the pump.
+*   **Monitoring**: Close monitoring of hemodynamic parameters, pump function, and for complications like hemolysis, bleeding, and limb ischemia.`,
     categoryType: 'Topic',
     keywordsForImage: 'impella cardiac assist device heart',
   },
@@ -789,7 +884,24 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
     slug: 'ecmo',
     title: 'ECMO',
     summary: 'Extracorporeal Membrane Oxygenation (ECMO) principles, configurations (VV and VA), indications, and management in the ICU.',
-    content: `Content for ECMO`,
+    content: `## General Overview
+
+Extracorporeal Membrane Oxygenation (ECMO) is an advanced life support technique that provides temporary cardiac and/or respiratory support when the heart and/or lungs are unable to function adequately. Blood is drained from the body, circulated through an artificial lung (oxygenator), and then returned to the patient.
+
+## In-Depth ICU Considerations
+
+### ECMO Configurations
+*   **Veno-Venous (VV) ECMO**: Provides respiratory support only. Blood is drained from a vein and returned to a vein.
+*   **Veno-Arterial (VA) ECMO**: Provides both cardiac and respiratory support. Blood is drained from a vein and returned to an artery.
+
+### Indications
+*   **VV ECMO**: Refractory hypoxemic or hypercapnic respiratory failure (e.g., severe ARDS).
+*   **VA ECMO**: Refractory cardiogenic shock, cardiac arrest.
+
+### Management
+*   **Anticoagulation**: Systemic anticoagulation with heparin is required.
+*   **Circuit Monitoring**: Continuous monitoring of the ECMO circuit for pressures, flows, and signs of thrombosis or oxygenator failure.
+*   **Patient Care**: Complex management involving specialized nursing care, perfusionists, and physicians. Focus on preventing complications like bleeding, thrombosis, and infection.`,
     categoryType: 'Topic',
     keywordsForImage: 'ecmo machine heart lung bypass',
   },
@@ -798,7 +910,26 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
     slug: 'crrt',
     title: 'CRRT',
     summary: 'Comprehensive guide to Continuous Renal Replacement Therapy (CRRT), including modes, principles, and practical management.',
-    content: `Content for CRRT`,
+    content: `## General Overview
+
+Continuous Renal Replacement Therapy (CRRT) is a slow and continuous form of dialysis used to manage acute kidney injury (AKI) in hemodynamically unstable patients. It provides gentle removal of fluid and solutes over a 24-hour period.
+
+## In-Depth ICU Considerations
+
+### Modes of CRRT
+*   **Slow Continuous Ultrafiltration (SCUF)**: Fluid removal only.
+*   **Continuous Venovenous Hemofiltration (CVVH)**: Solute removal via convection.
+*   **Continuous Venovenous Hemodialysis (CVVHD)**: Solute removal via diffusion.
+*   **Continuous Venovenous Hemodiafiltration (CVVHDF)**: Combines both convection and diffusion.
+
+### Principles
+*   **Diffusion**: Movement of solutes across a semipermeable membrane from an area of higher concentration to lower concentration.
+*   **Convection**: Movement of solutes across a semipermeable membrane along with the flow of water (ultrafiltration).
+
+### Management
+*   **Anticoagulation**: Regional (citrate) or systemic (heparin) anticoagulation is needed to prevent clotting of the filter.
+*   **Fluid Balance**: Precise fluid management is a key advantage of CRRT.
+*   **Drug Dosing**: Many medications require dose adjustments in patients on CRRT.`,
     categoryType: 'Topic',
     keywordsForImage: 'crrt dialysis machine kidney',
   },
@@ -807,7 +938,24 @@ In the Intensive Care Unit (ICU), patients often exhibit profound hemodynamic in
     slug: 'sled',
     title: 'SLED',
     summary: 'Sustained Low-Efficiency Dialysis (SLED) as a hybrid renal replacement therapy modality in the ICU.',
-    content: `Content for SLED`,
+    content: `## General Overview
+
+Sustained Low-Efficiency Dialysis (SLED), also known as Prolonged Intermittent Renal Replacement Therapy (PIRRT), is a hybrid renal replacement therapy modality that combines features of both intermittent hemodialysis (IHD) and continuous renal replacement therapy (CRRT). It is typically performed over a longer duration (6-12 hours) than conventional IHD, using lower blood and dialysate flow rates.
+
+## In-Depth ICU Considerations
+
+### Advantages of SLED
+*   **Hemodynamic Stability**: Better tolerated by hemodynamically unstable patients compared to traditional IHD.
+*   **Efficient Solute Clearance**: Provides effective clearance of small and middle molecules.
+*   **Flexibility**: Can be performed using standard IHD machines, making it more accessible in some centers.
+*   **Cost-Effective**: Generally less expensive than CRRT.
+
+### Disadvantages
+*   Requires more nursing time than IHD.
+*   May not be as well-tolerated as CRRT in the most unstable patients.
+
+### Clinical Application
+*   SLED is a viable option for many critically ill patients with AKI who require RRT but may not tolerate conventional IHD and do not require 24-hour CRRT.`,
     categoryType: 'Topic',
     keywordsForImage: 'sled dialysis machine kidney',
   },
@@ -819,7 +967,27 @@ const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDe
     slug: 'ards-management',
     title: 'ARDS Management Protocol',
     summary: 'Evidence-based guidelines for managing Acute Respiratory Distress Syndrome (ARDS), including lung-protective ventilation and adjunctive therapies.',
-    content: `Content for ARDS Management Protocol`,
+    content: `## General Overview
+
+Acute Respiratory Distress Syndrome (ARDS) is a life-threatening form of respiratory failure characterized by widespread inflammation in the lungs. The Berlin Definition of ARDS requires the following criteria:
+1.  Onset within one week of a known clinical insult.
+2.  Bilateral opacities on chest imaging not fully explained by other causes.
+3.  Respiratory failure not fully explained by cardiac failure or fluid overload.
+4.  Impaired oxygenation, as measured by the PaO2/FiO2 ratio.
+
+## In-Depth ICU Considerations
+
+### Lung-Protective Ventilation (LPV)
+*   **Low Tidal Volume (VT)**: 4-6 mL/kg of ideal body weight.
+*   **Plateau Pressure (Pplat)**: Keep < 30 cmH2O.
+*   **Driving Pressure (ΔP)**: Keep < 15 cmH2O.
+*   **PEEP**: Titrate to improve oxygenation while minimizing hemodynamic compromise.
+
+### Adjunctive Therapies for Moderate-to-Severe ARDS (P/F Ratio < 150)
+*   **Prone Positioning**: Improves oxygenation by recruiting dependent lung regions. Recommended for at least 12-16 hours per day.
+*   **Neuromuscular Blocking Agents (NMBAs)**: A short course (<48 hours) may be considered to improve patient-ventilator synchrony and reduce lung injury.
+*   **Conservative Fluid Management**: Once shock has resolved, a conservative fluid strategy is recommended to reduce lung edema.
+*   **ECMO**: Considered as a rescue therapy for refractory hypoxemia.`,
     categoryType: 'Policy',
     keywordsForImage: 'ards lungs ventilator protocol',
   },
@@ -828,7 +996,27 @@ const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDe
     slug: 'stroke-protocols',
     title: 'Comprehensive Stroke Protocols',
     summary: 'Guidelines for the assessment and management of acute ischemic and hemorrhagic stroke, including tPA criteria and endovascular therapy.',
-    content: `Content for Comprehensive Stroke Protocols`,
+    content: `## General Overview
+
+A stroke occurs when blood flow to an area of the brain is interrupted, leading to brain cell death. There are two main types: ischemic (caused by a clot) and hemorrhagic (caused by bleeding). Rapid diagnosis and treatment are crucial to improve outcomes.
+
+## In-Depth ICU Considerations
+
+### Acute Ischemic Stroke
+*   **Reperfusion Therapy**:
+    *   *IV Thrombolysis (Alteplase/tPA)*: For eligible patients within 3-4.5 hours of symptom onset.
+    *   *Mechanical Thrombectomy*: For patients with a large vessel occlusion, can be performed up to 24 hours after onset in select patients.
+*   **Blood Pressure Management**: Permissive hypertension (up to 220/120 mmHg) is often allowed in the first 24-48 hours unless tPA is given, in which case BP must be <185/110 mmHg.
+*   **Supportive Care**: Glucose control, DVT prophylaxis, management of cerebral edema.
+
+### Hemorrhagic Stroke
+*   **Intracerebral Hemorrhage (ICH)**:
+    *   *Blood Pressure Control*: Aggressive BP reduction is often recommended.
+    *   *Reversal of Anticoagulation*: If the patient is on anticoagulants, rapid reversal is critical.
+    *   *Surgical Intervention*: May be considered for some patients.
+*   **Subarachnoid Hemorrhage (SAH)**:
+    *   *Aneurysm Securement*: Coiling or clipping to prevent re-bleeding.
+    *   *Vasospasm Management*: Nimodipine is used to prevent vasospasm. Blood pressure is often augmented to maintain cerebral perfusion if vasospasm occurs.`,
     categoryType: 'Policy',
     keywordsForImage: 'stroke brain neurology protocol',
   },
@@ -837,7 +1025,19 @@ const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDe
     slug: 'padis-guidelines',
     title: 'PADIS Guidelines',
     summary: 'Clinical practice guidelines for the prevention and management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in adult ICU patients.',
-    content: `Content for PADIS Guidelines`,
+    content: `## General Overview
+
+The PADIS guidelines provide an evidence-based framework for managing common and interrelated problems in critically ill patients to improve outcomes. The "ABCDEF Bundle" is a practical application of these guidelines.
+
+## In-Depth ICU Considerations
+
+### Key Components of the PADIS Guidelines (ABCDEF Bundle)
+*   **A - Assess, Prevent, and Manage Pain**: Use validated pain scales (e.g., CPOT, BPS). Treat pain first.
+*   **B - Both Spontaneous Awakening Trials (SAT) and Spontaneous Breathing Trials (SBT)**: Daily interruption of sedation to assess readiness for extubation.
+*   **C - Choice of Analgesia and Sedation**: Use non-benzodiazepine sedatives (propofol, dexmedetomidine) when possible. Analgesia-first approach.
+*   **D - Delirium: Assess, Prevent, and Manage**: Use validated delirium screening tools (e.g., CAM-ICU, ICDSC). Non-pharmacologic interventions are first-line.
+*   **E - Early Mobility and Exercise**: Reduces delirium and ICU-acquired weakness.
+*   **F - Family Engagement and Empowerment**: Involve family in patient care.`,
     categoryType: 'Policy',
     keywordsForImage: 'padis guidelines icu patient care',
   },
@@ -846,7 +1046,20 @@ const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDe
     slug: 'ttm-post-cardiac-arrest',
     title: 'TTM Post-Cardiac Arrest',
     summary: 'Protocols for Targeted Temperature Management (TTM) in post-cardiac arrest patients to improve neurological outcomes.',
-    content: `Content for TTM Post-Cardiac Arrest`,
+    content: `## General Overview
+
+Targeted Temperature Management (TTM), previously known as therapeutic hypothermia, is a treatment used to improve neurological outcomes in comatose patients after out-of-hospital cardiac arrest. The goal is to maintain a constant core body temperature to protect the brain from reperfusion injury.
+
+## In-Depth ICU Considerations
+
+### TTM Protocol
+*   **Inclusion Criteria**: Comatose adult patients after cardiac arrest with return of spontaneous circulation (ROSC).
+*   **Temperature Target**: Current guidelines recommend targeting a temperature between 32°C and 36°C for at least 24 hours. Some evidence suggests targeting normothermia (≤37.5°C) and aggressively preventing fever may be as effective.
+*   **Phases of TTM**:
+    1.  *Induction*: Rapidly cool the patient to the target temperature using cooling devices (surface or internal).
+    2.  *Maintenance*: Maintain the target temperature for at least 24 hours.
+    3.  *Rewarming*: Slowly rewarm the patient at a controlled rate (e.g., 0.25°C per hour) to avoid complications like hypotension and electrolyte shifts.
+*   **Management During TTM**: Requires management of shivering, electrolyte monitoring, and hemodynamic support.`,
     categoryType: 'Policy',
     keywordsForImage: 'ttm cardiac arrest hypothermia',
   },
@@ -855,7 +1068,19 @@ const originalPoliciesContent: Array<Omit<ContentItem, 'generalOverview' | 'inDe
     slug: 'medication-guidelines',
     title: 'Medication Guidelines',
     summary: 'Guidelines for safe and effective medication administration in the ICU.',
-    content: `Content for Medication Guidelines`,
+    content: `## General Overview
+
+Safe medication administration in the ICU is paramount. High-risk medications, complex dosing, and the vulnerability of critically ill patients require strict adherence to safety protocols.
+
+## In-Depth ICU Considerations
+
+### Key Principles of Medication Safety
+*   **The "Five Rights"**: Right Patient, Right Drug, Right Dose, Right Route, Right Time.
+*   **Independent Double Checks**: For high-alert medications (e.g., insulin, heparin, vasoactive drugs).
+*   **Smart Pump Technology**: Use of infusion pumps with dose error reduction software (DERS).
+*   **Medication Reconciliation**: A process to ensure accurate medication information is communicated across transitions of care.
+*   **Labeling**: All medications, medication containers, and other solutions on and off the sterile field must be labeled.
+*   **Pharmacist Involvement**: Clinical pharmacists play a crucial role in reviewing orders, adjusting doses for organ dysfunction, and identifying potential drug interactions.`,
     categoryType: 'Policy',
     keywordsForImage: 'medication guidelines pharmacology safety',
   },

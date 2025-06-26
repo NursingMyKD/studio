@@ -1,10 +1,15 @@
 const fs = require('fs');
+const path = require('path');
 
-// Path to your downloaded serviceAccountKey.json.json file
-const serviceAccount = require('../serviceAccountKey.json.json');
+// Path to your downloaded serviceAccountKey.json file
+const serviceAccountKeyPath = path.resolve(__dirname, '..', 'serviceAccountKey.json');
+const serviceAccountKeyObject = JSON.parse(fs.readFileSync(serviceAccountKeyPath, 'utf8'));
+const serviceAccountKeyString = JSON.stringify(serviceAccountKeyObject);
 
-const base64 = Buffer.from(JSON.stringify(serviceAccount)).toString('base64');
+const base64EncodedKey = Buffer.from(serviceAccountKeyString).toString('base64');
+
+const outputFilePath = path.resolve(__dirname, '..', 'serviceAccount.base64.txt');
 
 // Write the base64 string to a file for easy copy-paste
-fs.writeFileSync('serviceAccount.base64.txt', base64);
-console.log('Base64 string written to serviceAccount.base64.txt');
+fs.writeFileSync(outputFilePath, base64EncodedKey);
+console.log(`Base64 string written to ${outputFilePath}`);

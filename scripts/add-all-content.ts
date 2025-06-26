@@ -5,67 +5,59 @@ import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { allContentItems } from '../src/lib/data';
 import { ContentItem } from '../src/types/content';
+import * as fs from 'fs';
+import * as path from 'path';
 
-// Decode the base64 encoded service account key
-const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT
-  ? Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT, 'base64').toString('utf-8')
-  : '{}';
+console.log('Starting script...');
 
-if (!serviceAccountJson || serviceAccountJson === '{}') {
-  console.error('FIREBASE_SERVICE_ACCOUNT environment variable is not set or is empty.');
-  process.exit(1);
-}
+try {
+  // Path to your serviceAccountKey.json file
+  const serviceAccountKeyPath = path.resolve(__dirname, '..', 'serviceAccountKey.json');
+  console.log(`Service account key path: ${serviceAccountKeyPath}`);
 
-const serviceAccount = JSON.parse(serviceAccountJson);
+  // Read and parse the service account key file
+  const serviceAccountFile = fs.readFileSync(serviceAccountKeyPath, 'utf8');
+  const serviceAccount = JSON.parse(serviceAccountFile);
+  console.log('Service account key parsed successfully.');
 
-// Initialize Firebase Admin SDK
-if (!getApps().length) {
-  initializeApp({
-    credential: cert(serviceAccount),
-  });
-}
+  // Initialize Firebase Admin SDK
+  if (!getApps().length) {
+    console.log('Initializing Firebase Admin SDK...');
+    initializeApp({
+      credential: cert(serviceAccount),
+    });
+    console.log('Firebase Admin SDK initialized.');
+  }
 
-const db = getFirestore();
+  const db = getFirestore();
+  console.log('Firestore instance obtained.');
 
-async function addAllContent() {
-  const contentCollection = db.collection('content');
-  let successCount = 0;
-  let errorCount = 0;
+  async function addAllContent() {
+    console.log('Starting to add all content...');
+    const batch = db.batch();
+    let operationCount = 0;
 
-  console.log(`Starting to process ${allContentItems.length} content items...`);
+    allContentItems.forEach((item: ContentItem) => {
+      const docRef = db.collection('content').doc(item.slug);
+      batch.set(docRef, item);
+      operationCount++;
+      // console.log(`Adding ${item.slug} to the batch.`); // This can be too verbose
+    });
 
-  for (const item of allContentItems) {
+    console.log(`Batch created with ${operationCount} operations.`);
+
     try {
-      const { id, slug, title, summary, generalOverview, inDepthConsiderations, categoryType, keywordsForImage } = item;
-      
-      const contentData: ContentItem = {
-        id,
-        slug,
-        title,
-        summary,
-        generalOverview,
-        inDepthConsiderations,
-        categoryType,
-        keywordsForImage,
-      };
-
-      await contentCollection.doc(slug).set(contentData);
-      console.log(`Successfully added/updated content for slug: ${slug}`);
-      successCount++;
+      await batch.commit();
+      console.log(`Successfully added/updated ${operationCount} content items in Firestore.`);
     } catch (error) {
-      console.error(`Error processing content for slug: ${item.slug}`, error);
-      errorCount++;
+      console.error('Error committing batch:', error);
+      process.exit(1);
     }
   }
 
-  console.log('\n--- Content Update Summary ---');
-  console.log(`Successfully added/updated: ${successCount} items`);
-  console.log(`Failed to add/update: ${errorCount} items`);
-  console.log('--------------------------------');
-}
+  addAllContent();
 
-addAllContent().then(() => {
-  console.log('Finished processing all content.');
-}).catch(error => {
+} catch (error) {
   console.error('An unexpected error occurred:', error);
-});
+  process.exit(1);
+}

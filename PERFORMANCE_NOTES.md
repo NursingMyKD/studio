@@ -1,4 +1,4 @@
-// Performance optimization suggestions
+# Performance optimization suggestions
 
 // 1. Add React.memo to expensive components
 export const ModuleCard = React.memo(ModuleCardComponent);
@@ -20,5 +20,5 @@ const filteredContent = useMemo(() => {
 // 6. Code splitting
 // Add dynamic imports for heavy components:
 // const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
-//   loading: () => <Skeleton />
+//   loading: () => `<Skeleton />`
 // });

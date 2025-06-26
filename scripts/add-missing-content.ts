@@ -1,4 +1,3 @@
-
 // scripts/add-missing-content.ts
 import { adminDb } from '../src/lib/firebase-admin';
 import { ContentItem } from '../src/types/content';
@@ -7,9 +6,8 @@ const missingContent: Omit<ContentItem, 'id'>[] = [
   {
     slug: 'intra-aortic-balloon-pump',
     title: 'Intra-Aortic Balloon Pump (IABP)',
-    category: 'Mechanical Circulatory Support',
-    type: 'Topic',
-    image: 'iabp.png',
+    summary: 'A temporary mechanical circulatory support device used to help the heart pump blood.',
+    categoryType: 'Topic',
     generalOverview: `
 ### General Overview
 
@@ -40,15 +38,6 @@ The device consists of a polyethylene balloon mounted on a catheter, which is in
 - Thromboembolism
 - Infection
 `,
-    keyPoints: [
-        "Increases coronary blood flow.",
-        "Decreases afterload.",
-        "Improves cardiac output.",
-        "Requires precise timing with the cardiac cycle."
-    ],
-    references: [
-        { title: "Society of Thoracic Surgeons Guideline on IABP use", url: "https://www.sts.org/guidelines" }
-    ]
   },
   // Add other missing content items here
 ];

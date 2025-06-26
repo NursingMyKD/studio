@@ -32,25 +32,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        setUser(firebaseUser);
-        // Fetch user profile from Firestore
-        const userDocRef = doc(db, 'users', firebaseUser.uid);
-        const userDocSnap = await getDoc(userDocRef);
-        if (userDocSnap.exists()) {
-          setUserProfile(userDocSnap.data() as UserProfile);
+      try {
+        if (firebaseUser) {
+          setUser(firebaseUser);
+          // Fetch user profile from Firestore
+          const userDocRef = doc(db, 'users', firebaseUser.uid);
+          const userDocSnap = await getDoc(userDocRef);
+          if (userDocSnap.exists()) {
+            setUserProfile(userDocSnap.data() as UserProfile);
+          } else {
+            setUserProfile(null);
+            // It might be a new user, or profile creation failed.
+            // Depending on app logic, you might want to create a profile here.
+          }
+          // Fetch admin claim
+          const tokenResult = await getIdTokenResult(firebaseUser, true); // Force refresh
+          setIsAdmin(!!tokenResult.claims.admin);
         } else {
+          setUser(null);
           setUserProfile(null);
+          setIsAdmin(false);
         }
-        // Fetch admin claim
-        const tokenResult = await getIdTokenResult(firebaseUser, true);
-        setIsAdmin(!!tokenResult.claims.admin);
-      } else {
+      } catch (error) {
+        console.error("Error during auth state change:", error);
+        // Reset state on error to prevent inconsistent UI
         setUser(null);
         setUserProfile(null);
         setIsAdmin(false);
+      } finally {
+        // This is crucial to prevent the app from staying in a loading state
+        setInitialLoading(false);
       }
-      setInitialLoading(false);
     });
     return () => unsubscribe();
   }, []);

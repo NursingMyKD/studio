@@ -95,15 +95,32 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
           </div>
         )}
         {!isLoading && !error && item && (
-          <ScrollArea className="h-[calc(90vh-100px)] pr-6 mt-4"> {/* Adjusted height for header */}
-              {/* Pass the pageSlug to MarkdownRenderer for section bookmarking context */}
-              <MarkdownRenderer content={item.generalOverview || ""} pageSlug={slug} />
-              {item.inDepthConsiderations && (
-                  <>
-                      <hr className="my-6" />
-                      <MarkdownRenderer content={item.inDepthConsiderations} pageSlug={slug} />
-                  </>
+          <ScrollArea className="h-[calc(90vh-100px)] pr-6 mt-4">
+            <div className="space-y-6">
+              {item.generalOverview && (
+                <section>
+                  <h2 className="text-xl font-semibold font-headline mb-3 text-primary/90 border-b pb-2">
+                    General Overview
+                  </h2>
+                  <MarkdownRenderer content={item.generalOverview} pageSlug={slug} />
+                </section>
               )}
+
+              {item.inDepthConsiderations && (
+                <section>
+                  <h2 className="text-xl font-semibold font-headline mb-3 text-primary/90 border-b pb-2">
+                    In-Depth Considerations
+                  </h2>
+                  <MarkdownRenderer content={item.inDepthConsiderations} pageSlug={slug} />
+                </section>
+              )}
+
+              {!item.generalOverview && !item.inDepthConsiderations && (
+                <div className="text-center text-muted-foreground py-10">
+                  <p>No detailed content available for this topic.</p>
+                </div>
+              )}
+            </div>
           </ScrollArea>
         )}
         {!isLoading && !error && !item && isOpen && (

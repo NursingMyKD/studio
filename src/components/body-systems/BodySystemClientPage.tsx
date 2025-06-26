@@ -14,6 +14,7 @@ import { useBookmarks, PAGE_BOOKMARK_SLUG } from '@/hooks/useBookmarks';
 import { cn } from '@/lib/utils';
 import MarkdownRenderer from '@/components/content/MarkdownRenderer';
 import type { ContentItem } from '@/types/content';
+import ContentPopup from '@/components/content/ContentPopup'; // Import the ContentPopup
 
 interface BodySystemClientPageProps {
   item: ContentItem;
@@ -23,8 +24,6 @@ export default function BodySystemClientPage({ item }: BodySystemClientPageProps
   const router = useRouter();
   const slug = item.slug;
 
-  const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
-  const [showContent, setShowContent] = useState(false);
   const [isClient, setIsClient] = useState(false);
   
   const { isBookmarked, toggleBookmark, isLoaded: bookmarksLoaded } = useBookmarks();
@@ -32,19 +31,12 @@ export default function BodySystemClientPage({ item }: BodySystemClientPageProps
 
   useEffect(() => {
     setIsClient(true);
-    setIsDisclaimerOpen(false);
-    setShowContent(false);
-  }, [slug]);
+  }, []);
 
   const handleBookmarkToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     toggleBookmark(slug, PAGE_BOOKMARK_SLUG);
-  };
-
-  const handleAcceptDisclaimer = () => {
-    setShowContent(true);
-    setIsDisclaimerOpen(false);
   };
 
   if (!isClient) {
@@ -92,53 +84,39 @@ export default function BodySystemClientPage({ item }: BodySystemClientPageProps
               </div>
               {item.summary && <CardDescription className="pt-2 text-lg">{item.summary}</CardDescription>}
             </div>
-            {!showContent && (
-              <Button onClick={() => setIsDisclaimerOpen(true)} size="lg" className="w-full md:w-auto shrink-0">
-                <BookOpen className="mr-2 h-5 w-5" /> View Overview
-              </Button>
-            )}
+            <ContentPopup 
+              slug={item.slug} 
+              triggerText={
+                <Button size="lg" className="w-full md:w-auto shrink-0">
+                  <BookOpen className="mr-2 h-5 w-5" /> View Overview
+                </Button>
+              }
+            />
           </div>
         </CardHeader>
-        
-        {showContent && (
-          <>
-            <Separator />
-            <CardContent className="pt-6">
-              {item.keywordsForImage && (
-                <div className="relative w-full h-60 md:h-80 mb-6 rounded-md overflow-hidden shadow-md">
-                  <Image
-                    src={`https://placehold.co/800x300.png?text=${encodeURIComponent(item.title)}`}
-                    alt={`${item.title} visual representation`}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    priority
-                  />
-                </div>
-              )}
-              <MarkdownRenderer content={item.generalOverview || "No overview available."} pageSlug={slug} />
-              <div className="mt-8 text-center">
-                <Button onClick={() => router.push(`/body-systems/${slug}/details`)} size="lg">
-                  <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
-                </Button>
-              </div>
-            </CardContent>
-          </>
-        )}
+        <Separator />
+        <CardContent className="pt-6">
+          {item.keywordsForImage && (
+            <div className="relative w-full h-60 md:h-80 mb-6 rounded-md overflow-hidden shadow-md">
+              <Image
+                src={`https://placehold.co/800x300.png?text=${encodeURIComponent(item.title)}`}
+                alt={`${item.title} visual representation`}
+                fill
+                style={{ objectFit: 'cover' }}
+                priority
+              />
+            </div>
+          )}
+          <MarkdownRenderer content={item.generalOverview || "No overview available."} pageSlug={slug} />
+          <div className="mt-8 text-center">
+            <Button onClick={() => router.push(`/body-systems/${slug}/details`)} size="lg">
+              <Layers className="mr-2 h-5 w-5" /> View In-Depth Details
+            </Button>
+          </div>
+        </CardContent>
       </Card>
 
-      <LegalDisclaimerModal
-        isOpen={isDisclaimerOpen}
-        onClose={() => setIsDisclaimerOpen(false)}
-        onAccept={handleAcceptDisclaimer}
-      />
-
-      {showContent && (
-        <div className="flex items-center text-sm text-green-700 dark:text-green-300 p-4 bg-green-50 dark:bg-green-900/20 rounded-md border border-green-200 dark:border-green-700/40">
-          <CheckCircle className="h-5 w-5 mr-3 flex-shrink-0" />
-          <span>You have accepted the legal disclaimer. The content is provided for educational purposes only.</span>
-        </div>
-      )}
-       <CardFooter className="mt-4">
+      <CardFooter className="mt-4">
           <Button variant="outline" asChild>
             <Link href="/body-systems">Back to All Body Systems</Link>
           </Button>

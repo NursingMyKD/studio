@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import MarkdownRenderer from "./MarkdownRenderer";
@@ -19,6 +19,15 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // When the dialog is closed, reset the state
+    if (!isOpen) {
+      setItem(null);
+      setError(null);
+      setIsLoading(false);
+      return;
+    }
+
+    // When the dialog is open, fetch content if we don't have it
     if (isOpen && !item && slug) {
       const fetchContent = async () => {
         setIsLoading(true);
@@ -71,10 +80,14 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
     }
   }, [isOpen, item, slug]);
 
+  const trigger = React.isValidElement(triggerText)
+    ? triggerText
+    : <button className="text-primary hover:underline inline font-semibold">{triggerText}</button>;
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <button className="text-primary hover:underline inline font-semibold">{triggerText}</button>
+        {trigger}
       </DialogTrigger>
       <DialogContent className="max-w-4xl h-[90vh]">
         <DialogHeader>

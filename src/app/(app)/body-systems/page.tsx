@@ -1,4 +1,4 @@
-import { getContentByCategory } from '@/lib/firebase-admin';
+import { getContentByCategory } from '@/lib/data-access';
 import ModuleCard from '@/components/cards/ModuleCard';
 import { Separator } from '@/components/ui/separator';
 import type { ContentItem } from '@/types/content';

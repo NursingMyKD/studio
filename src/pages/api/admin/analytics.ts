@@ -1,17 +1,28 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
-import { verifyIdToken, initFirebaseAdmin } from '@/lib/firebase-admin';
+import { adminAuth } from '@/lib/firebase-admin';
+import { rateLimit } from '@/lib/rate-limit';
+
+// Rate limit: 10 requests per minute for admin operations
+const rateLimiter = rateLimit({
+  maxRequests: 10,
+  windowMs: 60 * 1000, // 1 minute
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  await initFirebaseAdmin();
+  // Check rate limit
+  if (!rateLimiter(req as any)) {
+    return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+  }
+
   const db = getFirestore();
 
   try {
     const token = req.headers.authorization?.split('Bearer ')[1];
-    if (!token) return res.status(401).json({ error: 'Unauthorized' });
-    const decoded = await verifyIdToken(token);
-    if (!decoded.admin) return res.status(403).json({ error: 'Forbidden' });
+    if (!token) return res.status(401).json({ error: 'Authentication required' });
+    
+    const decoded = await adminAuth.verifyIdToken(token);
+    if (!decoded.admin) return res.status(403).json({ error: 'Access denied' });
 
     // Get all users
     const usersSnap = await db.collection('users').get();
@@ -54,6 +65,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       avgTimeSpent,
     });
   } catch (e) {
-    res.status(500).json({ error: 'Internal server error' });
+    console.error('Admin analytics API error:', e);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 }

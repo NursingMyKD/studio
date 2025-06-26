@@ -1,24 +1,15 @@
+// Security improvements for next.config.ts
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
   typescript: {
-    ignoreBuildErrors: false, // ✅ Enable TypeScript checking for security
+    ignoreBuildErrors: false, // ✅ Enable TypeScript checking
   },
   eslint: {
-    ignoreDuringBuilds: false, // ✅ Enable ESLint checking for security
+    ignoreDuringBuilds: false, // ✅ Enable ESLint checking
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
-      },
-    ],
-    unoptimized: true,
-  },
+  
+  // ✅ Security Headers
   async headers() {
     return [
       {
@@ -48,7 +39,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self'",
-              "connect-src 'self' https://*.googleapis.com https://*.firebaseapp.com https://*.firebaseio.com https://firebase.googleapis.com https://firestore.googleapis.com wss://*.firebaseio.com",
+              "connect-src 'self' https://firebase.googleapis.com https://firestore.googleapis.com",
               "frame-ancestors 'none'"
             ].join('; ')
           }
@@ -56,15 +47,29 @@ const nextConfig: NextConfig = {
       }
     ]
   },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+    unoptimized: true,
+  },
+  
   async redirects() {
     return [
       {
         source: '/',
         destination: '/dashboard',
-        permanent: false, // Use false for a 307/308 temporary redirect
+        permanent: false,
       },
     ];
   },
+  
   allowedDevOrigins: ['https://9003-firebase-studio-1749696820275.cluster-pgviq6mvsncnqxx6kr7pbz65v6.cloudworkstations.dev'],
 };
 

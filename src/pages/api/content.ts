@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getContentItemsBySlugs } from '@/lib/firebase-admin';
+import { getContentItemsBySlugs } from '@/lib/data-access';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {

@@ -24,12 +24,41 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
         setIsLoading(true);
         setError(null);
         try {
-          const response = await fetch(`/api/content/${slug}`);
+          // Sanitize slug before making request
+          const sanitizedSlug = slug.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
+          if (!sanitizedSlug) {
+            throw new Error('Invalid content identifier');
+          }
+
+          const response = await fetch(`/api/content/${encodeURIComponent(sanitizedSlug)}`);
           if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || `Error: ${response.status}`);
+            let errorMessage = 'Failed to load content';
+            if (response.status === 404) {
+              errorMessage = 'Content not found';
+            } else if (response.status === 429) {
+              errorMessage = 'Too many requests. Please try again later.';
+            } else if (response.status >= 500) {
+              errorMessage = 'Server error. Please try again later.';
+            }
+            
+            // Try to get more specific error from response
+            try {
+              const errorData = await response.json();
+              if (errorData.error && typeof errorData.error === 'string') {
+                errorMessage = errorData.error;
+              }
+            } catch {
+              // If response is not JSON, use the generic message
+            }
+            throw new Error(errorMessage);
           }
           const data: ContentItem = await response.json();
+          
+          // Basic validation of received data
+          if (!data || typeof data !== 'object' || !data.title) {
+            throw new Error('Invalid content received');
+          }
+          
           setItem(data);
         } catch (err: any) {
           console.error(`Failed to fetch content for slug ${slug}:`, err);
@@ -48,6 +77,11 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
         <button className="text-primary hover:underline inline font-semibold">{triggerText}</button>
       </DialogTrigger>
       <DialogContent className="max-w-4xl h-[90vh]">
+        <DialogHeader>
+          <DialogTitle className="text-2xl font-headline">
+            {isLoading ? "Loading..." : error ? "Error" : item ? item.title : "Content not found"}
+          </DialogTitle>
+        </DialogHeader>
         {isLoading && (
           <div className="flex items-center justify-center h-full">
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
@@ -61,21 +95,16 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
           </div>
         )}
         {!isLoading && !error && item && (
-          <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-headline">{item.title}</DialogTitle>
-            </DialogHeader>
-            <ScrollArea className="h-[calc(90vh-100px)] pr-6 mt-4"> {/* Adjusted height for header */}
-                {/* Pass the pageSlug to MarkdownRenderer for section bookmarking context */}
-                <MarkdownRenderer content={item.generalOverview || ""} pageSlug={slug} />
-                {item.inDepthConsiderations && (
-                    <>
-                        <hr className="my-6" />
-                        <MarkdownRenderer content={item.inDepthConsiderations} pageSlug={slug} />
-                    </>
-                )}
-            </ScrollArea>
-          </>
+          <ScrollArea className="h-[calc(90vh-100px)] pr-6 mt-4"> {/* Adjusted height for header */}
+              {/* Pass the pageSlug to MarkdownRenderer for section bookmarking context */}
+              <MarkdownRenderer content={item.generalOverview || ""} pageSlug={slug} />
+              {item.inDepthConsiderations && (
+                  <>
+                      <hr className="my-6" />
+                      <MarkdownRenderer content={item.inDepthConsiderations} pageSlug={slug} />
+                  </>
+              )}
+          </ScrollArea>
         )}
         {!isLoading && !error && !item && isOpen && (
             <div className="flex flex-col items-center justify-center h-full text-center">

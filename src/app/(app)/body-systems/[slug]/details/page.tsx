@@ -1,11 +1,11 @@
-import { getContentItemBySlug } from "@/lib/firebase-admin";
+import { getContentItemBySlug } from "@/lib/data-access";
 import { notFound } from "next/navigation";
 import BodySystemDetailsClientPage from "@/components/body-systems/BodySystemDetailsClientPage"; // New client component
 import type { Metadata, ResolvingMetadata } from 'next';
 import type { ContentItem } from "@/types/content";
 
 interface BodySystemDetailsPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // Function to generate metadata
@@ -13,7 +13,7 @@ export async function generateMetadata(
   { params }: BodySystemDetailsPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
+  const { slug } = await params;
   const item = await getContentItemBySlug(slug);
 
   if (!item || item.categoryType !== 'Body System') {
@@ -34,7 +34,7 @@ export async function generateMetadata(
 }
 
 export default async function BodySystemInDepthDetailPageServer({ params }: BodySystemDetailsPageProps) {
-  const slug = params.slug;
+  const { slug } = await params;
   const item = await getContentItemBySlug(slug);
 
   if (!item || item.categoryType !== 'Body System') {

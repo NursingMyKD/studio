@@ -1,4 +1,4 @@
-import { getContentByCategory } from "@/lib/firebase-admin";
+import { getContentByCategory } from "@/lib/data-access";
 import DashboardClient from "@/components/dashboard/DashboardClient";
 import type { ContentItem } from '@/types/content';
 

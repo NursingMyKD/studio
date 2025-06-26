@@ -1,11 +1,11 @@
-import { getContentItemBySlug } from "@/lib/firebase-admin";
+import { getContentItemBySlug } from "@/lib/data-access";
 import { notFound } from "next/navigation";
 import TopicClientPage from "@/components/topics/TopicClientPage"; // New client component
 import type { Metadata, ResolvingMetadata } from 'next';
 import type { ContentItem } from "@/types/content";
 
 interface TopicDetailPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 // Function to generate metadata
@@ -13,7 +13,7 @@ export async function generateMetadata(
   { params }: TopicDetailPageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const slug = params.slug;
+  const { slug } = await params;
   const item = await getContentItemBySlug(slug);
 
   if (!item) {
@@ -35,7 +35,7 @@ export async function generateMetadata(
 }
 
 export default async function TopicDetailPageServer({ params }: TopicDetailPageProps) {
-  const slug = params.slug;
+  const { slug } = await params;
   const item = await getContentItemBySlug(slug);
 
   if (!item || item.categoryType !== 'Topic') {

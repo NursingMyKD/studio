@@ -19,18 +19,10 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // When the dialog is closed, reset the state
-    if (!isOpen) {
-      setItem(null);
-      setError(null);
-      setIsLoading(false);
-      return;
-    }
-
-    // When the dialog is open, fetch content if we don't have it
-    if (isOpen && !item && slug) {
+    if (isOpen && slug) {
       const fetchContent = async () => {
         setIsLoading(true);
+        setItem(null);
         setError(null);
         try {
           // Sanitize slug before making request
@@ -73,12 +65,18 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
           console.error(`Failed to fetch content for slug ${slug}:`, err);
           setError(err.message || "Could not load content.");
           setItem(null);
+        } finally {
+          setIsLoading(false);
         }
-        setIsLoading(false);
       };
       fetchContent();
+    } else if (!isOpen) {
+      // Reset state when dialog is closed
+      setItem(null);
+      setError(null);
+      setIsLoading(false);
     }
-  }, [isOpen, item, slug]);
+  }, [isOpen, slug]);
 
   const trigger = React.isValidElement(triggerText)
     ? triggerText
@@ -89,7 +87,7 @@ export default function ContentPopup({ slug, triggerText }: ContentPopupProps) {
       <DialogTrigger asChild>
         {trigger}
       </DialogTrigger>
-      <DialogContent className="max-w-4xl h-[90vh]">
+      <DialogContent key={slug} className="max-w-4xl h-[90vh]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-headline">
             {isLoading ? "Loading..." : error ? "Error" : item ? item.title : "Content not found"}

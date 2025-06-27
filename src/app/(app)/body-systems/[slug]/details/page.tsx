@@ -2,7 +2,6 @@ import { getContentItemBySlug } from "@/lib/data-access";
 import { notFound } from "next/navigation";
 import BodySystemDetailsClientPage from "@/components/body-systems/BodySystemDetailsClientPage"; // New client component
 import type { Metadata, ResolvingMetadata } from 'next';
-import type { ContentItem } from "@/types/content";
 
 interface BodySystemDetailsPageProps {
   params: Promise<{ slug: string }>;
@@ -10,8 +9,7 @@ interface BodySystemDetailsPageProps {
 
 // Function to generate metadata
 export async function generateMetadata(
-  { params }: BodySystemDetailsPageProps,
-  parent: ResolvingMetadata
+  { params }: BodySystemDetailsPageProps
 ): Promise<Metadata> {
   const { slug } = await params;
   const item = await getContentItemBySlug(slug);

@@ -1,8 +1,7 @@
 import { getContentItemBySlug } from "@/lib/data-access";
 import { notFound } from "next/navigation";
 import ProtocolClientPage from "@/components/protocols-and-guidelines/ProtocolClientPage"; // New client component
-import type { Metadata, ResolvingMetadata } from 'next';
-import type { ContentItem } from "@/types/content";
+import type { Metadata } from 'next';
 
 interface ProtocolDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -10,8 +9,7 @@ interface ProtocolDetailPageProps {
 
 // Function to generate metadata
 export async function generateMetadata(
-  { params }: ProtocolDetailPageProps,
-  parent: ResolvingMetadata
+  { params }: ProtocolDetailPageProps
 ): Promise<Metadata> {
   const { slug } = await params;
   const item = await getContentItemBySlug(slug);

@@ -23,7 +23,7 @@ const imageMap: { [key: string]: string } = {
   'respiratory': '/assets/body-system-respiratory.png',
   'ecmo': '/assets/category-critical-care-ECMO.png',
   'ventilator-management': '/assets/category-critical-care-Ventilator.png',
-  'pharmacology': '/assets/category-critical-care-pharmacology.png',
+  'pharmacology': '/assets/medication guidelines.png',
   'stroke-protocols': '/assets/category-protocols-stroke.png',
   'body-systems': '/assets/category-body-systems.png',
   'critical-care-topics': '/assets/category-critical-care.png',
@@ -32,7 +32,10 @@ const imageMap: { [key: string]: string } = {
   'hemodynamics': '/assets/hemodynamics.png',
   'renal': '/assets/Category-systems-renal.png',
   'iabp': '/assets/IABP.png',
-  'ttm-post-cardiac-arrest': '/assets/TTM.png'
+  'ttm-post-cardiac-arrest': '/assets/TTM.png',
+  'gastrointestinal': '/assets/Gastrointestinal tract.png',
+  'immune': '/assets/Immune System.png',
+  'padis-guidelines': '/assets/PADIS Guidelines.png'
 };
 
 // A single, global default image for any module without a specific image.

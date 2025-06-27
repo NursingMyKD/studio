@@ -1,13 +1,13 @@
 "use client";
 
-import { SidebarProvider, Sidebar, SidebarContent, SidebarFooter, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarContent, SidebarFooter, SidebarTrigger } from '@/components/ui/sidebar';
 import AppSidebarNavigation from '@/components/layout/AppSidebarNavigation';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu } from 'lucide-react'; 
-import { useState, useEffect, type FormEvent, useRef } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { Skeleton } from '@/components/ui/skeleton';
 import AppSidebarSkeleton from '@/components/layout/AppSidebarSkeleton';
 import { ThemeToggle } from '@/components/ThemeToggle';
@@ -19,8 +19,6 @@ import { logAnalyticsEvent } from '@/lib/analytics';
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   const [isClient, setIsClient] = useState(false);
-  const [headerSearchTerm, setHeaderSearchTerm] = useState("");
-  const router = useRouter();
   const pathname = usePathname();
   const startTimeRef = useRef<number | null>(null);
 
@@ -39,12 +37,6 @@ function AppLayout({ children }: { children: React.ReactNode }) {
       }
     };
   }, [pathname]);
-
-  const handleHeaderSearch = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!headerSearchTerm.trim()) return;
-    router.push(`/search?q=${encodeURIComponent(headerSearchTerm.trim())}`);
-  };
 
   return (
     <SidebarProvider defaultOpen={true}>

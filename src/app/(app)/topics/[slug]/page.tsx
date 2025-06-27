@@ -1,8 +1,7 @@
 import { getContentItemBySlug } from "@/lib/data-access";
 import { notFound } from "next/navigation";
 import TopicClientPage from "@/components/topics/TopicClientPage"; // New client component
-import type { Metadata, ResolvingMetadata } from 'next';
-import type { ContentItem } from "@/types/content";
+import type { Metadata } from 'next';
 
 interface TopicDetailPageProps {
   params: Promise<{ slug: string }>;
@@ -10,8 +9,7 @@ interface TopicDetailPageProps {
 
 // Function to generate metadata
 export async function generateMetadata(
-  { params }: TopicDetailPageProps,
-  parent: ResolvingMetadata
+  { params }: TopicDetailPageProps
 ): Promise<Metadata> {
   const { slug } = await params;
   const item = await getContentItemBySlug(slug);
